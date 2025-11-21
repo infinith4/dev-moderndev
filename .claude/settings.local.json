@@ -9,7 +9,8 @@
       "Bash(powershell -NoProfile -ExecutionPolicy Bypass -Command \"$content = Get-Content ''.\\setup-devcontainer.ps1'' -Raw -Encoding UTF8; $Utf8BomEncoding = New-Object System.Text.UTF8Encoding $true; [System.IO.File]::WriteAllText(''.\\setup-devcontainer.ps1'', $content, $Utf8BomEncoding)\")",
       "Bash(powershell -ExecutionPolicy Bypass -File:*)",
       "Bash(git checkout:*)",
-      "Bash(powershell -Command \"Get-Content ''.devcontainer/devcontainer.json'' -Raw -Encoding Byte | Select-Object -First 3 | ForEach-Object { ''{0:X2}'' -f $_}\")"
+      "Bash(powershell -Command \"Get-Content ''.devcontainer/devcontainer.json'' -Raw -Encoding Byte | Select-Object -First 3 | ForEach-Object { ''{0:X2}'' -f $_}\")",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

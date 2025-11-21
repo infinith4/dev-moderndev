@@ -1,7 +1,7 @@
 services:
   app:
     user: vscode
-    container_name: template-dev-docs
+    container_name: dev-moderndev-container
     build:
       context: .
       dockerfile: Dockerfile

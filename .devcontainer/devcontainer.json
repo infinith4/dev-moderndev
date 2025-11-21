@@ -1,5 +1,5 @@
 {
-  "name": "template-dev-docs",
+  "name": "dev-moderndev",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "app",
   "containerEnv": {

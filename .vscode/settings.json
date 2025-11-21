@@ -1,0 +1,9 @@
+{
+  "markdown-preview-enhanced.puppeteerArgs": [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--font-render-hinting=none"
+  ],
+  "markdown-preview-enhanced.printBackground": true,
+  "markdown-preview-enhanced.previewTheme": "github-light.css"
+}

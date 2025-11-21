@@ -1,0 +1,12 @@
+services:
+  app:
+    user: vscode
+    container_name: template-dev-docs
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - type: bind
+        source: .
+        target: /src

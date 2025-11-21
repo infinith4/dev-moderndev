@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -ExecutionPolicy Bypass -File \"setup-devcontainer.ps1\")",
+      "Bash(chcp 65001)",
+      "Bash(nul)",
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -Command \"$OutputEncoding = [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; & ''.\\setup-devcontainer.ps1''\")",
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -Command \"[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; [Console]::InputEncoding = [System.Text.Encoding]::UTF8; & ''.\\setup-devcontainer.ps1''\")",
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -Command \"$content = Get-Content ''.\\setup-devcontainer.ps1'' -Raw -Encoding UTF8; $Utf8BomEncoding = New-Object System.Text.UTF8Encoding $true; [System.IO.File]::WriteAllText(''.\\setup-devcontainer.ps1'', $content, $Utf8BomEncoding)\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File:*)",
+      "Bash(git checkout:*)",
+      "Bash(powershell -Command \"Get-Content ''.devcontainer/devcontainer.json'' -Raw -Encoding Byte | Select-Object -First 3 | ForEach-Object { ''{0:X2}'' -f $_}\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -363,16 +363,18 @@
 
 #### 推奨ツール（生産性が高いもの Top 10）
 
-1. **Postman** - APIテスト、HTTPリクエスト、自動化、コレクション管理
-2. **Selenium** - Webブラウザ自動化、E2Eテスト、多言語対応
-3. **Cypress** - モダンE2Eテスト、高速、デバッグしやすい
-4. **Playwright** - ブラウザ自動化、クロスブラウザ、高速・安定
-5. **REST Assured** - REST APIテスト、Java、BDD対応
-6. **Insomnia** - APIクライアント、GraphQL対応、環境変数管理
-7. **TestCafe** - E2Eテスト、セットアップ不要、クロスブラウザ
-8. **Puppeteer** - Headless Chrome制御、自動化、スクリーンショット
-9. **WebdriverIO** - Webdriver自動化、モバイル対応、並列実行
-10. **SoapUI** - SOAP/RESTテスト、API機能テスト、負荷テスト
+| # | ツール名 | 公式サイト | 説明 | メリット | デメリット |
+|---|---------|-----------|------|---------|-----------|
+| 1 | **Postman** | [https://www.postman.com/](https://www.postman.com/) | API開発・テストプラットフォーム。HTTPリクエスト送信、自動化、チーム協業 | ✅ 使いやすいGUI<br>✅ コレクション管理優秀<br>✅ 環境変数・認証対応<br>✅ テスト自動化可能<br>✅ チーム共有機能 | ❌ 無料版機能制限<br>❌ 大規模自動化はコード推奨<br>❌ バージョン管理やや弱い<br>❌ オフライン機能限定的 |
+| 2 | **Selenium** | [https://www.selenium.dev/](https://www.selenium.dev/) | Webブラウザ自動化ツール。E2Eテスト業界標準 | ✅ 業界標準・実績豊富<br>✅ 多言語対応（Java/Python/C#等）<br>✅ クロスブラウザ対応<br>✅ 無料オープンソース<br>✅ 大規模コミュニティ | ❌ セットアップ複雑<br>❌ 実行速度遅い<br>❌ 不安定になりやすい<br>❌ 学習曲線急 |
+| 3 | **Cypress** | [https://www.cypress.io/](https://www.cypress.io/) | モダンWebアプリ向けE2Eテストフレームワーク。高速でデバッグ容易 | ✅ 非常に高速<br>✅ デバッグしやすい<br>✅ タイムトラベル機能<br>✅ 自動待機<br>✅ スクリーンショット/動画 | ❌ Chromiumベースのみ<br>❌ マルチタブ非対応<br>❌ iframeサポート限定的<br>❌ 並列実行は有料 |
+| 4 | **Playwright** | [https://playwright.dev/](https://playwright.dev/) | Microsoft製ブラウザ自動化ツール。クロスブラウザ対応、高速・安定 | ✅ 全ブラウザ対応<br>✅ 高速で安定<br>✅ 自動待機優秀<br>✅ モバイルエミュレーション<br>✅ 無料オープンソース | ❌ 比較的新しい（2020〜）<br>❌ Seleniumより情報少ない<br>❌ 一部ブラウザ機能制限<br>❌ 学習コストあり |
+| 5 | **REST Assured** | [https://rest-assured.io/](https://rest-assured.io/) | JavaベースREST APIテストライブラリ。BDDスタイル記述 | ✅ Java環境と統合容易<br>✅ BDD可読性高い<br>✅ JSONPath/XPath対応<br>✅ 認証・バリデーション充実<br>✅ 無料オープンソース | ❌ Java限定<br>❌ GUIなし（コードのみ）<br>❌ 初心者には難しい<br>❌ Postmanより手間 |
+| 6 | **Insomnia** | [https://insomnia.rest/](https://insomnia.rest/) | APIクライアント・テストツール。GraphQL対応、環境変数管理 | ✅ シンプルで軽量<br>✅ GraphQL完全対応<br>✅ 環境変数管理優秀<br>✅ オープンソース<br>✅ Git同期可能 | ❌ Postmanより機能少ない<br>❌ チーム機能弱い<br>❌ 自動化機能限定的<br>❌ プラグイン少ない |
+| 7 | **TestCafe** | [https://testcafe.io/](https://testcafe.io/) | Node.js製E2Eテストフレームワーク。セットアップ不要 | ✅ セットアップ簡単<br>✅ クロスブラウザ<br>✅ TypeScript完全対応<br>✅ 並列実行対応<br>✅ スマートアサーション | ❌ Cypressより遅い<br>❌ デバッグやや難<br>❌ コミュニティ小<br>❌ 一部機能有料 |
+| 8 | **Puppeteer** | [https://pptr.dev/](https://pptr.dev/) | Google製Headless Chrome制御ライブラリ。スクリーンショット、PDF生成 | ✅ Chrome完全制御<br>✅ 高速<br>✅ スクレイピング向き<br>✅ 無料オープンソース<br>✅ Node.js統合 | ❌ Chromiumのみ<br>❌ E2Eテストには高レベルAPI不足<br>❌ 設定が細かい<br>❌ テストフレームワークではない |
+| 9 | **WebdriverIO** | [https://webdriver.io/](https://webdriver.io/) | Node.js製Webdriver自動化フレームワーク。モバイル対応、並列実行 | ✅ モバイルアプリ対応<br>✅ 並列実行強力<br>✅ プラグインエコシステム<br>✅ TypeScript対応<br>✅ クラウドサービス統合 | ❌ 設定複雑<br>❌ 学習曲線急<br>❌ Cypressより遅い<br>❌ ドキュメントやや分散 |
+| 10 | **SoapUI** | [https://www.soapui.org/](https://www.soapui.org/) | SOAP/REST APIテストツール。機能テスト、負荷テスト、モック | ✅ SOAP完全対応<br>✅ 機能・負荷・セキュリティテスト統合<br>✅ モックサーバー機能<br>✅ CI/CD統合<br>✅ 無料版あり | ❌ UI古い<br>❌ 動作やや重い<br>❌ REST特化ならPostman推奨<br>❌ Pro版高額 |
 
 #### その他利用可能なツール
 
@@ -398,16 +400,18 @@
 
 #### 推奨ツール（生産性が高いもの Top 10）
 
-1. **JMeter** - 負荷テスト、性能テスト、ストレステスト
-2. **Gatling** - 高性能負荷テスト、スケーラブル、レポート豊富
-3. **Locust** - Python負荷テスト、分散テスト、シンプル
-4. **k6** - モダン負荷テスト、開発者フレンドリー、CI/CD統合
-5. **OWASP ZAP** - セキュリティテスト、脆弱性スキャン、ペネトレーションテスト
-6. **Burp Suite** - Webセキュリティテスト、プロキシ、スキャナ
-7. **BlazeMeter** - JMeter拡張、クラウド負荷テスト、レポート分析
-8. **Artillery** - モダン負荷テスト、Node.js、マイクロサービス対応
-9. **Azure Load Testing** - クラウド負荷テスト、Azure統合、大規模テスト
-10. **Checkmarx** - SAST、コードセキュリティ、脆弱性検出
+| # | ツール名 | 公式サイト | 説明 | メリット | デメリット |
+|---|---------|-----------|------|---------|-----------|
+| 1 | **JMeter** | [https://jmeter.apache.org/](https://jmeter.apache.org/) | Apache製負荷・性能テストツール。業界標準、GUI/CLI両対応 | ✅ 完全無料オープンソース<br>✅ 業界標準で情報豊富<br>✅ 多様なプロトコル対応<br>✅ プラグイン豊富<br>✅ CI/CD統合容易 | ❌ UI古い<br>❌ メモリ使用量大<br>❌ 学習曲線やや急<br>❌ スクリプト作成やや面倒 |
+| 2 | **Gatling** | [https://gatling.io/](https://gatling.io/) | Scala製高性能負荷テストツール。コードベース、スケーラブル | ✅ 非常に高速<br>✅ リソース効率的<br>✅ 美しいHTMLレポート<br>✅ Scalaでコード記述<br>✅ CI/CD統合優秀 | ❌ Scala学習必要<br>❌ GUIなし（コードのみ）<br>❌ JMeterより情報少ない<br>❌ Enterprise版高額 |
+| 3 | **Locust** | [https://locust.io/](https://locust.io/) | Python製負荷テストツール。コードベース、分散テスト容易 | ✅ Pythonで記述（学習容易）<br>✅ 分散テスト簡単<br>✅ リアルタイムWeb UI<br>✅ 軽量で高速<br>✅ 完全無料 | ❌ プロトコル限定的<br>❌ レポート機能基本的<br>❌ JMeterより機能少ない<br>❌ 大規模では設定必要 |
+| 4 | **k6** | [https://k6.io/](https://k6.io/) | Grafana製モダン負荷テストツール。開発者フレンドリー、JavaScript記述 | ✅ JavaScriptで記述<br>✅ CLI中心で自動化容易<br>✅ クラウドサービス連携<br>✅ メトリクス豊富<br>✅ CI/CD統合優秀 | ❌ GUI機能なし<br>❌ 一部機能有料（Cloud）<br>❌ JMeterより情報少ない<br>❌ ブラウザベーステスト弱い |
+| 5 | **OWASP ZAP** | [https://www.zaproxy.org/](https://www.zaproxy.org/) | OWASP製セキュリティテストツール。脆弱性スキャン、ペネトレーションテスト | ✅ 完全無料オープンソース<br>✅ OWASP Top 10対応<br>✅ 自動・手動スキャン<br>✅ CI/CD統合<br>✅ 初心者向け | ❌ Burpより機能少ない<br>❌ 誤検知やや多い<br>❌ UI使いにくい部分あり<br>❌ 大規模サイトで遅い |
+| 6 | **Burp Suite** | [https://portswigger.net/burp](https://portswigger.net/burp) | プロ向けWebセキュリティテストツール。プロキシ、スキャナ、Intruder | ✅ 業界標準ペンテストツール<br>✅ 非常に高機能<br>✅ プロキシ機能優秀<br>✅ 拡張機能豊富<br>✅ Community版無料 | ❌ Pro版高額（$449/年）<br>❌ 学習曲線非常に急<br>❌ Community版機能制限<br>❌ セキュリティ専門知識必要 |
+| 7 | **BlazeMeter** | [https://www.blazemeter.com/](https://www.blazemeter.com/) | クラウド負荷テストサービス。JMeter互換、大規模テスト対応 | ✅ JMeterスクリプト利用可<br>✅ クラウドで大規模テスト<br>✅ 詳細レポート<br>✅ CI/CD統合<br>✅ 地理分散テスト | ❌ 有料（$99/月〜）<br>❌ クラウド依存<br>❌ コスト高くなりがち<br>❌ JMeter直接の方が安い |
+| 8 | **Artillery** | [https://www.artillery.io/](https://www.artillery.io/) | Node.js製モダン負荷テストツール。マイクロサービス、WebSocket対応 | ✅ YAML設定シンプル<br>✅ WebSocket/Socket.io対応<br>✅ プラグインエコシステム<br>✅ CI/CD統合容易<br>✅ オープンソース | ❌ JMeterより機能少ない<br>❌ GUI なし<br>❌ コミュニティ小さい<br>❌ Pro版一部機能有料 |
+| 9 | **Azure Load Testing** | [https://azure.microsoft.com/ja-jp/products/load-testing/](https://azure.microsoft.com/ja-jp/products/load-testing/) | Azure提供のクラウド負荷テストサービス。JMeter互換、Azure統合 | ✅ Azureフルマネージド<br>✅ JMeterスクリプト使用可<br>✅ Azure Monitor統合<br>✅ 大規模テスト容易<br>✅ スケーラブル | ❌ Azure依存<br>❌ 従量課金でコスト不透明<br>❌ Azure以外では利点薄い<br>❌ 比較的新しい |
+| 10 | **Checkmarx** | [https://checkmarx.com/](https://checkmarx.com/) | エンタープライズSASTツール。コードセキュリティ、脆弱性検出 | ✅ 多言語対応（25+）<br>✅ 誤検知少ない<br>✅ IDE統合<br>✅ 詳細レポート<br>✅ 開発フロー統合 | ❌ 非常に高額<br>❌ エンタープライズ向け<br>❌ セットアップ複雑<br>❌ 小規模には過剰 |
 
 #### その他利用可能なツール
 
@@ -467,16 +471,18 @@
 
 #### 推奨ツール（生産性が高いもの Top 10）
 
-1. **SonarQube** - コード品質管理、バグ検出、セキュリティ、技術的負債可視化
-2. **ESLint** (JavaScript/TypeScript) - Linter、コードスタイル、自動修正
-3. **Pylint** (Python) - 静的解析、コード品質チェック、PEP8準拠
-4. **RuboCop** (Ruby) - 静的解析、コードスタイル、自動修正
-5. **Checkstyle** (Java) - コードスタイルチェック、標準準拠
-6. **PMD** (Java) - バグ検出、コードスメル、コピペ検出
-7. **SpotBugs** (Java) - バグパターン検出、FindBugs後継
-8. **Prettier** - コードフォーマッター、多言語対応、統一的スタイル
-9. **Black** (Python) - 自動フォーマッター、設定不要、統一スタイル
-10. **StyleCop** (.NET) - C#コードスタイル、命名規則チェック
+| # | ツール名 | 公式サイト | 説明 | メリット | デメリット |
+|---|---------|-----------|------|---------|-----------|
+| 1 | **SonarQube** | [https://www.sonarqube.org/](https://www.sonarqube.org/) | 継続的コード品質管理プラットフォーム。バグ、脆弱性、技術的負債を可視化 | ✅ 多言語対応（30+）<br>✅ バグ・脆弱性・コードスメル検出<br>✅ 技術的負債可視化<br>✅ CI/CD統合<br>✅ Community版無料 | ❌ セットアップ・運用必要<br>❌ リソース使用量大<br>❌ 一部機能有料版限定<br>❌ 誤検知やや多い |
+| 2 | **ESLint** | [https://eslint.org/](https://eslint.org/) | JavaScript/TypeScript Linter。コードスタイル、品質チェック、自動修正 | ✅ 業界標準JS Linter<br>✅ プラグイン超豊富<br>✅ 自動修正機能<br>✅ カスタマイズ性高い<br>✅ 無料オープンソース | ❌ 設定複雑になりがち<br>❌ プラグイン依存で管理煩雑<br>❌ 実行速度やや遅い<br>❌ TypeScriptは別設定必要 |
+| 3 | **Pylint** | [https://pylint.pycqa.org/](https://pylint.pycqa.org/) | Python静的解析ツール。コード品質チェック、PEP8準拠確認 | ✅ Python標準的Linter<br>✅ 詳細なエラーメッセージ<br>✅ PEP8準拠チェック<br>✅ カスタマイズ可能<br>✅ 無料オープンソース | ❌ 厳しすぎる（誤検知多い）<br>❌ 実行速度遅い<br>❌ 設定ファイル複雑<br>❌ flake8の方が人気 |
+| 4 | **RuboCop** | [https://rubocop.org/](https://rubocop.org/) | Ruby静的解析・Linter。コードスタイル、品質チェック | ✅ Ruby標準的Linter<br>✅ Ruby Style Guide準拠<br>✅ 自動修正機能<br>✅ Rails対応<br>✅ 無料オープンソース | ❌ 実行速度遅い<br>❌ 設定カスタマイズ必須<br>❌ Ruby専用<br>❌ Cop多すぎて管理大変 |
+| 5 | **Checkstyle** | [https://checkstyle.org/](https://checkstyle.org/) | Javaコードスタイルチェッカー。Google/Sun標準準拠 | ✅ Java標準的スタイルチェッカー<br>✅ Google/Sun Style対応<br>✅ Maven/Gradle統合<br>✅ IDE統合<br>✅ 無料オープンソース | ❌ スタイルチェックのみ<br>❌ バグ検出はPMD/SpotBugs推奨<br>❌ 設定XMLやや複雑<br>❌ 実行やや遅い |
+| 6 | **PMD** | [https://pmd.github.io/](https://pmd.github.io/) | 多言語静的解析ツール。バグパターン、コードスメル、コピペ検出 | ✅ 多言語対応（Java/JS/Python等）<br>✅ コピペ検出（CPD）<br>✅ カスタムルール作成可<br>✅ Maven/Gradle統合<br>✅ 無料オープンソース | ❌ 誤検知やや多い<br>❌ ルール多すぎて選択困難<br>❌ SpotBugsと機能重複<br>❌ 設定やや複雑 |
+| 7 | **SpotBugs** | [https://spotbugs.github.io/](https://spotbugs.github.io/) | Javaバグパターン検出ツール。FindBugs後継、静的バグ検出 | ✅ バグ検出精度高い<br>✅ FindBugs後継で実績<br>✅ IDE統合優秀<br>✅ Maven/Gradle対応<br>✅ 無料オープンソース | ❌ Java専用<br>❌ 誤検知もある<br>❌ 実行やや遅い<br>❌ UIやや古い |
+| 8 | **Prettier** | [https://prettier.io/](https://prettier.io/) | Opinionatedコードフォーマッター。多言語対応、統一的コードスタイル | ✅ 設定ほぼ不要<br>✅ 多言語対応（JS/TS/CSS/HTML等）<br>✅ エディタ統合優秀<br>✅ チーム統一容易<br>✅ 無料オープンソース | ❌ カスタマイズ性低い<br>❌ Opinionated（好み分かれる）<br>❌ ESLintと併用必要<br>❌ 一部言語非対応 |
+| 9 | **Black** | [https://black.readthedocs.io/](https://black.readthedocs.io/) | Python Opinionatedフォーマッター。設定不要、統一スタイル | ✅ 設定不要（Uncompromising）<br>✅ 高速<br>✅ 一貫性あるフォーマット<br>✅ 議論不要<br>✅ 無料オープンソース | ❌ カスタマイズ不可<br>❌ スタイル好み分かれる<br>❌ Python専用<br>❌ 行長デフォルト88文字 |
+| 10 | **StyleCop** | [https://github.com/DotNetAnalyzers/StyleCopAnalyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) | C#コードスタイルアナライザー。命名規則、ドキュメントチェック | ✅ C#標準的スタイルチェッカー<br>✅ Visual Studio統合<br>✅ Roslyn Analyzer<br>✅ リアルタイムチェック<br>✅ 無料オープンソース | ❌ C#専用<br>❌ 厳しすぎる場合あり<br>❌ 設定カスタマイズ必要<br>❌ ビルド時間増加 |
 
 #### その他利用可能なツール
 
@@ -614,18 +620,15 @@
 
 ## 11. コンテナ・オーケストレーション
 
-#### 推奨ツール（生産性が高いもの Top 10）
+#### 推奨ツール（生産性が高いもの Top 5）
 
-1. **Docker** - コンテナ化、軽量、環境再現性、開発環境統一
-2. **Kubernetes** - コンテナオーケストレーション、スケーリング、サービスメッシュ
-3. **Docker Compose** - マルチコンテナ管理、開発環境定義、シンプル
-4. **Helm** - Kubernetesパッケージマネージャ、チャート管理、テンプレート
-5. **Rancher** - Kubernetes管理、マルチクラスタ、GUI管理
-6. **OpenShift** - エンタープライズKubernetes、Red Hat、セキュリティ強化
-7. **Amazon ECS** - AWSコンテナサービス、Fargate対応、AWS統合
-8. **Amazon EKS** - マネージドKubernetes、AWS、自動アップデート
-9. **Azure Kubernetes Service (AKS)** - AzureマネージドK8s、統合認証
-10. **Google Kubernetes Engine (GKE)** - GoogleマネージドK8s、Autopilot
+| # | ツール名 | 公式サイト | 説明 | メリット | デメリット |
+|---|---------|-----------|------|---------|-----------|
+| 1 | **Docker** | [https://www.docker.com/](https://www.docker.com/) | コンテナ化プラットフォーム。アプリケーションと依存関係をパッケージ化 | ✅ 業界標準・デファクト<br>✅ 環境再現性高い<br>✅ 軽量で高速起動<br>✅ 豊富なイメージライブラリ<br>✅ 開発環境統一 | ❌ Windows環境やや複雑<br>❌ ネットワーク設定難しい<br>❌ 本番運用はオーケストレータ必須<br>❌ セキュリティ設定必要 |
+| 2 | **Kubernetes (K8s)** | [https://kubernetes.io/](https://kubernetes.io/) | コンテナオーケストレーションプラットフォーム。自動デプロイ、スケーリング、管理 | ✅ 業界標準オーケストレータ<br>✅ 自動スケーリング・自己修復<br>✅ 宣言的設定<br>✅ クラウドネイティブ標準<br>✅ 大規模実績豊富 | ❌ 学習曲線非常に急<br>❌ 複雑で運用困難<br>❌ リソース使用量大<br>❌ 小規模には過剰 |
+| 3 | **Docker Compose** | [https://docs.docker.com/compose/](https://docs.docker.com/compose/) | マルチコンテナ定義・管理ツール。YAMLで開発環境定義 | ✅ シンプルで学習容易<br>✅ 開発環境に最適<br>✅ YAML定義でバージョン管理<br>✅ Docker統合<br>✅ 無料 | ❌ 本番環境不向き<br>❌ スケーリング機能弱い<br>❌ 単一ホスト限定<br>❌ K8sより機能少ない |
+| 4 | **Helm** | [https://helm.sh/](https://helm.sh/) | Kubernetesパッケージマネージャ。アプリケーションをチャートで管理 | ✅ K8s標準パッケージマネージャ<br>✅ 再利用可能なチャート<br>✅ バージョン管理・ロールバック<br>✅ テンプレート機能<br>✅ 無料オープンソース | ❌ K8s必須<br>❌ テンプレート複雑化しやすい<br>❌ デバッグ難しい<br>❌ 学習コストあり |
+| 5 | **Amazon EKS** | [https://aws.amazon.com/eks/](https://aws.amazon.com/eks/) | AWSマネージドKubernetesサービス。運用負荷軽減 | ✅ K8sマネージド<br>✅ AWS統合優秀<br>✅ 自動アップグレード<br>✅ IAM統合<br>✅ 高可用性 | ❌ AWS依存<br>❌ コスト高め<br>❌ 一部機能制限<br>❌ 他クラウドへの移行困難 |
 
 #### その他利用可能なツール
 
@@ -644,18 +647,15 @@
 
 ## 12. インフラストラクチャ as Code (IaC)
 
-#### 推奨ツール（生産性が高いもの Top 10）
+#### 推奨ツール（生産性が高いもの Top 5）
 
-1. **Terraform** - マルチクラウドIaC、宣言的、状態管理、モジュール化
-2. **AWS CloudFormation** - AWS専用IaC、JSON/YAMLテンプレート、スタック管理
-3. **Ansible** - 構成管理、自動化、エージェントレス、YAML
-4. **Pulumi** - プログラマブルIaC、TypeScript/Python/Go、既存言語活用
-5. **Azure Resource Manager (ARM) Templates** - Azure専用IaC、JSON定義
-6. **AWS CDK** - プログラマブルCF、TypeScript/Python/Java、高レベル構成
-7. **Bicep** - ARM簡素化、Azure、宣言的構文
-8. **Chef** - 構成管理、Rubyベース、エンタープライズ対応
-9. **Puppet** - 構成管理、モデル駆動、大規模環境対応
-10. **SaltStack** - 構成管理、イベント駆動、高速実行
+| # | ツール名 | 公式サイト | 説明 | メリット | デメリット |
+|---|---------|-----------|------|---------|-----------|
+| 1 | **Terraform** | [https://www.terraform.io/](https://www.terraform.io/) | HashiCorp製マルチクラウドIaC。HCL言語、状態管理、モジュール化 | ✅ マルチクラウド対応<br>✅ 業界標準・実績豊富<br>✅ モジュール化・再利用容易<br>✅ 状態管理優秀<br>✅ プランで事前確認可 | ❌ 状態ファイル管理必要<br>❌ 学習曲線やや急<br>❌ エラーメッセージ分かりにくい<br>❌ 一部機能有料（Cloud） |
+| 2 | **AWS CloudFormation** | [https://aws.amazon.com/cloudformation/](https://aws.amazon.com/cloudformation/) | AWSネイティブIaC。JSON/YAMLテンプレート、スタック管理 | ✅ AWS完全統合<br>✅ 無料（AWS料金のみ）<br>✅ ドリフト検出<br>✅ ChangeSet事前確認<br>✅ AWSサポート対象 | ❌ AWS専用<br>❌ JSON/YAML冗長<br>❌ エラーロールバック面倒<br>❌ Terraform比で機能劣る |
+| 3 | **Ansible** | [https://www.ansible.com/](https://www.ansible.com/) | Red Hat製構成管理・自動化ツール。エージェントレス、YAML、シンプル | ✅ エージェントレス<br>✅ YAML記述でシンプル<br>✅ 構成管理・デプロイ両対応<br>✅ 学習曲線緩やか<br>✅ コミュニティ大きい | ❌ 状態管理なし（べき等性は自己実装）<br>❌ 大規模で遅い<br>❌ エラーハンドリング弱い<br>❌ Windows対応やや弱い |
+| 4 | **Pulumi** | [https://www.pulumi.com/](https://www.pulumi.com/) | プログラマブルIaC。TypeScript/Python/Go/C#、既存言語活用 | ✅ 既存言語使用（TS/Python等）<br>✅ IDEサポート・補完<br>✅ テスト容易<br>✅ マルチクラウド対応<br>✅ 状態管理自動 | ❌ 比較的新しい（2018〜）<br>❌ Terraformより情報少ない<br>❌ 一部機能有料<br>❌ 言語依存性高い |
+| 5 | **AWS CDK** | [https://aws.amazon.com/cdk/](https://aws.amazon.com/cdk/) | AWSプログラマブルIaC。TypeScript/Python/Java/C#、CloudFormation生成 | ✅ 既存言語使用可能<br>✅ 高レベル抽象化<br>✅ CloudFormation自動生成<br>✅ IDE補完・型チェック<br>✅ 無料 | ❌ AWS専用<br>❌ CloudFormation依存<br>❌ 学習コストあり<br>❌ デバッグ難しい場合あり |
 
 #### その他利用可能なツール
 
@@ -694,18 +694,15 @@
 
 ## 14. セキュリティ・脆弱性管理
 
-#### 推奨ツール（生産性が高いもの Top 10）
+#### 推奨ツール（生産性が高いもの Top 5）
 
-1. **Snyk** - 依存関係スキャン、脆弱性検出、自動修正提案、CI/CD統合
-2. **Dependabot** (GitHub) - 依存関係更新自動化、セキュリティアラート、PR自動作成
-3. **Trivy** - コンテナスキャン、IaCスキャン、高速、包括的
-4. **SonarQube** - SAST、コード品質、セキュリティホットスポット
-5. **OWASP Dependency-Check** - 依存関係脆弱性スキャン、オープンソース
-6. **Aqua Security** - コンテナセキュリティ、ランタイム保護、コンプライアンス
-7. **Prisma Cloud** - クラウドセキュリティ、CSPM、CWPP
-8. **Clair** - コンテナ脆弱性スキャン、静的解析、OSSスキャン
-9. **Grype** - コンテナ脆弱性スキャナー、高速、正確
-10. **Mend (旧WhiteSource)** - OSS管理、ライセンス管理、脆弱性スキャン
+| # | ツール名 | 公式サイト | 説明 | メリット | デメリット |
+|---|---------|-----------|------|---------|-----------|
+| 1 | **Snyk** | [https://snyk.io/](https://snyk.io/) | 開発者向けセキュリティプラットフォーム。依存関係、コンテナ、IaCスキャン | ✅ 依存関係脆弱性検出<br>✅ 自動修正PR作成<br>✅ IDE/CI/CD統合<br>✅ コンテナ・IaCスキャン<br>✅ 開発者フレンドリー | ❌ 無料版制限多い<br>❌ 有料版高額<br>❌ 誤検知やや多い<br>❌ 大規模では遅い |
+| 2 | **Dependabot** | [https://github.com/dependabot](https://github.com/dependabot) | GitHub統合依存関係更新ツール。セキュリティアラート、PR自動作成 | ✅ GitHub完全統合<br>✅ 完全無料<br>✅ 自動PR作成<br>✅ セキュリティアドバイザリ<br>✅ 設定簡単 | ❌ GitHub専用<br>❌ 機能基本的<br>❌ カスタマイズ性低い<br>❌ Snykより機能少ない |
+| 3 | **Trivy** | [https://trivy.dev/](https://trivy.dev/) | Aqua製包括的脆弱性スキャナー。コンテナ、IaC、ファイルシステムスキャン | ✅ 高速で包括的<br>✅ 完全無料オープンソース<br>✅ コンテナ・IaC・SBOM対応<br>✅ CI/CD統合容易<br>✅ オフライン動作可 | ❌ 誤検知やや多い<br>❌ GUI なし<br>❌ 修正提案機能なし<br>❌ ライセンス管理弱い |
+| 4 | **SonarQube** | [https://www.sonarqube.org/](https://www.sonarqube.org/) | コード品質・セキュリティプラットフォーム。SAST、セキュリティホットスポット | ✅ コード品質・セキュリティ統合<br>✅ OWASP Top 10対応<br>✅ 多言語対応<br>✅ 技術的負債可視化<br>✅ Community版無料 | ❌ セキュリティ機能は基本的<br>❌ セットアップ・運用必要<br>❌ 専用ツールより検出少ない<br>❌ リソース使用量大 |
+| 5 | **OWASP Dependency-Check** | [https://owasp.org/www-project-dependency-check/](https://owasp.org/www-project-dependency-check/) | OWASP製依存関係脆弱性スキャナー。NVD連携、オープンソース | ✅ 完全無料オープンソース<br>✅ NVD（国家脆弱性DB）連携<br>✅ 多言語対応<br>✅ CI/CD統合<br>✅ SBOM生成 | ❌ 実行速度遅い<br>❌ 誤検知多い<br>❌ 修正提案なし<br>❌ UIやや古い |
 
 #### その他利用可能なツール
 

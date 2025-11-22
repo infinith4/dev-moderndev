@@ -307,6 +307,38 @@
 - 監視・ロギングの充実が運用成功の前提条件
 - サービスメッシュ（Istio）で横断的関心事を実装
 
+#### DevSecOps実践ガイドの作成
+
+- ✅ **docs/devsecops_guide.md の作成**
+  - DevSecOpsの定義と必要性
+  - Shift Left（シフトレフト）の概念と実践
+  - DevSecOpsの原則（全員の責任、自動化、継続的監視、Compliance as Code、多層防御）
+  - セキュアCI/CDパイプライン（7ステージ）
+  - セキュリティテスト手法:
+    - SAST（静的アプリケーションセキュリティテスト）
+    - DAST（動的アプリケーションセキュリティテスト）
+    - SCA（ソフトウェアコンポジション分析）
+    - IAST、RASP、ペネトレーションテスト
+  - コンテナセキュリティ（イメージスキャン、Kubernetes Pod Security、RBAC、Network Policies）
+  - シークレット管理（Vault、AWS Secrets Manager、Kubernetes Secrets）
+  - 脆弱性管理（CVSS スコアリング、SLA、パッチ管理）
+  - セキュリティ監視とインシデント対応（SIEM、SOAR、Falco）
+  - コンプライアンス（GDPR、PCI DSS、SOC 2、ISO 27001）
+  - Compliance as Code（OPA、Kyverno）
+  - 組織とプロセス（セキュリティチャンピオン、トレーニング、バグバウンティ）
+  - カテゴリ別推奨ツール（SAST、DAST、SCA、コンテナ、シークレット、IaC、監視）
+  - 成熟度モデル（5レベル）
+  - 実装ロードマップ（4フェーズ）
+
+**重要な洞察**:
+- DevSecOpsはツールの導入だけでなく、文化とプロセスの変革
+- Shift Leftによる早期発見・早期修正（修正コストは後工程ほど100倍以上）
+- セキュリティは全員の責任（開発者、運用者、セキュリティチーム）
+- 自動化がCI/CDパイプラインの鍵
+- 最小権限の原則、多層防御（Defense in Depth）
+- 継続的監視とメトリクス測定
+- サプライチェーンセキュリティ（依存関係スキャン、SBOM）
+
 ---
 
 ## 成果物サマリー
@@ -321,9 +353,9 @@
 5. `docs/agile_scrum_guide.md` - アジャイル/スクラム開発プロセスガイド（約10,000語）
 6. `docs/dx_roadmap.md` - DX推進ロードマップ（約12,000語）
 7. `docs/microservices_guide.md` - マイクロサービスアーキテクチャ設計ガイド（約13,000語）
+8. `docs/devsecops_guide.md` - DevSecOps実践ガイド（約14,000語）
 
 ### フェーズ2（次のステップ）- 残タスク（中優先度）
-8. DevSecOps実践ガイド
 9. 高信頼化ソフトウェア開発手法の整理
 10. 組込みシステム開発ガイド
 11. IoT製品開発ガイド

@@ -10,7 +10,12 @@
       "Bash(powershell -ExecutionPolicy Bypass -File:*)",
       "Bash(git checkout:*)",
       "Bash(powershell -Command \"Get-Content ''.devcontainer/devcontainer.json'' -Raw -Encoding Byte | Select-Object -First 3 | ForEach-Object { ''{0:X2}'' -f $_}\")",
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:www.ipa.go.jp)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)"
     ],
     "deny": [],
     "ask": []

@@ -51,6 +51,48 @@
 
 ---
 
+## Azure専用インフラ詳細設計ツール
+
+Azureでのインフラ構築に特化したツール群です。Azure Resource Manager、Bicep、Azure Policy等を活用した詳細設計を支援します。
+
+### Azure IaC・構成管理ツール（Top 10）
+
+| # | ツール名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
+|---|---------|-----------|------|------|---------|-----------|
+| 1 | **Azure Bicep** | [https://learn.microsoft.com/azure/azure-resource-manager/bicep/](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | Azure専用IaC DSL。ARM Templatesより簡潔で型安全 | Azureリソース定義、インフラ詳細設計、デプロイ自動化 | ✅ 簡潔な構文<br>✅ 型安全・IDE補完<br>✅ ARM自動変換<br>✅ 無料<br>✅ モジュール化容易 | ❌ Azure専用<br>❌ 比較的新しい<br>❌ Terraformより情報少ない<br>❌ マルチクラウド不可 |
+| 2 | **Azure Resource Manager (ARM) Templates** | [https://learn.microsoft.com/azure/azure-resource-manager/templates/](https://learn.microsoft.com/azure/azure-resource-manager/templates/) | Azureネイティブ IaC。JSON形式、宣言的デプロイ | Azureリソース定義、インフラコード化、テンプレート管理 | ✅ Azure標準<br>✅ 全Azureリソース対応<br>✅ 無料<br>✅ バージョン管理可能<br>✅ デプロイ履歴追跡 | ❌ JSON冗長<br>❌ 学習曲線急<br>❌ Bicep推奨（後継）<br>❌ エラーメッセージ分かりにくい |
+| 3 | **Azure Policy** | [https://learn.microsoft.com/azure/governance/policy/](https://learn.microsoft.com/azure/governance/policy/) | ガバナンス・コンプライアンス管理。リソース制約定義 | コンプライアンス管理、リソースポリシー定義、監査 | ✅ コンプライアンス自動化<br>✅ 組み込みポリシー豊富<br>✅ カスタムポリシー定義可<br>✅ 無料<br>✅ リソース自動修復 | ❌ 学習コスト高<br>❌ 複雑なポリシー記述困難<br>❌ デバッグ難しい<br>❌ 誤設定でデプロイブロック |
+| 4 | **Azure Blueprints** | [https://learn.microsoft.com/azure/governance/blueprints/](https://learn.microsoft.com/azure/governance/blueprints/) | 環境テンプレート管理。ARM、Policy、RBACを一括定義 | 環境標準化、コンプライアンス、マルチサブスクリプション管理 | ✅ 環境一括定義<br>✅ バージョン管理<br>✅ コンプライアンス強制<br>✅ 無料<br>✅ 標準化推進 | ❌ 機能複雑<br>❌ 学習コスト高<br>❌ 小規模環境には過剰<br>❌ デプロイ時間長い |
+| 5 | **Azure DevOps (Repos + Pipelines)** | [https://azure.microsoft.com/ja-jp/products/devops/](https://azure.microsoft.com/ja-jp/products/devops/) | CI/CD統合プラットフォーム。IaCコード管理・デプロイ自動化 | IaCコード管理、CI/CD、Infrastructure Pipeline | ✅ Azure統合優秀<br>✅ CI/CD強力<br>✅ 5ユーザーまで無料<br>✅ YAML Pipeline<br>✅ Git統合 | ❌ UI複雑<br>❌ 学習コスト高<br>❌ GitHub Actions比で情報少ない<br>❌ セットアップやや面倒 |
+| 6 | **Azure CLI** | [https://learn.microsoft.com/cli/azure/](https://learn.microsoft.com/cli/azure/) | Azureコマンドラインインターフェース。スクリプト自動化 | Azure操作自動化、スクリプト作成、リソース管理 | ✅ 完全無料<br>✅ クロスプラットフォーム<br>✅ スクリプト化容易<br>✅ 全Azureリソース対応<br>✅ Cloud Shell統合 | ❌ 状態管理なし<br>❌ 大規模環境にはIaC推奨<br>❌ エラーハンドリング弱い<br>❌ べき等性保証なし |
+| 7 | **Azure PowerShell** | [https://learn.microsoft.com/powershell/azure/](https://learn.microsoft.com/powershell/azure/) | PowerShellモジュール。Windowsネイティブ自動化 | Windows環境での自動化、スクリプト作成、管理タスク | ✅ PowerShell統合<br>✅ Windows管理者に親和性高<br>✅ オブジェクト指向<br>✅ 無料<br>✅ Active Directory統合 | ❌ Windowsバイアス<br>❌ 学習曲線急（PowerShell）<br>❌ Linux環境では利点薄い<br>❌ IaC代替にはならない |
+| 8 | **Azure Resource Graph** | [https://learn.microsoft.com/azure/governance/resource-graph/](https://learn.microsoft.com/azure/governance/resource-graph/) | 大規模リソースクエリ。KQL言語で高速検索 | リソース棚卸、構成分析、コンプライアンスチェック | ✅ 高速クエリ（数千リソース）<br>✅ KQL強力<br>✅ 無料<br>✅ サブスクリプション横断検索<br>✅ API統合 | ❌ KQL学習必要<br>❌ 複雑なクエリ困難<br>❌ リアルタイム性やや低い<br>❌ 視覚化機能弱い |
+| 9 | **Azure Automation** | [https://learn.microsoft.com/azure/automation/](https://learn.microsoft.com/azure/automation/) | 運用自動化サービス。Runbook、構成管理、更新管理 | 定期タスク自動化、構成管理、パッチ管理 | ✅ スケジュール実行<br>✅ PowerShell/Python対応<br>✅ State Configuration（DSC）<br>✅ 更新管理統合<br>✅ 無料枠あり | ❌ 従量課金<br>❌ デバッグ困難<br>❌ 実行時間制限<br>❌ Runbook管理煩雑 |
+| 10 | **Azure Arc** | [https://azure.microsoft.com/ja-jp/products/azure-arc/](https://azure.microsoft.com/ja-jp/products/azure-arc/) | ハイブリッド・マルチクラウド管理。オンプレ・他クラウド統合管理 | ハイブリッドクラウド管理、オンプレサーバー管理、統合ガバナンス | ✅ ハイブリッド統合管理<br>✅ Azureポリシー適用可<br>✅ GitOps対応<br>✅ Kubernetes管理<br>✅ SQL Server管理 | ❌ 複雑な構成<br>❌ 学習コスト高<br>❌ 一部機能有料<br>❌ ネットワーク要件厳しい |
+
+---
+
+## AWS専用インフラ詳細設計ツール
+
+AWSでのインフラ構築に特化したツール群です。CloudFormation、CDK、Service Catalog等を活用した詳細設計を支援します。
+
+### AWS IaC・構成管理ツール（Top 10）
+
+| # | ツール名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
+|---|---------|-----------|------|------|---------|-----------|
+| 1 | **AWS CloudFormation** | [https://aws.amazon.com/cloudformation/](https://aws.amazon.com/cloudformation/) | AWSネイティブIaC。YAML/JSON、スタック管理 | AWSリソース定義、インフラ詳細設計、スタック管理 | ✅ AWS完全統合<br>✅ 無料（リソース料金のみ）<br>✅ ドリフト検出<br>✅ ChangeSet事前確認<br>✅ AWSサポート対象 | ❌ YAML/JSON冗長<br>❌ エラーロールバック面倒<br>❌ Terraform比で機能劣る<br>❌ AWS専用 |
+| 2 | **AWS CDK (Cloud Development Kit)** | [https://aws.amazon.com/cdk/](https://aws.amazon.com/cdk/) | プログラマブルIaC。TypeScript/Python/Java/C#でCloudFormation生成 | プログラマブルインフラ定義、高レベル抽象化、IaC | ✅ 既存言語使用可能<br>✅ 高レベル抽象化<br>✅ IDE補完・型チェック<br>✅ CloudFormation自動生成<br>✅ 無料 | ❌ 学習曲線急<br>❌ CloudFormation依存<br>❌ デバッグ難しい場合あり<br>❌ AWS専用 |
+| 3 | **AWS CLI** | [https://aws.amazon.com/cli/](https://aws.amazon.com/cli/) | AWSコマンドラインインターフェース。スクリプト自動化 | AWS操作自動化、スクリプト作成、リソース管理 | ✅ 完全無料<br>✅ クロスプラットフォーム<br>✅ 全AWSサービス対応<br>✅ スクリプト化容易<br>✅ CloudShell統合 | ❌ 状態管理なし<br>❌ 大規模環境にはIaC推奨<br>❌ エラーハンドリング弱い<br>❌ べき等性保証なし |
+| 4 | **AWS Service Catalog** | [https://aws.amazon.com/servicecatalog/](https://aws.amazon.com/servicecatalog/) | ITサービスカタログ管理。承認済みリソーステンプレート配布 | インフラテンプレート管理、標準化、ガバナンス | ✅ インフラ標準化<br>✅ セルフサービス提供<br>✅ バージョン管理<br>✅ タグ強制<br>✅ 無料（リソース料金のみ） | ❌ 初期セットアップ複雑<br>❌ 学習コスト高<br>❌ 小規模には過剰<br>❌ UI改善余地 |
+| 5 | **AWS Config** | [https://aws.amazon.com/config/](https://aws.amazon.com/config/) | リソース構成管理・監査。構成変更履歴、コンプライアンスチェック | 構成変更追跡、コンプライアンス監査、リソース棚卸 | ✅ 構成変更履歴記録<br>✅ コンプライアンスルール<br>✅ リソースリレーションシップ可視化<br>✅ 自動修復<br>✅ 他サービス統合 | ❌ 従量課金（やや高額）<br>❌ データ保持期間制限<br>❌ リアルタイム性低い<br>❌ ルール作成複雑 |
+| 6 | **AWS Systems Manager** | [https://aws.amazon.com/systems-manager/](https://aws.amazon.com/systems-manager/) | 運用管理統合サービス。パッチ管理、構成管理、自動化 | 運用自動化、パッチ管理、インベントリ管理、Run Command | ✅ 統合運用管理<br>✅ エージェントベース<br>✅ パラメータストア<br>✅ Session Manager（SSH代替）<br>✅ 基本機能無料 | ❌ 機能多く複雑<br>❌ エージェント必要<br>❌ 学習コスト高<br>❌ 一部機能有料 |
+| 7 | **AWS Control Tower** | [https://aws.amazon.com/controltower/](https://aws.amazon.com/controltower/) | マルチアカウント環境セットアップ・ガバナンス。ランディングゾーン自動構築 | マルチアカウント管理、ガバナンス、セキュリティベースライン | ✅ マルチアカウント自動化<br>✅ ガードレール（ガバナンス）<br>✅ アカウント自動プロビジョニング<br>✅ AWS Organizations統合<br>✅ 無料（リソース料金のみ） | ❌ 大規模組織向け<br>❌ 初期セットアップ時間かかる<br>❌ カスタマイズ制限<br>❌ 既存環境移行困難 |
+| 8 | **AWS CloudFormation Designer** | [https://aws.amazon.com/cloudformation/](https://aws.amazon.com/cloudformation/) | ビジュアルインフラ設計ツール。ドラッグ&ドロップ | インフラ構成図作成、CloudFormationテンプレート生成、視覚的設計 | ✅ ビジュアル設計<br>✅ CloudFormation自動生成<br>✅ 無料<br>✅ テンプレート可視化<br>✅ 初心者向け | ❌ 機能限定的<br>❌ 複雑な構成困難<br>❌ 手動編集推奨<br>❌ レイアウト自動調整弱い |
+| 9 | **AWS Application Composer** | [https://aws.amazon.com/application-composer/](https://aws.amazon.com/application-composer/) | サーバーレスアプリ視覚設計。Lambda、API Gateway等 | サーバーレス詳細設計、SAMテンプレート生成、視覚的設計 | ✅ サーバーレス特化<br>✅ ビジュアル設計<br>✅ SAM/CloudFormation生成<br>✅ リアルタイムプレビュー<br>✅ 無料 | ❌ サーバーレス限定<br>❌ 比較的新しい<br>❌ EC2等非対応<br>❌ 複雑なワークフロー困難 |
+| 10 | **AWS OpsWorks** | [https://aws.amazon.com/opsworks/](https://aws.amazon.com/opsworks/) | 構成管理サービス。Chef/Puppet統合 | 構成管理、アプリデプロイ、レイヤー管理 | ✅ Chef/Puppet統合<br>✅ レイヤー概念<br>✅ 自動スケーリング<br>✅ ライフサイクルイベント<br>✅ 無料（リソース料金のみ） | ❌ 学習曲線急<br>❌ 新規プロジェクト非推奨<br>❌ Systems Manager推奨（後継）<br>❌ コミュニティ縮小 |
+
+---
+
 **関連ドキュメント**:
 - [4. 詳細設計（アプリケーション）](./dev_process_開発工程_4_詳細設計_アプリケーション.md)
 - [5. 実装](./dev_process_開発工程_5_実装.md)

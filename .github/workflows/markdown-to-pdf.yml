@@ -3,10 +3,10 @@ name: Convert Markdown to PDF
 on:
   push:
     paths:
-      - '**.md'
+      - 'docs/**/*.md'
   pull_request:
     paths:
-      - '**.md'
+      - 'docs/**/*.md'
   workflow_dispatch:
 
 jobs:
@@ -35,8 +35,8 @@ jobs:
           # Create output directory for PDFs
           mkdir -p pdf-output
 
-          # Find all markdown files and convert them to PDF
-          find . -name "*.md" -not -path "*/node_modules/*" -not -path "*/.git/*" | while read -r file; do
+          # Find all markdown files in docs folder and convert them to PDF
+          find docs -name "*.md" -type f | while read -r file; do
             # Get relative path and create corresponding directory structure
             relative_path="${file#./}"
             output_dir="pdf-output/$(dirname "$relative_path")"

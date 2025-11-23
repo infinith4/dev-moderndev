@@ -547,4 +547,64 @@
 
 ---
 
+### 9. アプリケーション/インフラドキュメント分割
+**完了日**: 2025年11月23日
+
+#### 作業概要
+基本設計、詳細設計、実装の各ドキュメントを、アプリケーションとインフラに分割し、保守性と可読性を向上させました。
+
+#### 作成したファイル（6ファイル）
+
+**3. 基本設計**:
+- `dev_process_開発工程_3_基本設計_アプリケーション.md`
+  - Section 3.1: システム方式設計（UML/モデリングツールTop 10）
+  - ツール例: Next Design, astah*, Enterprise Architect, PlantUML等
+- `dev_process_開発工程_3_基本設計_インフラ.md`
+  - Section 3.2: インフラ基本設計（ネットワーク/サーバー/セキュリティ設計）
+  - ツール例: Lucidchart, CloudCraft, Terraform, Hava.io等
+  - Azure/AWSクラウドサービス
+
+**4. 詳細設計**:
+- `dev_process_開発工程_4_詳細設計_アプリケーション.md`
+  - Section 4.1: アプリケーション詳細設計（モジュール/API/DB詳細設計）
+  - ツール例: Enterprise Architect, Swagger/OpenAPI, Postman, dbdiagram.io等
+  - Azure/AWSクラウドサービス（API Management, RDS, DynamoDB等）
+- `dev_process_開発工程_4_詳細設計_インフラ.md`
+  - Section 4.2: インフラ詳細設計（CIDR、セキュリティグループ、ストレージ詳細設計）
+  - ツール例: Terraform, CloudFormation, Bicep, Ansible, Lucidchart等
+  - Azure/AWSクラウドサービス（Bicep, VPC, CloudFormation等）
+
+**5. 実装**:
+- `dev_process_開発工程_5_実装_アプリケーション.md`
+  - Section 5.1: アプリケーション実装（IDE、バージョン管理、AIコード補完）
+  - IDE Top 5: VS Code, IntelliJ IDEA, Visual Studio, PyCharm, WebStorm
+  - バージョン管理: Git, GitHub, GitLab, Bitbucket, Azure DevOps Repos
+  - AI補完: GitHub Copilot, Cursor, Amazon CodeWhisperer
+  - Azure/AWSクラウドサービス（DevOps, Pipelines, CodePipeline, Lambda等）
+- `dev_process_開発工程_5_実装_インフラ.md`
+  - Section 5.2: インフラ構築（Infrastructure as Code）
+  - IaC Top 10: Terraform, CloudFormation, Bicep, Ansible, Pulumi, AWS CDK, Packer等
+
+#### 更新したファイル（3ファイル）
+
+**元ファイルの更新**:
+1. `dev_process_開発工程_3_基本設計.md`
+   - インフラセクション（3.2）を削除
+   - 注記と相互参照リンクを追加
+2. `dev_process_開発工程_4_詳細設計.md`
+   - インフラセクション（4.2）を削除
+   - 注記と相互参照リンクを追加
+3. `dev_process_開発工程_5_実装.md`
+   - インフラセクション（5.2）を削除
+   - 注記と相互参照リンクを追加
+
+**完了状況**:
+- ✅ 6ファイル新規作成完了（アプリケーション×3、インフラ×3）
+- ✅ 3ファイル更新完了（インフラセクション削除、相互参照追加）
+- ✅ 全ファイルに適切なクロスリファレンスを追加
+- ✅ TASKS.md更新完了
+- ✅ CLAUDE_LOGS.md更新完了
+
+---
+
 **最終更新**: 2025年11月23日

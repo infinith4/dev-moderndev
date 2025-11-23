@@ -1,12 +1,8 @@
-# 開発工程_4_詳細設計
+# 開発工程_4_詳細設計（アプリケーション）
 
 ## 概要
 
-本ドキュメントは、IPA（独立行政法人 情報処理推進機構）の「共通フレーム2013」に基づく**詳細設計プロセス**における開発タスクと推奨ツールをまとめたものです。
-
-**注記**: 詳細設計プロセスは、アプリケーション詳細設計とインフラ詳細設計に分割されています。詳細は以下のドキュメントを参照してください。
-- [4. 詳細設計（アプリケーション）](./dev_process_開発工程_4_詳細設計_アプリケーション.md)
-- [4. 詳細設計（インフラ）](./dev_process_開発工程_4_詳細設計_インフラ.md)
+本ドキュメントは、IPA（独立行政法人 情報処理推進機構）の「共通フレーム2013」に基づく**詳細設計プロセス（アプリケーション詳細設計）**における開発タスクと推奨ツールをまとめたものです。
 
 ### 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
@@ -55,7 +51,7 @@
 
 ## クラウドサービス（Azure / AWS）
 
-詳細設計フェーズでは、実装に近いレベルでのインフラ設計、API設計、データベース設計を行います。
+詳細設計フェーズでは、実装に近いレベルでのAPI設計、データベース設計を行います。
 
 ### Azure サービス
 
@@ -64,8 +60,6 @@
 | 1 | **Azure API Management** | [https://azure.microsoft.com/ja-jp/products/api-management/](https://azure.microsoft.com/ja-jp/products/api-management/) | フルマネージドAPIゲートウェイ。API設計、公開、管理、監視 | API設計・定義、API Gateway、開発者ポータル、APIドキュメント | ✅ 統合API管理<br>✅ 開発者ポータル自動生成<br>✅ OpenAPI統合<br>✅ ポリシー管理<br>✅ 分析・監視 | ❌ 高額（$50/月〜）<br>❌ 学習曲線急<br>❌ 小規模には過剰<br>❌ 設定複雑 |
 | 2 | **Azure SQL Database** | [https://azure.microsoft.com/ja-jp/products/azure-sql/database/](https://azure.microsoft.com/ja-jp/products/azure-sql/database/) | フルマネージドSQL Serverデータベース。高可用性、自動バックアップ | データベース詳細設計、スキーマ設計、パフォーマンスチューニング | ✅ フルマネージド<br>✅ 自動バックアップ<br>✅ スケーリング自動<br>✅ 高可用性<br>✅ Azure統合 | ❌ SQL Server専用<br>❌ コスト予測難しい<br>❌ 一部機能制限<br>❌ ベンダーロックイン |
 | 3 | **Azure Cosmos DB** | [https://azure.microsoft.com/ja-jp/products/cosmos-db/](https://azure.microsoft.com/ja-jp/products/cosmos-db/) | グローバル分散NoSQLデータベース。低レイテンシ、マルチモデル | NoSQLデータベース設計、グローバルアプリ、マルチリージョン | ✅ グローバル分散<br>✅ 低レイテンシ保証<br>✅ マルチモデル（Document/Key-Value/Graph）<br>✅ スケーラブル<br>✅ 無料枠あり | ❌ 高コスト<br>❌ 学習曲線急<br>❌ クエリ性能要注意<br>❌ トランザクション制限 |
-| 4 | **Azure Bicep** | [https://learn.microsoft.com/azure/azure-resource-manager/bicep/](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | インフラコード定義DSL。ARM Templatesより簡潔 | インフラ詳細設計、リソース定義、IaC | ✅ 簡潔な構文<br>✅ 型安全<br>✅ IDE補完<br>✅ ARM自動変換<br>✅ 無料 | ❌ Azure専用<br>❌ 比較的新しい<br>❌ Terraformより情報少ない<br>❌ マルチクラウド不可 |
-| 5 | **Azure Virtual Network** | [https://azure.microsoft.com/ja-jp/products/virtual-network/](https://azure.microsoft.com/ja-jp/products/virtual-network/) | 仮想ネットワークサービス。サブネット、NSG、ルーティング | ネットワーク詳細設計、サブネット設計、セキュリティ設計 | ✅ 柔軟なネットワーク設計<br>✅ NSGでセキュリティ制御<br>✅ VPN/ExpressRoute接続<br>✅ ピアリング<br>✅ 無料（データ転送のみ課金） | ❌ 設定複雑<br>❌ トラブルシューティング困難<br>❌ IP枯渇リスク<br>❌ 設計ミスのコスト高 |
 
 ### AWS サービス
 
@@ -74,11 +68,13 @@
 | 1 | **Amazon API Gateway** | [https://aws.amazon.com/api-gateway/](https://aws.amazon.com/api-gateway/) | フルマネージドAPIゲートウェイ。REST/HTTP/WebSocket API作成・公開 | API設計・定義、API Gateway、認証・認可、スロットリング | ✅ Lambda統合<br>✅ REST/HTTP/WebSocket対応<br>✅ 認証・認可統合<br>✅ スロットリング・キャッシュ<br>✅ 従量課金 | ❌ 学習曲線急<br>❌ コスト予測難しい<br>❌ デバッグ困難<br>❌ 制限多い |
 | 2 | **Amazon RDS** | [https://aws.amazon.com/rds/](https://aws.amazon.com/rds/) | フルマネージドリレーショナルデータベース。MySQL/PostgreSQL/Oracle/SQL Server | データベース詳細設計、スキーマ設計、高可用性設計 | ✅ フルマネージド<br>✅ 自動バックアップ<br>✅ マルチAZ高可用性<br>✅ 複数DB選択可<br>✅ リードレプリカ | ❌ コスト高め<br>❌ 一部カスタマイズ制限<br>❌ ストレージ上限あり<br>❌ ベンダーロックイン |
 | 3 | **Amazon DynamoDB** | [https://aws.amazon.com/dynamodb/](https://aws.amazon.com/dynamodb/) | フルマネージドNoSQLデータベース。ミリ秒レイテンシ、無制限スケール | NoSQLデータベース設計、高速アクセス、スケーラブル設計 | ✅ ミリ秒レイテンシ<br>✅ 無制限スケール<br>✅ フルマネージド<br>✅ Global Tables<br>✅ 無料枠あり | ❌ データモデリング難しい<br>❌ クエリ制限多い<br>❌ コスト予測難しい<br>❌ 移行困難 |
-| 4 | **AWS CloudFormation** | [https://aws.amazon.com/cloudformation/](https://aws.amazon.com/cloudformation/) | インフラコード定義。YAML/JSON、スタック管理 | インフラ詳細設計、リソース定義、IaC、ドリフト検出 | ✅ AWS標準IaC<br>✅ 無料（リソース料金のみ）<br>✅ ドリフト検出<br>✅ ChangeSet<br>✅ スタック管理 | ❌ YAML/JSON冗長<br>❌ エラー対応困難<br>❌ Terraform比で機能劣る<br>❌ AWS専用 |
-| 5 | **Amazon VPC** | [https://aws.amazon.com/vpc/](https://aws.amazon.com/vpc/) | 仮想プライベートクラウド。ネットワーク分離、セキュリティ制御 | ネットワーク詳細設計、サブネット設計、セキュリティグループ設計 | ✅ 柔軟なネットワーク設計<br>✅ セキュリティグループ<br>✅ VPN/Direct Connect<br>✅ VPCピアリング<br>✅ 無料 | ❌ 設定複雑<br>❌ トラブルシューティング困難<br>❌ IP CIDR変更不可<br>❌ 設計ミスのコスト高 |
-| 6 | **AWS AppSync** | [https://aws.amazon.com/appsync/](https://aws.amazon.com/appsync/) | フルマネージドGraphQL API。リアルタイムデータ同期、オフライン対応 | GraphQL API設計、リアルタイムアプリ、モバイルバックエンド | ✅ GraphQL対応<br>✅ リアルタイム同期<br>✅ オフライン対応<br>✅ Lambda統合<br>✅ DynamoDB Direct統合 | ❌ GraphQL学習必要<br>❌ コスト予測難しい<br>❌ デバッグ困難<br>❌ REST比で複雑 |
+| 4 | **AWS AppSync** | [https://aws.amazon.com/appsync/](https://aws.amazon.com/appsync/) | フルマネージドGraphQL API。リアルタイムデータ同期、オフライン対応 | GraphQL API設計、リアルタイムアプリ、モバイルバックエンド | ✅ GraphQL対応<br>✅ リアルタイム同期<br>✅ オフライン対応<br>✅ Lambda統合<br>✅ DynamoDB Direct統合 | ❌ GraphQL学習必要<br>❌ コスト予測難しい<br>❌ デバッグ困難<br>❌ REST比で複雑 |
 
 ---
+
+**関連ドキュメント**:
+- [4. 詳細設計（インフラ）](./dev_process_開発工程_4_詳細設計_インフラ.md)
+- [5. 実装](./dev_process_開発工程_5_実装.md)
 
 **最終更新日**: 2025年（令和7年）
 **文書バージョン**: 1.0

@@ -397,10 +397,153 @@
 - 完了: 1_企画プロセス, 2_要件定義（2/8ファイル）
 - 残り: 3_基本設計, 4_詳細設計, 5_実装, 6_アプリケーションテスト, 7_インフラテスト, 8_導入
 
+---
+
+### 6. 残り6ファイルの作成完了
+**完了日**: 2025年11月23日
+
+#### 全8ファイルの完成
+- ✅ **dev_process_開発工程_3_基本設計.md の作成**
+  - 基本設計プロセス（アプリケーション、インフラ）
+  - UML/モデリングツール、アーキテクチャ設計ツール
+  - Azure: Architecture Center, Well-Architected Framework, ARM Templates, Bicep, DevOps Wiki（5サービス）
+  - AWS: Architecture Center, Well-Architected Tool, CloudFormation, Designer, Application Composer, WorkDocs（6サービス）
+
+- ✅ **dev_process_開発工程_4_詳細設計.md の作成**
+  - 詳細設計プロセス（API設計、データベース設計、画面設計）
+  - 詳細設計ツール（Enterprise Architect, PlantUML, Swagger, Postman, dbdiagram.io）
+  - Azure: API Management, SQL Database, Cosmos DB, Bicep, Virtual Network（5サービス）
+  - AWS: API Gateway, RDS, DynamoDB, CloudFormation, VPC, AppSync（6サービス）
+
+- ✅ **dev_process_開発工程_5_実装.md の作成**
+  - 実装プロセス（開発環境、バージョン管理、コーディング規約、CI/CD）
+  - IDE/エディタ: VS Code, IntelliJ IDEA, Visual Studio, PyCharm, WebStorm
+  - バージョン管理: Git, GitHub, GitLab, Bitbucket, Azure DevOps Repos
+  - AI開発支援: GitHub Copilot, Cursor, Amazon CodeWhisperer, Tabnine, Codeium
+  - 言語別推奨ツール（Java, C#, Python, TypeScript）
+  - Azure: Azure DevOps, Pipelines, Container Registry, App Service, Codespaces（5サービス）
+  - AWS: CodeCommit, CodeBuild, CodePipeline, ECR, Cloud9, Lambda（6サービス）
+
+- ✅ **dev_process_開発工程_6_アプリケーションテスト.md の作成**
+  - アプリケーションテストプロセス（単体、結合、統合、パフォーマンス）
+  - 単体テスト: JUnit 5, pytest, Jest, NUnit, Vitest
+  - 結合テスト: Postman, Playwright, Cypress, Selenium, REST Assured
+  - パフォーマンステスト: JMeter, Gatling, k6, Locust, Artillery
+  - 言語別推奨ツール（Java, C#, Python, TypeScript）
+  - Azure: Test Plans, Load Testing, App Service (test env), DevTest Labs（4サービス）
+  - AWS: Device Farm, CloudWatch Synthetics, Elastic Beanstalk, Lambda, ECS/EKS（5サービス）
+
+- ✅ **dev_process_開発工程_7_インフラテスト.md の作成**
+  - インフラテストプロセス（IaC、コンテナ、監視、セキュリティ）
+  - IaC: Terraform, AWS CloudFormation, Ansible, Pulumi, AWS CDK
+  - コンテナ・オーケストレーション: Docker, Kubernetes, Docker Compose, Helm, Amazon EKS
+  - 監視・運用: Datadog, Prometheus+Grafana, ELK Stack, New Relic, Sentry, Splunk
+  - セキュリティ: Snyk, Trivy, Dependabot, SonarQube, OWASP Dependency-Check
+  - Azure: Monitor, DevTest Labs, Network Watcher, Security Center, Load Testing（5サービス）
+  - AWS: CloudWatch, X-Ray, Config, Inspector, Systems Manager, Trusted Advisor（6サービス）
+
+- ✅ **dev_process_開発工程_8_導入.md の作成**
+  - 導入プロセス（移行、保守・運用、デプロイ自動化）
+  - データ移行: Liquibase, Flyway, AWS DMS, Talend, Apache NiFi, Informatica
+  - 運用管理: Datadog, Prometheus+Grafana, ELK Stack, New Relic, Sentry, CloudWatch
+  - 問題管理: ServiceNow, Jira Service Management, Zendesk, PagerDuty, Freshservice
+  - デプロイ自動化: GitHub Actions, GitLab CI/CD, Azure DevOps Pipelines, AWS CodePipeline, Argo CD
+  - Azure: Migrate, Database Migration Service, Monitor, DevOps, Automation（5サービス）
+  - AWS: Migration Hub, DMS, CloudWatch, Systems Manager, CodeDeploy, OpsWorks（6サービス）
+
+**完了状況**:
+- ✅ 全8ファイル作成完了（8/8ファイル）
+- ✅ 各ファイルにAzure/AWSクラウドサービスの詳細表を追加
+- ✅ 推奨ツールを表形式で記載（ツール名、公式サイト、説明、メリット、デメリット）
+
 **次のステップ**:
-- 残り6ファイルの作成を次回に継続
-- 各ファイルにAzure/AWSインフラツールの表を追加
-- TASKS.mdの該当タスクを完了としてマーク
+- TASKS.mdの更新（ファイル分割タスクを完了としてマーク）
+
+---
+
+### 7. インフラ設計セクションの追加
+**完了日**: 2025年11月23日
+
+#### インフラ基本設計・詳細設計の追加
+
+ユーザーからの追加要求に基づき、開発工程.mdに記載されているインフラ設計セクションを追加しました。
+
+- ✅ **dev_process_開発工程_3_基本設計.md にインフラ基本設計を追加**
+  - セクション「3.2 インフラ基本設計」を追加
+  - 主要タスク：ネットワーク構成設計、サーバー構成設計、ストレージ設計、セキュリティ設計、可用性・冗長性設計、バックアップ・DR設計
+  - 推奨ツール（Top 10）：
+    - Lucidchart（ネットワーク図作成）
+    - CloudCraft（AWS/Azureインフラ可視化、コスト見積）
+    - draw.io（無料図作成）
+    - Microsoft Visio（ネットワーク図・ラック図）
+    - Terraform（IaCツール）
+    - Hava.io（実インフラ自動可視化）
+    - Cloudockit（自動ドキュメント生成）
+    - AWS CloudFormation Designer（AWSビジュアル設計）
+    - PlantUML（テキストベースインフラ図）
+    - Diagrams (Python)（Pythonコードで図生成）
+  - セクション構成を「3.1 アプリケーション基本設計」と「3.2 インフラ基本設計」に分割
+
+- ✅ **dev_process_開発工程_4_詳細設計.md にインフラ詳細設計を追加**
+  - セクション「4.2 インフラ詳細設計」に推奨ツールを追加
+  - 主要タスク：ネットワーク詳細設計（CIDR、サブネット）、サーバー構成詳細設計、セキュリティ詳細設計、ストレージ詳細設計、バックアップ・DR詳細設計、監視・運用詳細設計、パフォーマンス設計
+  - 推奨ツール（Top 10）：
+    - Terraform（詳細なリソース定義、状態管理）
+    - AWS CloudFormation（AWS標準IaC）
+    - Azure Bicep（Azure IaC DSL）
+    - Ansible（サーバー構成管理）
+    - Lucidchart（詳細ネットワーク図）
+    - Microsoft Visio（詳細ネットワーク図・ラック図）
+    - Palo Alto Expedition（ファイアウォール設計）
+    - AWS Well-Architected Tool（詳細設計レビュー）
+    - Checkov（IaCセキュリティスキャン）
+    - Infracost（IaCコスト見積）
+
+**完了状況**:
+- ✅ 基本設計ファイルにインフラ基本設計セクション追加完了
+- ✅ 詳細設計ファイルにインフラ詳細設計ツール追加完了
+- ✅ 各セクションに詳細な主要タスクと推奨ツール（表形式）を記載
+- ✅ TASKS.md更新完了
+
+---
+
+### 8. インフラ構築セクションの追加（実装工程）
+**完了日**: 2025年11月23日
+
+#### dev_process_開発工程_5_実装.md にインフラ構築セクション追加
+
+ユーザーからの追加要求に基づき、実装工程にインフラ構築セクションを追加しました。
+
+- ✅ **dev_process_開発工程_5_実装.md にインフラ構築セクション追加**
+  - セクション「5.2 インフラ構築」を追加
+  - 概要：Infrastructure as Code (IaC) を活用した自動化、再現性、バージョン管理可能なインフラ構築
+  - 主要タスク（8項目）：
+    - IaCコードの実装（Terraform、CloudFormation等）
+    - インフラのプロビジョニング・構築
+    - 環境構築の自動化
+    - 構成管理コードの実装（Ansible等）
+    - インフラCI/CDパイプラインの構築
+    - マシンイメージのビルド（AMI、コンテナイメージ等）
+    - ネットワーク・セキュリティグループの設定
+    - インフラコードのテスト
+  - 推奨ツール（Infrastructure as Code - Top 10）：
+    1. Terraform（マルチクラウドIaC）
+    2. AWS CloudFormation（AWSネイティブIaC）
+    3. Azure Bicep（Azure IaC DSL）
+    4. Ansible（構成管理・自動化）
+    5. Pulumi（プログラマブルIaC）
+    6. AWS CDK（プログラマブルAWS IaC）
+    7. Packer（マシンイメージビルド）
+    8. Vagrant（開発環境構築）
+    9. Chef（構成管理）
+    10. SaltStack（構成管理・リモート実行）
+  - その他ツール：Terragrunt、ARM Templates、Crossplane、Puppet、CFEngine、NixOS
+
+**完了状況**:
+- ✅ 実装ファイルにインフラ構築セクション追加完了
+- ✅ Infrastructure as Code ツールTop 10を表形式で詳細記載
+- ✅ TASKS.md更新完了
+- ✅ CLAUDE_LOGS.md更新完了
 
 ---
 

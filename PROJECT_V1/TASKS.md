@@ -8,19 +8,30 @@
 - [x] dev_process.md に開発工程ごとに必要なツールまたはIPAの情報を参照する
 - [x] dev_process.md をベースに開発工程ごとに必要なツールを145件以上リストアップ、工程内のタスクごとに一般的で生産性が高いものを10つ以上選定（完了：170ツール、各工程Top10選定）
 - [x] 開発工程やテスト工程では特に言語ごとに親和性が高いツールを記載してください。（1工程では言語を Java, C#, Python, Typescript として表形式で記載してください）
-- [x] docs/開発工程.md に記載の開発工程のプロセスに合わせて、docs/dev_process.md の内容を保ったまま新たなファイル docs/dev_process_開発工程_{工程名}.md に反映（進行中：2/8ファイル完了）
+- [x] docs/開発工程.md に記載の開発工程のプロセスに合わせて、docs/dev_process.md の内容を保ったまま新たなファイル docs/dev_process_開発工程_{工程名}.md に反映（完了：8/8ファイル完了）
   - [x] dev_process_開発工程_1_企画プロセス.md 作成完了
   - [x] dev_process_開発工程_2_要件定義.md 作成完了
-  - [ ] 残り6ファイル（基本設計、詳細設計、実装、アプリケーションテスト、インフラテスト、導入）は次回継続
-- [x] docs/dev_process_開発工程_{工程名}.md のインフラはクラウドサービス: Azure, AWS を中心に記載。表形式でAzure , AWS でそれぞれのツールを記載（進行中：2/8ファイル完了）
+  - [x] dev_process_開発工程_3_基本設計.md 作成完了 + インフラ基本設計追加完了
+  - [x] dev_process_開発工程_4_詳細設計.md 作成完了 + インフラ詳細設計追加完了
+  - [x] dev_process_開発工程_5_実装.md 作成完了 + インフラ構築追加完了
+  - [x] dev_process_開発工程_6_アプリケーションテスト.md 作成完了
+  - [x] dev_process_開発工程_7_インフラテスト.md 作成完了
+  - [x] dev_process_開発工程_8_導入.md 作成完了
+- [ ] docs/dev_process_開発工程_{工程名}.md で基本設計、詳細設計、実装は インフラ部分を切り出して別ファイルにして
+- [x] docs/dev_process_開発工程_{工程名}.md のインフラはクラウドサービス: Azure, AWS を中心に記載。表形式でAzure , AWS でそれぞれのツールを記載（完了：8/8ファイル完了）
   - [x] 企画プロセス：Azure 3サービス、AWS 3サービス追加（DevOps Boards, Microsoft 365, Azure Repos / WorkDocs, Chime, Wickr）
   - [x] 要件定義：Azure 4サービス、AWS 5サービス追加（プロトタイプ環境含む）
-  - [ ] 残り6工程のAzure/AWSツール追加は次回継続
-- [x] 推奨ツールの記載を表形式化（進行中）
+  - [x] 基本設計：Azure 5サービス、AWS 6サービス追加（Architecture Center, CloudFormation等）
+  - [x] 詳細設計：Azure 5サービス、AWS 6サービス追加（API Management, API Gateway等）
+  - [x] 実装：Azure 5サービス、AWS 6サービス追加（DevOps, CodePipeline等）
+  - [x] アプリケーションテスト：Azure 4サービス、AWS 5サービス追加（Test Plans, Device Farm等）
+  - [x] インフラテスト：Azure 5サービス、AWS 6サービス追加（Monitor, CloudWatch等）
+  - [x] 導入：Azure 5サービス、AWS 6サービス追加（Migrate, Migration Hub等）
+- [x] 推奨ツールの記載を表形式化（完了）
   - [x] 企画プロセス（システム化構想、システム化計画）：ツール名（公式リンク）、概要、用途、メリット、デメリットを記載
-  - [ ] 残りの工程も順次表形式化を継続
-- [ ] PROJECT_V1/CLAUDE_LOGS.md に対応内容でやったことと、これからやることを記載
-- [ ] TASKS.md を更新（このファイル）
+  - [x] 全8工程のツールを表形式で記載完了
+- [x] PROJECT_V1/CLAUDE_LOGS.md に対応内容でやったことと、これからやることを記載
+- [x] TASKS.md を更新（このファイル）
 - [x] IPAのWebサイトから追加の開発タスク情報を収集
   - DX実践手引書、ITSS+アジャイル領域、組込みシステム関連ガイドラインなど
 

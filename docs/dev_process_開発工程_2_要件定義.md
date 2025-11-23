@@ -66,30 +66,5 @@
 
 ---
 
-## クラウドサービス（Azure / AWS）
-
-要件定義フェーズでは、ドキュメント管理、コラボレーション、プロトタイプ環境としてクラウドサービスを活用します。
-
-### Azure サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **Azure DevOps Wiki** | [https://azure.microsoft.com/ja-jp/products/devops/](https://azure.microsoft.com/ja-jp/products/devops/) | Azure DevOps統合Wiki。要件定義書・仕様書管理 | 要件定義書作成、仕様書管理、Markdown記述、バージョン管理 | ✅ Azure DevOps統合<br>✅ Git連携<br>✅ Markdown記述<br>✅ バージョン管理<br>✅ 無料プランあり | ❌ Confluence比で機能少ない<br>❌ UI基本的<br>❌ テンプレート少ない<br>❌ エディタ改善余地 |
-| 2 | **Microsoft 365 SharePoint** | [https://www.microsoft.com/microsoft-365/sharepoint/](https://www.microsoft.com/microsoft-365/sharepoint/) | エンタープライズドキュメント管理・共有プラットフォーム | 要件定義書管理、承認フロー、バージョン管理、権限管理 | ✅ Office 365完全統合<br>✅ 承認ワークフロー<br>✅ メタデータ管理<br>✅ 強力な権限管理<br>✅ エンタープライズ実績 | ❌ 複雑で学習困難<br>❌ カスタマイズに専門知識<br>❌ UI改善余地<br>❌ 有料（$5/月〜） |
-| 3 | **Azure App Service (プロトタイプ環境)** | [https://azure.microsoft.com/ja-jp/products/app-service/](https://azure.microsoft.com/ja-jp/products/app-service/) | フルマネージドWebアプリホスティング。プロトタイプ検証環境 | プロトタイプWebアプリ展開、要件検証環境、デモ環境 | ✅ 迅速なデプロイ<br>✅ スケーリング自動<br>✅ CI/CD統合<br>✅ 多言語対応<br>✅ 無料枠あり | ❌ 従量課金でコスト予測難<br>❌ ベンダーロックイン<br>❌ 一部制約あり<br>❌ 複雑な構成困難 |
-| 4 | **Azure Static Web Apps** | [https://azure.microsoft.com/ja-jp/products/app-service/static/](https://azure.microsoft.com/ja-jp/products/app-service/static/) | 静的Webアプリホスティング。プロトタイプ・デモサイト | UI/UXプロトタイプ公開、静的サイトデモ、レビュー環境 | ✅ 無料枠充実<br>✅ GitHub Actions統合<br>✅ グローバルCDN<br>✅ API統合可能<br>✅ セットアップ簡単 | ❌ 静的サイト限定<br>❌ サーバーサイド制限<br>❌ カスタムドメイン設定必要<br>❌ リージョン限定的 |
-
-### AWS サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **AWS WorkDocs** | [https://aws.amazon.com/workdocs/](https://aws.amazon.com/workdocs/) | フルマネージド文書ストレージ・共同編集サービス | 要件定義書保存、共同編集、レビュー・コメント、承認フロー | ✅ 1TBストレージ<br>✅ リアルタイム共同編集<br>✅ バージョン管理<br>✅ コメント・承認機能<br>✅ AWS統合 | ❌ Microsoft 365より機能少ない<br>❌ デスクトップアプリ弱い<br>❌ 日本語サポート限定的<br>❌ エコシステム小 |
-| 2 | **Amazon Honeycode** | [https://www.honeycode.aws/](https://www.honeycode.aws/) | ノーコードアプリ構築サービス。簡易プロトタイプ作成 | 業務アプリプロトタイプ、簡易ワークフロー、要件検証 | ✅ ノーコードで構築<br>✅ テンプレート豊富<br>✅ AWS統合<br>✅ モバイル対応<br>✅ 無料枠あり | ❌ 機能限定的<br>❌ 複雑なロジック困難<br>❌ エクスポート制限<br>❌ サービス継続性不透明 |
-| 3 | **AWS Amplify (プロトタイプ環境)** | [https://aws.amazon.com/amplify/](https://aws.amazon.com/amplify/) | フルスタックアプリ開発・ホスティングプラットフォーム | プロトタイプWebアプリ展開、フロントエンド検証環境 | ✅ フロントエンド特化<br>✅ CI/CD統合<br>✅ React/Vue/Angular対応<br>✅ バックエンド統合<br>✅ 無料枠あり | ❌ AWS依存<br>❌ 学習曲線あり<br>❌ 従量課金<br>❌ 複雑な構成困難 |
-| 4 | **Amazon S3 + CloudFront (静的サイトホスティング)** | [https://aws.amazon.com/s3/](https://aws.amazon.com/s3/) | 静的WebサイトホスティングとCDN配信 | UI/UXプロトタイプ公開、デモサイト、静的ドキュメント | ✅ 低コスト<br>✅ 高速配信（CDN）<br>✅ 高可用性<br>✅ スケーラブル<br>✅ S3 + CloudFront組み合わせ | ❌ 設定やや複雑<br>❌ 静的サイト限定<br>❌ HTTPS設定必要<br>❌ 管理コストあり |
-| 5 | **AWS Lambda + API Gateway (プロトタイプAPI)** | [https://aws.amazon.com/lambda/](https://aws.amazon.com/lambda/) | サーバーレスAPI構築。プロトタイプバックエンド | プロトタイプAPI、サーバーレスバックエンド、要件検証 | ✅ サーバーレス<br>✅ 従量課金（コスト削減）<br>✅ スケーラブル<br>✅ 多言語対応<br>✅ 無料枠あり | ❌ コールドスタート遅延<br>❌ デバッグ困難<br>❌ ステートレス設計必要<br>❌ 実行時間制限 |
-
----
-
 **最終更新日**: 2025年（令和7年）
 **文書バージョン**: 1.0

@@ -65,32 +65,5 @@
 
 ---
 
-## クラウドサービス（Azure / AWS）
-
-基本設計フェーズでは、アーキテクチャ設計、インフラ設計、設計レビューのためのクラウドサービスを活用します。
-
-### Azure サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **Azure Architecture Center** | [https://learn.microsoft.com/azure/architecture/](https://learn.microsoft.com/azure/architecture/) | Azureアーキテクチャのベストプラクティス集。参照アーキテクチャ、設計パターン | アーキテクチャ設計、ベストプラクティス参照、設計パターン選定 | ✅ Microsoft公式ガイド<br>✅ 詳細な参照アーキテクチャ<br>✅ 無料アクセス<br>✅ 定期的更新<br>✅ コード例豊富 | ❌ Azure特化<br>❌ 情報量膨大で取捨選択必要<br>❌ 日本語翻訳やや遅い<br>❌ 実装詳細は別途調査必要 |
-| 2 | **Azure Well-Architected Framework** | [https://learn.microsoft.com/azure/well-architected/](https://learn.microsoft.com/azure/well-architected/) | 5つの柱（コスト最適化、運用性、パフォーマンス、信頼性、セキュリティ）に基づく設計原則 | アーキテクチャレビュー、設計評価、ベストプラクティス適用 | ✅ 体系的な設計原則<br>✅ チェックリスト形式<br>✅ 無料ツール<br>✅ レビュー機能<br>✅ 推奨事項自動生成 | ❌ Azure専用<br>❌ 学習コストあり<br>❌ 全項目対応は困難<br>❌ 実装は別途必要 |
-| 3 | **Azure Resource Manager (ARM) Templates** | [https://learn.microsoft.com/azure/azure-resource-manager/](https://learn.microsoft.com/azure/azure-resource-manager/) | インフラをコードで定義。JSON形式、宣言的デプロイ | インフラ設計、リソース構成定義、テンプレート管理 | ✅ Azure標準IaC<br>✅ 宣言的定義<br>✅ バージョン管理可能<br>✅ 再現性高い<br>✅ 無料 | ❌ JSON冗長<br>❌ 学習曲線急<br>❌ Terraform比で機能劣る<br>❌ エラーメッセージ分かりにくい |
-| 4 | **Azure Bicep** | [https://learn.microsoft.com/azure/azure-resource-manager/bicep/](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | ARM Templatesの改良版DSL。簡潔な構文、型安全 | インフラ設計、リソース定義、ARMテンプレート生成 | ✅ ARM Templatesより簡潔<br>✅ 型安全<br>✅ IDE補完対応<br>✅ ARM自動変換<br>✅ 無料 | ❌ 比較的新しい<br>❌ Azure専用<br>❌ Terraformより情報少ない<br>❌ マルチクラウド不可 |
-| 5 | **Azure DevOps Wiki** | [https://azure.microsoft.com/ja-jp/products/devops/](https://azure.microsoft.com/ja-jp/products/devops/) | 設計書・仕様書管理Wiki | 設計書作成、アーキテクチャドキュメント、技術仕様書管理 | ✅ Azure DevOps統合<br>✅ Markdown記述<br>✅ Git連携<br>✅ バージョン管理<br>✅ 無料プランあり | ❌ Confluence比で機能少ない<br>❌ UI基本的<br>❌ テンプレート少ない<br>❌ エディタ改善余地 |
-
-### AWS サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **AWS Architecture Center** | [https://aws.amazon.com/architecture/](https://aws.amazon.com/architecture/) | AWSアーキテクチャのベストプラクティス集。参照アーキテクチャ、図表、ホワイトペーパー | アーキテクチャ設計、ベストプラクティス参照、設計パターン選定 | ✅ AWS公式ガイド<br>✅ 詳細な参照アーキテクチャ<br>✅ 無料アクセス<br>✅ ホワイトペーパー豊富<br>✅ 業界別ソリューション | ❌ AWS特化<br>❌ 情報量膨大<br>❌ 日本語翻訳やや遅い<br>❌ 実装詳細は別途調査必要 |
-| 2 | **AWS Well-Architected Tool** | [https://aws.amazon.com/well-architected-tool/](https://aws.amazon.com/well-architected-tool/) | 6つの柱に基づくアーキテクチャレビューツール。無料、ベストプラクティス評価 | アーキテクチャレビュー、設計評価、改善提案取得 | ✅ 無料ツール<br>✅ ベストプラクティス評価<br>✅ 改善提案自動生成<br>✅ レポート出力<br>✅ 継続的レビュー | ❌ AWS専用<br>❌ 質問項目多数（学習コスト）<br>❌ 全項目対応は困難<br>❌ 実装は別途必要 |
-| 3 | **AWS CloudFormation** | [https://aws.amazon.com/cloudformation/](https://aws.amazon.com/cloudformation/) | インフラをコードで定義。YAML/JSON、スタック管理、ドリフト検出 | インフラ設計、リソース構成定義、スタック管理 | ✅ AWS標準IaC<br>✅ 無料（リソース料金のみ）<br>✅ ドリフト検出<br>✅ ChangeSet事前確認<br>✅ AWSサポート対象 | ❌ YAML/JSON冗長<br>❌ エラーロールバック面倒<br>❌ Terraform比で機能劣る<br>❌ AWS専用 |
-| 4 | **AWS CloudFormation Designer** | [https://aws.amazon.com/cloudformation/](https://aws.amazon.com/cloudformation/) | ビジュアルインフラ設計ツール。ドラッグ&ドロップでリソース配置 | インフラ構成図作成、CloudFormationテンプレート生成、視覚的設計 | ✅ ビジュアル設計<br>✅ CloudFormation自動生成<br>✅ 無料<br>✅ テンプレート可視化<br>✅ 初心者向け | ❌ 機能限定的<br>❌ 複雑な構成困難<br>❌ 手動編集推奨<br>❌ レイアウト自動調整弱い |
-| 5 | **AWS Application Composer** | [https://aws.amazon.com/application-composer/](https://aws.amazon.com/application-composer/) | サーバーレスアプリケーション視覚設計ツール。Lambda、API Gateway等 | サーバーレスアーキテクチャ設計、SAMテンプレート生成、視覚的設計 | ✅ サーバーレス特化<br>✅ ビジュアル設計<br>✅ SAM/CloudFormation生成<br>✅ リアルタイムプレビュー<br>✅ 無料 | ❌ サーバーレス限定<br>❌ 比較的新しい<br>❌ EC2等非対応<br>❌ 複雑なワークフロー困難 |
-| 6 | **Amazon WorkDocs** | [https://aws.amazon.com/workdocs/](https://aws.amazon.com/workdocs/) | 設計書・ドキュメント管理 | 設計書保存、レビュー・コメント、バージョン管理、承認フロー | ✅ 1TBストレージ<br>✅ バージョン管理<br>✅ コメント・承認機能<br>✅ AWS統合<br>✅ セキュア | ❌ Microsoft 365より機能少ない<br>❌ デスクトップアプリ弱い<br>❌ 日本語サポート限定的<br>❌ エコシステム小 |
-
----
-
 **最終更新日**: 2025年（令和7年）
 **文書バージョン**: 1.0

@@ -50,33 +50,6 @@
 
 ---
 
-## クラウドサービス（Azure / AWS）
-
-実装フェーズでは、開発環境、CI/CD、コンテナ、コード管理のためのクラウドサービスを活用します。
-
-### Azure サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **Azure DevOps** | [https://azure.microsoft.com/ja-jp/products/devops/](https://azure.microsoft.com/ja-jp/products/devops/) | 統合DevOpsプラットフォーム。Repos、Pipelines、Boards統合 | Git管理、CI/CD、課題管理、アーティファクト管理 | ✅ 統合DevOps環境<br>✅ CI/CD強力<br>✅ Azure統合<br>✅ 5ユーザーまで無料<br>✅ YAML/GUI両対応 | ❌ UI複雑<br>❌ 学習コスト高<br>❌ Azure以外利点薄い<br>❌ セットアップやや面倒 |
-| 2 | **Azure Pipelines** | [https://azure.microsoft.com/ja-jp/products/devops/pipelines/](https://azure.microsoft.com/ja-jp/products/devops/pipelines/) | CI/CDサービス。マルチプラットフォーム、並列ジョブ | CI/CD、ビルド、テスト、デプロイ自動化 | ✅ 月1800分無料<br>✅ マルチプラットフォーム<br>✅ GitHub統合<br>✅ YAML/ビジュアル<br>✅ 並列ジョブ | ❌ 設定複雑<br>❌ デバッグ困難<br>❌ GitHub Actionsより情報少ない<br>❌ Azure外利点薄い |
-| 3 | **Azure Container Registry** | [https://azure.microsoft.com/ja-jp/products/container-registry/](https://azure.microsoft.com/ja-jp/products/container-registry/) | プライベートDockerレジストリ。イメージ管理、脆弱性スキャン | Dockerイメージ管理、脆弱性スキャン、Geo-Replication | ✅ Azure統合<br>✅ 脆弱性スキャン<br>✅ Geo-Replication<br>✅ Webhooks<br>✅ アクセス制御 | ❌ Docker Hub比で高額<br>❌ 設定やや複雑<br>❌ 他クラウドとの連携弱い<br>❌ 一部機能有料版限定 |
-| 4 | **Azure App Service** | [https://azure.microsoft.com/ja-jp/products/app-service/](https://azure.microsoft.com/ja-jp/products/app-service/) | フルマネージドWebアプリホスティング。CI/CD統合 | Webアプリデプロイ、開発環境、ステージング環境 | ✅ フルマネージド<br>✅ CI/CD統合<br>✅ スロット（ステージング）<br>✅ スケーリング自動<br>✅ 多言語対応 | ❌ コスト予測難しい<br>❌ ベンダーロックイン<br>❌ カスタマイズ制限<br>❌ コールドスタート遅延 |
-| 5 | **GitHub Codespaces** | [https://github.com/features/codespaces](https://github.com/features/codespaces) | クラウド開発環境。VSCodeブラウザ版、即座セットアップ | クラウド開発環境、リモート開発、環境統一 | ✅ 環境セットアップ不要<br>✅ VSCode統合<br>✅ GPU対応<br>✅ dotfiles同期<br>✅ 無料枠あり | ❌ 従量課金<br>❌ オフライン不可<br>❌ ネットワーク依存<br>❌ カスタマイズ制限 |
-
-### AWS サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **AWS CodeCommit** | [https://aws.amazon.com/codecommit/](https://aws.amazon.com/codecommit/) | フルマネージドGitリポジトリ。セキュア、スケーラブル | プライベートGitリポジトリ、ソースコード管理 | ✅ フルマネージド<br>✅ 無制限リポジトリ<br>✅ IAM統合<br>✅ 暗号化<br>✅ 5ユーザーまで無料 | ❌ GitHubより機能少ない<br>❌ コミュニティ小<br>❌ UI基本的<br>❌ エコシステム弱い |
-| 2 | **AWS CodeBuild** | [https://aws.amazon.com/codebuild/](https://aws.amazon.com/codebuild/) | フルマネージドビルドサービス。Docker対応、従量課金 | CI/CD、ビルド、テスト実行、Dockerイメージビルド | ✅ フルマネージド<br>✅ スケーラブル<br>✅ Docker対応<br>✅ 並列ビルド<br>✅ 従量課金 | ❌ 設定複雑<br>❌ デバッグ困難<br>❌ コスト予測難しい<br>❌ GitHub Actions比で機能劣る |
-| 3 | **AWS CodePipeline** | [https://aws.amazon.com/codepipeline/](https://aws.amazon.com/codepipeline/) | フルマネージドCI/CD。ビルド、テスト、デプロイ自動化 | CI/CD、リリースパイプライン、デプロイ自動化 | ✅ AWSサービス統合<br>✅ フルマネージド<br>✅ ビジュアルパイプライン<br>✅ 並列/連続実行<br>✅ 従量課金 | ❌ AWS依存<br>❌ 学習曲線急<br>❌ AWS外利用困難<br>❌ コスト予測難しい |
-| 4 | **Amazon ECR** | [https://aws.amazon.com/ecr/](https://aws.amazon.com/ecr/) | フルマネージドDockerレジストリ。脆弱性スキャン、イメージ署名 | Dockerイメージ管理、脆弱性スキャン、ECS/EKS統合 | ✅ AWS統合<br>✅ 脆弱性スキャン<br>✅ イメージ署名<br>✅ ライフサイクルポリシー<br>✅ IAM統合 | ❌ Docker Hub比で高額<br>❌ リージョン間転送コスト<br>❌ 設定やや複雑<br>❌ 他クラウド連携弱い |
-| 5 | **AWS Cloud9** | [https://aws.amazon.com/cloud9/](https://aws.amazon.com/cloud9/) | クラウド統合開発環境。ブラウザベース、リアルタイム協業 | クラウドIDE、ペアプログラミング、サーバーレス開発 | ✅ ブラウザベース<br>✅ リアルタイム協業<br>✅ サーバーレス開発最適<br>✅ ターミナル統合<br>✅ 無料（EC2料金のみ） | ❌ ローカルIDEより機能劣る<br>❌ ネットワーク依存<br>❌ カスタマイズ制限<br>❌ オフライン不可 |
-| 6 | **AWS Lambda** | [https://aws.amazon.com/lambda/](https://aws.amazon.com/lambda/) | サーバーレスコンピューティング。イベント駆動、自動スケール | サーバーレス実装、API実装、イベント処理 | ✅ サーバーレス<br>✅ 自動スケール<br>✅ 従量課金<br>✅ 多言語対応<br>✅ 無料枠充実 | ❌ コールドスタート遅延<br>❌ デバッグ困難<br>❌ ステートレス設計必要<br>❌ 実行時間制限（15分） |
-
----
-
 **関連ドキュメント**:
 - [5. 実装（インフラ）](./dev_process_開発工程_5_実装_インフラ.md)
 - [6. アプリケーションテスト](./dev_process_開発工程_6_アプリケーションテスト.md)

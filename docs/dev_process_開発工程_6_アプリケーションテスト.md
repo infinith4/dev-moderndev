@@ -72,30 +72,5 @@
 
 ---
 
-## クラウドサービス（Azure / AWS）
-
-アプリケーションテストフェーズでは、テスト環境構築、テスト自動化、負荷テストのためのクラウドサービスを活用します。
-
-### Azure サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **Azure Test Plans** | [https://azure.microsoft.com/ja-jp/products/devops/test-plans/](https://azure.microsoft.com/ja-jp/products/devops/test-plans/) | 手動・探索的テスト管理。テストケース、実行、バグトラッキング | 手動テスト管理、テストケース管理、探索的テスト、トレーサビリティ | ✅ Azure DevOps統合<br>✅ テストケース管理<br>✅ 探索的テスト対応<br>✅ バグトラッキング<br>✅ Chrome拡張 | ❌ 有料（$52/月〜）<br>❌ 自動テスト機能弱い<br>❌ UIやや古い<br>❌ Azure外利点薄い |
-| 2 | **Azure Load Testing** | [https://azure.microsoft.com/ja-jp/products/load-testing/](https://azure.microsoft.com/ja-jp/products/load-testing/) | クラウド負荷テストサービス。JMeter互換、Azure統合 | 負荷テスト、性能テスト、大規模テスト、Azure Monitor統合 | ✅ Azureフルマネージド<br>✅ JMeterスクリプト使用可<br>✅ Azure Monitor統合<br>✅ 大規模テスト容易<br>✅ スケーラブル | ❌ Azure依存<br>❌ 従量課金でコスト不透明<br>❌ Azure以外利点薄い<br>❌ 比較的新しい |
-| 3 | **Azure App Service (テスト環境)** | [https://azure.microsoft.com/ja-jp/products/app-service/](https://azure.microsoft.com/ja-jp/products/app-service/) | デプロイスロット機能。ステージング、テスト環境 | テスト環境、ステージング環境、Blue-Greenデプロイ | ✅ スロット（環境分離）<br>✅ スワップ機能<br>✅ テストトラフィックルーティング<br>✅ 本番と同一構成<br>✅ ダウンタイムゼロ | ❌ コスト増加<br>❌ スロット数制限<br>❌ 設定やや複雑<br>❌ 一部機能有料版限定 |
-| 4 | **Azure DevTest Labs** | [https://azure.microsoft.com/ja-jp/products/devtest-lab/](https://azure.microsoft.com/ja-jp/products/devtest-lab/) | テスト環境管理。VM自動プロビジョニング、コスト管理 | テスト環境自動構築、VM管理、コスト最適化 | ✅ VM自動プロビジョニング<br>✅ コスト管理（自動シャットダウン）<br>✅ テンプレート管理<br>✅ ポリシー設定<br>✅ 無料（VM料金のみ） | ❌ VM中心（コンテナ弱い）<br>❌ 設定複雑<br>❌ 学習コストあり<br>❌ 最新機能追加遅い |
-
-### AWS サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **AWS Device Farm** | [https://aws.amazon.com/device-farm/](https://aws.amazon.com/device-farm/) | 実デバイステストサービス。モバイル・Webアプリ | モバイルアプリテスト、実デバイステスト、自動化テスト | ✅ 実デバイスでテスト<br>✅ 多様なデバイス対応<br>✅ 自動化テスト対応<br>✅ スクリーンショット/動画<br>✅ 従量課金 | ❌ モバイル・Web限定<br>❌ コスト高い<br>❌ デバイス選択制限<br>❌ 学習コストあり |
-| 2 | **Amazon CloudWatch Synthetics** | [https://aws.amazon.com/cloudwatch/features/synthetics/](https://aws.amazon.com/cloudwatch/features/synthetics/) | 合成モニタリング。カナリアテスト、定期的エンドポイント監視 | 合成モニタリング、E2Eテスト、API監視、定期実行 | ✅ 定期的自動テスト<br>✅ Lambda関数で実装<br>✅ CloudWatch統合<br>✅ アラート連携<br>✅ Puppeteer/Selenium対応 | ❌ テストツールではない（監視）<br>❌ 機能限定的<br>❌ コスト予測やや難しい<br>❌ デバッグ困難 |
-| 3 | **AWS Elastic Beanstalk (テスト環境)** | [https://aws.amazon.com/elasticbeanstalk/](https://aws.amazon.com/elasticbeanstalk/) | PaaSサービス。テスト環境簡単構築 | テスト環境、ステージング環境、環境クローン | ✅ 簡単デプロイ<br>✅ 環境クローン機能<br>✅ Blue-Greenデプロイ<br>✅ ロールバック容易<br>✅ 無料（リソース料金のみ） | ❌ カスタマイズ制限<br>❌ 複雑な構成困難<br>❌ ベンダーロックイン<br>❌ トラブルシューティング難しい |
-| 4 | **AWS Lambda (テストハーネス)** | [https://aws.amazon.com/lambda/](https://aws.amazon.com/lambda/) | サーバーレステスト実行環境 | テスト自動実行、定期テスト、イベント駆動テスト | ✅ サーバーレス<br>✅ 従量課金でコスト削減<br>✅ スケーラブル<br>✅ イベント駆動<br>✅ 無料枠充実 | ❌ 実行時間制限（15分）<br>❌ ステートレス<br>❌ デバッグ困難<br>❌ コールドスタート遅延 |
-| 5 | **Amazon ECS/EKS (テスト環境)** | [https://aws.amazon.com/ecs/](https://aws.amazon.com/ecs/) | コンテナオーケストレーション。テスト環境構築 | コンテナ化テスト環境、マイクロサービステスト環境 | ✅ コンテナ化環境<br>✅ 本番と同一構成<br>✅ スケーラブル<br>✅ CI/CD統合<br>✅ 環境再現性高い | ❌ 学習曲線急<br>❌ 設定複雑<br>❌ コスト管理必要<br>❌ 運用負荷高い |
-
----
-
 **最終更新日**: 2025年（令和7年）
 **文書バージョン**: 1.0

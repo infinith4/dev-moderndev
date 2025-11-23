@@ -83,27 +83,5 @@
 
 ---
 
-## クラウドサービス（Azure / AWS）
-
-企画フェーズでは主にドキュメント管理、コラボレーションツールとしてクラウドサービスを活用します。
-
-### Azure サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **Azure DevOps Boards** | [https://azure.microsoft.com/ja-jp/products/devops/boards/](https://azure.microsoft.com/ja-jp/products/devops/boards/) | プロジェクト計画・追跡ツール。カンバン、スプリント、クエリ | 課題管理、スプリント計画、バックログ管理、レポート | ✅ Azure統合優秀<br>✅ カスタマイズ可能<br>✅ 5ユーザーまで無料<br>✅ テンプレート豊富<br>✅ レポート機能充実 | ❌ UI複雑<br>❌ 学習コスト高い<br>❌ Azure以外では利点薄い<br>❌ セットアップやや面倒 |
-| 2 | **Microsoft 365 (Azure AD統合)** | [https://www.microsoft.com/microsoft-365](https://www.microsoft.com/microsoft-365) | Azure Active Directory統合のMicrosoft 365。シームレスな認証 | 企画ドキュメント作成、共同編集、ファイル共有 | ✅ Azure AD統合<br>✅ シングルサインオン<br>✅ 高度なセキュリティ<br>✅ コンプライアンス機能<br>✅ Teams統合 | ❌ 有料（$6/月〜）<br>❌ ライセンス複雑<br>❌ 管理者設定必要<br>❌ オンプレ移行困難 |
-| 3 | **Azure Repos** | [https://azure.microsoft.com/ja-jp/products/devops/repos/](https://azure.microsoft.com/ja-jp/products/devops/repos/) | Git リポジトリホスティング。コード管理、レビュー | ドキュメントバージョン管理、設計書・仕様書のGit管理 | ✅ 無制限プライベートリポジトリ<br>✅ Azure DevOps統合<br>✅ PRレビュー機能<br>✅ ブランチポリシー<br>✅ 無料プランあり | ❌ GitHub比で機能少ない<br>❌ UI複雑<br>❌ コミュニティ小さい<br>❌ Azureアカウント必要 |
-
-### AWS サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **AWS WorkDocs** | [https://aws.amazon.com/workdocs/](https://aws.amazon.com/workdocs/) | フルマネージド文書ストレージ・共同編集サービス | 企画ドキュメント保存、共同編集、コメント・フィードバック | ✅ 1TBストレージ<br>✅ リアルタイム共同編集<br>✅ バージョン管理<br>✅ コメント・承認機能<br>✅ AWS統合 | ❌ Microsoft 365より機能少ない<br>❌ デスクトップアプリ弱い<br>❌ 日本語サポート限定的<br>❌ エコシステム小 |
-| 2 | **Amazon Chime** | [https://aws.amazon.com/chime/](https://aws.amazon.com/chime/) | ビデオ会議・チャットサービス。画面共有、レコーディング | オンライン会議、企画ミーティング、画面共有、ブレインストーミング | ✅ AWS統合<br>✅ セキュアな通信<br>✅ 画面共有・レコーディング<br>✅ 従量課金<br>✅ プラグイン不要 | ❌ Zoom/Teams比で機能少ない<br>❌ ユーザーインターフェース改善余地<br>❌ 市場シェア低い<br>❌ エコシステム小 |
-| 3 | **AWS Wickr** | [https://aws.amazon.com/wickr/](https://aws.amazon.com/wickr/) | エンドツーエンド暗号化メッセージングサービス | 機密性の高い企画情報のセキュアな共有、チャット | ✅ エンドツーエンド暗号化<br>✅ FIPS 140-2準拠<br>✅ コンプライアンス対応<br>✅ ファイル共有暗号化<br>✅ 自己破壊メッセージ | ❌ 一般的なチャットツールより複雑<br>❌ 有料プランのみ<br>❌ 学習コスト<br>❌ 統合限定的 |
-
----
-
 **最終更新日**: 2025年（令和7年）
 **文書バージョン**: 1.0

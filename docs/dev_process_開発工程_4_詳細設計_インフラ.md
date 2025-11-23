@@ -51,26 +51,6 @@
 
 ---
 
-## クラウドサービス（Azure / AWS）
-
-詳細設計フェーズでは、実装に近いレベルでのインフラ設計、ネットワーク設計、セキュリティ設計を行います。
-
-### Azure サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **Azure Bicep** | [https://learn.microsoft.com/azure/azure-resource-manager/bicep/](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | インフラコード定義DSL。ARM Templatesより簡潔 | インフラ詳細設計、リソース定義、IaC | ✅ 簡潔な構文<br>✅ 型安全<br>✅ IDE補完<br>✅ ARM自動変換<br>✅ 無料 | ❌ Azure専用<br>❌ 比較的新しい<br>❌ Terraformより情報少ない<br>❌ マルチクラウド不可 |
-| 2 | **Azure Virtual Network** | [https://azure.microsoft.com/ja-jp/products/virtual-network/](https://azure.microsoft.com/ja-jp/products/virtual-network/) | 仮想ネットワークサービス。サブネット、NSG、ルーティング | ネットワーク詳細設計、サブネット設計、セキュリティ設計 | ✅ 柔軟なネットワーク設計<br>✅ NSGでセキュリティ制御<br>✅ VPN/ExpressRoute接続<br>✅ ピアリング<br>✅ 無料（データ転送のみ課金） | ❌ 設定複雑<br>❌ トラブルシューティング困難<br>❌ IP枯渇リスク<br>❌ 設計ミスのコスト高 |
-
-### AWS サービス
-
-| # | サービス名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
-|---|---------|-----------|------|------|---------|-----------|
-| 1 | **AWS CloudFormation** | [https://aws.amazon.com/cloudformation/](https://aws.amazon.com/cloudformation/) | インフラコード定義。YAML/JSON、スタック管理 | インフラ詳細設計、リソース定義、IaC、ドリフト検出 | ✅ AWS標準IaC<br>✅ 無料（リソース料金のみ）<br>✅ ドリフト検出<br>✅ ChangeSet<br>✅ スタック管理 | ❌ YAML/JSON冗長<br>❌ エラー対応困難<br>❌ Terraform比で機能劣る<br>❌ AWS専用 |
-| 2 | **Amazon VPC** | [https://aws.amazon.com/vpc/](https://aws.amazon.com/vpc/) | 仮想プライベートクラウド。ネットワーク分離、セキュリティ制御 | ネットワーク詳細設計、サブネット設計、セキュリティグループ設計 | ✅ 柔軟なネットワーク設計<br>✅ セキュリティグループ<br>✅ VPN/Direct Connect<br>✅ VPCピアリング<br>✅ 無料 | ❌ 設定複雑<br>❌ トラブルシューティング困難<br>❌ IP CIDR変更不可<br>❌ 設計ミスのコスト高 |
-
----
-
 **関連ドキュメント**:
 - [4. 詳細設計（アプリケーション）](./dev_process_開発工程_4_詳細設計_アプリケーション.md)
 - [5. 実装](./dev_process_開発工程_5_実装.md)

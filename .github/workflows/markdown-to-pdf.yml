@@ -3,10 +3,10 @@ name: Convert Markdown to PDF
 on:
   push:
     paths:
-      - '**.md'
+      - 'docs/**/*.md'
   pull_request:
     paths:
-      - '**.md'
+      - 'docs/**/*.md'
   workflow_dispatch:
 
 jobs:
@@ -17,36 +17,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Pandoc and LaTeX
+      - name: Install Pandoc, LaTeX, and Japanese fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
-
+          sudo apt-get install -y \
+            pandoc \
+            texlive-xetex \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-latex-extra \
+            texlive-lang-cjk \
+            fonts-noto-cjk \
+            fonts-noto-cjk-extra
       - name: Find and convert Markdown files to PDF
         run: |
           # Create output directory for PDFs
           mkdir -p pdf-output
-
-          # Find all markdown files and convert them to PDF
-          find . -name "*.md" -not -path "*/node_modules/*" -not -path "*/.git/*" | while read -r file; do
+          # Find all markdown files in docs folder and convert them to PDF
+          find docs -name "*.md" -type f | while read -r file; do
             # Get relative path and create corresponding directory structure
             relative_path="${file#./}"
             output_dir="pdf-output/$(dirname "$relative_path")"
             mkdir -p "$output_dir"
-
             # Get filename without extension
             filename=$(basename "$file" .md)
-
-            # Convert to PDF using pandoc
+            # Convert to PDF using pandoc with Japanese font support
             echo "Converting $relative_path to PDF..."
             pandoc "$file" -o "$output_dir/${filename}.pdf" \
-              --pdf-engine=pdflatex \
+              --pdf-engine=xelatex \
+              -V CJKmainfont="Noto Sans CJK JP" \
               -V geometry:margin=1in \
               --highlight-style=tango
           done
-
           echo "PDF conversion completed!"
-
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
         with:

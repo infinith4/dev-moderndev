@@ -29,18 +29,12 @@ jobs:
             texlive-lang-cjk \
             fonts-noto-cjk \
             fonts-noto-cjk-extra
-<<<<<<< HEAD
-=======
 
->>>>>>> remotes/origin/main
       - name: Find and convert Markdown files to PDF
         run: |
           # Create output directory for PDFs
           mkdir -p pdf-output
-<<<<<<< HEAD
-=======
 
->>>>>>> remotes/origin/main
           # Find all markdown files in docs folder and convert them to PDF
           find docs -name "*.md" -type f | while read -r file; do
             # Get relative path and create corresponding directory structure
@@ -49,10 +43,7 @@ jobs:
             mkdir -p "$output_dir"
             # Get filename without extension
             filename=$(basename "$file" .md)
-<<<<<<< HEAD
-=======
 
->>>>>>> remotes/origin/main
             # Convert to PDF using pandoc with Japanese font support
             echo "Converting $relative_path to PDF..."
             pandoc "$file" -o "$output_dir/${filename}.pdf" \

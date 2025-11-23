@@ -17,10 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Pandoc and LaTeX
+      - name: Install Pandoc, LaTeX, and Japanese fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+          sudo apt-get install -y \
+            pandoc \
+            texlive-xetex \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-latex-extra \
+            fonts-noto-cjk \
+            fonts-noto-cjk-extra
 
       - name: Find and convert Markdown files to PDF
         run: |
@@ -37,10 +44,11 @@ jobs:
             # Get filename without extension
             filename=$(basename "$file" .md)
 
-            # Convert to PDF using pandoc
+            # Convert to PDF using pandoc with Japanese font support
             echo "Converting $relative_path to PDF..."
             pandoc "$file" -o "$output_dir/${filename}.pdf" \
-              --pdf-engine=pdflatex \
+              --pdf-engine=xelatex \
+              -V CJKmainfont="Noto Sans CJK JP" \
               -V geometry:margin=1in \
               --highlight-style=tango
           done

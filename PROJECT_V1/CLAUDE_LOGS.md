@@ -656,4 +656,96 @@
 
 ---
 
+### 11. Azure/AWS専用インフラツールの追加
+**完了日**: 2025年11月23日
+
+#### 作業概要
+インフラ詳細設計および実装工程のドキュメントに、Azure/AWS専用のインフラ構築ツールを追加しました。各クラウドプラットフォームごとに10ツール以上をリストアップし、表形式で詳細情報を記載しました。
+
+#### 追加対象ファイルと内容（2ファイル）
+
+**1. dev_process_開発工程_4_詳細設計_インフラ.md**
+
+- ✅ **Azure専用インフラ詳細設計ツール（Top 10）を追加**
+  - セクション「## Azure専用インフラ詳細設計ツール」を追加
+  - サブセクション「### Azure IaC・構成管理ツール（Top 10）」
+  - 追加ツール:
+    1. Azure Bicep - Azure専用IaC DSL（型安全、簡潔な構文）
+    2. ARM Templates - Azureネイティブテンプレート（JSON形式）
+    3. Azure Policy - ガバナンス・コンプライアンス管理
+    4. Azure Blueprints - 環境標準化・デプロイ自動化
+    5. Azure DevOps - CI/CD、IaCパイプライン
+    6. Azure CLI - コマンドラインツール
+    7. Azure PowerShell - PowerShellモジュール
+    8. Azure Resource Graph - リソースクエリ・検索
+    9. Azure Automation - 自動化・構成管理
+    10. Azure Arc - ハイブリッド・マルチクラウド管理
+
+- ✅ **AWS専用インフラ詳細設計ツール（Top 10）を追加**
+  - セクション「## AWS専用インフラ詳細設計ツール」を追加
+  - サブセクション「### AWS IaC・構成管理ツール（Top 10）」
+  - 追加ツール:
+    1. AWS CloudFormation - AWSネイティブIaC（JSON/YAML）
+    2. AWS CDK - プログラマブルIaC（TypeScript/Python等）
+    3. AWS CLI - コマンドラインツール
+    4. AWS Service Catalog - 標準化されたサービスカタログ
+    5. AWS Config - リソース構成管理・監査
+    6. AWS Systems Manager - パラメータ管理・自動化
+    7. AWS Control Tower - マルチアカウントガバナンス
+    8. AWS CloudFormation Designer - ビジュアルIaC設計
+    9. AWS Application Composer - サーバーレスアプリ設計
+    10. AWS OpsWorks - 構成管理（Chef/Puppet）
+
+**2. dev_process_開発工程_5_実装_インフラ.md**
+
+- ✅ **Azure専用インフラ構築ツール（Top 10）を追加**
+  - セクション「## Azure専用インフラ構築ツール」を追加
+  - サブセクション「### Azure IaC実装・デプロイツール（Top 10）」
+  - 追加ツール:
+    1. Azure Bicep - IaC実装（ARM自動変換）
+    2. Azure DevOps Pipelines - CI/CD、IaCデプロイ自動化
+    3. Azure CLI - インフラコマンドライン操作
+    4. Azure Container Registry (ACR) - コンテナイメージ管理
+    5. Azure Kubernetes Service (AKS) - Kubernetesマネージド
+    6. ARM Templates - Azureネイティブテンプレート実装
+    7. Azure Automation - Runbook、構成管理自動化
+    8. Azure Monitor - 監視・ログ管理
+    9. Azure Functions - サーバーレス関数実装
+    10. Azure Resource Graph - リソース検索・クエリ
+
+- ✅ **AWS専用インフラ構築ツール（Top 10）を追加**
+  - セクション「## AWS専用インフラ構築ツール」を追加
+  - サブセクション「### AWS IaC実装・デプロイツール（Top 10）」
+  - 追加ツール:
+    1. AWS CloudFormation - IaC実装・スタック管理
+    2. AWS CDK - プログラマブルIaC実装
+    3. AWS CodePipeline - CI/CDパイプライン
+    4. AWS CodeBuild - ビルド・テスト自動化
+    5. Amazon ECR - コンテナイメージレジストリ
+    6. Amazon ECS - コンテナオーケストレーション
+    7. Amazon EKS - Kubernetesマネージド
+    8. AWS Systems Manager - パラメータ管理・自動化
+    9. AWS Lambda - サーバーレス関数実装
+    10. Amazon CloudWatch - 監視・ロギング・アラート
+
+#### 表形式の詳細情報
+
+各ツールについて以下の情報を表形式で記載:
+- **#**: 番号
+- **ツール名**: ツール名（公式リンク付き）
+- **公式サイト**: 公式ドキュメントURL
+- **概要**: ツールの簡潔な説明
+- **用途**: 主な使用目的
+- **メリット**: 利点（✅マーク付き）
+- **デメリット**: 欠点（❌マーク付き）
+
+#### 完了状況
+- ✅ dev_process_開発工程_4_詳細設計_インフラ.md: Azure 10ツール、AWS 10ツール追加完了
+- ✅ dev_process_開発工程_5_実装_インフラ.md: Azure 10ツール、AWS 10ツール追加完了
+- ✅ 合計40ツール（Azure 20ツール、AWS 20ツール）を詳細表形式で記載完了
+- ✅ TASKS.md更新完了（2タスクを完了としてマーク）
+- ✅ CLAUDE_LOGS.md更新完了（このセクション）
+
+---
+
 **最終更新**: 2025年11月23日

@@ -1,88 +1,107 @@
-# 開発工程_5_実装（アプリケーション）
+# 開発工程_7_実装（アプリケーション）
 
 ## 1. 概要
 
 本ドキュメントは、IPA（独立行政法人 情報処理推進機構）の「共通フレーム2013」に基づく**実装プロセス（アプリケーション実装）**における開発タスクと推奨ツールをまとめたものです。
 
-言語ごと（Java、C#、Python、TypeScript）に最適化されたツールと開発環境を記載しています。
+言語ごと（Java、C#、Python、TypeScript）に最適化されたツール、コードレビュー・CI/CDパイプライン構築に有用なツールを記載しています。
 
 ### 1.1. 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 - ISO/IEC 12207:2008 / JIS X 0160:2012
-
----
-
-### 1.2. 共通
-
-**対応項目**
-- プログラミング
-- コードレビュー
-- CI/CD構築
+- IPA 組込みソフトウェア向け 設計ガイド [事例編] ESDR
 
 ---
 
 ## 2. プログラミング
 
-**対応項目**
-- プログラミング
+**成果物**
+- ソースコード
+- コードレビューチェックリスト
+- ビルド成果物
 
-### 2.1. 言語別推奨ツール
+### 2.1. Java 開発
 
 #### 2.1.1. Java 開発ツール
 
-| カテゴリ | ツール名 | 概要 | メリット | デメリット |
-|---------|---------|------|---------|-----------|
-| **IDE** | [**IntelliJ IDEA**](https://www.jetbrains.com/idea/) | JetBrains製Java/Kotlin IDE。強力なリファクタリング | ✅ Java開発最適化<br>✅ リファクタリング強力<br>✅ Spring統合<br>✅ Maven/Gradle統合 | ❌ 有料（Community版制限）<br>❌ メモリ使用量大<br>❌ 起動遅い |
-| **IDE** | [**Eclipse**](https://www.eclipse.org/) | オープンソースJava IDE。プラグイン豊富 | ✅ 完全無料<br>✅ プラグイン豊富<br>✅ 長い実績<br>✅ エンタープライズ採用多 | ❌ 動作重い<br>❌ UI古い<br>❌ IntelliJ比で機能劣る |
-| **ビルドツール** | [**Maven**](https://maven.apache.org/) | Apache製ビルドツール。POM.xml設定 | ✅ 業界標準<br>✅ 依存関係管理<br>✅ プラグイン豊富<br>✅ CI/CD統合容易 | ❌ XML冗長<br>❌ ビルド遅い<br>❌ 柔軟性低い |
-| **ビルドツール** | [**Gradle**](https://gradle.org/) | Groovy/Kotlin DSLビルドツール。高速・柔軟 | ✅ Maven比で高速<br>✅ 柔軟な設定<br>✅ Kotlin DSL<br>✅ Android公式 | ❌ 学習曲線急<br>❌ ビルド時間予測困難<br>❌ Maven比で情報少ない |
-| **フレームワーク** | [**Spring Boot**](https://spring.io/projects/spring-boot) | エンタープライズJavaフレームワーク | ✅ エンタープライズ標準<br>✅ 自動設定<br>✅ マイクロサービス対応<br>✅ 豊富なスターター | ❌ 学習コスト高<br>❌ 重い<br>❌ 設定複雑化しやすい |
-| **テスト** | [**JUnit 5**](https://junit.org/junit5/) | Java単体テストフレームワーク | ✅ 業界標準<br>✅ アノテーション豊富<br>✅ IDE統合<br>✅ パラメータ化テスト | ❌ モックは別ライブラリ必要<br>❌ 複雑なテスト設定困難 |
-| **モック** | [**Mockito**](https://site.mockito.org/) | Javaモックフレームワーク | ✅ 使いやすい<br>✅ JUnit統合<br>✅ スパイ機能<br>✅ 無料 | ❌ 静的メソッドモック困難<br>❌ final classモック制限 |
-| **コード品質** | [**SonarQube**](https://www.sonarqube.org/) | コード品質・セキュリティ分析 | ✅ 包括的分析<br>✅ CI/CD統合<br>✅ セキュリティ脆弱性検出<br>✅ 技術的負債可視化 | ❌ セットアップ複雑<br>❌ リソース使用量大<br>❌ 一部機能有料 |
-| **リンター** | [**Checkstyle**](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | ✅ カスタマイズ可能<br>✅ Maven/Gradle統合<br>✅ Google/Sun規約サポート<br>✅ 無料 | ❌ 設定ファイル複雑<br>❌ 誤検知あり |
-| **フォーマッター** | [**Google Java Format**](https://github.com/google/google-java-format) | Google製Javaフォーマッター | ✅ 一貫したスタイル<br>✅ IDE統合<br>✅ 無料<br>✅ 議論不要 | ❌ カスタマイズ不可<br>❌ Google Styleのみ |
+| カテゴリ | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
+|---------|------|------|------|---------|----------|
+| **IDE** | [**IntelliJ IDEA**](https://www.jetbrains.com/idea/) | JetBrains製Java/Kotlin IDE。強力なリファクタリング | Java実装、リファクタリング、デバッグ | 💰 Community無料<br>💰 Ultimate: $299/年 | ✅ Java開発最適化<br>✅ リファクタリング強力<br>✅ Spring統合<br>✅ Maven/Gradle統合 | ❌ Ultimate版有料<br>❌ メモリ使用量大<br>❌ 起動遅い |
+| **IDE** | [**Eclipse**](https://www.eclipse.org/) | オープンソースJava IDE。プラグイン豊富 | Java実装、プラグイン開発、エンタープライズ開発 | 🟢 完全無料 | ✅ 完全無料<br>✅ プラグイン豊富<br>✅ 長い実績<br>✅ エンタープライズ採用多 | ❌ 動作重い<br>❌ UI古い<br>❌ IntelliJ比で機能劣る |
+| **ビルドツール** | [**Maven**](https://maven.apache.org/) | Apache製ビルドツール。POM.xml設定 | ビルド管理、依存関係管理、CI/CD統合 | 🟢 完全無料 | ✅ 業界標準<br>✅ 依存関係管理<br>✅ プラグイン豊富<br>✅ CI/CD統合容易 | ❌ XML冗長<br>❌ ビルド遅い<br>❌ 柔軟性低い |
+| **ビルドツール** | [**Gradle**](https://gradle.org/) | Groovy/Kotlin DSLビルドツール。高速・柔軟 | ビルド管理、Android開発、マルチプロジェクト | 🟢 完全無料 | ✅ Maven比で高速<br>✅ 柔軟な設定<br>✅ Kotlin DSL<br>✅ Android公式 | ❌ 学習曲線急<br>❌ ビルド時間予測困難<br>❌ Maven比で情報少ない |
+| **フレームワーク** | [**Spring Boot**](https://spring.io/projects/spring-boot) | エンタープライズJavaフレームワーク | Web API開発、マイクロサービス、エンタープライズ開発 | 🟢 完全無料 | ✅ エンタープライズ標準<br>✅ 自動設定<br>✅ マイクロサービス対応<br>✅ 豊富なスターター | ❌ 学習コスト高<br>❌ 重い<br>❌ 設定複雑化しやすい |
+| **テスト** | [**JUnit 5**](https://junit.org/junit5/) | Java単体テストフレームワーク | ユニットテスト、テスト駆動開発 | 🟢 完全無料 | ✅ 業界標準<br>✅ アノテーション豊富<br>✅ IDE統合<br>✅ パラメータ化テスト | ❌ モックは別ライブラリ必要<br>❌ 複雑なテスト設定困難 |
+| **モック** | [**Mockito**](https://site.mockito.org/) | Javaモックフレームワーク | ユニットテスト、モック生成、スタブ | 🟢 完全無料 | ✅ 使いやすい<br>✅ JUnit統合<br>✅ スパイ機能<br>✅ 無料 | ❌ 静的メソッドモック困難<br>❌ final classモック制限 |
+| **コード品質** | [**SonarQube**](https://www.sonarqube.org/) | コード品質・セキュリティ分析 | コード品質管理、セキュリティスキャン、技術的負債管理 | 🟢 Community無料<br>💰 Developer: $45/月 | ✅ 包括的分析<br>✅ CI/CD統合<br>✅ セキュリティ脆弱性検出<br>✅ 技術的負債可視化 | ❌ セットアップ複雑<br>❌ リソース使用量大<br>❌ Enterprise機能有料 |
+| **リンター**| [**Checkstyle**](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | コーディング規約チェック、品質基準確保 | 🟢 完全無料 | ✅ カスタマイズ可能<br>✅ Maven/Gradle統合<br>✅ Google/Sun規約サポート<br>✅ 無料 | ❌ 設定ファイル複雑<br>❌ 誤検知あり |
+| **フォーマッター**| [**Google Java Format**](https://github.com/google/google-java-format) | Google製Javaフォーマッター | コード自動フォーマット、スタイル統一 | 🟢 完全無料 | ✅ 一貫したスタイル<br>✅ IDE統合<br>✅ 無料<br>✅ 議論不要 | ❌ カスタマイズ不可<br>❌ Google Styleのみ |
+
+**有用なドキュメント**
+
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **Spring Boot公式ドキュメント** | Spring Bootアプリケーション開発ガイド | [Spring.io](https://spring.io/projects/spring-boot) |
+| **JUnit 5ユーザーガイド** | JUnitテスト作成ガイド | [JUnit Platform](https://junit.org/junit5/docs/current/user-guide/) |
+| **Mavenデフォルト規約** | Maven POM設定ベストプラクティス | [Apache Maven](https://maven.apache.org/guides/) |
+| **IPA Javaコーディング規約ガイド** | コーディング規約とチェック項目 | [IPA 公式](https://www.ipa.go.jp/) |
 
 ---
 
-#### 2.1.2. C# 開発ツール
+### 2.2. C# 開発
 
-| カテゴリ | ツール名 | 概要 | メリット | デメリット |
-|---------|---------|------|---------|-----------|
-| **IDE** | [**Visual Studio**](https://visualstudio.microsoft.com/) | Microsoft製フル機能IDE。.NET開発に最適化 | ✅ .NET開発最適<br>✅ デバッガ非常に強力<br>✅ プロファイリング充実<br>✅ Azure統合<br>✅ Community版無料 | ❌ Windows中心<br>❌ 重い（数GB必要）<br>❌ 起動遅い |
-| **IDE** | [**Rider**](https://www.jetbrains.com/rider/) | JetBrains製.NET IDE。クロスプラットフォーム | ✅ Windows/Mac/Linux対応<br>✅ ReSharper統合<br>✅ Unity統合<br>✅ 高速 | ❌ 有料（年$149）<br>❌ VS比で機能少ない |
-| **ビルドツール** | [**MSBuild**](https://github.com/dotnet/msbuild) | Microsoft製.NETビルドツール | ✅ Visual Studio統合<br>✅ .NET標準<br>✅ NuGet統合<br>✅ 無料 | ❌ Windows依存強<br>❌ XML設定<br>❌ 他言語非対応 |
-| **パッケージマネージャー** | [**NuGet**](https://www.nuget.org/) | .NETパッケージマネージャー | ✅ .NET標準<br>✅ Visual Studio統合<br>✅ 豊富なパッケージ<br>✅ 無料 | ❌ 依存関係地獄<br>❌ パッケージ品質ばらつき |
-| **フレームワーク** | [**ASP.NET Core**](https://dotnet.microsoft.com/apps/aspnet) | Microsoft製Webフレームワーク。クロスプラットフォーム | ✅ 高性能<br>✅ クロスプラットフォーム<br>✅ モダンアーキテクチャ<br>✅ 無料オープンソース | ❌ 頻繁な変更<br>❌ 学習コスト高<br>❌ レガシー移行困難 |
-| **テスト** | [**xUnit**](https://xunit.net/) | .NET単体テストフレームワーク | ✅ モダン設計<br>✅ 並列実行<br>✅ .NET Core対応<br>✅ Visual Studio統合 | ❌ セットアップテストやや複雑<br>❌ NUnit比で情報少ない |
-| **テスト** | [**NUnit**](https://nunit.org/) | .NET単体テストフレームワーク。歴史長い | ✅ 長い実績<br>✅ 豊富な機能<br>✅ パラメータ化テスト<br>✅ 無料 | ❌ xUnit比で古い<br>❌ 並列実行弱い |
-| **モック** | [**Moq**](https://github.com/moq/moq4) | .NETモックフレームワーク | ✅ 使いやすい<br>✅ Linq to Mocks<br>✅ .NET統合<br>✅ 無料 | ❌ 学習曲線あり<br>❌ エラーメッセージ分かりにくい |
-| **コード品質** | [**ReSharper**](https://www.jetbrains.com/resharper/) | Visual Studio拡張。リファクタリング・分析 | ✅ 強力なリファクタリング<br>✅ コード分析<br>✅ ナビゲーション高速<br>✅ 生産性向上 | ❌ 有料（年$149）<br>❌ VS動作重くなる<br>❌ Rider推奨 |
-| **フォーマッター** | [**EditorConfig**](https://editorconfig.org/) | エディタ横断コーディングスタイル設定 | ✅ エディタ横断<br>✅ .editorconfig設定<br>✅ Visual Studio標準サポート<br>✅ 無料 | ❌ 機能限定的<br>❌ 全ルール非対応 |
+| カテゴリ                  | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
+|---------               --|---------|------|------|------|---------|----------|
+| **IDE** |                 | [**Visual Studio**](https://visualstudio.microsoft.com/) | Microsoft製フル機能IDE。.NET開発に最適化 | C#実装、.NET Web開発、Azure統合 | 🟢 Community無料<br>💰 Professional: $45/月<br>💰 Enterprise: 別途 | ✅ .NET開発最適<br>✅ デバッガ非常に強力<br>✅ プロファイリング充実<br>✅ Azure統合 | ❌ Windows中心<br>❌ 重い（数GB必要）<br>❌ Professional版有料 |
+| **IDE** |                 | [**Rider**](https://www.jetbrains.com/rider/) | JetBrains製.NET IDE。クロスプラットフォーム | C#実装、クロスプラットフォーム開発 | 💰 $299/年 | ✅ Windows/Mac/Linux対応<br>✅ ReSharper統合<br>✅ Unity統合<br>✅ 高速 | ❌ 有料（年$299）<br>❌ VS比で機能少ない |
+| **ビルドツール** |        | [**MSBuild**](https://github.com/dotnet/msbuild) | Microsoft製.NETビルドツール | ビルド管理、プロジェクト構成、CI/CD | 🟢 完全無料 | ✅ Visual Studio統合<br>✅ .NET標準<br>✅ NuGet統合<br>✅ 無料 | ❌ Windows依存強<br>❌ XML設定<br>❌ 他言語非対応 |
+| **パッケージマネージャー**| [**NuGet**](https://www.nuget.org/) | .NETパッケージマネージャー | パッケージ管理、依存関係解決 | 🟢 完全無料 | ✅ .NET標準<br>✅ Visual Studio統合<br>✅ 豊富なパッケージ<br>✅ 無料 | ❌ 依存関係地獄<br>❌ パッケージ品質ばらつき |
+| **フレームワーク**        | [**ASP.NET Core**](https://dotnet.microsoft.com/apps/aspnet) | Microsoft製Webフレームワーク。クロスプラットフォーム | Web API開発、Webアプリケーション | 🟢 完全無料 | ✅ 高性能<br>✅ クロスプラットフォーム<br>✅ モダンアーキテクチャ<br>✅ 無料オープンソース | ❌ 頻繁な変更<br>❌ 学習コスト高<br>❌ レガシー移行困難 |
+| **テスト**                | [**xUnit**](https://xunit.net/) | .NET単体テストフレームワーク | ユニットテスト、TDD | 🟢 完全無料 | ✅ モダン設計<br>✅ 並列実行<br>✅ .NET Core対応<br>✅ Visual Studio統合 | ❌ セットアップやや複雑<br>❌ NUnit比で情報少ない |
+| **テスト**                | [**NUnit**](https://nunit.org/) | .NET単体テストフレームワーク。歴史長い | ユニットテスト、従来プロジェクト | 🟢 完全無料 | ✅ 長い実績<br>✅ 豊富な機能<br>✅ パラメータ化テスト<br>✅ 無料 | ❌ xUnit比で古い<br>❌ 並列実行弱い |
+| **モック**                | [**Moq**](https://github.com/moq/moq4) | .NETモックフレームワーク | ユニットテスト、モック生成 | 🟢 完全無料 | ✅ 使いやすい<br>✅ Linq to Mocks<br>✅ .NET統合<br>✅ 無料 | ❌ 学習曲線あり<br>❌ エラーメッセージ分かりにくい |
+| **コード品質**              [**ReSharper**](https://www.jetbrains.com/resharper/) | Visual Studio拡張。リファクタリング・分析 | コード品質、リファクタリング、ナビゲーション | 💰 $299/年 | ✅ 強力なリファクタリング<br>✅ コード分析<br>✅ ナビゲーション高速<br>✅ 生産性向上 | ❌ 有料（年$299）<br>❌ VS動作重くなる<br>❌ Rider推奨 |
+| **フォーマッター**        | [**EditorConfig**](https://editorconfig.org/) | エディタ横断コーディングスタイル設定 | スタイル統一、エディタ設定 | 🟢 完全無料 | ✅ エディタ横断<br>✅ .editorconfig設定<br>✅ Visual Studio標準サポート<br>✅ 無料 | ❌ 機能限定的<br>❌ 全ルール非対応 |
 
----
+**有用なドキュメント**
 
-#### 2.1.3. Python 開発ツール
-
-| カテゴリ | ツール名 | 概要 | メリット | デメリット |
-|---------|---------|------|---------|-----------|
-| **IDE** | [**PyCharm**](https://www.jetbrains.com/pycharm/) | JetBrains製Python専用IDE。Django/Flask対応 | ✅ Python特化<br>✅ Django/Flask統合<br>✅ Jupyter対応<br>✅ データサイエンスツール<br>✅ リモート開発 | ❌ Professional版有料<br>❌ メモリ使用量大<br>❌ 起動遅い |
-| **IDE** | [**VS Code + Python拡張**](https://code.visualstudio.com/) | 軽量エディタ + Python拡張 | ✅ 無料<br>✅ 軽量<br>✅ Jupyter統合<br>✅ リモート開発<br>✅ 拡張機能豊富 | ❌ PyCharm比で機能劣る<br>❌ 初期設定必要<br>❌ デバッグ弱い |
-| **パッケージマネージャー** | [**pip**](https://pip.pypa.io/) | Python標準パッケージマネージャー | ✅ Python標準<br>✅ PyPI統合<br>✅ 簡単インストール<br>✅ 無料 | ❌ 依存関係解決弱い<br>❌ 環境管理別途必要 |
-| **パッケージマネージャー** | [**Poetry**](https://python-poetry.org/) | モダンPython依存関係管理 | ✅ 依存関係解決優秀<br>✅ pyproject.toml<br>✅ 仮想環境自動管理<br>✅ ビルド・公開統合 | ❌ 学習コスト<br>❌ pip比で遅い<br>❌ 一部ライブラリ非互換 |
-| **環境管理** | [**venv**](https://docs.python.org/3/library/venv.html) | Python標準仮想環境 | ✅ Python標準<br>✅ 軽量<br>✅ セットアップ簡単<br>✅ 無料 | ❌ 機能最小限<br>❌ バージョン管理別途必要 |
-| **環境管理** | [**pyenv**](https://github.com/pyenv/pyenv) | Pythonバージョン管理 | ✅ 複数バージョン管理<br>✅ プロジェクト別設定<br>✅ 無料<br>✅ Unix系最適 | ❌ Windows非公式<br>❌ セットアップやや複雑 |
-| **フレームワーク** | [**Django**](https://www.djangoproject.com/) | Pythonフルスタックフレームワーク | ✅ バッテリー同梱<br>✅ ORM強力<br>✅ Admin画面自動生成<br>✅ セキュリティ強固 | ❌ 重い<br>❌ 学習曲線急<br>❌ 小規模には過剰 |
-| **フレームワーク** | [**FastAPI**](https://fastapi.tiangolo.com/) | モダン高速APIフレームワーク | ✅ 非常に高速<br>✅ 自動ドキュメント生成<br>✅ 型ヒント活用<br>✅ 非同期対応 | ❌ 比較的新しい<br>❌ フルスタックではない<br>❌ Django比で機能少ない |
-| **テスト** | [**pytest**](https://pytest.org/) | Python単体テストフレームワーク | ✅ シンプルな構文<br>✅ フィクスチャ強力<br>✅ プラグイン豊富<br>✅ パラメータ化テスト | ❌ 学習コスト<br>❌ 標準ライブラリではない |
-| **リンター** | [**Ruff**](https://github.com/astral-sh/ruff) | 超高速Pythonリンター（Rust製） | ✅ 非常に高速<br>✅ Flake8/pylint置換<br>✅ 自動修正<br>✅ 設定簡単 | ❌ 比較的新しい<br>❌ 一部ルール非対応 |
-| **リンター** | [**pylint**](https://pylint.org/) | 包括的Pythonリンター | ✅ 詳細な分析<br>✅ カスタマイズ可能<br>✅ コード品質スコア<br>✅ 無料 | ❌ 遅い<br>❌ 誤検知多い<br>❌ 設定複雑 |
-| **フォーマッター** | [**Black**](https://black.readthedocs.io/) | 妥協なしPythonフォーマッター | ✅ 一貫したスタイル<br>✅ 設定不要<br>✅ 高速<br>✅ Git統合 | ❌ カスタマイズ不可<br>❌ 好みに合わない場合あり |
-| **型チェック** | [**mypy**](http://mypy-lang.org/) | Python静的型チェッカー | ✅ 型安全性向上<br>✅ IDE統合<br>✅ 段階的導入可能<br>✅ 無料 | ❌ 実行時チェックなし<br>❌ ライブラリスタブ必要<br>❌ 学習コスト |
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **ASP.NET Core公式ドキュメント** | ASP.NET Core開発ガイド | [Microsoft Docs](https://learn.microsoft.com/aspnet/core) |
+| **xUnitテスト作成ガイド** | xUnitユニットテスト手法 | [xUnit.net](https://xunit.net/) |
+| **NuGetパッケージ管理** | NuGetパッケージ使用・管理方法 | [NuGet Docs](https://learn.microsoft.com/nuget/) |
+| **IPA .NETコーディング規約** | .NETコーディング規約ガイド | [IPA 公式](https://www.ipa.go.jp/) |
 
 ---
 
-#### 2.1.4. TypeScript 開発ツール
+### 2.3. Python 開発
+
+| カテゴリ                   | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
+|---------                   |---------|------|------|------|---------|----------|
+| **IDE**                    | [**PyCharm**](https://www.jetbrains.com/pycharm/) | JetBrains製Python専用IDE。Django/Flask対応 | Python実装、Web開発、データサイエンス | 🟢 Community無料<br>💰 Professional: $199/年 | ✅ Python特化<br>✅ Django/Flask統合<br>✅ Jupyter対応<br>✅ データサイエンスツール | ❌ Professional版有料<br>❌ メモリ使用量大<br>❌ 起動遅い |
+| **IDE**                    | [**VS Code + Python拡張**](https://code.visualstudio.com/docs/languages/python) | 軽量エディタ + Python拡張 | Python実装、軽量開発、リモート開発 | 🟢 完全無料 | ✅ 無料<br>✅ 軽量<br>✅ Jupyter統合<br>✅ リモート開発 | ❌ PyCharm比で機能劣る<br>❌ 初期設定必要<br>❌ デバッグ弱い |
+| **パッケージマネージャー** | [**pip**](https://pip.pypa.io/) | Python標準パッケージマネージャー | パッケージ管理、依存関係インストール | 🟢 完全無料 | ✅ Python標準<br>✅ PyPI統合<br>✅ 簡単インストール<br>✅ 無料 | ❌ 依存関係解決弱い<br>❌ 環境管理別途必要 |
+| **パッケージマネージャー** | [**Poetry**](https://python-poetry.org/) | モダンPython依存関係管理 | 依存関係管理、仮想環境、ビルド・公開 | 🟢 完全無料 | ✅ 依存関係解決優秀<br>✅ pyproject.toml<br>✅ 仮想環境自動管理<br>✅ ビルド・公開統合 | ❌ 学習コスト<br>❌ pip比で遅い<br>❌ 一部ライブラリ非互換 |
+| **環境管理**               | [**pytest**](https://pytest.org/) | Python単体テストフレームワーク | ユニットテスト、TDD、テスト駆動開発 | 🟢 完全無料 | ✅ シンプルな構文<br>✅ フィクスチャ強力<br>✅ プラグイン豊富<br>✅ パラメータ化テスト | ❌ 学習コスト<br>❌ 標準ライブラリではない |
+| **環境管理**               | [**Black**](https://black.readthedocs.io/) | 妥協なしPythonフォーマッター | コード自動フォーマット、スタイル統一 | 🟢 完全無料 | ✅ 一貫したスタイル<br>✅ 設定不要<br>✅ 高速<br>✅ Git統合 | ❌ カスタマイズ不可<br>❌ 好みに合わない場合あり |
+| **フレームワーク**         | [**Ruff**](https://github.com/astral-sh/ruff) | 超高速Pythonリンター（Rust製） | コーディング規約チェック、自動修正 | 🟢 完全無料 | ✅ 非常に高速<br>✅ Flake8/pylint置換<br>✅ 自動修正<br>✅ 設定簡単 | ❌ 比較的新しい<br>❌ 一部ルール非対応 |
+| **フレームワーク**         | [**mypy**](http://mypy-lang.org/) | Python静的型チェッカー | 型安全性チェック、型ヒント検証 | 🟢 完全無料 | ✅ 型安全性向上<br>✅ IDE統合<br>✅ 段階的導入可能<br>✅ 無料 | ❌ 実行時チェックなし<br>❌ ライブラリスタブ必要<br>❌ 学習コスト |
+| **テスト**                 | [**Django**](https://www.djangoproject.com/) | Pythonフルスタックフレームワーク | Webアプリケーション開発、ORM利用 | 🟢 完全無料 | ✅ バッテリー同梱<br>✅ ORM強力<br>✅ Admin画面自動生成<br>✅ セキュリティ強固 | ❌ 重い<br>❌ 学習曲線急<br>❌ 小規模には過剰 |
+| **リンター**               | [**pylint**](https://pylint.org/) | 包括的Pythonリンター | ✅ 詳細な分析<br>✅ カスタマイズ可能<br>✅ コード品質スコア<br>✅ 無料 | ❌ 遅い<br>❌ 誤検知多い<br>❌ 設定複雑 |
+| **リンター**               | [**FastAPI**](https://fastapi.tiangolo.com/) | モダン高速APIフレームワーク | REST API開発、非同期処理 | 🟢 完全無料 | ✅ 非常に高速<br>✅ 自動ドキュメント生成<br>✅ 型ヒント活用<br>✅ 非同期対応 | ❌ 比較的新しい<br>❌ フルスタックではない<br>❌ Django比で機能少ない |
+          
+
+
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **PyCharm公式ガイド** | PyCharm開発環境ガイド | [JetBrains PyCharm](https://www.jetbrains.com/help/pycharm/) |
+| **pytest公式ドキュメント** | pytest使用ガイド、テスト作成方法 | [pytest Docs](https://docs.pytest.org/) |
+| **Poetry公式ガイド** | Poetry依存関係管理方法 | [Poetry](https://python-poetry.org/docs/) |
+| **IPA Pythonコーディング規約** | Pythonコーディング規約・スタイルガイド | [IPA 公式](https://www.ipa.go.jp/) |
+
+---
+
+### 2.4. TypeScript 開発
 
 | カテゴリ | ツール名 | 概要 | メリット | デメリット |
 |---------|---------|------|---------|-----------|

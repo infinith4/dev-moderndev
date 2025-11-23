@@ -28,18 +28,18 @@
 
 ### 推奨ツール（生産性が高いもの Top 10）
 
-| # | ツール名 | 公式サイト | 説明 | メリット | デメリット |
-|---|---------|-----------|------|---------|-----------|
-| 1 | **Liquibase** | [https://www.liquibase.org/](https://www.liquibase.org/) | データベーススキーマ管理、バージョン管理、マイグレーション | ✅ DB変更履歴管理優秀<br>✅ ロールバック機能<br>✅ 多DB対応（MySQL/PostgreSQL/Oracle等）<br>✅ CI/CD統合<br>✅ 差分自動検出 | ❌ 複雑な変更は手動SQL必要<br>❌ 学習曲線やや急<br>❌ 大規模データ移行遅い<br>❌ 商用機能は有料 |
-| 2 | **Flyway** | [https://flywaydb.org/](https://flywaydb.org/) | データベースマイグレーション、シンプル、信頼性高い | ✅ シンプルで学習容易<br>✅ SQL/Javaマイグレーション<br>✅ バージョン管理明確<br>✅ CI/CD統合容易<br>✅ 軽量高速 | ❌ ロールバック機能弱い（有料版）<br>❌ 複雑な移行には不向き<br>❌ NoSQL非対応<br>❌ GUI なし |
-| 3 | **AWS Database Migration Service** | [https://aws.amazon.com/dms/](https://aws.amazon.com/dms/) | クラウドDBマイグレーション、最小ダウンタイム | ✅ 最小ダウンタイム移行<br>✅ 異種DB間移行対応<br>✅ 継続的レプリケーション<br>✅ スキーマ変換ツール統合<br>✅ フルマネージド | ❌ AWS依存<br>❌ コスト予測難しい<br>❌ 複雑な変換は手動<br>❌ パフォーマンス調整必要 |
-| 4 | **Talend** | [https://www.talend.com/](https://www.talend.com/) | ETL/ELTツール、データ統合、データ移行 | ✅ GUI でETL設計<br>✅ 多様なデータソース対応<br>✅ データ品質管理<br>✅ ビッグデータ対応<br>✅ オープンソース版あり | ❌ 商用版高額<br>❌ リソース使用量大<br>❌ 学習コスト高い<br>❌ 複雑化しやすい |
-| 5 | **Apache NiFi** | [https://nifi.apache.org/](https://nifi.apache.org/) | データフロー自動化、データ移行、リアルタイム処理 | ✅ ビジュアルデータフロー設計<br>✅ リアルタイムストリーミング<br>✅ 豊富なプロセッサ<br>✅ データプロビナンス追跡<br>✅ 無料オープンソース | ❌ リソース使用量大<br>❌ セットアップ複雑<br>❌ バッチ処理は他ツール推奨<br>❌ 学習曲線急 |
-| 6 | **Informatica** | [https://www.informatica.com/](https://www.informatica.com/) | エンタープライズデータ統合、ETL、マスタデータ管理 | ✅ エンタープライズ級機能<br>✅ 多様なデータソース対応<br>✅ データ品質管理優秀<br>✅ AIデータ統合<br>✅ 大規模実績豊富 | ❌ 非常に高額<br>❌ 複雑で学習困難<br>❌ オーバースペック感<br>❌ ベンダーロックイン |
-| 7 | **Pentaho Data Integration** | [https://www.hitachivantara.com/en-us/products/pentaho-platform/data-integration-analytics.html](https://www.hitachivantara.com/en-us/products/pentaho-platform/data-integration-analytics.html) | オープンソースETL、データ統合 | ✅ 無料オープンソース<br>✅ GUI でETL設計<br>✅ ビッグデータ対応<br>✅ コミュニティ大きい<br>✅ Java拡張可能 | ❌ エンタープライズ版は有料<br>❌ パフォーマンスやや劣る<br>❌ サポート限定的<br>❌ UI やや古い |
-| 8 | **Airbyte** | [https://airbyte.com/](https://airbyte.com/) | オープンソースELT、API統合、データパイプライン | ✅ 豊富なコネクタ（300+）<br>✅ オープンソース<br>✅ API統合容易<br>✅ 増分同期対応<br>✅ セットアップ簡単 | ❌ 比較的新しい（2020〜）<br>❌ 変換機能弱い（dbt推奨）<br>❌ エンタープライズ機能有料<br>❌ 大規模では課題 |
-| 9 | **Fivetran** | [https://www.fivetran.com/](https://www.fivetran.com/) | 自動データパイプライン、SaaS統合、メンテナンスフリー | ✅ 完全自動化<br>✅ メンテナンスフリー<br>✅ 豊富なコネクタ<br>✅ スキーマ変更自動対応<br>✅ 信頼性高い | ❌ 高額（従量課金）<br>❌ カスタマイズ性低い<br>❌ ベンダーロックイン<br>❌ 複雑な変換不可 |
-| 10 | **dbt (data build tool)** | [https://www.getdbt.com/](https://www.getdbt.com/) | データ変換、分析エンジニアリング、SQLベース | ✅ SQLで変換記述<br>✅ バージョン管理容易<br>✅ テスト・ドキュメント自動化<br>✅ モジュール化・再利用<br>✅ オープンソース | ❌ データ抽出・ロード不可（ELTのT専用）<br>❌ SQL知識必須<br>❌ リアルタイム処理不可<br>❌ クラウド版は有料 |
+| # | ツール名 | 概要 | 用途 | メリット | デメリット |
+|---|---------|------|------|---------|-----------|
+| 1 | [**Liquibase**](https://www.liquibase.org/) | データベーススキーマ管理、バージョン管理、マイグレーション | DBスキーマ管理、バージョン管理、マイグレーション、ロールバック | ✅ DB変更履歴管理優秀<br>✅ ロールバック機能<br>✅ 多DB対応（MySQL/PostgreSQL/Oracle等）<br>✅ CI/CD統合<br>✅ 差分自動検出 | ❌ 複雑な変更は手動SQL必要<br>❌ 学習曲線やや急<br>❌ 大規模データ移行遅い<br>❌ 商用機能は有料 |
+| 2 | [**Flyway**](https://flywaydb.org/) | データベースマイグレーション、シンプル、信頼性高い | DBマイグレーション、バージョン管理、SQL/Javaマイグレーション | ✅ シンプルで学習容易<br>✅ SQL/Javaマイグレーション<br>✅ バージョン管理明確<br>✅ CI/CD統合容易<br>✅ 軽量高速 | ❌ ロールバック機能弱い（有料版）<br>❌ 複雑な移行には不向き<br>❌ NoSQL非対応<br>❌ GUI なし |
+| 3 | [**AWS Database Migration Service**](https://aws.amazon.com/dms/) | クラウドDBマイグレーション、最小ダウンタイム | クラウドDBマイグレーション、異種DB間移行、継続的レプリケーション | ✅ 最小ダウンタイム移行<br>✅ 異種DB間移行対応<br>✅ 継続的レプリケーション<br>✅ スキーマ変換ツール統合<br>✅ フルマネージド | ❌ AWS依存<br>❌ コスト予測難しい<br>❌ 複雑な変換は手動<br>❌ パフォーマンス調整必要 |
+| 4 | [**Talend**](https://www.talend.com/) | ETL/ELTツール、データ統合、データ移行 | ETL/ELT設計、データ統合、データ品質管理、ビッグデータ対応 | ✅ GUI でETL設計<br>✅ 多様なデータソース対応<br>✅ データ品質管理<br>✅ ビッグデータ対応<br>✅ オープンソース版あり | ❌ 商用版高額<br>❌ リソース使用量大<br>❌ 学習コスト高い<br>❌ 複雑化しやすい |
+| 5 | [**Apache NiFi**](https://nifi.apache.org/) | データフロー自動化、データ移行、リアルタイム処理 | データフロー設計、リアルタイムストリーミング、データプロビナンス追跡 | ✅ ビジュアルデータフロー設計<br>✅ リアルタイムストリーミング<br>✅ 豊富なプロセッサ<br>✅ データプロビナンス追跡<br>✅ 無料オープンソース | ❌ リソース使用量大<br>❌ セットアップ複雑<br>❌ バッチ処理は他ツール推奨<br>❌ 学習曲線急 |
+| 6 | [**Informatica**](https://www.informatica.com/) | エンタープライズデータ統合、ETL、マスタデータ管理 | エンタープライズETL、データ統合、データ品質管理、AIデータ統合 | ✅ エンタープライズ級機能<br>✅ 多様なデータソース対応<br>✅ データ品質管理優秀<br>✅ AIデータ統合<br>✅ 大規模実績豊富 | ❌ 非常に高額<br>❌ 複雑で学習困難<br>❌ オーバースペック感<br>❌ ベンダーロックイン |
+| 7 | [**Pentaho Data Integration**](https://www.hitachivantara.com/en-us/products/pentaho-platform/data-integration-analytics.html) | オープンソースETL、データ統合 | オープンソースETL設計、データ統合、ビッグデータ対応 | ✅ 無料オープンソース<br>✅ GUI でETL設計<br>✅ ビッグデータ対応<br>✅ コミュニティ大きい<br>✅ Java拡張可能 | ❌ エンタープライズ版は有料<br>❌ パフォーマンスやや劣る<br>❌ サポート限定的<br>❌ UI やや古い |
+| 8 | [**Airbyte**](https://airbyte.com/) | オープンソースELT、API統合、データパイプライン | オープンソースELT、API統合、増分同期、データパイプライン | ✅ 豊富なコネクタ（300+）<br>✅ オープンソース<br>✅ API統合容易<br>✅ 増分同期対応<br>✅ セットアップ簡単 | ❌ 比較的新しい（2020〜）<br>❌ 変換機能弱い（dbt推奨）<br>❌ エンタープライズ機能有料<br>❌ 大規模では課題 |
+| 9 | [**Fivetran**](https://www.fivetran.com/) | 自動データパイプライン、SaaS統合、メンテナンスフリー | 自動データパイプライン、SaaS統合、スキーマ変更自動対応 | ✅ 完全自動化<br>✅ メンテナンスフリー<br>✅ 豊富なコネクタ<br>✅ スキーマ変更自動対応<br>✅ 信頼性高い | ❌ 高額（従量課金）<br>❌ カスタマイズ性低い<br>❌ ベンダーロックイン<br>❌ 複雑な変換不可 |
+| 10 | [**dbt (data build tool)**](https://www.getdbt.com/) | データ変換、分析エンジニアリング、SQLベース | データ変換（ELTのT）、テスト・ドキュメント自動化、モジュール化 | ✅ SQLで変換記述<br>✅ バージョン管理容易<br>✅ テスト・ドキュメント自動化<br>✅ モジュール化・再利用<br>✅ オープンソース | ❌ データ抽出・ロード不可（ELTのT専用）<br>❌ SQL知識必須<br>❌ リアルタイム処理不可<br>❌ クラウド版は有料 |
 
 ### その他利用可能なツール
 

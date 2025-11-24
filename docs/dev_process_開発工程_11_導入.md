@@ -53,13 +53,17 @@
 
 ## 3. デプロイメント・リリース
 
+**対応項目**
+- リリース
+
 **成果物**
+- リリース手順書
 - デプロイメント計画書
 - リリースノート
 - ロールバック計画
 - デプロイメント実績レポート
 
-**有用なツール**
+### 推奨ツール
 
 | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
 |---------|------|------|------|---------|----------|
@@ -81,6 +85,44 @@
 | **Terraform AWS Provider** | Terraform で AWS インフラ構築 | [Terraform Registry](https://registry.terraform.io/) |
 | **Kubernetes デプロイメントガイド** | Kubernetes 本番デプロイ方法 | [Kubernetes Docs](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) |
 | **IPA デプロイメント標準化ガイド** | IPA推奨デプロイメント手法 | [IPA 公式](https://www.ipa.go.jp/) |
+
+---
+
+## 3.1. 受入テスト
+
+本番環境への導入前に、ユーザー視点での最終確認テストを実施します。
+
+**対応項目**
+- テスト設計
+- 受入テスト実施
+
+**成果物**
+- 受入テスト仕様書
+- 受入テスト結果報告書
+
+### 推奨ツール
+
+| # | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
+|---|---------|------|------|------|---------|-----------|
+| 1 | [**TestRail**](https://www.testrail.com/) | テスト管理プラットフォーム。テストケース管理、実行追跡 | 受入テストケース管理、進捗追跡、レポート作成 | 💰 $35/ユーザー/月 | ✅ テスト管理特化<br>✅ 使いやすいUI<br>✅ Jira統合<br>✅ カスタムレポート<br>✅ 進捗可視化優秀 | ❌ 有料のみ<br>❌ テスト実行は手動<br>❌ 自動化機能なし<br>❌ コストかかる |
+| 2 | [**Xray (Jira Plugin)**](https://www.getxray.app/) | Jira統合テスト管理。BDD対応 | Jiraでテストケース管理、受入基準管理、トレーサビリティ | 💰 $10/ユーザー/月～ | ✅ Jira完全統合<br>✅ BDD対応<br>✅ 開発チーム連携容易<br>✅ トレーサビリティ<br>✅ Cucumberサポート | ❌ Jira必須<br>❌ 複雑な設定<br>❌ 有料のみ<br>❌ 学習コストあり |
+| 3 | [**Cucumber**](https://cucumber.io/) | BDD（振る舞い駆動開発）フレームワーク。Gherkin構文 | 受入基準をGherkin記述、ユーザーストーリー検証 | 🟢 完全無料 | ✅ 完全無料<br>✅ Gherkinで可読性高い<br>✅ ビジネス層理解容易<br>✅ 多言語対応<br>✅ CI/CD統合 | ❌ 自動化コード別途必要<br>❌ メンテナンスコスト高い<br>❌ 実行速度遅い<br>❌ スキル必要 |
+| 4 | [**SpecFlow**](https://specflow.org/) | .NET版Cucumber。BDD、Gherkin、VisualStudio統合 | .NET環境での受入テスト、BDD実装 | 🟢 無料版あり / 💰 Plus: $20/月 | ✅ .NET統合優秀<br>✅ VisualStudio統合<br>✅ Gherkin対応<br>✅ 日本語対応<br>✅ 無料版あり | ❌ .NET専用<br>❌ 有料機能多い<br>❌ 実行速度遅い<br>❌ メンテナンスコスト |
+| 5 | [**Selenium**](https://www.selenium.dev/) | Webブラウザ自動化。E2Eテスト | Web UI受入テスト自動化、ブラウザ操作 | 🟢 完全無料 | ✅ 完全無料<br>✅ 業界標準<br>✅ 多ブラウザ対応<br>✅ 多言語対応<br>✅ コミュニティ大きい | ❌ メンテナンスコスト高い<br>❌ 不安定（フレーク）<br>❌ 実行遅い<br>❌ スキル必要 |
+| 6 | [**Playwright**](https://playwright.dev/) | Microsoft製モダンブラウザ自動化。高速・安定 | Web UI受入テスト、クロスブラウザテスト | 🟢 完全無料 | ✅ 高速・安定<br>✅ 自動待機機能<br>✅ クロスブラウザ<br>✅ TypeScript統合<br>✅ トレーシング優秀 | ❌ 比較的新しい<br>❌ Selenium比で情報少ない<br>❌ 学習コストあり<br>❌ IE非対応 |
+| 7 | [**Cypress**](https://www.cypress.io/) | モダンE2Eテストフレームワーク。JavaScript、開発者向け | フロントエンド受入テスト、E2Eテスト | 🟢 無料版あり / 💰 Team: $75/月 | ✅ 開発者向けDX優秀<br>✅ 実行速度速い<br>✅ タイムトラベルデバッグ<br>✅ スクリーンショット自動<br>✅ CI/CD統合 | ❌ 複数タブ不可<br>❌ iframeサポート弱い<br>❌ JavaScript専用<br>❌ 有料機能多い |
+| 8 | [**Postman**](https://www.postman.com/) | API開発・テストプラットフォーム | API受入テスト、リグレッションテスト | 🟢 無料版あり / 💰 Basic: $14/月 | ✅ API テスト特化<br>✅ コレクション管理<br>✅ GUI/CUI両対応<br>✅ Newman（CLI）でCI統合<br>✅ モック機能 | ❌ API専用<br>❌ UIテスト不可<br>❌ 有料機能多い<br>❌ 複雑なテスト困難 |
+| 9 | [**Robot Framework**](https://robotframework.org/) | キーワード駆動テストフレームワーク。Python | 受入テスト自動化、キーワード駆動 | 🟢 完全無料 | ✅ 完全無料<br>✅ キーワードで可読性高い<br>✅ 多様なライブラリ<br>✅ Web/API/DB対応<br>✅ レポート詳細 | ❌ Python知識必要<br>❌ 実行速度遅い<br>❌ デバッグ難しい<br>❌ メンテナンスコスト |
+| 10 | [**Azure Test Plans**](https://azure.microsoft.com/ja-jp/products/devops/test-plans/) | Azure DevOps統合テスト管理 | テストケース管理、実行追跡、探索的テスト | 💰 $52/ユーザー/月 | ✅ Azure DevOps統合<br>✅ テスト管理・実行統合<br>✅ 探索的テスト対応<br>✅ トレーサビリティ<br>✅ CI/CD統合 | ❌ Azure DevOps必須<br>❌ 有料<br>❌ 自動化機能基本的<br>❌ UI使いにくい |
+
+**有用なドキュメント**
+
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **受入テスト実施ガイド（IPA）** | IPA推奨受入テストプロセス・手法 | [IPA 公式](https://www.ipa.go.jp/) |
+| **Cucumber ドキュメント** | Gherkin構文、BDD実践ガイド | [Cucumber Docs](https://cucumber.io/docs/) |
+| **Selenium ベストプラクティス** | Selenium安定したテスト作成方法 | [Selenium Docs](https://www.selenium.dev/documentation/) |
+| **Playwright Getting Started** | Playwright E2Eテストガイド | [Playwright Docs](https://playwright.dev/docs/intro) |
 
 ---
 
@@ -187,6 +229,6 @@
 - [6. インフラ設計・構築](./dev_process_開発工程_6_インフラ設計・構築.md)
 
 **最終更新日**: 2025年（令和7年）
-**文書バージョン**: 1.0
+**文書バージョン**: 1.1
 |---|---------|-----------|------|---------|-----------|
 

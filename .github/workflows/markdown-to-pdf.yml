@@ -17,18 +17,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Pandoc, LaTeX, and Japanese fonts
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            pandoc \
-            texlive-xetex \
-            texlive-fonts-recommended \
-            texlive-fonts-extra \
-            texlive-latex-extra \
-            texlive-lang-cjk \
             fonts-noto-cjk \
-            fonts-noto-cjk-extra
+            fonts-noto-cjk-extra \
+            fonts-ipafont \
+            fonts-liberation
+          # Install required npm packages
+          cd .github/scripts
+          npm init -y
+          npm install marked puppeteer
+          cd ../..
 
       - name: Find and convert Markdown files to PDF
         run: |
@@ -45,13 +51,11 @@ jobs:
             # Get filename without extension
             filename=$(basename "$file" .md)
 
-            # Convert to PDF using pandoc with Japanese font support
+            # Convert to PDF using custom script with Mermaid support
             echo "Converting $relative_path to PDF..."
-            pandoc "$file" -o "$output_dir/${filename}.pdf" \
-              --pdf-engine=xelatex \
-              -V CJKmainfont="Noto Sans CJK JP" \
-              -V geometry:margin=1in \
-              --highlight-style=tango
+            node .github/scripts/markdown-to-pdf.js \
+              "$file" \
+              "$output_dir/${filename}.pdf"
           done
 
           echo "PDF conversion completed!"

@@ -5,13 +5,6 @@
 本ドキュメントは、IPA（独立行政法人 情報処理推進機構）の「共通フレーム2013」に基づく**アプリケーションテストプロセス**における開発タスクと推奨ツール・ドキュメントをまとめたものです。
 
 単体テスト（ユニットテスト）、結合テスト、統合テスト、システムテスト、運用テストの各段階における品質保証活動に最適化されたツール群を網羅しています。
-
-### 参考資料
-- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
-- ISO/IEC 12207:2008 / JIS X 0160:2012
-- IEEE 829-2008（テストドキュメント標準）
-- ISTQB認定テスター資格基準
-
 ---
 
 ## 9.1 単体テスト（ユニットテスト）
@@ -295,8 +288,15 @@
 | **大規模（20+人）** | JUnit / TestNG | SoapUI / REST Assured | Selenium / Playwright | LoadRunner / JMeter | Burp Suite Pro / SonarQube | TestRail Pro / HP ALM |
 | **エンタープライズ** | TestNG / xUnit | SoapUI Professional | Selenium Grid / LoadRunner | LoadRunner / Gatling Cloud | Checkmarx / Burp Suite Pro | HP ALM / qTest |
 
+## 参考資料
+- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
+- ISO/IEC 12207:2008 / JIS X 0160:2012
+- IEEE 829-2008（テストドキュメント標準）
+- ISTQB認定テスター資格基準
+
 ---
 
 **最終更新日**: 2025年（令和7年）
 **文書バージョン**: 1.2
 **関連工程**: [開発工程_7（実装）](./dev_process_開発工程_7_実装_アプリケーション.md) → 開発工程_9（テスト） → [開発工程_10（テスト・インフラ）](./dev_process_開発工程_10_テスト_インフラ.md) → [開発工程_11（導入）](./dev_process_開発工程_11_導入.md)
+

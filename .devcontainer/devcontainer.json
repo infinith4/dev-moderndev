@@ -24,7 +24,8 @@
         "ms-azuretools.vscode-containers",
         "Anthropic.claude-code",
         "ms-azuretools.vscode-docker",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "bierner.markdown-mermaid"
       ],
       "settings": {
         "markdown-preview-enhanced.chromePath": "/usr/bin/chromium",

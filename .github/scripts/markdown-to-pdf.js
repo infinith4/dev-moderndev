@@ -50,26 +50,34 @@ async function convertMarkdownToPDF(inputFile, outputFile) {
     const markdown = await fs.readFile(inputFile, 'utf-8');
 
     // Configure marked to handle mermaid code blocks
-    const renderer = new marked.Renderer();
-    const originalCodeRenderer = renderer.code.bind(renderer);
+    const renderer = {
+      code(token) {
+        // Handle both marked v4+ (token object) and v3 (code, language parameters)
+        const code = typeof token === 'string' ? token : token.text;
+        const lang = typeof token === 'string' ? arguments[1] : token.lang;
 
-    renderer.code = function(code, language) {
-      if (language === 'mermaid') {
-        // Return mermaid div instead of code block
-        return `<div class="mermaid">${code}</div>`;
+        if (lang === 'mermaid') {
+          console.log(`[Markdown Parser] Found Mermaid diagram (${code.split('\n').length} lines)`);
+          // Return mermaid div instead of code block
+          return `<div class="mermaid">${code}</div>\n`;
+        }
+
+        // Default code block rendering
+        const escaped = code
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+
+        return `<pre><code${lang ? ` class="language-${lang}"` : ''}>${escaped}</code></pre>\n`;
       }
-      return originalCodeRenderer(code, language);
     };
 
-    marked.setOptions({
-      renderer: renderer,
-      gfm: true,
-      breaks: false,
-      headerIds: false
-    });
+    marked.use({ renderer });
 
     // Convert markdown to HTML
-    const contentHtml = marked(markdown);
+    const contentHtml = await marked.parse(markdown);
 
     // Get title from first heading or filename
     const titleMatch = markdown.match(/^#\s+(.+)$/m);
@@ -79,6 +87,11 @@ async function convertMarkdownToPDF(inputFile, outputFile) {
     const html = htmlTemplate
       .replace('{{title}}', title)
       .replace('{{content}}', contentHtml);
+
+    // Debug: Save HTML to temporary file for inspection
+    const debugHtmlPath = outputFile.replace('.pdf', '.debug.html');
+    await fs.writeFile(debugHtmlPath, html, 'utf-8');
+    console.log(`[Debug] Saved HTML to ${debugHtmlPath}`);
 
     // Launch Puppeteer
     const browser = await puppeteer.launch({

@@ -122,7 +122,7 @@ async function convertMarkdownToPDF(inputFile, outputFile) {
     });
 
     // Wait a bit for diagrams to fully render
-    await page.waitForTimeout(1000);
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Generate PDF
     await page.pdf({

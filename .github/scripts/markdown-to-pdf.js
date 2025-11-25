@@ -93,6 +93,19 @@ async function convertMarkdownToPDF(inputFile, outputFile) {
 
     const page = await browser.newPage();
 
+    // Enable console logging from browser
+    page.on('console', msg => {
+      const type = msg.type();
+      const text = msg.text();
+      if (type === 'error') {
+        console.error(`[Browser] ${text}`);
+      } else if (type === 'warning') {
+        console.warn(`[Browser] ${text}`);
+      } else {
+        console.log(`[Browser] ${text}`);
+      }
+    });
+
     // Set content
     await page.setContent(html, {
       waitUntil: 'networkidle0'
@@ -103,26 +116,55 @@ async function convertMarkdownToPDF(inputFile, outputFile) {
       url: 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js'
     });
 
-    // Initialize and render Mermaid diagrams
-    await page.evaluate(async () => {
-      mermaid.initialize({
-        startOnLoad: false,
-        theme: 'default',
-        securityLevel: 'loose',
-        fontFamily: 'Noto Sans CJK JP, sans-serif'
-      });
+    // Wait for Mermaid to be loaded
+    await page.waitForFunction(() => typeof mermaid !== 'undefined');
 
-      const mermaidDivs = document.querySelectorAll('.mermaid');
-      if (mermaidDivs.length > 0) {
-        await mermaid.run({
-          querySelector: '.mermaid'
+    // Initialize and render Mermaid diagrams
+    const renderResult = await page.evaluate(async () => {
+      try {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'default',
+          securityLevel: 'loose',
+          fontFamily: 'Noto Sans CJK JP, sans-serif'
         });
-        console.log(`Rendered ${mermaidDivs.length} Mermaid diagrams`);
+
+        const mermaidDivs = document.querySelectorAll('.mermaid');
+
+        if (mermaidDivs.length > 0) {
+          console.log(`Found ${mermaidDivs.length} Mermaid diagrams`);
+
+          // Render each diagram individually
+          for (let i = 0; i < mermaidDivs.length; i++) {
+            const div = mermaidDivs[i];
+            const id = `mermaid-${i}`;
+            const graphDefinition = div.textContent;
+
+            try {
+              const { svg } = await mermaid.render(id, graphDefinition);
+              div.innerHTML = svg;
+              console.log(`Rendered diagram ${i + 1}/${mermaidDivs.length}`);
+            } catch (error) {
+              console.error(`Error rendering diagram ${i + 1}:`, error.message);
+              div.innerHTML = `<pre>Error rendering Mermaid diagram: ${error.message}\n\n${graphDefinition}</pre>`;
+            }
+          }
+
+          return { success: true, count: mermaidDivs.length };
+        } else {
+          console.log('No Mermaid diagrams found');
+          return { success: true, count: 0 };
+        }
+      } catch (error) {
+        console.error('Mermaid initialization error:', error);
+        return { success: false, error: error.message };
       }
     });
 
-    // Wait a bit for diagrams to fully render
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log(`Mermaid rendering result:`, renderResult);
+
+    // Wait longer for diagrams to fully render
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     // Generate PDF
     await page.pdf({

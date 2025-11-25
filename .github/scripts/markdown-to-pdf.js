@@ -129,10 +129,10 @@ async function convertMarkdownToPDF(inputFile, outputFile) {
       path: outputFile,
       format: 'A4',
       margin: {
-        top: '25mm',
-        right: '25mm',
-        bottom: '25mm',
-        left: '25mm'
+        top: '10mm',
+        right: '10mm',
+        bottom: '10mm',
+        left: '10mm'
       },
       printBackground: true
     });

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown.min.css">
+  <style>
+    body {
+      font-family: 'Noto Sans CJK JP', 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      padding: 2em;
+      max-width: 100%;
+    }
+    .markdown-body {
+      box-sizing: border-box;
+      min-width: 200px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .mermaid {
+      background-color: white;
+      text-align: center;
+      margin: 1em 0;
+    }
+    /* Ensure code blocks with mermaid class are treated as diagrams */
+    pre code.language-mermaid {
+      display: none;
+    }
+    pre:has(code.language-mermaid) + .mermaid-diagram {
+      display: block;
+    }
+  </style>
+</head>
+<body class="markdown-body">
+  {{{body}}}
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'default',
+      securityLevel: 'loose',
+      fontFamily: 'Noto Sans CJK JP, sans-serif'
+    });
+
+    // Process mermaid code blocks
+    document.addEventListener('DOMContentLoaded', async () => {
+      console.log('Processing Mermaid diagrams...');
+
+      // Find all mermaid code blocks
+      const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+
+      for (let i = 0; i < codeBlocks.length; i++) {
+        const codeBlock = codeBlocks[i];
+        const pre = codeBlock.parentElement;
+        const mermaidCode = codeBlock.textContent;
+
+        // Create a div for mermaid
+        const mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = mermaidCode;
+
+        // Replace the pre element with the mermaid div
+        pre.parentNode.replaceChild(mermaidDiv, pre);
+      }
+
+      // Also check for pre-existing mermaid divs
+      const mermaidDivs = document.querySelectorAll('.mermaid');
+
+      if (mermaidDivs.length > 0) {
+        try {
+          await mermaid.run({
+            querySelector: '.mermaid'
+          });
+          console.log(`Successfully rendered ${mermaidDivs.length} Mermaid diagrams`);
+        } catch (error) {
+          console.error('Mermaid rendering error:', error);
+        }
+      } else {
+        console.log('No Mermaid diagrams found');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "pdf_options": {
+    "format": "A4",
+    "margin": {
+      "top": "25mm",
+      "right": "25mm",
+      "bottom": "25mm",
+      "left": "25mm"
+    },
+    "printBackground": true,
+    "displayHeaderFooter": false
+  },
+  "stylesheet": [
+    "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.0/github-markdown.min.css"
+  ],
+  "body_class": "markdown-body",
+  "css": "body { font-family: 'Noto Sans CJK JP', 'Noto Sans JP', sans-serif; padding: 2em; } .mermaid { background-color: white; }",
+  "marked_options": {
+    "headerIds": false,
+    "smartypants": true
+  },
+  "script": [
+    "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js",
+    ".github/mermaid-init.js"
+  ],
+  "serve_dir": ".",
+  "page_media_type": "screen",
+  "highlight_style": "github",
+  "launch_options": {
+    "args": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-web-security"
+    ]
+  }
+}

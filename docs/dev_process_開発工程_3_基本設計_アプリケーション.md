@@ -54,6 +54,23 @@
   - 画面入力チェック仕様書
   - 画面処理仕様書
 
+**有用なツール**
+
+| ツール名 | 概要 | 料金 | メリット | デメリット |
+|---------|------|------|---------|----------|
+| [**Figma**](https://www.figma.com/) | クラウドベースのデザインプラットフォーム。リアルタイム協業とプロトタイプ作成に特化。 | 🟢 無料プランあり<br>💰 Pro: $12/月<br>💰 Team: $60/月 | ✅ リアルタイム協業<br>✅ インタラクティブプロトタイプ<br>✅ デザインシステム管理<br>✅ 開発者への共有容易<br>✅ ブラウザベース導入簡単 | ❌ 複雑な設計は重くなる可能性<br>❌ ネットワーク依存<br>❌ オフラインモード限定的 |
+| [**Adobe XD**](https://www.adobe.com/jp/products/xd/) | Adobe製のUI/UXデザインツール。Adobe エコシステムとの統合性に優れる。 | 💰 単体: $2,728/年<br>💰 Creative Cloud: $7,480/年 | ✅ UX/UIに最適化<br>✅ Adobe体系との統合<br>✅ 多彩なプラグイン<br>✅ クラウドシェア機能<br>✅ Illustrator/PhotoShop連携 | ❌ 有料プランのみ（試用版あり）<br>❌ 高額<br>❌ ネットワーク依存 |
+| [**MockFlow**](https://www.mockflow.com/) | 低～中忠実度ワイヤーフレーム作成ツール。シンプルで軽量。 | 🟢 無料プランあり<br>💰 Team: $25/月<br>💰 Business: $50/月 | ✅ 軽量で導入簡単<br>✅ テンプレート豊富<br>✅ コスト低い<br>✅ 協業機能<br>✅ UI要素ライブラリ充実 | ❌ 高忠実度デザインに不向き<br>❌ プロトタイプ機能限定的<br>❌ UIが古い |
+| [**Sketch**](https://www.sketch.com/) | macOS専用のデザインツール。デザイナー向けに最適化。 | 💰 買い切り: $99<br>💰 サブスク: $99/年 | ✅ デザイナー向けUIツール<br>✅ 豊富なプラグイン<br>✅ 高速で軽量<br>✅ デザインシステム管理<br>✅ 安価 | ❌ macOSのみ<br>❌ Windowsユーザー不可<br>❌ リアルタイム協業弱い |
+| [**draw.io**](https://www.diagrams.net/) | 完全無料のオンライン図作成ツール。シンプルで軽量。 | 🟢 完全無料 | ✅ 完全無料<br>✅ テンプレート豊富<br>✅ ブラウザで動作<br>✅ Git統合可能<br>✅ インストール不要 | ❌ 高忠実度デザインに不向き<br>❌ プロトタイプ機能なし<br>❌ リアルタイム協業弱い |
+
+**有用なドキュメント**
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **UI/UX設計ガイドライン** | 使いやすい画面設計の基本原則 | [Nielsen Norman ガイドライン](https://www.nngroup.com/articles/usability-101-introduction-to-usability/) |
+| **アクセシビリティガイドライン（WCAG 2.1）** | 誰もが使える画面設計の基準 | [W3C WCAG](https://www.w3.org/WAI/WCAG21/quickref/) |
+| **IPA ユーザーインターフェース設計ガイド** | 日本の基準に準拠した画面設計手法 | [IPA公式サイト](https://www.ipa.go.jp/) |
+
 ---
 
 ## 3. 帳票設計
@@ -66,12 +83,47 @@
   - 帳票レイアウト
   - 帳票項目定義、テーブル項目マッピング定義
 
+**有用なツール**
+
+| ツール名 | 概要 | 料金 | メリット | デメリット |
+|---------|------|------|---------|----------|
+| [**JasperReports**](https://community.jaspersoft.com/project/jasperreports-library) | Java標準のオープンソース帳票生成エンジン。複雑な帳票設計に対応。 | 🟢 完全無料<br>（Community Edition） | ✅ Java標準<br>✅ 複雑な帳票設計に対応<br>✅ 多様なデータソース対応<br>✅ PDF/Excel/CSV等多形式出力<br>✅ 完全無料 | ❌ 学習曲線が急<br>❌ UI設計ツールはシンプル<br>❌ サポートは有料版のみ |
+| [**Crystal Reports**](https://www.sap.com/products/technology/crystal-reports.html) | SAP製の企業向け帳票ツール。高度な機能とエンタープライズ実績。 | 💰 $2,000～<br>（エンタープライズ価格） | ✅ 高度な帳票設計機能<br>✅ 大規模バッチ対応<br>✅ 多形式出力<br>✅ エンタープライズ実績<br>✅ 豊富なサポート | ❌ 非常に高額<br>❌ 学習コスト高<br>❌ 単純な帳票には過剰 |
+| [**Apache POI**](https://poi.apache.org/) | Javaライブラリ。Excelを完全にプログラマティック制御。 | 🟢 完全無料 | ✅ Javaで帳票を完全制御<br>✅ 複雑なレイアウト対応<br>✅ オープンソース無料<br>✅ プログラマブル<br>✅ 細かいカスタマイズ可能 | ❌ 実装に開発スキル必須<br>❌ GUI/IDEではない<br>❌ 帳票設計工数多い |
+| [**BIRT**](https://projects.eclipse.org/projects/technology.birt) | Eclipse プロジェクト。エンタープライズレポーティング向けオープンソース。 | 🟢 完全無料 | ✅ Eclipse統合<br>✅ 複雑な帳票対応<br>✅ オープンソース<br>✅ デザイナーツール付属<br>✅ 完全無料 | ❌ UI古い<br>❌ 学習資料限定的<br>❌ コミュニティ小さい |
+| [**LibreOffice**](https://www.libreoffice.org/) | オープンソースのオフィススイート。テンプレート作成や検討用。 | 🟢 完全無料 | ✅ 無料オープンソース<br>✅ テンプレート設計容易<br>✅ マクロ対応<br>✅ クロスプラットフォーム<br>✅ 気軽に試せる | ❌ 帳票生成エンジンではない<br>❌ 複雑な帳票に不向き<br>❌ 自動化機能限定的 |
+
+**有用なドキュメント**
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **帳票設計の基本** | 使いやすい帳票設計のガイドラインと事例 | [IPA情報発信](https://www.ipa.go.jp/) |
+| **JasperReports ドキュメント** | JasperReportsの詳細な使用方法 | [JasperReports ドキュメント](https://community.jaspersoft.com/documentation) |
+
 ---
 
 ## 4. ファイル設計
 
 **対応項目**
 - ファイル設計
+
+**成果物**
+- ファイル仕様書（外部入出力ファイル）
+  - ファイルレイアウト定義
+  - ファイル項目定義、テーブル項目マッピング定義
+
+**有用なツール**
+
+| ツール名 | 概要 | 料金 | メリット | デメリット |
+|---------|------|------|---------|----------|
+| [**Lucidchart**](https://www.lucidchart.com/) | クラウドベースの図作成ツール。ファイル構造図やER図の可視化に最適。 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ ファイルレイアウト可視化<br>✅ テンプレート豊富<br>✅ リアルタイム協業<br>✅ 多形式エクスポート<br>✅ 初心者向け | ❌ 有料プランは高額<br>❌ ネットワーク依存<br>❌ オフライン不可 |
+| [**VSCode**](https://code.visualstudio.com/) | Microsoft製の軽量コードエディタ。拡張機能で機能拡張可能。 | 🟢 完全無料 | ✅ テキストベース管理<br>✅ 正規表現対応<br>✅ プラグイン豊富<br>✅ Git統合<br>✅ 軽量で高速 | ❌ 図作成には拡張機能必須<br>❌ ビジュアルな編集は弱い<br>❌ テキストベースのみ |
+| [**Python/Pandas**](https://pandas.pydata.org/) | Python データ分析ライブラリ。ファイル解析・変換スクリプト作成に用。 | 🟢 完全無料 | ✅ CSV/Excel/JSON解析<br>✅ データ変換自動化<br>✅ テスト用ダミーデータ生成<br>✅ 統計分析<br>✅ 完全無料 | ❌ Python開発スキル必須<br>❌ GUI/IDEではない<br>❌ 非エンジニア向けでない |
+
+**有用なドキュメント**
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **ファイルフォーマット仕様書テンプレート** | ファイル設計書の作成テンプレート | [IPA事例](https://www.ipa.go.jp/) |
+| **CSV/JSON/XMLスキーマガイド** | 各ファイルフォーマットの設計ガイド | [W3C Schema](https://www.w3.org/XML/Schema/) |
 
 ---
 
@@ -84,6 +136,25 @@
 - 論理ER図
 - テーブル定義書
 
+**有用なツール**
+
+| ツール名 | 概要 | 料金 | メリット | デメリット |
+|---------|------|------|---------|----------|
+| [**MySQL Workbench**](https://www.mysql.com/jp/products/workbench/) | MySQL標準のER図設計・管理ツール。SQL自動生成に優れる。 | 🟢 完全無料 | ✅ 無料で高機能<br>✅ MySQL標準ツール<br>✅ SQL自動生成<br>✅ リバースエンジニアリング対応<br>✅ 完全無料 | ❌ MySQLに特化<br>❌ UI少し古い<br>❌ 複雑な図は管理困難 |
+| [**ERDPlus**](https://erdplus.com/) | クラウドベースのオンラインER図作成ツール。複数DB対応。 | 🟢 完全無料 | ✅ 完全無料<br>✅ ブラウザで動作<br>✅ SQL生成機能<br>✅ 複数データベース対応<br>✅ インストール不要 | ❌ リアルタイム協業弱い<br>❌ ER図機能は基本的<br>❌ ドキュメント生成なし |
+| [**pgAdmin**](https://www.pgadmin.org/) | PostgreSQL標準の管理・開発ツール。ER図作成・管理機能搭載。 | 🟢 完全無料 | ✅ PostgreSQL標準ツール<br>✅ ER図エクスポート<br>✅ クエリビルダー<br>✅ リバースエンジニアリング<br>✅ 完全無料 | ❌ PostgreSQLに特化<br>❌ 複雑なER図設計向けでない<br>❌ UI初心者向けでない |
+| [**Power Designer**](https://www.powerdesigner.de/) | エンタープライズレベルの統合モデリングツール。複雑なER図に対応。 | 💰 高額<br>（見積価格） | ✅ 複雑なER図対応<br>✅ 多様なDBMS対応<br>✅ 物理・論理モデル変換<br>✅ ドキュメント自動生成<br>✅ エンタープライズ実績 | ❌ 非常に高額<br>❌ 学習曲線が急<br>❌ 小規模開発には過剰 |
+| [**Lucidchart**](https://www.lucidchart.com/) | クラウドベースの図作成ツール。ER図からアーキテクチャ図まで対応。 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ リアルタイム協業<br>✅ テンプレート豊富<br>✅ 多形式エクスポート<br>✅ 初心者向け<br>✅ 多用途 | ❌ 有料プランは高額<br>❌ ネットワーク依存<br>❌ 専門的な機能は限定的 |
+| [**draw.io**](https://www.diagrams.net/) | 完全無料のオンライン図作成ツール。シンプルで軽量。 | 🟢 完全無料 | ✅ 完全無料<br>✅ ブラウザで動作<br>✅ Git統合<br>✅ テンプレート豊富<br>✅ インストール不要 | ❌ ER図機能は基本的<br>❌ リアルタイム協業弱い<br>❌ 複雑な図は管理困難 |
+| [**Dataedo**](https://dataedo.com/) | データベース自動ドキュメント化ツール。リバースエンジニアリングに特化。 | 💰 Professional: $1,299/年<br>💰 Team: $2,599/年 | ✅ リバースエンジニアリング自動化<br>✅ ドキュメント自動生成<br>✅ 複数DBサポート<br>✅ チーム共有機能<br>✅ 維持管理容易 | ❌ 有料のみ<br>❌ やや高額<br>❌ ER図設計機能は限定的 |
+
+**有用なドキュメント**
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **データベース設計ガイドライン** | 正規化と最適化の基本 | [IPA情報発信](https://www.ipa.go.jp/) |
+| **ER図の書き方** | 実践的なER図設計のベストプラクティス | [Lucidchart ガイド](https://www.lucidchart.com/pages/ja/er-diagram) |
+| **データ正規化について** | 第1正規形から第3正規形の解説 | [DB標準設計](https://www.ipa.go.jp/) |
+
 ---
 
 ## 6. 外部システムI/F設計
@@ -94,10 +165,23 @@
 **成果物**
 - 外部システムI/F仕様書
 
+**有用なツール**
+
+| ツール名 | 概要 | 料金 | メリット | デメリット |
+|---------|------|------|---------|----------|
+| [**Postman**](https://www.postman.com/) | API設計・テスト・ドキュメント管理プラットフォーム。企業標準のツール。 | 🟢 無料プランあり<br>💰 Pro: $12/月<br>💰 Business: $25/月 | ✅ API仕様書作成<br>✅ テスト実行・自動化<br>✅ チーム共有機能<br>✅ 無料プランあり<br>✅ 直感的UI | ❌ 本格的には有料<br>❌ ネットワーク依存<br>❌ API仕様言語は限定的 |
+| [**Swagger / OpenAPI**](https://swagger.io/) | API仕様定義の業界標準フォーマット。オープンソースツール群。 | 🟢 完全無料 | ✅ 業界標準フォーマット<br>✅ 仕様からコード生成<br>✅ インタラクティブドキュメント<br>✅ オープンソース<br>✅ 多言語対応 | ❌ YAML/JSON学習必須<br>❌ GUI不要（テキストベース）<br>❌ 設定が複雑 |
+| [**Insomnia**](https://insomnia.rest/) | オープンソースのAPI クライアント。Postmanの代替ツール。 | 🟢 完全無料<br>（有料版あり） | ✅ オープンソース無料<br>✅ GraphQL対応<br>✅ プラグイン豊富<br>✅ ローカル管理<br>✅ 軽量 | ❌ ユーザー数少ない<br>❌ ドキュメント生成は弱い<br>❌ 機能はPostmanより劣る |
+| [**ReDoc**](https://redoc.ly/) | OpenAPI仕様から美しいドキュメントを自動生成。ドキュメント用。 | 🟢 完全無料 | ✅ 美しいドキュメント生成<br>✅ OpenAPI連携<br>✅ レスポンシブ対応<br>✅ 無料<br>✅ 導入簡単 | ❌ API設計・テスト機能なし<br>❌ ドキュメント生成のみ<br>❌ カスタマイズ限定的 |
+| [**API Blueprint**](https://apiblueprint.org/) | マークダウンベースのAPI仕様定義言語。シンプルで軽量。 | 🟢 完全無料 | ✅ テキストベース管理<br>✅ Git管理容易<br>✅ ドキュメント自動生成<br>✅ 軽量<br>✅ 学習簡単 | ❌ OpenAPIより機能少ない<br>❌ ツール生態系限定的<br>❌ エディタがシンプル |
+
 **有用なドキュメント**
-| 資料名 | 概要 | 用途 | リンク |
-|-------|------|------|--------|
-| **API標準設計ガイド・基礎編** | REST API設計の標準的な設計手法を解説。外部システム連携の設計に有用 | 外部システムI/F設計、API基本設計、インターフェース仕様書作成 | [IPA公式サイト](https://www.ipa.go.jp/digital/data/jod03a000000a82y-att/api_standard_design_guide.pdf) |
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **API標準設計ガイド・基礎編** | REST API設計の標準的な設計手法を解説。外部システム連携の設計に有用 | [IPA公式サイト](https://www.ipa.go.jp/digital/data/jod03a000000a82y-att/api_standard_design_guide.pdf) |
+| **OpenAPI 3.0 仕様書** | REST API仕様の標準フォーマット | [OpenAPI 公式](https://spec.openapis.org/oas/v3.0.3) |
+| **RESTful API設計ベストプラクティス** | マイクロサービス・API連携の設計ガイド | [RESTful API チュートリアル](https://www.restapitutorial.com/) |
+| **GraphQL設計ガイド** | GraphQL APIの設計とベストプラクティス | [GraphQL 公式](https://graphql.org/learn/best-practices/) |
 
 ---
 
@@ -108,10 +192,61 @@
 
 **成果物**
 - バッチ設計書
+  - バッチフロー図
+  - バッチジョブスケジュール仕様書
+  - バッチ入出力ファイル定義
+  - エラーハンドリング仕様書
+
+**有用なツール**
+
+| ツール名 | 概要 | 料金 | メリット | デメリット |
+|---------|------|------|---------|----------|
+| [**Apache Airflow**](https://airflow.apache.org/) | Airbnb開発のワークフロー管理プラットフォーム。DAGで複雑なバッチを定義。 | 🟢 完全無料 | ✅ オープンソース無料<br>✅ DAG（有向非環グラフ）で定義<br>✅ スケーラビリティ高い<br>✅ 監視・ロギング充実<br>✅ 豊富なプラグイン | ❌ 初期構築コスト高い<br>❌ 学習曲線が急<br>❌ メモリ使用量多い |
+| [**Spring Batch**](https://spring.io/projects/spring-batch) | Spring Framework開発のJava向けバッチフレームワーク。エンタープライズレベル。 | 🟢 完全無料 | ✅ Java標準<br>✅ トランザクション管理<br>✅ リスタート機能<br>✅ 大量データ処理対応<br>✅ 完全無料 | ❌ Java開発スキル必須<br>❌ セットアップが複雑<br>❌ Spring Framework の知識必須 |
+| [**Quartz Scheduler**](http://www.quartz-scheduler.org/) | Java の軽量ジョブスケジューリングライブラリ。シンプルで安定。 | 🟢 完全無料 | ✅ Java標準<br>✅ Cron式対応<br>✅ クラスタリング対応<br>✅ 軽量で安定<br>✅ 完全無料 | ❌ ワークフロー機能はない<br>❌ スケジューリングのみ<br>❌ GUI管理画面ない |
+| [**Kubernetes CronJob**](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) | Kubernetes のネイティブバッチスケジューリング。クラウドネイティブ。 | 💰 Kubernetesクラスタ費用に含む | ✅ クラウドネイティブ<br>✅ スケーラビリティ<br>✅ 高可用性<br>✅ 監視統合<br>✅ コンテナ型 | ❌ Kubernetes知識必須<br>❌ 初期構築複雑<br>❌ 小規模には過剰 |
+| [**draw.io**](https://www.diagrams.net/) | オンライン図作成ツール。バッチフロー図の設計・可視化に用。 | 🟢 完全無料 | ✅ 完全無料<br>✅ テンプレート豊富<br>✅ バージョン管理容易<br>✅ ブラウザで動作<br>✅ Git統合 | ❌ 設計のみで実装連動しない<br>❌ リアルタイム協業弱い<br>❌ 複雑図は管理困難 |
+| [**GitHub Actions**](https://github.com/) | GitHub の CI/CDサービス。Git連携でバッチ実行。 | 🟢 無料プランあり<br>💰 Pro: $4/月<br>💰 Team: $25/月 | ✅ Git統合<br>✅ バージョン管理<br>✅ ログ保存<br>✅ コスト効率的<br>✅ セットアップ簡単 | ❌ GitHub依存<br>❌ 複雑なワークフロー向けでない<br>❌ 大規模バッチ向けでない |
+
+**有用なドキュメント**
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **バッチ処理設計ガイドライン** | バッチ系システムの設計・実装ベストプラクティス | [IPA情報発信](https://www.ipa.go.jp/) |
+| **Apache Airflow チュートリアル** | バッチワークフロー定義の実践ガイド | [Airflow ドキュメント](https://airflow.apache.org/docs/) |
+| **Spring Batch リファレンス** | Java向けバッチフレームワークの詳細 | [Spring Batch ドキュメント](https://docs.spring.io/spring-batch/docs/current/reference/html/index.html) |
+| **バッチエラーハンドリング設計** | 再実行・リトライ戦略の設計 | [信頼性設計ガイド](https://www.ipa.go.jp/) |
 
 ---
 
-## 8. IPA公式資料・ガイド
+## 8. セキュリティ設計
+
+**対応項目**
+- セキュリティ要件の基本設計への反映
+
+**成果物**
+- セキュリティ設計書
+  - 認証・認可仕様書
+  - 暗号化・通信セキュリティ仕様書
+  - 監査ログ仕様書
+
+**有用なツール**
+
+| ツール名 | 概要 | 料金 | メリット | デメリット |
+|---------|------|------|---------|----------|
+| [**Microsoft Threat Modeling Tool**](https://microsoft.com/en-us/securityriskmanagement/threatmodeling) | Microsoft開発のセキュリティ脅威分析ツール。STRIDE脅威モデル搭載。 | 🟢 完全無料 | ✅ 完全無料<br>✅ 脅威分類体系搭載<br>✅ 図式化<br>✅ 対策提案自動生成<br>✅ Microsoft推奨 | ❌ Windowsのみ<br>❌ UI古い<br>❌ 学習コスト高い |
+| [**OWASP Top 10**](https://owasp.org/www-project-top-ten/) | OWASP公開のWeb アプリケーション脅威Top10リスト。業界標準。 | 🟢 完全無料 | ✅ セキュリティベストプラクティス<br>✅ 業界標準<br>✅ 無料<br>✅ 定期更新（2021年版最新）<br>✅ 対策例豊富 | ❌ ガイドラインのみ<br>❌ 実装ツールではない<br>❌ 継続的学習必須 |
+| [**JWT.io**](https://jwt.io/) | JWT（JSON Web Token）デバッガ・情報サイト。トークン設計支援。 | 🟢 完全無料 | ✅ トークン設計支援<br>✅ デバッガ機能<br>✅ ライブラリ情報<br>✅ 無料<br>✅ ブラウザで動作 | ❌ JWT以外のトークン形式未対応<br>❌ GUI設計ツールではない<br>❌ セキュリティ脅威分析機能なし |
+
+**有用なドキュメント**
+| 資料名 | 概要 | リンク |
+|-------|------|--------|
+| **OWASP API Security Top 10** | API セキュリティ脅威対策 | [OWASP](https://owasp.org/www-project-api-security/) |
+| **IPA セキュリティガイドライン** | 日本の標準セキュリティ設計ガイド | [IPA 公式](https://www.ipa.go.jp/security/) |
+| **マイナンバー・個人情報保護対応ガイド** | 個人情報保護法対応設計 | [IPA マイナンバー対応](https://www.ipa.go.jp/about/press/20150209.html) |
+
+---
+
+## 9. IPA公式資料・ガイド
 
 ---
 

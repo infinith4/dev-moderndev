@@ -47,7 +47,6 @@ jobs:
             relative_path="${file#./}"
             output_dir="pdf-output/$(dirname "$relative_path")"
             mkdir -p "$output_dir"
-
             # Get filename without extension
             filename=$(basename "$file" .md)
 
@@ -57,9 +56,7 @@ jobs:
               "$file" \
               "$output_dir/${filename}.pdf"
           done
-
           echo "PDF conversion completed!"
-
       - name: Upload PDF artifacts
         uses: actions/upload-artifact@v4
         with:

@@ -17,7 +17,13 @@
       "Bash(git push:*)",
       "Bash(gh pr create:*)",
       "Bash(git diff-index:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(mkdir -p:*)",
+      "Bash(cat:*)",
+      "Bash(python3:*)",
+      "Bash(dir /s /b /ad \"C:\\Projects\\github\\infinith4\\dev-moderndev\\docs\\開発工程_*\")",
+      "Bash(findstr:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

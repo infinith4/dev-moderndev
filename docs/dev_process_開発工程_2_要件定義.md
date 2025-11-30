@@ -63,6 +63,15 @@
 14. ProtoPie
 15. Principle -->
 
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Figma - 詳細ガイド](./ツール/UI_UXツール/Figma.md)
+- [Adobe XD - 詳細ガイド](./ツール/UI_UXツール/Adobe_XD.md)
+
+---
+
 ## 2. 業務分析
 
 **対応項目**
@@ -90,6 +99,16 @@
 | **ユーザのための要件定義ガイド 第2版 - 第3章 業務分析** | 業務分析の進め方、現状業務の可視化、問題点抽出手法を解説 | 業務分析、現状業務可視化、業務フロー作成、業務課題抽出 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/youkenteigi20190912.html) | PDFダウンロード→第3章参照→現状業務フロー作成→問題点抽出→To-Be業務フロー設計 | [PDF直接DL](https://www.ipa.go.jp/archive/files/000071810.pdf) |
 | **BPMN 2.0仕様書** | ビジネスプロセスモデリング表記法の国際標準仕様 | BPMN図作成、プロセスモデリング標準、記法学習 | [OMG公式サイト](https://www.omg.org/spec/BPMN/) | PDFダウンロード→BPMN要素（タスク、イベント、ゲートウェイ）を学習→標準記法に従って業務フロー作成 | [BPMN 2.0 Spec PDF](https://www.omg.org/spec/BPMN/2.0/PDF) |
 | **ビジネスプロセスモデリング入門** | IPAによるビジネスプロセスモデリングの基礎解説 | 業務プロセス可視化、モデリング手法、業務改善 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | IPAサイトから資料ダウンロード→プロセスモデリング基礎を学習→実務でのモデリング手法を適用 | [IPA資料一覧](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) |
+
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Bizagi Modeler - 詳細ガイド](./ツール/プロセスモデリングツール/Bizagi_Modeler.md)
+- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Microsoft Visio - 詳細ガイド](./ツール/作図ツール/Microsoft_Visio.md)
+- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [Process Street - 詳細ガイド](./ツール/プロセスモデリングツール/Process_Street.md)
 
 ---
 
@@ -123,6 +142,16 @@
 | **UML 2.5仕様書** | UML（統一モデリング言語）の国際標準仕様 | UML図作成、ユースケース図標準、記法学習 | [OMG公式サイト](https://www.omg.org/spec/UML/) | PDFダウンロード→Use Case Diagrams章参照→標準記法に従ってユースケース図作成→関連・汎化等の記法確認 | [UML 2.5 Spec](https://www.omg.org/spec/UML/2.5/PDF) |
 | **ビジネスルール管理入門** | ビジネスルールの抽出・管理手法の解説 | ビジネスルール定義、ルール管理、ルール一覧作成 | 各種技術書 | 技術書購入/図書館で借りる→ビジネスルール抽出手法学習→ルール分類・管理手法適用→ルール一覧作成 | 各書籍の出版社サイト |
 
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
+- [Visual Paradigm - 詳細ガイド](./ツール/UMLツール/Visual_Paradigm.md)
+- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [PlantUML - 詳細ガイド](./ツール/作図ツール/PlantUML.md)
+
 ---
 
 ## 4. 画面要件定義（機能要件定義）
@@ -153,6 +182,13 @@
 | **Webユーザビリティ・ガイドライン** | Webサイト・アプリケーションのユーザビリティ設計指針 | 画面設計、ユーザビリティ設計、UI設計、アクセシビリティ | 各種ガイドライン | ガイドライン参照→ユーザビリティ原則を学習→画面設計に適用→ユーザビリティテスト実施 | 各組織のガイドライン公式サイト |
 | **Material Design Guidelines** | GoogleのデザインシステムとUI設計ガイドライン | UI設計、画面デザイン、コンポーネント設計、レスポンシブデザイン | [Material Design](https://material.io/design) | サイト訪問→デザイン原則学習→コンポーネントライブラリ参照→レイアウトグリッド適用→画面設計に反映 | [Material Design](https://m3.material.io/) |
 
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Figma - 詳細ガイド](./ツール/UI_UXツール/Figma.md)
+- [Adobe XD - 詳細ガイド](./ツール/UI_UXツール/Adobe_XD.md)
+
 ---
 
 ## 5. 帳票要件定義（機能要件定義）
@@ -181,6 +217,14 @@
 | **帳票設計ガイドライン** | 帳票設計の標準化・ベストプラクティス | 帳票設計、レイアウト標準化、帳票一覧作成 | 各種企業内標準 | 社内ガイドライン参照→帳票命名規則確認→レイアウト標準に従って設計→帳票一覧作成 | 各組織の内部文書 |
 | **PDF/A標準仕様** | 長期保存用PDF規格の国際標準 | 帳票アーカイブ、長期保存、電子帳簿保存法対応 | [ISO公式サイト](https://www.iso.org/) | ISO仕様書ダウンロード→PDF/A-1/2/3の違いを学習→帳票出力時にPDF/A準拠設定→検証ツールで確認 | [PDF/A Info](https://www.pdfa.org/) |
 
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Microsoft Excel - 詳細ガイド](./ツール/帳票ツール/Microsoft_Excel.md)
+- [LibreOffice - 詳細ガイド](./ツール/帳票ツール/LibreOffice.md)
+- [JasperReports - 詳細ガイド](./ツール/帳票ツール/JasperReports.md)
+
 ---
 
 ## 6. ファイル要件定義（機能要件定義）
@@ -208,6 +252,12 @@
 | **機能要件の合意形成ガイド（バッチ編）** | バッチ処理・ファイル連携における仕様定義手法 | ファイルレイアウト定義、外部インターフェース定義 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | PDFダウンロード→ファイルレイアウト定義テンプレート参照→項目定義作成→文字コード・区切り文字等を明記 | [機能要件ガイド一覧](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) |
 | **CSV/TSV形式標準** | RFC 4180等のCSVファイル形式標準 | CSVファイル定義、文字コード定義、エスケープ処理 | [RFC 4180](https://www.ietf.org/rfc/rfc4180.txt) | RFC 4180ダウンロード→CSV形式ルール確認→区切り文字・引用符・改行の扱いを仕様書に記載 | [RFC 4180 Text](https://www.ietf.org/rfc/rfc4180.txt) |
 | **文字コード標準（UTF-8/Shift_JIS）** | 文字コード規格の標準仕様 | 文字コード定義、エンコーディング、文字化け対策 | 各種標準化団体 | Unicode/文字コード標準を学習→ファイル定義で文字コード明記→BOM有無・改行コード指定 | [Unicode公式](https://unicode.org/) |
+
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Microsoft Excel - 詳細ガイド](./ツール/帳票ツール/Microsoft_Excel.md)
 
 ---
 
@@ -238,6 +288,15 @@
 | **データベース正規化理論** | 正規化の理論と実践手法 | 第1〜第3正規形、BCNF、正規化プロセス | 各種技術書 | 技術書購入/図書館で借りる→正規化理論学習→第1〜3正規形適用→BCNF確認→データモデル最適化 | 各書籍の出版社サイト |
 | **ER図記法標準（IE記法/IDEF1X）** | ER図の記法標準 | ER図作成、エンティティ定義、リレーション定義 | 各種標準資料 | 記法標準資料参照→IE記法/IDEF1X/Crow's Foot記法を学習→標準記法でER図作成→カーディナリティ表現 | [ER図記法解説サイト](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning) |
 
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [ERDPlus - 詳細ガイド](./ツール/データベースツール/ERDPlus.md)
+- [MySQL Workbench - 詳細ガイド](./ツール/データベースツール/MySQL_Workbench.md)
+- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
+
 ---
 
 ## 8. 外部システム連携要件定義（機能要件定義）
@@ -267,6 +326,16 @@
 | **OpenAPI Specification** | REST APIの標準仕様記述フォーマット | REST API仕様書、API設計、インターフェース定義 | [OpenAPI公式サイト](https://www.openapis.org/) | 仕様書ダウンロード→OpenAPI 3.0/3.1記法学習→YAML/JSONでAPI定義→バリデーションツールで検証 | [OpenAPI Spec](https://spec.openapis.org/oas/latest.html) |
 | **Web API設計ベストプラクティス** | REST API設計の原則とパターン | API設計、RESTful設計、HTTPメソッド、ステータスコード | 各種技術書 | 技術書購入/Web記事参照→RESTful設計原則学習→リソース設計・URI設計→HTTPメソッド・ステータスコード適用 | [REST API Tutorial](https://restfulapi.net/) |
 
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Postman - 詳細ガイド](./ツール/APIツール/Postman.md)
+- [Swagger/OpenAPI - 詳細ガイド](./ツール/APIツール/Swagger_OpenAPI.md)
+- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
+
 ---
 
 ## 9. バッチ処理要件定義（機能要件定義）
@@ -294,6 +363,14 @@
 | **機能要件の合意形成ガイド（バッチ編）** | バッチ処理設計における合意形成手法。バッチ設計の標準化 | バッチ処理設計、バッチ仕様書作成、ジョブネット設計 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | PDFダウンロード→バッチ一覧テンプレート参照→ジョブネット図作成→エラーハンドリング・リトライ設計 | [機能要件ガイド一覧](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) |
 | **バッチ処理設計パターン** | 一般的なバッチ処理パターンとベストプラクティス | バッチ設計、エラーハンドリング、リトライ設計、ログ設計 | 各種技術書 | 技術書購入/Web記事参照→バッチパターン学習→エラーハンドリング設計→リトライ・ログ設計適用 | 各書籍の出版社サイト |
 | **Cron/スケジューラー仕様** | バッチスケジューリングの標準仕様 | スケジュール定義、Cron式、タイムゾーン設計 | 各種技術資料 | Cron式の記法学習→分・時・日・月・曜日の指定方法確認→タイムゾーン設定→スケジュール定義 | [Crontab Guru](https://crontab.guru/) |
+
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Microsoft Excel - 詳細ガイド](./ツール/帳票ツール/Microsoft_Excel.md)
+- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
 
 ---
 
@@ -325,6 +402,16 @@
 | **Azure Architecture Center** | Azureクラウドアーキテクチャパターンとベストプラクティス | Azure構成設計、アーキテクチャパターン、リファレンス | [Microsoft公式サイト](https://learn.microsoft.com/azure/architecture/) | サイトアクセス→アーキテクチャパターン検索→リファレンスアーキテクチャ参照→自システムに適用 | [Azure Architecture](https://learn.microsoft.com/azure/architecture/) |
 | **C4 Model Documentation** | ソフトウェアアーキテクチャ可視化の階層的モデリング手法 | ソフトウェア構成図、アーキテクチャ設計、システムコンテキスト | [C4 Model公式サイト](https://c4model.com/) | サイト訪問→C4モデル概念学習→Context/Container/Component/Codeの4レベルで階層的に設計→図作成 | [C4 Model](https://c4model.com/) |
 
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [Microsoft Visio - 詳細ガイド](./ツール/作図ツール/Microsoft_Visio.md)
+- [PlantUML - 詳細ガイド](./ツール/作図ツール/PlantUML.md)
+- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
+
 ---
 
 ## 11. 非機能要件定義
@@ -354,6 +441,14 @@
 | **システム基盤非機能要求グレード** | システム基盤（インフラ）に特化した非機能要求グレード | インフラ非機能要件、性能設計、可用性設計、拡張性設計 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | IPAサイトからシステム基盤版DL→インフラ観点の非機能要件確認→性能・可用性・拡張性のグレード設定 | [システム基盤版](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) |
 | **ISO/IEC 25010（SQuaRE）** | ソフトウェア品質特性の国際標準。非機能要件の分類体系 | 品質特性定義、非機能要件分類、品質評価 | [ISO公式サイト](https://www.iso.org/) | ISO仕様書参照→8つの品質特性(機能適合性・性能効率性・互換性等)学習→品質要件定義に適用 | [ISO/IEC 25010](https://www.iso.org/standard/35733.html) |
 
+
+
+**ツール詳細ドキュメント**
+
+各ツールの詳細な使い方については、以下のドキュメントを参照してください:
+- [IPA非機能要求グレード - 詳細ガイド](./ツール/標準・ガイドライン/IPA_非機能要求グレード.md)
+
+---
 
 **最終更新日**: 2025年（令和7年）
 **文書バージョン**: 1.1

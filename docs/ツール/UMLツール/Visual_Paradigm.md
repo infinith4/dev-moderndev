@@ -2,308 +2,190 @@
 
 ## 概要
 
-Visual Paradigmは、UML/SysMLモデリングツールで、ユースケース駆動開発を強力にサポートします。ユースケース図、アクティビティ図、シーケンス図など、UMLの全図表タイプに対応し、オンライン協業機能やアジャイル開発支援機能も備えています。
+Visual Paradigmは、香港のVisual Paradigm社が開発した包括的なUMLモデリングツールです。UML、BPMN、ERD、DFD、ArchiMate等の多様な記法をサポートし、ソフトウェア設計からビジネスプロセスモデリング、データベース設計まで幅広く対応します。Enterprise Architectと同等の機能を持ちながら、より直感的なUIとリーズナブルな価格設定が特徴です。
 
-### 主な特徴
+## 主な機能
 
-- **UML/SysML対応**: UML 2.5およびSysML 1.6に対応
-- **オンライン協業**: クラウドベースのリアルタイム協業機能
-- **テンプレート豊富**: 業種別・用途別のテンプレートが充実
-- **Community版無料**: 基本機能が無料で利用可能
-- **アジャイル対応**: スクラム、カンバンなどアジャイル開発手法に対応
+### 1. 多様なダイアグラム対応
+- **UML 2.5**: 全14種類のUMLダイアグラム
+- **BPMN 2.0**: ビジネスプロセスモデリング
+- **ERD**: エンティティ関係図
+- **DFD**: データフロー図
+- **ArchiMate**: エンタープライズアーキテクチャ
+- **SysML**: システムエンジニアリング
 
-### 料金プラン
+### 2. コード生成・リバースエンジニアリング
+- **対応言語**: Java、C++、C#、Python、PHP、VB.NET等
+- **Round-trip Engineering**: モデル↔コードの双方向同期
+- **既存コード分析**: クラス図自動生成
 
-- **Community Edition**: 無料（非商用利用、基本機能のみ）
-- **Modeler Edition**: $6/月〜（商用利用可能、基本モデリング機能）
-- **Standard Edition**: $19/月〜（チーム協業機能付き）
-- **Professional Edition**: $35/月〜（高度な機能、要件管理等）
-- **Enterprise Edition**: $89/月〜（エンタープライズ向け、全機能）
+### 3. チームコラボレーション
+- TeamworkServer: 共有リポジトリ
+- バージョン管理統合（Git、SVN）
+- モデルのマージ・差分比較
+- コメント・レビュー機能
 
-### メリット・デメリット
+### 4. ドキュメント生成
+- HTML、PDF、Word形式で自動生成
+- カスタマイズ可能なテンプレート
+- 設計書自動作成
 
-**メリット**
-- UML/SysMLに完全対応し、幅広いモデリングが可能
-- オンライン協業機能により、リモートチームでの作業が効率的
-- テンプレートが豊富で、すぐにモデリングを開始できる
-- Community版が無料で提供されており、試用が容易
-- アジャイル開発手法（スクラム、カンバン等）に対応
+### 5. 要件管理
+- 要件の定義・追跡
+- ユースケースとの関連付け
+- トレーサビリティマトリクス
 
-**デメリット**
-- 有料版（Professional以上）が高額
-- UIが複雑で、初心者には操作が難しい場合がある
-- 大規模なモデルを扱うと動作が重くなることがある
-- 日本語の情報やコミュニティが少ない
+### 6. アジャイル開発支援
+- ユーザーストーリーマップ
+- スクラムボード
+- スプリントプランニング
 
 ## 利用方法
 
-### 1. アカウント作成とインストール
+### クラス図作成
+
+```
+1. File → New Diagram → Class Diagram
 
-#### オンライン版（VP Online）
+2. ツールパレットから Class をドラッグ
 
-1. [Visual Paradigm Online](https://online.visual-paradigm.com/)にアクセス
-2. 「Sign Up Free」をクリックしてアカウント作成
-3. メールアドレスまたはGoogle/Facebookアカウントで登録
-4. ブラウザで直接利用開始
+3. クラス名をダブルクリックして編集
 
-#### デスクトップ版
+4. 属性追加:
+   - クラス内で右クリック → Add → Attribute
+   - 例: - name: String
 
-1. [Visual Paradigm公式サイト](https://www.visual-paradigm.com/)から無料版またはフルバージョンをダウンロード
-2. インストーラーを実行してセットアップ
-3. ライセンスを選択（Community版は無料、有料版はライセンスキー入力）
-4. アプリケーションを起動
+5. 操作追加:
+   - 右クリック → Add → Operation
+   - 例: + getName(): String
 
-### 2. プロジェクトの作成
+6. 関連追加:
+   - ツールパレットから Association
+   - クラス間をドラッグ&ドロップ
+   - 多重度を設定（1, *, 0..1 等）
+
+7. コード生成:
+   - Tools → Code → Generate Code
+   - 言語選択（Java/C#等）
+   - 出力先ディレクトリ指定
+```
 
-1. Visual Paradigmを起動
-2. 「Create New Project」を選択
-3. プロジェクト名を入力（例: "図書館システム要件定義"）
-4. プロジェクトタイプを選択（Software Project、Business Process等）
-5. 「OK」をクリック
+### シーケンス図作成
+
+```
+1. File → New Diagram → Sequence Diagram
+
+2. Lifeline追加:
+   - ツールパレットから Lifeline
+   - アクター、システムコンポーネント等を配置
 
-### 3. ユースケース図テンプレートの選択
-
-1. 「Diagram」メニュー→「New」→「Use Case Diagram」を選択
-2. または、テンプレートギャラリーから「Use Case Diagram Template」を選択
-3. ダイアグラム名を入力（例: "図書館システム ユースケース図"）
-
-### 4. ツールパレットの利用
-
-Visual Paradigmのツールパレットには、以下のユースケース図要素があります：
-
-- **Actor**: アクター（人型のアイコン）
-- **Use Case**: ユースケース（楕円形）
-- **Association**: 関連（実線）
-- **Include**: インクルード関係（«include»付き破線矢印）
-- **Extend**: エクステンド関係（«extend»付き破線矢印）
-- **Generalization**: 汎化関係（白抜き三角矢印）
-- **System Boundary**: システム境界（矩形）
-
-### 5. アクターとユースケースの追加
-
-#### アクターの追加
-
-1. 左側のツールパレットから「Actor」を選択
-2. ダイアグラム上でクリックして配置
-3. アクター名を入力（例: "会員"、"図書館員"、"システム管理者"）
-4. Enterキーで確定
-
-#### ユースケースの追加
-
-1. ツールパレットから「Use Case」を選択
-2. ダイアグラム上でクリックして配置
-3. ユースケース名を入力（例: "本を検索する"、"本を借りる"）
-4. Enterキーで確定
-
-#### システム境界の追加
-
-1. ツールパレットから「System Boundary」を選択
-2. ユースケースを囲むようにドラッグして配置
-3. システム名を入力（例: "図書館管理システム"）
-
-### 6. 関連線の設定
-
-#### アクターとユースケースの関連
-
-1. ツールパレットから「Association」を選択
-2. アクターをクリック
-3. 関連するユースケースまでドラッグして接続
-4. 自動的に関連線が作成される
-
-#### Include関係
-
-1. ツールパレットから「Include」を選択
-2. 呼び出し元のユースケースをクリック
-3. 呼び出し先のユースケースまでドラッグ
-4. 自動的に«include»ステレオタイプ付きの破線矢印が作成される
-
-#### Extend関係
-
-1. ツールパレットから「Extend」を選択
-2. 拡張元のユースケース（拡張機能）をクリック
-3. 基本ユースケースまでドラッグ
-4. 自動的に«extend»ステレオタイプ付きの破線矢印が作成される
-
-### 7. ユースケース図の具体例
-
-**例: 図書館管理システムのユースケース図**
-
-#### アクター
-- **会員**: 図書館の利用者
-- **図書館員**: 図書館のスタッフ
-- **システム管理者**: システムを管理する管理者
-
-#### ユースケース（会員向け）
-- **本を検索する**: 蔵書から本を検索
-- **本を借りる**: 本を借りる
-  - **«include» ログイン**: 借りる際に必須のログイン処理
-  - **«include» 貸出記録作成**: 貸出履歴を記録
-  - **«extend» 延滞料金確認**: 延滞がある場合のみ表示
-- **本を返却する**: 本を返却する
-- **予約する**: 貸出中の本を予約
-
-#### ユースケース（図書館員向け）
-- **本を登録する**: 新規図書を登録
-- **貸出処理**: 会員への貸出処理
-- **返却処理**: 会員からの返却処理
-- **延滞管理**: 延滞者の管理
-
-#### ユースケース（システム管理者向け）
-- **ユーザー管理**: ユーザーアカウントの管理
-- **システム設定**: システムパラメータの設定
-
-#### 作成手順
-
-1. アクター「会員」「図書館員」「システム管理者」を配置
-2. システム境界「図書館管理システム」を配置
-3. 境界内にユースケースを配置
-   - 本を検索する
-   - 本を借りる
-   - ログイン
-   - 貸出記録作成
-   - 延滞料金確認
-   - 本を返却する
-   - 予約する
-   - 本を登録する
-   - 貸出処理
-   - 返却処理
-   - 延滞管理
-   - ユーザー管理
-   - システム設定
-4. アクター「会員」から以下のユースケースへ関連線を引く
-   - 本を検索する
-   - 本を借りる
-   - 本を返却する
-   - 予約する
-5. 「本を借りる」から「ログイン」へ«include»関係を設定
-6. 「本を借りる」から「貸出記録作成」へ«include»関係を設定
-7. 「延滞料金確認」から「本を借りる」へ«extend»関係を設定
-8. アクター「図書館員」から以下のユースケースへ関連線を引く
-   - 本を登録する
-   - 貸出処理
-   - 返却処理
-   - 延滞管理
-9. アクター「システム管理者」から以下のユースケースへ関連線を引く
-   - ユーザー管理
-   - システム設定
-
-### 8. ユースケース仕様書の作成
-
-Visual Paradigmでは、ユースケースから仕様書を自動生成できます。
-
-#### ユースケース詳細の入力
-
-1. ユースケースをダブルクリックして「Specification」ダイアログを開く
-2. 「General」タブで基本情報を入力:
-   - Name: ユースケース名
-   - Description: 概要
-3. 「Use Case Details」タブで詳細を入力:
-   - **Preconditions**: 事前条件
-   - **Postconditions**: 事後条件
-   - **Flow of Events**: イベントフロー（基本フロー、代替フロー）
-4. 「Scenarios」タブでシナリオを追加
-
-#### ユースケース記述の例: 「本を借りる」
-
-**Preconditions（事前条件）**:
-- 会員がログイン済みである
-- 借りたい本が在庫にある
-- 会員の貸出冊数が上限に達していない
-- 延滞料金が未払いでない
-
-**Postconditions（事後条件）**:
-- 貸出記録が作成される
-- 本の在庫が減少する
-- 会員の貸出冊数が増加する
-- 返却期限が設定される
-
-**Basic Flow（基本フロー）**:
-1. 会員が借りたい本をシステムに提示する
-2. システムが会員IDを確認する（ログイン済み）
-3. システムが本のバーコードをスキャンする
-4. システムが在庫を確認する
-5. システムが会員の貸出状況を確認する（上限チェック）
-6. システムが貸出記録を作成する
-7. システムが返却期限を計算・表示する
-8. システムが貸出完了メッセージを表示する
-
-**Alternative Flow（代替フロー）**:
-- 在庫がない場合: エラーメッセージを表示し、予約を提案
-- 貸出上限に達している場合: エラーメッセージを表示し、処理中止
-- 延滞料金がある場合: 延滞料金確認画面を表示
-
-### 9. 仕様書の自動生成
-
-1. 「Tools」メニュー→「Doc. Composer」を選択
-2. 「New Document」をクリック
-3. テンプレートを選択（Use Case Report等）
-4. 含める図表とユースケースを選択
-5. 「Generate」をクリック
-
-出力形式:
-- **Word (.docx)**
-- **PDF**
-- **HTML**
-
-生成される内容:
-- ユースケース図（画像）
-- アクター一覧表
-- ユースケース一覧表
-- 各ユースケースの詳細仕様（事前条件、事後条件、フロー）
-
-### 10. アクティビティ図との連携
-
-Visual Paradigmでは、ユースケースからアクティビティ図を自動生成できます。
-
-1. ユースケースを右クリック→「Relate To」→「Activity Diagram」
-2. 「Generate Activity Diagram from Use Case」を選択
-3. Flow of Eventsからアクティビティが自動生成される
-4. 必要に応じて編集
-
-### 11. オンライン協業
-
-#### プロジェクトの共有
-
-1. 「Team」メニュー→「Teamwork」→「Commit Project」
-2. クラウドサーバーにプロジェクトをコミット
-3. チームメンバーを招待
-4. メンバーは「Teamwork」→「Update Project」で最新版を取得
-
-#### リアルタイム協業
-
-1. VP Onlineを使用
-2. プロジェクトを開いて「Share」ボタンをクリック
-3. 共有リンクを生成、またはメールで招待
-4. 複数ユーザーが同時に編集可能
-
-### 12. アジャイル開発統合
-
-Visual Paradigmはスクラム、カンバンに対応しています。
-
-#### ユーザーストーリーマッピング
-
-1. 「Diagram」→「New」→「User Story Map」
-2. ユースケースからユーザーストーリーを抽出
-3. ストーリーマップを作成
-4. スプリント計画に利用
-
-## 公式ドキュメント
-
-- **公式サイト**: [Visual Paradigm](https://www.visual-paradigm.com/)
-- **公式チュートリアル**: [Visual Paradigm Tutorials](https://www.visual-paradigm.com/tutorials/)
-- **ユースケース図ガイド**: [Use Case Diagram Tutorial](https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/)
-- **ユーザーガイド**: [Visual Paradigm User Guide](https://www.visual-paradigm.com/support/documents/)
-- **ビデオチュートリアル**: [YouTube Channel](https://www.youtube.com/user/VisualParadigm)
-
-## VP Online（無料オンライン版）
-
-- **VP Online Free**: [https://online.visual-paradigm.com/](https://online.visual-paradigm.com/)
-- **UML図作成**: 基本的なUML図を無料で作成可能
-- **共有機能**: プロジェクトをチームと共有
-
-## 関連リンク
-
-- [UML 2.5 仕様書（OMG公式）](https://www.omg.org/spec/UML/)
-- [Visual Paradigmコミュニティ](https://www.visual-paradigm.com/support/forum/)
-- [Visual Paradigm無料評価版](https://www.visual-paradigm.com/download/)
-- [テンプレートギャラリー](https://www.visual-paradigm.com/features/uml-modeling-tool/)
+3. メッセージ追加:
+   - ツールパレットから Message
+   - Lifeline間をドラッグ
+   - メッセージ名を入力
+
+4. Combined Fragment:
+   - alt（条件分岐）、loop（繰り返し）を追加
+   - 複雑なインタラクションを表現
+
+5. Activation Box:
+   - メッセージをドラッグして自動生成
+   - 処理の実行期間を表現
+```
+
+### データベース設計（ERD）
+
+```
+1. File → New Diagram → Entity Relationship Diagram
+
+2. Entity追加:
+   - ツールパレットから Entity
+   - エンティティ名入力
+
+3. Attribute追加:
+   - Entityをダブルクリック
+   - Columns タブで追加
+   - Name, Data Type, PK, NN, UQ設定
+
+4. Relationship追加:
+   - ツールパレットから Relationship
+   - Entity間をドラッグ
+   - カーディナリティ設定（1:1, 1:N, N:M）
+
+5. DDL生成:
+   - Tools → Database → Generate Database
+   - データベース選択（MySQL/PostgreSQL/Oracle等）
+   - CREATE文を生成
+```
+
+## エディション・料金
+
+| エディション | 価格（目安） | 主な機能 |
+|-------------|--------------|----------|
+| **Modeler Edition** | $99/永続 | UMLモデリング、コード生成 |
+| **Standard Edition** | $349/永続 | + データベース設計、BPMN |
+| **Professional Edition** | $789/永続 | + チーム協業、プロジェクト管理 |
+| **Enterprise Edition** | $1,899/永続 | 全機能、TeamworkServer |
+
+※サブスクリプションプランもあり（月額/年額）
+
+## メリット
+
+### ✅ 主な利点
+
+1. **Enterprise Architect代替**: 同等機能でより使いやすい
+2. **モダンUI**: 直感的で美しいインターフェース
+3. **多様な記法**: UML、BPMN、ERD、ArchiMate等
+4. **リーズナブル**: Enterprise Architectより低価格
+5. **クロスプラットフォーム**: Windows、Mac、Linux対応
+6. **コード生成**: 10以上の言語に対応
+7. **チーム協業**: 共有リポジトリ、バージョン管理
+8. **アジャイル対応**: ユーザーストーリー、スクラムボード
+9. **豊富なテンプレート**: 業界別テンプレート多数
+10. **継続的更新**: 定期的な機能追加・改善
+
+## デメリット
+
+### ❌ 制約・課題
+
+1. **学習曲線**: 多機能なため習得に時間がかかる
+2. **動作やや重い**: 大規模プロジェクトでは遅延
+3. **日本語ドキュメント**: 英語中心、日本語情報少ない
+4. **TeamworkServer**: セットアップが複雑
+5. **Enterprise Architect比**: 一部高度機能は劣る
+6. **ライセンス管理**: 複数エディションで混乱しやすい
+7. **エクスポート品質**: 一部形式でレイアウト崩れ
+8. **プラグイン**: Enterprise Architectほど豊富ではない
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **Enterprise Architect** | 老舗、機能豊富 | Visual Paradigmよりエンタープライズ向け |
+| **PlantUML** | テキストベース、無料 | Visual Paradigmより軽量だがGUI不要 |
+| **astah*** | 日本製、日本語完全対応 | Visual Paradigmより機能やや少ない |
+| **StarUML** | モダンUI、低価格 | Visual Paradigmより機能限定的 |
+| **Lucidchart** | クラウドベース、協業重視 | UML特化ではない |
+
+## 公式リンク
+
+- **公式サイト**: [https://www.visual-paradigm.com/](https://www.visual-paradigm.com/)
+- **ドキュメント**: [https://www.visual-paradigm.com/support/documents/](https://www.visual-paradigm.com/support/documents/)
+- **チュートリアル**: [https://www.visual-paradigm.com/tutorials/](https://www.visual-paradigm.com/tutorials/)
+- **価格**: [https://www.visual-paradigm.com/purchase/](https://www.visual-paradigm.com/purchase/)
+- **無料体験**: [https://www.visual-paradigm.com/download/](https://www.visual-paradigm.com/download/)
+
+## 関連ドキュメント
+
+- [UMLツール一覧](../UMLツール/)
+- [Enterprise Architect](./Enterprise_Architect.md)
+- [PlantUML](./PlantUML.md)
+- [astah*](./astah.md)
+- [UML設計ベストプラクティス](../../best-practices/uml-design.md)
+
+---
+
+**カテゴリ**: UMLツール  
+**対象工程**: 要件定義、基本設計、詳細設計  
+**最終更新**: 2025年12月  
+**ドキュメントバージョン**: 1.0

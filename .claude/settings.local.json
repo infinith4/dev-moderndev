@@ -25,7 +25,9 @@
       "Bash(findstr:*)",
       "Bash(find:*)",
       "Bash(dir /s /b /ad \"C:\\Projects\\github\\infinith4\\dev-moderndev\\docs\\ツール\")",
-      "Bash(comm:*)"
+      "Bash(comm:*)",
+      "Bash(for dir in /src/docs/ツール/*/)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []

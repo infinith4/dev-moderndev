@@ -27,7 +27,8 @@
       "Bash(dir /s /b /ad \"C:\\Projects\\github\\infinith4\\dev-moderndev\\docs\\ツール\")",
       "Bash(comm:*)",
       "Bash(for dir in /src/docs/ツール/*/)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []

@@ -2,7 +2,6 @@ FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        graphviz \
         fonts-ipafont \
         ca-certificates \
         curl \
@@ -20,3 +19,12 @@ RUN apt-get update \
     && apt install -y openjdk-21-jdk \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+
+
+# 1. 必要なパッケージ (Java, Graphviz, wget) をインストール
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+    default-jre \
+    graphviz \
+    wget
+

@@ -74,9 +74,9 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Figma - 詳細ガイド](./ツール/UI_UXツール/Figma.md)
-- [Adobe XD - 詳細ガイド](./ツール/UI_UXツール/Adobe_XD.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [Figma - 詳細ガイド](./ツール/設計・モデリング/Figma.md)
+- [Adobe XD - 詳細ガイド](./ツール/設計・モデリング/Adobe_XD.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
 
 ---
 
@@ -109,8 +109,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [JasperReports - 詳細ガイド](./ツール/帳票ツール/JasperReports.md)
-- [LibreOffice - 詳細ガイド](./ツール/帳票ツール/LibreOffice.md)
+- [JasperReports - 詳細ガイド](./ツール/帳票・データ処理/JasperReports.md)
+- [LibreOffice - 詳細ガイド](./ツール/帳票・データ処理/LibreOffice.md)
 
 ---
 
@@ -141,8 +141,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Python/Pandas - 詳細ガイド](./ツール/データ処理ツール/Python_Pandas.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Python/Pandas - 詳細ガイド](./ツール/帳票・データ処理/Python_Pandas.md)
 
 ---
 
@@ -177,10 +177,10 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [MySQL Workbench - 詳細ガイド](./ツール/データベースツール/MySQL_Workbench.md)
-- [ERDPlus - 詳細ガイド](./ツール/データベースツール/ERDPlus.md)
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [MySQL Workbench - 詳細ガイド](./ツール/データベース/MySQL_Workbench.md)
+- [ERDPlus - 詳細ガイド](./ツール/データベース/ERDPlus.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
 
 ---
 
@@ -213,8 +213,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Postman - 詳細ガイド](./ツール/APIツール/Postman.md)
-- [Swagger/OpenAPI - 詳細ガイド](./ツール/APIツール/Swagger_OpenAPI.md)
+- [Postman - 詳細ガイド](./ツール/API・統合/Postman.md)
+- [Swagger/OpenAPI - 詳細ガイド](./ツール/API・統合/Swagger_OpenAPI.md)
 
 ---
 
@@ -252,8 +252,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Apache Airflow - 詳細ガイド](./ツール/バッチ処理ツール/Apache_Airflow.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [Apache Airflow - 詳細ガイド](./ツール/帳票・データ処理/Apache_Airflow.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
 
 ---
 

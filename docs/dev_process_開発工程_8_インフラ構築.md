@@ -26,7 +26,7 @@
 
 | # | ツール名 | 概要 | 用途 | メリット | デメリット |
 |---|---------|------|------|---------|-----------|
-| 1 | [**Terraform**](./ツール/IaCツール/Terraform.md) ([公式サイト](https://www.terraform.io/)) | HashiCorp製マルチクラウドIaC。HCL言語、状態管理、モジュール化 | マルチクラウドインフラ構築、状態管理、モジュール再利用 | ✅ マルチクラウド対応<br>✅ 業界標準・実績豊富<br>✅ モジュール化・再利用容易<br>✅ 状態管理優秀<br>✅ プラン機能で事前確認 | ❌ 状態ファイル管理必要<br>❌ 学習曲線やや急<br>❌ エラーメッセージ分かりにくい<br>❌ 一部機能有料(Cloud) |
+| 1 | [**Terraform**](./ツール/IaC・インフラ管理/Terraform.md) ([公式サイト](https://www.terraform.io/)) | HashiCorp製マルチクラウドIaC。HCL言語、状態管理、モジュール化 | マルチクラウドインフラ構築、状態管理、モジュール再利用 | ✅ マルチクラウド対応<br>✅ 業界標準・実績豊富<br>✅ モジュール化・再利用容易<br>✅ 状態管理優秀<br>✅ プラン機能で事前確認 | ❌ 状態ファイル管理必要<br>❌ 学習曲線やや急<br>❌ エラーメッセージ分かりにくい<br>❌ 一部機能有料(Cloud) |
 | 2 | [**Ansible**](https://www.ansible.com/) | Red Hat製構成管理・自動化ツール。エージェントレス、YAML | サーバー構成管理、OS設定、ミドルウェア設定、デプロイ | ✅ エージェントレス<br>✅ YAML記述シンプル<br>✅ 構成管理・デプロイ両対応<br>✅ 学習曲線緩やか<br>✅ 無料オープンソース | ❌ 状態管理なし(べき等性は自己実装)<br>❌ 大規模で遅い<br>❌ エラーハンドリング弱い<br>❌ Windows対応やや弱い |
 | 3 | [**Pulumi**](https://www.pulumi.com/) | プログラマブルIaC。TypeScript/Python/Go/C#、既存言語活用 | プログラマブルインフラ構築、既存言語でIaC、テスト容易 | ✅ 既存言語使用(TS/Python等)<br>✅ IDEサポート・補完<br>✅ テスト容易<br>✅ マルチクラウド対応<br>✅ 状態管理自動 | ❌ 比較的新しい(2018〜)<br>❌ Terraformより情報少ない<br>❌ 一部機能有料<br>❌ 言語依存性高い |
 | 4 | [**Packer**](https://www.packer.io/) | HashiCorp製マシンイメージビルドツール。AMI、Docker、VM等 | マシンイメージ作成、AMI/コンテナビルド、イミュータブルインフラ | ✅ マルチプラットフォーム<br>✅ イミュータブルインフラ<br>✅ 並列ビルド<br>✅ プロビジョナー豊富<br>✅ 無料オープンソース | ❌ イメージビルド専用<br>❌ 状態管理なし<br>❌ 学習コストあり<br>❌ ビルド時間長い |
@@ -47,7 +47,7 @@ Azureでのインフラ実装・構築に特化したIaCツール群です。Bic
 
 | # | ツール名 | 概要 | 用途 | メリット | デメリット |
 |---|---------|------|------|---------|-----------|
-| 1 | [**Azure Bicep**](./ツール/IaCツール/Azure_Bicep.md) ([公式サイト](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)) | Azure専用IaC DSL。実装からデプロイまで | Azureインフラ構築実装、リソースプロビジョニング | ✅ 簡潔な構文<br>✅ 型安全・IDE補完<br>✅ ARM自動変換<br>✅ 無料<br>✅ デプロイ高速 | ❌ Azure専用<br>❌ 比較的新しい<br>❌ 複雑な条件分岐弱い<br>❌ マルチクラウド不可 |
+| 1 | [**Azure Bicep**](./ツール/IaC・インフラ管理/Azure_Bicep.md) ([公式サイト](https://learn.microsoft.com/azure/azure-resource-manager/bicep/)) | Azure専用IaC DSL。実装からデプロイまで | Azureインフラ構築実装、リソースプロビジョニング | ✅ 簡潔な構文<br>✅ 型安全・IDE補完<br>✅ ARM自動変換<br>✅ 無料<br>✅ デプロイ高速 | ❌ Azure専用<br>❌ 比較的新しい<br>❌ 複雑な条件分岐弱い<br>❌ マルチクラウド不可 |
 | 2 | [**ARM Templates**](https://learn.microsoft.com/azure/azure-resource-manager/templates/) | Azureネイティブ IaC。JSONテンプレート | Azureリソース実装、インフラデプロイ | ✅ Azure標準<br>✅ 全Azureリソース対応<br>✅ 無料<br>✅ デプロイ履歴追跡<br>✅ What-If機能 | ❌ JSON冗長<br>❌ Bicep推奨(後継)<br>❌ 学習曲線急<br>❌ エラーメッセージ分かりにくい |
 | 3 | [**Azure DevOps Pipelines**](https://azure.microsoft.com/ja-jp/products/devops/pipelines/) | CI/CDサービス。インフラデプロイ自動化 | Infrastructure Pipeline、CI/CD、自動デプロイ | ✅ Azure統合優秀<br>✅ YAML Pipeline<br>✅ 並列ジョブ<br>✅ マルチプラットフォーム<br>✅ 月1800分無料 | ❌ 設定複雑<br>❌ デバッグ困難<br>❌ GitHub Actions比で情報少ない<br>❌ 学習コスト高 |
 | 4 | [**Azure CLI**](https://learn.microsoft.com/cli/azure/) | Azureコマンドライン。デプロイスクリプト作成 | Azure操作自動化、デプロイスクリプト、CI/CD統合 | ✅ 完全無料<br>✅ クロスプラットフォーム<br>✅ スクリプト化容易<br>✅ Cloud Shell統合<br>✅ 全Azureリソース対応 | ❌ 状態管理なし<br>❌ べき等性保証なし<br>❌ 大規模にはIaC推奨<br>❌ エラーハンドリング弱い |
@@ -64,7 +64,7 @@ AWSでのインフラ実装・構築に特化したIaCツール群です。Cloud
 
 | # | ツール名 | 概要 | 用途 | メリット | デメリット |
 |---|---------|------|------|---------|-----------|
-| 1 | [**AWS CloudFormation**](./ツール/IaCツール/AWS_CloudFormation.md) ([公式サイト](https://aws.amazon.com/cloudformation/)) | AWSネイティブIaC。スタック管理、デプロイ | AWSインフラ構築実装、スタック管理、デプロイ | ✅ AWS完全統合<br>✅ 無料(リソース料金のみ)<br>✅ ドリフト検出<br>✅ ChangeSet事前確認<br>✅ AWSサポート対象 | ❌ YAML/JSON冗長<br>❌ エラーロールバック面倒<br>❌ 学習曲線急<br>❌ AWS専用 |
+| 1 | [**AWS CloudFormation**](./ツール/IaC・インフラ管理/AWS_CloudFormation.md) ([公式サイト](https://aws.amazon.com/cloudformation/)) | AWSネイティブIaC。スタック管理、デプロイ | AWSインフラ構築実装、スタック管理、デプロイ | ✅ AWS完全統合<br>✅ 無料(リソース料金のみ)<br>✅ ドリフト検出<br>✅ ChangeSet事前確認<br>✅ AWSサポート対象 | ❌ YAML/JSON冗長<br>❌ エラーロールバック面倒<br>❌ 学習曲線急<br>❌ AWS専用 |
 | 2 | [**AWS CDK**](https://aws.amazon.com/cdk/) | プログラマブルIaC。既存言語でインフラ実装 | プログラマブルインフラ構築、CloudFormation生成 | ✅ 既存言語使用可能<br>✅ 高レベル抽象化<br>✅ IDE補完・型チェック<br>✅ テスト容易<br>✅ 無料 | ❌ 学習曲線急<br>❌ CloudFormation依存<br>❌ デバッグ難しい場合あり<br>❌ AWS専用 |
 | 3 | [**AWS CodePipeline**](https://aws.amazon.com/codepipeline/) | フルマネージドCI/CD。インフラデプロイ自動化 | CI/CD、インフラパイプライン、自動デプロイ | ✅ AWSサービス統合<br>✅ フルマネージド<br>✅ ビジュアルパイプライン<br>✅ 並列/連続実行<br>✅ 従量課金 | ❌ 設定複雑<br>❌ AWS依存<br>❌ デバッグ困難<br>❌ コスト予測難しい |
 | 4 | [**AWS CodeBuild**](https://aws.amazon.com/codebuild/) | フルマネージドビルドサービス。IaCビルド・テスト | CI/CD、ビルド、IaCテスト実行、検証 | ✅ フルマネージド<br>✅ スケーラブル<br>✅ Docker対応<br>✅ 並列ビルド<br>✅ 従量課金 | ❌ 設定複雑<br>❌ デバッグ困難<br>❌ コスト予測難しい<br>❌ ローカル実行困難 |
@@ -106,7 +106,7 @@ Azure Bicep や AWS CDK 等で記述されたIaCコードの品質・セキュ�
 | # | ツール名 | 概要 | 対象IaC | 料金 | メリット | デメリット |
 |---|---------|------|---------|------|---------|-----------|
 | 1 | [**Azure Bicep Linter**](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | Bicep公式リンター。ベストプラクティス準拠チェック | Azure Bicep | 🟢 完全無料(Bicep組込) | ✅ Bicep標準<br>✅ IDE統合(VSCode)<br>✅ リアルタイムエラー表示<br>✅ カスタムルール定義可<br>✅ ARM互換性検証 | ❌ Azure専用<br>❌ セキュリティチェック基本的<br>❌ ポリシー検証は別ツール必要<br>❌ 限定的ルールセット |
-| 2 | [**Checkov**](./ツール/セキュリティツール/Checkov.md) ([公式サイト](https://www.checkov.io/)) | Bridgecrew製IaCセキュリティスキャナー。1000+組込ポリシー | Terraform / CloudFormation / Bicep / CDK / K8s | 🟢 完全無料 | ✅ Bicep対応<br>✅ 組込ポリシー豊富<br>✅ CI/CD統合容易<br>✅ カスタムポリシー作成可<br>✅ SAST機能 | ❌ 誤検知やや多い<br>❌ ポリシーカスタマイズ複雑<br>❌ パフォーマンスやや遅い<br>❌ GUI なし |
+| 2 | [**Checkov**](./ツール/セキュリティ/Checkov.md) ([公式サイト](https://www.checkov.io/)) | Bridgecrew製IaCセキュリティスキャナー。1000+組込ポリシー | Terraform / CloudFormation / Bicep / CDK / K8s | 🟢 完全無料 | ✅ Bicep対応<br>✅ 組込ポリシー豊富<br>✅ CI/CD統合容易<br>✅ カスタムポリシー作成可<br>✅ SAST機能 | ❌ 誤検知やや多い<br>❌ ポリシーカスタマイズ複雑<br>❌ パフォーマンスやや遅い<br>❌ GUI なし |
 | 3 | [**Azure Resource Manager Testing Toolkit (ARM-TTK)**](https://github.com/Azure/arm-ttk) | Azure公式ARM/Bicepテストツール | Azure Bicep / ARM | 🟢 完全無料 | ✅ Azure公式<br>✅ Bicep/ARM特化<br>✅ ベストプラクティス検証<br>✅ PowerShell統合 | ❌ Azure専用<br>❌ 機能限定的<br>❌ PowerShell必須 |
 | 4 | [**OPA (Open Policy Agent)**](https://www.openpolicyagent.org/) | CNCF製汎用ポリシーエンジン。Regoでカスタムポリシー定義 | Terraform / K8s / CloudFormation / Bicep等 | 🟢 完全無料 | ✅ 柔軟なポリシー定義<br>✅ Azure Policy統合可<br>✅ Kubernetes標準<br>✅ CI/CD統合<br>✅ エンタープライズ実績 | ❌ Rego学習曲線急<br>❌ セットアップ複雑<br>❌ ポリシー記述手間<br>❌ 初心者には難しい |
 | 5 | [**Terratest**](https://terratest.gruntwork.io/) | Go製インフラテストフレームワーク。実際にインフラを作成してテスト | Terraform / Packer / Docker / K8s / Bicep | 🟢 完全無料 | ✅ 実インフラテスト可能<br>✅ Azure対応<br>✅ 多様なIaC対応<br>✅ 統合テスト最適<br>✅ 並列実行対応 | ❌ Go言語必須<br>❌ 実行時間長い<br>❌ コスト発生(実インフラ作成)<br>❌ 学習曲線急 |
@@ -121,7 +121,7 @@ Azure Bicep や AWS CDK 等で記述されたIaCコードの品質・セキュ�
 |---|---------|------|---------|------|---------|-----------|
 | 1 | [**CDK-nag**](https://github.com/cdklabs/cdk-nag) | AWS CDK向けベストプラクティスチェッカー | AWS CDK | 🟢 完全無料 | ✅ CDK専用最適化<br>✅ AWS Well-Architected準拠<br>✅ カスタムルール追加可<br>✅ CI/CD統合<br>✅ TypeScript/Python対応 | ❌ CDK専用<br>❌ CloudFormation非対応<br>❌ 実行時エラー検出のみ<br>❌ 情報やや少ない |
 | 2 | [**CloudFormation Guard**](https://github.com/aws-cloudformation/cloudformation-guard) | AWS公式CloudFormationポリシー検証ツール | CloudFormation / CDK | 🟢 完全無料 | ✅ AWS公式<br>✅ カスタムルール定義<br>✅ JSON/YAML出力<br>✅ CI/CD統合<br>✅ CloudFormation特化 | ❌ CloudFormation専用<br>❌ Terraform非対応<br>❌ ルール記述やや複雑<br>❌ 情報・ドキュメント少ない |
-| 3 | [**Checkov**](./ツール/セキュリティツール/Checkov.md) ([公式サイト](https://www.checkov.io/)) | Bridgecrew製IaCセキュリティスキャナー。1000+組込ポリシー | Terraform / CloudFormation / Bicep / CDK / K8s | 🟢 完全無料 | ✅ CDK/CloudFormation対応<br>✅ 組込ポリシー豊富<br>✅ CI/CD統合容易<br>✅ カスタムポリシー作成可<br>✅ SAST機能 | ❌ 誤検知やや多い<br>❌ ポリシーカスタマイズ複雑<br>❌ パフォーマンスやや遅い<br>❌ GUI なし |
+| 3 | [**Checkov**](./ツール/セキュリティ/Checkov.md) ([公式サイト](https://www.checkov.io/)) | Bridgecrew製IaCセキュリティスキャナー。1000+組込ポリシー | Terraform / CloudFormation / Bicep / CDK / K8s | 🟢 完全無料 | ✅ CDK/CloudFormation対応<br>✅ 組込ポリシー豊富<br>✅ CI/CD統合容易<br>✅ カスタムポリシー作成可<br>✅ SAST機能 | ❌ 誤検知やや多い<br>❌ ポリシーカスタマイズ複雑<br>❌ パフォーマンスやや遅い<br>❌ GUI なし |
 | 4 | [**AWS CDK Assertions**](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html) | AWS CDK公式テストライブラリ。スナップショットテスト | AWS CDK | 🟢 完全無料(CDK組込) | ✅ CDK公式<br>✅ TypeScript/Python対応<br>✅ スナップショットテスト<br>✅ 単体テスト最適<br>✅ Fine-Grained Assertions | ❌ CDK専用<br>❌ CloudFormation直接は不可<br>❌ 実インフラテスト不可<br>❌ セキュリティスキャン限定的 |
 | 5 | [**OPA (Open Policy Agent)**](https://www.openpolicyagent.org/) | CNCF製汎用ポリシーエンジン。Regoでカスタムポリシー定義 | Terraform / K8s / CloudFormation等 | 🟢 完全無料 | ✅ 柔軟なポリシー定義<br>✅ AWS Service Control Policy統合可<br>✅ Kubernetes標準<br>✅ CI/CD統合<br>✅ エンタープライズ実績 | ❌ Rego学習曲線急<br>❌ セットアップ複雑<br>❌ ポリシー記述手間<br>❌ 初心者には難しい |
 | 6 | [**Terratest**](https://terratest.gruntwork.io/) | Go製インフラテストフレームワーク。実際にインフラを作成してテスト | Terraform / Packer / Docker / K8s | 🟢 完全無料 | ✅ 実インフラテスト可能<br>✅ AWS対応充実<br>✅ 多様なIaC対応<br>✅ 統合テスト最適<br>✅ 並列実行対応 | ❌ Go言語必須<br>❌ 実行時間長い<br>❌ コスト発生(実インフラ作成)<br>❌ 学習曲線急 |

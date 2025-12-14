@@ -23,7 +23,12 @@
       "Bash(python3:*)",
       "Bash(dir /s /b /ad \"C:\\Projects\\github\\infinith4\\dev-moderndev\\docs\\開発工程_*\")",
       "Bash(findstr:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(dir /s /b /ad \"C:\\Projects\\github\\infinith4\\dev-moderndev\\docs\\ツール\")",
+      "Bash(comm:*)",
+      "Bash(for dir in /src/docs/ツール/*/)",
+      "Bash(done)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []

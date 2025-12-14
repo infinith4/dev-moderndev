@@ -60,10 +60,10 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Microsoft Visio - 詳細ガイド](./ツール/作図ツール/Microsoft_Visio.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
-- [PlantUML - 詳細ガイド](./ツール/作図ツール/PlantUML.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Microsoft Visio - 詳細ガイド](./ツール/設計・モデリング/Microsoft_Visio.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
+- [PlantUML - 詳細ガイド](./ツール/設計・モデリング/PlantUML.md)
 
 ---
 
@@ -98,7 +98,7 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
 
 ---
 
@@ -133,8 +133,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
 
 ---
 
@@ -168,7 +168,7 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
 
 ---
 
@@ -202,7 +202,7 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
 
 ---
 
@@ -238,8 +238,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Grafana - 詳細ガイド](./ツール/監視ツール/Grafana.md)
-- [Prometheus - 詳細ガイド](./ツール/監視ツール/Prometheus.md)
+- [Grafana - 詳細ガイド](./ツール/監視・ロギング/Grafana.md)
+- [Prometheus - 詳細ガイド](./ツール/監視・ロギング/Prometheus.md)
 
 ---
 

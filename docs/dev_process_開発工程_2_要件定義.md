@@ -67,8 +67,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Figma - 詳細ガイド](./ツール/UI_UXツール/Figma.md)
-- [Adobe XD - 詳細ガイド](./ツール/UI_UXツール/Adobe_XD.md)
+- [Figma - 詳細ガイド](./ツール/設計・モデリング/Figma.md)
+- [Adobe XD - 詳細ガイド](./ツール/設計・モデリング/Adobe_XD.md)
 
 ---
 
@@ -104,11 +104,11 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Bizagi Modeler - 詳細ガイド](./ツール/プロセスモデリングツール/Bizagi_Modeler.md)
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Microsoft Visio - 詳細ガイド](./ツール/作図ツール/Microsoft_Visio.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
-- [Process Street - 詳細ガイド](./ツール/プロセスモデリングツール/Process_Street.md)
+- [Bizagi Modeler - 詳細ガイド](./ツール/設計・モデリング/Bizagi_Modeler.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Microsoft Visio - 詳細ガイド](./ツール/設計・モデリング/Microsoft_Visio.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
+- [Process Street - 詳細ガイド](./ツール/設計・モデリング/Process_Street.md)
 
 ---
 
@@ -146,11 +146,11 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
-- [Visual Paradigm - 詳細ガイド](./ツール/UMLツール/Visual_Paradigm.md)
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
-- [PlantUML - 詳細ガイド](./ツール/作図ツール/PlantUML.md)
+- [Enterprise Architect - 詳細ガイド](./ツール/設計・モデリング/Enterprise_Architect.md)
+- [Visual Paradigm - 詳細ガイド](./ツール/設計・モデリング/Visual_Paradigm.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
+- [PlantUML - 詳細ガイド](./ツール/設計・モデリング/PlantUML.md)
 
 ---
 
@@ -186,8 +186,8 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Figma - 詳細ガイド](./ツール/UI_UXツール/Figma.md)
-- [Adobe XD - 詳細ガイド](./ツール/UI_UXツール/Adobe_XD.md)
+- [Figma - 詳細ガイド](./ツール/設計・モデリング/Figma.md)
+- [Adobe XD - 詳細ガイド](./ツール/設計・モデリング/Adobe_XD.md)
 
 ---
 
@@ -221,9 +221,9 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Microsoft Excel - 詳細ガイド](./ツール/帳票ツール/Microsoft_Excel.md)
-- [LibreOffice - 詳細ガイド](./ツール/帳票ツール/LibreOffice.md)
-- [JasperReports - 詳細ガイド](./ツール/帳票ツール/JasperReports.md)
+- [Microsoft Excel - 詳細ガイド](./ツール/帳票・データ処理/Microsoft_Excel.md)
+- [LibreOffice - 詳細ガイド](./ツール/帳票・データ処理/LibreOffice.md)
+- [JasperReports - 詳細ガイド](./ツール/帳票・データ処理/JasperReports.md)
 
 ---
 
@@ -257,7 +257,7 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Microsoft Excel - 詳細ガイド](./ツール/帳票ツール/Microsoft_Excel.md)
+- [Microsoft Excel - 詳細ガイド](./ツール/帳票・データ処理/Microsoft_Excel.md)
 
 ---
 
@@ -292,10 +292,10 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [ERDPlus - 詳細ガイド](./ツール/データベースツール/ERDPlus.md)
-- [MySQL Workbench - 詳細ガイド](./ツール/データベースツール/MySQL_Workbench.md)
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
+- [ERDPlus - 詳細ガイド](./ツール/データベース/ERDPlus.md)
+- [MySQL Workbench - 詳細ガイド](./ツール/データベース/MySQL_Workbench.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Enterprise Architect - 詳細ガイド](./ツール/設計・モデリング/Enterprise_Architect.md)
 
 ---
 
@@ -330,11 +330,11 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Postman - 詳細ガイド](./ツール/APIツール/Postman.md)
-- [Swagger/OpenAPI - 詳細ガイド](./ツール/APIツール/Swagger_OpenAPI.md)
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
-- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
+- [Postman - 詳細ガイド](./ツール/API・統合/Postman.md)
+- [Swagger/OpenAPI - 詳細ガイド](./ツール/API・統合/Swagger_OpenAPI.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
+- [Enterprise Architect - 詳細ガイド](./ツール/設計・モデリング/Enterprise_Architect.md)
 
 ---
 
@@ -368,9 +368,9 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Microsoft Excel - 詳細ガイド](./ツール/帳票ツール/Microsoft_Excel.md)
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
+- [Microsoft Excel - 詳細ガイド](./ツール/帳票・データ処理/Microsoft_Excel.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
 
 ---
 
@@ -406,11 +406,11 @@
 **ツール詳細ドキュメント**
 
 各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/作図ツール/Lucidchart.md)
-- [Draw.io - 詳細ガイド](./ツール/作図ツール/Draw.io.md)
-- [Microsoft Visio - 詳細ガイド](./ツール/作図ツール/Microsoft_Visio.md)
-- [PlantUML - 詳細ガイド](./ツール/作図ツール/PlantUML.md)
-- [Enterprise Architect - 詳細ガイド](./ツール/UMLツール/Enterprise_Architect.md)
+- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
+- [Microsoft Visio - 詳細ガイド](./ツール/設計・モデリング/Microsoft_Visio.md)
+- [PlantUML - 詳細ガイド](./ツール/設計・モデリング/PlantUML.md)
+- [Enterprise Architect - 詳細ガイド](./ツール/設計・モデリング/Enterprise_Architect.md)
 
 ---
 

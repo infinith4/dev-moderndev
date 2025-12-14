@@ -26,12 +26,12 @@
 
 | カテゴリ | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
 |---------|------|------|------|---------|----------|
-| **IDE** | [**IntelliJ IDEA**](https://www.jetbrains.com/idea/) | JetBrains製Java/Kotlin IDE。強力なリファクタリング | Java実装、リファクタリング、デバッグ | 💰 Community無料<br>💰 Ultimate: $299/年 | ✅ Java開発最適化<br>✅ リファクタリング強力<br>✅ Spring統合<br>✅ Maven/Gradle統合 | ❌ Ultimate版有料<br>❌ メモリ使用量大<br>❌ 起動遅い |
+| **IDE** | [**IntelliJ IDEA**](./ツール/開発ツール/IntelliJ_IDEA.md) ([公式サイト](https://www.jetbrains.com/idea/)) | JetBrains製Java/Kotlin IDE。強力なリファクタリング | Java実装、リファクタリング、デバッグ | 💰 Community無料<br>💰 Ultimate: $299/年 | ✅ Java開発最適化<br>✅ リファクタリング強力<br>✅ Spring統合<br>✅ Maven/Gradle統合 | ❌ Ultimate版有料<br>❌ メモリ使用量大<br>❌ 起動遅い |
 | **IDE** | [**Eclipse**](https://www.eclipse.org/) | オープンソースJava IDE。プラグイン豊富 | Java実装、プラグイン開発、エンタープライズ開発 | 🟢 完全無料 | ✅ 完全無料<br>✅ プラグイン豊富<br>✅ 長い実績<br>✅ エンタープライズ採用多 | ❌ 動作重い<br>❌ UI古い<br>❌ IntelliJ比で機能劣る |
 | **ビルドツール** | [**Maven**](https://maven.apache.org/) | Apache製ビルドツール。POM.xml設定 | ビルド管理、依存関係管理、CI/CD統合 | 🟢 完全無料 | ✅ 業界標準<br>✅ 依存関係管理<br>✅ プラグイン豊富<br>✅ CI/CD統合容易 | ❌ XML冗長<br>❌ ビルド遅い<br>❌ 柔軟性低い |
 | **ビルドツール** | [**Gradle**](https://gradle.org/) | Groovy/Kotlin DSLビルドツール。高速・柔軟 | ビルド管理、Android開発、マルチプロジェクト | 🟢 完全無料 | ✅ Maven比で高速<br>✅ 柔軟な設定<br>✅ Kotlin DSL<br>✅ Android公式 | ❌ 学習曲線急<br>❌ ビルド時間予測困難<br>❌ Maven比で情報少ない |
 | **フレームワーク** | [**Spring Boot**](https://spring.io/projects/spring-boot) | エンタープライズJavaフレームワーク | Web API開発、マイクロサービス、エンタープライズ開発 | 🟢 完全無料 | ✅ エンタープライズ標準<br>✅ 自動設定<br>✅ マイクロサービス対応<br>✅ 豊富なスターター | ❌ 学習コスト高<br>❌ 重い<br>❌ 設定複雑化しやすい |
-| **テスト** | [**JUnit 5**](https://junit.org/junit5/) | Java単体テストフレームワーク | ユニットテスト、テスト駆動開発 | 🟢 完全無料 | ✅ 業界標準<br>✅ アノテーション豊富<br>✅ IDE統合<br>✅ パラメータ化テスト | ❌ モックは別ライブラリ必要<br>❌ 複雑なテスト設定困難 |
+| **テスト** | [**JUnit 5**](./ツール/テスト/JUnit.md) ([公式サイト](https://junit.org/junit5/)) | Java単体テストフレームワーク | ユニットテスト、テスト駆動開発 | 🟢 完全無料 | ✅ 業界標準<br>✅ アノテーション豊富<br>✅ IDE統合<br>✅ パラメータ化テスト | ❌ モックは別ライブラリ必要<br>❌ 複雑なテスト設定困難 |
 | **モック** | [**Mockito**](https://site.mockito.org/) | Javaモックフレームワーク | ユニットテスト、モック生成、スタブ | 🟢 完全無料 | ✅ 使いやすい<br>✅ JUnit統合<br>✅ スパイ機能<br>✅ 無料 | ❌ 静的メソッドモック困難<br>❌ final classモック制限 |
 | **コード品質** | [**SonarQube**](https://www.sonarqube.org/) | コード品質・セキュリティ分析 | コード品質管理、セキュリティスキャン、技術的負債管理 | 🟢 Community無料<br>💰 Developer: $45/月 | ✅ 包括的分析<br>✅ CI/CD統合<br>✅ セキュリティ脆弱性検出<br>✅ 技術的負債可視化 | ❌ セットアップ複雑<br>❌ リソース使用量大<br>❌ Enterprise機能有料 |
 | **リンター**| [**Checkstyle**](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | コーディング規約チェック、品質基準確保 | 🟢 完全無料 | ✅ カスタマイズ可能<br>✅ Maven/Gradle統合<br>✅ Google/Sun規約サポート<br>✅ 無料 | ❌ 設定ファイル複雑<br>❌ 誤検知あり |
@@ -79,10 +79,10 @@
 | カテゴリ                   | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
 |---------                   |---------|------|------|------|---------|----------|
 | **IDE**                    | [**PyCharm**](https://www.jetbrains.com/pycharm/) | JetBrains製Python専用IDE。Django/Flask対応 | Python実装、Web開発、データサイエンス | 🟢 Community無料<br>💰 Professional: $199/年 | ✅ Python特化<br>✅ Django/Flask統合<br>✅ Jupyter対応<br>✅ データサイエンスツール | ❌ Professional版有料<br>❌ メモリ使用量大<br>❌ 起動遅い |
-| **IDE**                    | [**VS Code + Python拡張**](https://code.visualstudio.com/docs/languages/python) | 軽量エディタ + Python拡張 | Python実装、軽量開発、リモート開発 | 🟢 完全無料 | ✅ 無料<br>✅ 軽量<br>✅ Jupyter統合<br>✅ リモート開発 | ❌ PyCharm比で機能劣る<br>❌ 初期設定必要<br>❌ デバッグ弱い |
+| **IDE**                    | [**VS Code + Python拡張**](./ツール/開発ツール/VS_Code.md) ([公式サイト](https://code.visualstudio.com/docs/languages/python)) | 軽量エディタ + Python拡張 | Python実装、軽量開発、リモート開発 | 🟢 完全無料 | ✅ 無料<br>✅ 軽量<br>✅ Jupyter統合<br>✅ リモート開発 | ❌ PyCharm比で機能劣る<br>❌ 初期設定必要<br>❌ デバッグ弱い |
 | **パッケージマネージャー** | [**pip**](https://pip.pypa.io/) | Python標準パッケージマネージャー | パッケージ管理、依存関係インストール | 🟢 完全無料 | ✅ Python標準<br>✅ PyPI統合<br>✅ 簡単インストール<br>✅ 無料 | ❌ 依存関係解決弱い<br>❌ 環境管理別途必要 |
 | **パッケージマネージャー** | [**Poetry**](https://python-poetry.org/) | モダンPython依存関係管理 | 依存関係管理、仮想環境、ビルド・公開 | 🟢 完全無料 | ✅ 依存関係解決優秀<br>✅ pyproject.toml<br>✅ 仮想環境自動管理<br>✅ ビルド・公開統合 | ❌ 学習コスト<br>❌ pip比で遅い<br>❌ 一部ライブラリ非互換 |
-| **環境管理**               | [**pytest**](https://pytest.org/) | Python単体テストフレームワーク | ユニットテスト、TDD、テスト駆動開発 | 🟢 完全無料 | ✅ シンプルな構文<br>✅ フィクスチャ強力<br>✅ プラグイン豊富<br>✅ パラメータ化テスト | ❌ 学習コスト<br>❌ 標準ライブラリではない |
+| **環境管理**               | [**pytest**](./ツール/テスト/pytest.md) ([公式サイト](https://pytest.org/)) | Python単体テストフレームワーク | ユニットテスト、TDD、テスト駆動開発 | 🟢 完全無料 | ✅ シンプルな構文<br>✅ フィクスチャ強力<br>✅ プラグイン豊富<br>✅ パラメータ化テスト | ❌ 学習コスト<br>❌ 標準ライブラリではない |
 | **環境管理**               | [**Black**](https://black.readthedocs.io/) | 妥協なしPythonフォーマッター | コード自動フォーマット、スタイル統一 | 🟢 完全無料 | ✅ 一貫したスタイル<br>✅ 設定不要<br>✅ 高速<br>✅ Git統合 | ❌ カスタマイズ不可<br>❌ 好みに合わない場合あり |
 | **フレームワーク**         | [**Ruff**](https://github.com/astral-sh/ruff) | 超高速Pythonリンター（Rust製） | コーディング規約チェック、自動修正 | 🟢 完全無料 | ✅ 非常に高速<br>✅ Flake8/pylint置換<br>✅ 自動修正<br>✅ 設定簡単 | ❌ 比較的新しい<br>❌ 一部ルール非対応 |
 | **フレームワーク**         | [**mypy**](http://mypy-lang.org/) | Python静的型チェッカー | 型安全性チェック、型ヒント検証 | 🟢 完全無料 | ✅ 型安全性向上<br>✅ IDE統合<br>✅ 段階的導入可能<br>✅ 無料 | ❌ 実行時チェックなし<br>❌ ライブラリスタブ必要<br>❌ 学習コスト |
@@ -105,7 +105,7 @@
 
 | カテゴリ | ツール名 | 概要 | メリット | デメリット |
 |---------|---------|------|---------|-----------|
-| **IDE** | [**VS Code**](https://code.visualstudio.com/) | Microsoft製軽量エディタ。TypeScript標準サポート | ✅ TypeScript最適化<br>✅ 無料<br>✅ 拡張機能豊富<br>✅ IntelliSense強力<br>✅ デバッガ統合 | ❌ 大規模PJ重い<br>❌ フルIDEではない |
+| **IDE** | [**VS Code**](./ツール/開発ツール/VS_Code.md) ([公式サイト](https://code.visualstudio.com/)) | Microsoft製軽量エディタ。TypeScript標準サポート | ✅ TypeScript最適化<br>✅ 無料<br>✅ 拡張機能豊富<br>✅ IntelliSense強力<br>✅ デバッガ統合 | ❌ 大規模PJ重い<br>❌ フルIDEではない |
 | **IDE** | [**WebStorm**](https://www.jetbrains.com/webstorm/) | JetBrains製JS/TS専用IDE | ✅ TypeScript特化<br>✅ リファクタリング強力<br>✅ Node/React/Vue統合<br>✅ デバッグ優秀 | ❌ 有料（年$69）<br>❌ VSCodeで代替可<br>❌ メモリ使用量大 |
 | **ランタイム** | [**Node.js**](https://nodejs.org/) | JavaScriptランタイム | ✅ 業界標準<br>✅ npm統合<br>✅ 豊富なライブラリ<br>✅ 無料 | ❌ バージョン管理必要<br>❌ シングルスレッド |
 | **パッケージマネージャー** | [**npm**](https://www.npmjs.com/) | Node.js標準パッケージマネージャー | ✅ Node.js標準<br>✅ 最大パッケージ数<br>✅ package.json<br>✅ 無料 | ❌ 遅い<br>❌ node_modules肥大化<br>❌ セキュリティ懸念 |
@@ -117,7 +117,7 @@
 | **フレームワーク** | [**Next.js**](https://nextjs.org/) | Reactフルスタックフレームワーク | ✅ SSR/SSG<br>✅ ファイルベースルーティング<br>✅ TypeScript標準<br>✅ Vercel統合 | ❌ Vercel依存<br>❌ 頻繁な破壊的変更<br>❌ 複雑化しやすい |
 | **フレームワーク** | [**Vue.js**](https://vuejs.org/) | プログレッシブJavaScriptフレームワーク | ✅ 学習曲線緩やか<br>✅ 公式ツール充実<br>✅ TypeScript対応<br>✅ 柔軟 | ❌ React比でエコシステム小<br>❌ 企業採用少ない |
 | **テスト** | [**Vitest**](https://vitest.dev/) | Vite対応高速ユニットテスト | ✅ 非常に高速<br>✅ Vite統合<br>✅ Jest互換API<br>✅ TypeScript標準 | ❌ 比較的新しい<br>❌ Jestより情報少ない |
-| **テスト** | [**Jest**](https://jestjs.io/) | JavaScriptテストフレームワーク | ✅ 業界標準<br>✅ 設定ゼロ<br>✅ スナップショットテスト<br>✅ モック機能 | ❌ 遅い<br>❌ Vitest推奨<br>❌ ESM対応弱い |
+| **テスト** | [**Jest**](./ツール/テスト/Jest.md) ([公式サイト](https://jestjs.io/)) | JavaScriptテストフレームワーク | ✅ 業界標準<br>✅ 設定ゼロ<br>✅ スナップショットテスト<br>✅ モック機能 | ❌ 遅い<br>❌ Vitest推奨<br>❌ ESM対応弱い |
 | **E2Eテスト** | [**Playwright**](https://playwright.dev/) | Microsoft製E2Eテスト | ✅ クロスブラウザ<br>✅ 高速<br>✅ TypeScript標準<br>✅ 自動待機 | ❌ 学習コスト<br>❌ セットアップやや複雑 |
 | **リンター** | [**ESLint**](https://eslint.org/) | JavaScript/TypeScriptリンター | ✅ 業界標準<br>✅ カスタマイズ可能<br>✅ TypeScript対応<br>✅ 自動修正 | ❌ 設定複雑<br>❌ パフォーマンスやや遅い |
 | **フォーマッター** | [**Prettier**](https://prettier.io/) | コードフォーマッター | ✅ 一貫したスタイル<br>✅ 多言語対応<br>✅ ESLint統合<br>✅ 設定最小限 | ❌ カスタマイズ限定的<br>❌ 好みに合わない場合あり |

@@ -20,3 +20,9 @@ sudo fc-cache -fv
 sudo apt-get clean
 sudo rm -rf /var/lib/apt/lists/*
 
+# 2. PlantUMLのJARファイルをダウンロードして配置
+# (ここでは /usr/local/bin/plantuml.jar に配置します)
+curl -OL https://github.com/plantuml/plantuml/releases/download/v1.2025.7/plantuml-mit-1.2025.7.jar
+sudo mv plantuml-mit-1.2025.7.jar /usr/local/bin/plantuml.jar 
+
+echo "Dev Container setup completed!"

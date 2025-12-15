@@ -2,6 +2,12 @@
 
 開発工程別ツール選択システムで使用する自動化スクリプトです。
 
+## 🎯 主要機能
+
+- **技術スタックフィルタリング**: セクション12で選択された技術スタック（クラウドプラットフォーム、プログラミング言語）に基づいて、互換性のあるツールのみを推薦
+- **インテリジェントマッチング**: 要件キーワードとツールカテゴリの70+マッピングによる自動推薦
+- **統合レポート生成**: 選択済みツールの要約とカテゴリ別集計
+
 ## 📋 スクリプト一覧
 
 | # | スクリプト名 | 説明 | 使い方 |
@@ -10,6 +16,33 @@
 | 2 | `extract_selected_tools.py` | チェック済みツールを抽出して一覧表示 | `python extract_selected_tools.py <input_file>` |
 | 3 | `generate_summary.py` | 選択済みツールの要約を生成 | `python generate_summary.py <input_file>` |
 | 4 | `validate_links.py` | ツール詳細へのリンクを検証 | `python validate_links.py <input_file>` |
+
+---
+
+## 🔧 技術スタックフィルタリング機能
+
+`tool_recommender.py` は、セクション12で選択された技術スタックに基づいて、ツール推薦を自動的にフィルタリングします。
+
+### 動作例
+
+**セクション12でAzureを選択した場合**:
+- ✅ 推薦される: `Azure Bicep`, `Terraform` (クロスプラットフォーム)
+- ❌ 除外される: `AWS CloudFormation`, `AWS CodeDeploy`
+
+**セクション12でTypeScriptを選択した場合**:
+- ✅ 推薦される: `Jest`, `Cypress`, `ESLint`, `Prettier`
+- ❌ 除外される: `JUnit`, `pytest`, `Mockito`
+
+**セクション12でPostgreSQLを選択した場合**:
+- ✅ 推薦される: `pgAdmin`, `ERDPlus` (クロスDB), `Flyway` (クロスDB)
+- ❌ 除外される: `MySQL_Workbench`, `SQL_Developer`
+
+### フィルタリングルール
+
+1. **クラウドプラットフォーム**: AWS/Azure/GCP専用ツールは、対応するプラットフォームが選択されている場合のみ推薦
+2. **プログラミング言語**: 言語固有のツール（テストフレームワーク、Linter等）は、対応する言語が選択されている場合のみ推薦
+3. **データベース**: データベース固有のツール（MySQL_Workbench、pgAdmin等）は、対応するデータベースが選択されている場合のみ推薦
+4. **クロスプラットフォームツール**: `platform: "All"`, `language: "All"`, `database: "All"` のツールは常に推薦対象
 
 ---
 

@@ -28,7 +28,8 @@
       "Bash(comm:*)",
       "Bash(for dir in /src/docs/ツール/*/)",
       "Bash(done)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(chmod:*)"
     ],
     "deny": [],
     "ask": []

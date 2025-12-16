@@ -622,17 +622,16 @@ class ToolRecommender:
             for tool, _, _ in tools:
                 all_tool_names.add(tool.name)
 
+        checked_count = sum(1 for req in self.requirements if req.is_checked)
+
         report_lines = [
             "# ツール推薦レポート",
             "",
             f"**生成日時**: {self._get_timestamp()}",
-            f"**対象チェックリスト**: {self.checklist_path}",
             "",
             "## 概要",
             "",
-            f"- チェックされた要件数: {sum(1 for req in self.requirements if req.is_checked)}",
-            f"- 推薦されたツールカテゴリ数: {len(recommendations)}",
-            f"- 総推薦ツール数 (ユニーク): {len(all_tool_names)}",
+            f"チェックされた要件 **{checked_count}件** に対して、**{len(all_tool_names)}個** のツールを推薦しています。",
             "",
         ]
 
@@ -682,18 +681,27 @@ class ToolRecommender:
                 report_lines.append(f"### {section_key}")
                 report_lines.append("")
 
-                for tool, score, reason in tools[:10]:  # 上位10件
-                    report_lines.append(f"#### {tool.name}")
-                    report_lines.append(f"- **カテゴリ**: {tool.category}")
-                    report_lines.append(f"- **マッチ理由**: {reason}")
-                    report_lines.append(f"- **スコア**: {score:.1f}")
-                    report_lines.append(f"- **詳細**: [{tool.file_path}](../{tool.file_path})")
-                    if tool.description:
-                        # 説明を100文字に制限
-                        short_desc = tool.description[:100] + "..." if len(tool.description) > 100 else tool.description
-                        report_lines.append(f"- **概要**: {short_desc}")
-                    report_lines.append("")
+                # 表形式のヘッダー
+                report_lines.append("| ツール名 | カテゴリ | スコア | マッチ理由 | 概要 |")
+                report_lines.append("|----------|----------|--------|------------|------|")
 
+                for tool, score, reason in tools[:10]:  # 上位10件
+                    # 概要を60文字に制限
+                    short_desc = ""
+                    if tool.description:
+                        short_desc = tool.description[:60] + "..." if len(tool.description) > 60 else tool.description
+                        # 改行とパイプ文字をエスケープ
+                        short_desc = short_desc.replace('\n', ' ').replace('|', '\\|')
+
+                    # マッチ理由内のパイプ文字をエスケープ
+                    reason_escaped = reason.replace('|', '\\|')
+
+                    # ツール名をリンク化
+                    tool_link = f"[{tool.name}](../{tool.file_path})"
+
+                    report_lines.append(f"| {tool_link} | {tool.category} | {score:.1f} | {reason_escaped} | {short_desc} |")
+
+                report_lines.append("")
                 report_lines.append("---")
                 report_lines.append("")
 

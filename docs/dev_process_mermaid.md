@@ -7,6 +7,22 @@
 
 ```mermaid
 %%{init: {'flowchart': {'htmlLabels': true}}}%%
+flowchart LR
+    g1[1_企画プロセス] --> g2[2_要件定義]
+    g2 --> g3[3_基本設計（アプリケーション）]
+    g3 --> g4[4_基本設計（インフラ）]
+    g4 --> g5[5_詳細設計（アプリケーション）]
+    g5 --> g6[6_詳細設計（インフラ）]
+    g6 --> g7[7_実装（アプリケーション）]
+    g7 --> g8[8_インフラ構築]
+    g8 --> g9[8-1_CI/CD]
+    g9 --> g10[9_テスト（アプリケーション）]
+    g10 --> g11[10_テスト（インフラ）]
+    g11 --> g12[11_導入（アプリケーション・インフラ）]
+```
+
+```mermaid
+%%{init: {'flowchart': {'htmlLabels': true}}}%%
 flowchart TB
     subgraph P1[1_企画プロセス]
         direction TB
@@ -19,12 +35,13 @@ flowchart TB
             direction TB
             P1s2_t["Microsoft Project<br/>Wrike<br/>Planview<br/>Smartsheet<br/>Redmine<br/>OpenProject<br/>GanttProject<br/>Backlog<br/>Lychee Redmine<br/>Teamwork<br/>ProofHub<br/>Monday.com<br/>Airtable<br/>Atlassian Portfolio (Jira Align)"]
         end
+        P1s1 --> P1s2
     end
 ```
 
 ```mermaid
 %%{init: {'flowchart': {'htmlLabels': true}}}%%
-flowchart TB
+flowchart LR
     subgraph P2[2_要件定義]
         direction TB
         P2_common["Common tools<br/>Confluence<br/>Figma<br/>Adobe XD<br/>Sketch<br/>Balsamiq<br/>Axure RP<br/>Jama Connect<br/>Lucidchart<br/>Microsoft Visio<br/>Draw.io (diagrams.net)<br/>Enterprise Architect<br/>Microsoft Excel<br/>Notion"]
@@ -68,6 +85,8 @@ flowchart TB
             direction TB
             P2s10_t["IPA 非機能要求グレード利用ガイド（Excel版）<br/>Microsoft Excel / Google Sheets"]
         end
+        P2s1 --> P2s2 --> P2s3 --> P2s4 --> P2s5 --> P2s6 --> P2s7 --> P2s8 --> P2s9
+        P2s1 --> P2s10
     end
 ```
 
@@ -109,6 +128,7 @@ flowchart TB
             direction TB
             P3s8_t["Microsoft Threat Modeling Tool<br/>OWASP Top 10<br/>JWT.io"]
         end
+        P3s1 --> P3s2 --> P3s3 --> P3s4 --> P3s5 --> P3s6 --> P3s7 --> P3s8
     end
 ```
 
@@ -126,6 +146,7 @@ flowchart TB
             direction TB
             P4s2_t["Hava.io<br/>Cloudockit"]
         end
+        P4s1 --> P4s2
     end
 ```
 
@@ -159,6 +180,7 @@ flowchart TB
             direction TB
             P5s6_t["Git / GitHub"]
         end
+        P5s1 --> P5s2 --> P5s3 --> P5s4 --> P5s5 --> P5s6
     end
 ```
 
@@ -172,11 +194,11 @@ flowchart TB
             direction TB
             P6s1_t["Terraform<br/>Ansible<br/>Lucidchart<br/>Microsoft Visio<br/>Palo Alto Expedition<br/>AWS Well-Architected Tool<br/>Checkov<br/>Infracost"]
         end
-        subgraph P6s2[3. Azure専用インフラ詳細設計ツール]
+        subgraph P6s2[3-1. Azure専用インフラ詳細設計ツール]
             direction TB
             P6s2_t["ARM Templates<br/>Azure Policy<br/>Azure Blueprints<br/>Azure DevOps<br/>Azure CLI<br/>Azure PowerShell<br/>Azure Resource Graph<br/>Azure Automation<br/>Azure Arc"]
         end
-        subgraph P6s3[4. AWS専用インフラ詳細設計ツール]
+        subgraph P6s3[3-2. AWS専用インフラ詳細設計ツール]
             direction TB
             P6s3_t["AWS CDK<br/>AWS CLI<br/>AWS Service Catalog<br/>AWS Config<br/>AWS Systems Manager<br/>AWS Control Tower<br/>CloudFormation Designer<br/>AWS Application Composer<br/>AWS OpsWorks"]
         end
@@ -200,6 +222,7 @@ flowchart TB
             direction TB
             P7s2_t["GitHub Copilot<br/>Cursor<br/>Amazon CodeWhisperer"]
         end
+        P7s1 --> P7s2
     end
 ```
 
@@ -225,6 +248,7 @@ flowchart TB
             direction TB
             P8s4_t["Azure Bicep Linter<br/>Azure Resource Manager Testing Toolkit (ARM-TTK)<br/>CDK-nag<br/>CloudFormation Guard<br/>AWS CDK Assertions"]
         end
+        P8s1 --> P8s2 --> P8s3 --> P8s4
     end
 ```
 
@@ -245,6 +269,7 @@ flowchart TB
             direction TB
             P9s3_t["AWS CodePipeline<br/>AWS CodeBuild<br/>AWS CodeDeploy<br/>AWS Amplify Hosting"]
         end
+        P9s1 --> P9s2 --> P9s3
     end
 ```
 
@@ -269,6 +294,7 @@ flowchart TB
             direction TB
             P10s4_t["TestRail<br/>Zephyr for Jira<br/>HP ALM / Micro Focus ALM<br/>PractiTest<br/>Azure Test Plans<br/>qTest<br/>Tautoko<br/>DBmaestro<br/>DATADOPE"]
         end
+        P10s1 --> P10s2 --> P10s3 --> P10s4
     end
 ```
 
@@ -294,6 +320,7 @@ flowchart TB
             direction TB
             P11s4_t["Terraform<br/>Azure Bicep<br/>AWS CDK<br/>Pulumi<br/>Ansible<br/>Docker<br/>Kubernetes<br/>Helm<br/>Amazon EKS<br/>Azure AKS<br/>Azure Monitor<br/>Amazon CloudWatch<br/>Prometheus + Grafana<br/>Datadog<br/>ELK Stack<br/>Snyk<br/>Trivy<br/>Checkov<br/>SonarQube"]
         end
+        P11s1 --> P11s2 --> P11s3 --> P11s4
     end
 ```
 
@@ -323,6 +350,7 @@ flowchart TB
             direction TB
             P12s5_t["Terraform"]
         end
+        P12s1 --> P12s2 --> P12s3 --> P12s4 --> P12s5
     end
 ```
 

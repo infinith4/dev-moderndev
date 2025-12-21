@@ -17,7 +17,8 @@ class NotionClient:
             api_key: Notion API キー
             database_id: Notion データベース ID
         """
-        self.client = Client(auth=api_key)
+        self.client = Client(auth=api_key, notion_version="2022-06-28")
+        # データベースIDはダッシュ付きで保存
         self.database_id = database_id
 
     def create_page(self, title: str, progress: int = 0, properties: Optional[Dict] = None) -> Dict:
@@ -119,12 +120,15 @@ class NotionClient:
             見つかったページ、または None
         """
         # データベースをクエリ
-        response = self.client.databases.query(
-            database_id=self.database_id,
-            filter={
-                "property": "Name",
-                "title": {
-                    "contains": title_prefix
+        response = self.client.request(
+            path=f"databases/{self.database_id}/query",
+            method="POST",
+            body={
+                "filter": {
+                    "property": "Name",
+                    "title": {
+                        "contains": title_prefix
+                    }
                 }
             }
         )
@@ -139,37 +143,44 @@ class NotionClient:
 
     def get_pages_by_project(self, project_name: str, title_prefix: str = "[工程]") -> List[Dict]:
         """
-        プロジェクト名でページを取得
+        プロジェクト名でページを取得（SortIdでソート）
 
         Args:
             project_name: プロジェクト名（例: "テストプロジェクト"）
             title_prefix: タイトルの接頭辞（デフォルト: "[工程]"）
 
         Returns:
-            該当するページのリスト
+            該当するページのリスト（SortIdでソート済み）
         """
         # データベースをクエリ
-        response = self.client.databases.query(
-            database_id=self.database_id,
-            filter={
-                "and": [
-                    {
-                        "property": "Name",
-                        "title": {
-                            "contains": title_prefix
+        response = self.client.request(
+            path=f"databases/{self.database_id}/query",
+            method="POST",
+            body={
+                "filter": {
+                    "and": [
+                        {
+                            "property": "Name",
+                            "title": {
+                                "contains": title_prefix
+                            }
+                        },
+                        {
+                            "property": "プロジェクト",
+                            "select": {
+                                "equals": project_name
+                            }
                         }
-                    },
-                    {
-                        "property": "プロジェクト",
-                        "select": {
-                            "equals": project_name
-                        }
-                    }
-                ]
+                    ]
+                }
             }
         )
 
-        return response["results"]
+        # SortIdでソート
+        pages = response["results"]
+        pages.sort(key=lambda page: self._get_sort_id(page))
+
+        return pages
 
     def _get_page_title(self, page: Dict) -> str:
         """
@@ -183,6 +194,24 @@ class NotionClient:
         """
         try:
             return page["properties"]["Name"]["title"][0]["text"]["content"]
+        except (KeyError, IndexError):
+            return ""
+
+    def _get_sort_id(self, page: Dict) -> str:
+        """
+        ページからSortIdを取得
+
+        Args:
+            page: Notionページオブジェクト
+
+        Returns:
+            SortId（存在しない場合は空文字列）
+        """
+        try:
+            sort_prop = page["properties"].get("SortId", {})
+            if sort_prop.get("rich_text"):
+                return sort_prop["rich_text"][0]["text"]["content"]
+            return ""
         except (KeyError, IndexError):
             return ""
 

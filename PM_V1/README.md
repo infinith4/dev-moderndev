@@ -24,7 +24,8 @@ PM_V1/
 ├── spreadsheet_client.py            # Google Spreadsheet クライアント
 ├── sync.py                          # 双方向同期メインスクリプト（推奨）
 ├── sync_spreadsheet_to_notion.py    # Spreadsheet→Notion 同期スクリプト
-└── sync_notion_to_spreadsheet.py    # Notion→Spreadsheet 同期スクリプト
+├── sync_notion_to_spreadsheet.py    # Notion→Spreadsheet 同期スクリプト
+└── export_notion_to_csv.py          # NotionデータをCSV（TSV）出力
 ```
 
 ## セットアップ
@@ -33,6 +34,7 @@ PM_V1/
 
 ```bash
 cd PM_V1
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -144,6 +146,33 @@ python sync.py --mode sheet-to-notion --prefix "[フェーズ]" --project "MyPro
 
 # Notion→Spreadsheet でカスタム設定
 python sync.py --mode notion-to-sheet --prefix "[工程]" --project "プロジェクトA"
+```
+
+### NotionデータのCSV出力
+
+NotionのデータをCSV（タブ区切り）形式で出力できます:
+
+```bash
+# デフォルト設定で出力（notion_export.tsv）
+python export_notion_to_csv.py
+
+# 出力ファイル名を指定
+python export_notion_to_csv.py --output my_tasks.tsv
+
+# プロジェクトと接頭辞を指定
+python export_notion_to_csv.py --project "プロジェクトA" --prefix "[フェーズ]"
+```
+
+**オプション:**
+- `--output`, `-o`: 出力ファイル名（デフォルト: notion_export.tsv）
+- `--prefix`: タイトルの接頭辞でフィルタ（デフォルト: [工程]）
+- `--project`: プロジェクト名でフィルタ（デフォルト: テストプロジェクト）
+
+**出力形式:**
+```
+タイトル	進捗率	プロジェクト
+[工程]要件定義	50	テストプロジェクト
+[工程]基本設計	30	テストプロジェクト
 ```
 
 ### 個別スクリプト（上級者向け）

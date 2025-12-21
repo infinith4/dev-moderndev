@@ -33,7 +33,11 @@
       "Bash(docker pull:*)",
       "Bash(curl:*)",
       "Bash(docker run:*)",
-      "Bash(python sync.py:*)"
+      "Bash(python sync.py:*)",
+      "Bash(source venv/bin/activate)",
+      "Bash(pip install:*)",
+      "Bash(pip show:*)",
+      "Bash(python export_notion_to_csv.py:*)"
     ],
     "deny": [],
     "ask": []

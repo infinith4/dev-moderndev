@@ -91,6 +91,7 @@ def sync_tasks(config: dict, title_prefix: str = "[工程]", project_name: str =
         tasks = []
         for page in pages:
             title = notion_client._get_page_title(page)
+            sort_id = notion_client._get_sort_id(page)
 
             # 進捗率を取得
             progress = 0
@@ -107,15 +108,16 @@ def sync_tasks(config: dict, title_prefix: str = "[工程]", project_name: str =
                     project = project_prop["select"]["name"]
 
             tasks.append({
+                "sort_id": sort_id,
                 "title": title,
                 "progress": progress,
                 "project": project
             })
 
-        # タスクの一覧を表示
+        # タスクの一覧を表示（SortIdでソート済み）
         print("読み込んだタスク:")
         for i, task in enumerate(tasks, 1):
-            print(f"  {i}. {task['title']} (進捗: {task['progress']}%, プロジェクト: {task['project']})")
+            print(f"  {i}. [{task['sort_id']}] {task['title']} (進捗: {task['progress']}%, プロジェクト: {task['project']})")
         print()
 
     except Exception as e:
@@ -142,6 +144,8 @@ def sync_tasks(config: dict, title_prefix: str = "[工程]", project_name: str =
 
         except Exception as e:
             print(f"   ✗ {task['title']} - エラー: {e}")
+            import traceback
+            traceback.print_exc()
             error_count += 1
 
     # 結果サマリー

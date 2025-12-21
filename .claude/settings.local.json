@@ -29,7 +29,11 @@
       "Bash(for dir in /src/docs/ツール/*/)",
       "Bash(done)",
       "Bash(ls:*)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "Bash(docker pull:*)",
+      "Bash(curl:*)",
+      "Bash(docker run:*)",
+      "Bash(python sync.py:*)"
     ],
     "deny": [],
     "ask": []

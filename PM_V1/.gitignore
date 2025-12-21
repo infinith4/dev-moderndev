@@ -1,0 +1,27 @@
+# Environment variables
+.env
+
+# Google credentials
+credentials.json
+alpine-furnace-481913-k9-1eb4ab6aee46.json
+token.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log

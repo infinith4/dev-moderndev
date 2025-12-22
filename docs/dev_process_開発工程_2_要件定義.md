@@ -96,8 +96,8 @@
 
 | 資料名 | 概要 | 用途 | リンク | 利用方法の説明 | 利用方法リンク |
 |-------|------|------|--------|---------------|---------------|
-| **ユーザのための要件定義ガイド 第2版 - 第3章 業務分析** | 業務分析の進め方、現状業務の可視化、問題点抽出手法を解説 | 業務分析、現状業務可視化、業務フロー作成、業務課題抽出 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/youkenteigi20190912.html) | PDFダウンロード→第3章参照→現状業務フロー作成→問題点抽出→To-Be業務フロー設計 | [PDF直接DL](https://www.ipa.go.jp/archive/files/000071810.pdf) |
-| **BPMN 2.0仕様書** | ビジネスプロセスモデリング表記法の国際標準仕様 | BPMN図作成、プロセスモデリング標準、記法学習 | [OMG公式サイト](https://www.omg.org/spec/BPMN/) | PDFダウンロード→BPMN要素（タスク、イベント、ゲートウェイ）を学習→標準記法に従って業務フロー作成 | [BPMN 2.0 Spec PDF](https://www.omg.org/spec/BPMN/2.0/PDF) |
+| **ユーザのための要件定義ガイド 第2版 - 第3章 業務分析** | 業務分析の進め方、現状業務の可視化、問題点抽出手法を解説 | 業務分析、現状業務可視化、業務フロー作成、業務課題抽出 | [IPA公式サイト](https://www.ipa.go.jp/archive/publish/tn20191220.html) | PDFダウンロード→第3章参照→現状業務フロー作成→問題点抽出→To-Be業務フロー設計 | [PDF直接DL](https://www.ipa.go.jp/archive/publish/qv6pgp0000000wrt-att/000079352.pdf) |
+| **BPMN 2.0仕様書** | ビジネスプロセスモデリング表記法の国際標準仕様 | BPMN図作成、プロセスモデリング標準、記法学習 | [OMG公式サイト](https://www.omg.org/spec/BPMN/2.0) | PDFダウンロード→BPMN要素（タスク、イベント、ゲートウェイ）を学習→標準記法に従って業務フロー作成 | [BPMN 2.0 Spec PDF](https://www.omg.org/spec/BPMN/2.0/PDF) |
 | **ビジネスプロセスモデリング入門** | IPAによるビジネスプロセスモデリングの基礎解説 | 業務プロセス可視化、モデリング手法、業務改善 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | IPAサイトから資料ダウンロード→プロセスモデリング基礎を学習→実務でのモデリング手法を適用 | [IPA資料一覧](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) |
 
 

@@ -448,6 +448,25 @@
 - [ ] Cloudflare
 - [ ] Fastly
 - [ ] 不要
+
+### 12.3.5. データベース
+
+**リレーショナルデータベース (RDBMS)**:
+- [x] PostgreSQL
+- [ ] MySQL
+- [ ] SQL Server
+- [ ] Oracle
+- [ ] MariaDB
+- [ ] 不要
+
+**NoSQLデータベース**:
+- [ ] MongoDB
+- [ ] Redis (データストア)
+- [ ] DynamoDB
+- [ ] CosmosDB
+- [ ] Cassandra
+- [ ] 不要
+
 ### 12.4. 監視・ロギング・トレーシング
 
 **ログ集約**:

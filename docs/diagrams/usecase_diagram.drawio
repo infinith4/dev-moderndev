@@ -1,0 +1,151 @@
+<mxfile host="app.diagrams.net" modified="2025-12-19T00:00:00.000Z" agent="draw.io CLI" version="24.0.0">
+  <diagram name="Use Case Diagram" id="usecase-diagram">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- システム境界 -->
+        <mxCell id="system" value="ECサイトシステム" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="40" width="440" height="520" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: ユーザー登録 -->
+        <mxCell id="uc-register" value="ユーザー登録" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="60" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: ログイン -->
+        <mxCell id="uc-login" value="ログイン" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="60" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: 商品検索 -->
+        <mxCell id="uc-search" value="商品検索" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="60" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: 商品をカートに追加 -->
+        <mxCell id="uc-addcart" value="商品をカートに追加" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="60" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: 注文確定 -->
+        <mxCell id="uc-order" value="注文確定" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="260" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: 支払い処理 -->
+        <mxCell id="uc-payment" value="支払い処理" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="260" y="330" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: 注文履歴閲覧 -->
+        <mxCell id="uc-history" value="注文履歴閲覧" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="260" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ユースケース: 商品管理 -->
+        <mxCell id="uc-manage" value="商品管理" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="system">
+          <mxGeometry x="260" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- アクター: 顧客 -->
+        <mxCell id="actor-customer" value="顧客" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- アクター: 管理者 -->
+        <mxCell id="actor-admin" value="管理者" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- アクター: 決済システム -->
+        <mxCell id="actor-payment" value="決済システム" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="720" y="340" width="30" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- 関連: 顧客 -> ユーザー登録 -->
+        <mxCell id="assoc1" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-customer" target="uc-register">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 顧客 -> ログイン -->
+        <mxCell id="assoc2" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-customer" target="uc-login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 顧客 -> 商品検索 -->
+        <mxCell id="assoc3" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-customer" target="uc-search">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 顧客 -> カートに追加 -->
+        <mxCell id="assoc4" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-customer" target="uc-addcart">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 顧客 -> 注文確定 -->
+        <mxCell id="assoc5" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-customer" target="uc-order">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="440" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 顧客 -> 注文履歴閲覧 -->
+        <mxCell id="assoc6" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-customer" target="uc-history">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="450" as="sourcePoint" />
+            <mxPoint x="440" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 管理者 -> 商品管理 -->
+        <mxCell id="assoc7" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-admin" target="uc-manage">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="250" as="sourcePoint" />
+            <mxPoint x="440" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 管理者 -> 注文履歴閲覧 -->
+        <mxCell id="assoc8" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-admin" target="uc-history">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="450" as="sourcePoint" />
+            <mxPoint x="440" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- include: 注文確定 -> 支払い処理 -->
+        <mxCell id="include1" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="endArrow=open;endSize=12;dashed=1;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="uc-order" target="uc-payment">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="550" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- 関連: 決済システム -> 支払い処理 -->
+        <mxCell id="assoc9" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="actor-payment" target="uc-payment">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="450" as="sourcePoint" />
+            <mxPoint x="440" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

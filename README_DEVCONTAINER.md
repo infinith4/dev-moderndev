@@ -123,6 +123,15 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 - Git で管理している場合は、変更内容を確認してからコミットしてください
 - `.env.devcontainer` ファイルは機密情報を含む可能性があるため、必要に応じて `.gitignore` に追加してください
 
+## DevContainer セットアップ内容
+
+`.devcontainer/setup.sh` により、以下のツールが自動的にインストールされます:
+
+1. **Google Chrome** - markdown-preview-enhanced でのPDF生成に使用
+2. **日本語フォント** - PDF生成時の日本語表示に必要
+3. **PlantUML** - UML図生成ツール
+4. **@openai/codex** - OpenAI Codex CLI ツール（グローバルインストール）
+
 ## ファイルの変更内容
 
 ### devcontainer.json

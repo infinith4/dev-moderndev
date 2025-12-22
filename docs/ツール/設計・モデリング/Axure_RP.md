@@ -192,7 +192,6 @@ Axure RPは、高度なインタラクティブプロトタイプ作成に特化
 | ツール | 特徴 | 比較 |
 |--------|------|------|
 | **Figma** | モダン、協業、デザイン | Axureよりデザイン強い |
-| **Adobe XD** | Adobe統合、軽量 | Axureよりシンプル |
 | **Sketch** | macOS、プラグイン豊富 | Axureよりデザイン重視 |
 | **Balsamiq** | ローファイ、ラピッド | Axureよりシンプル |
 | **Framer** | コードベース、高度 | Axureよりモダン |
@@ -210,7 +209,6 @@ Axure RPは、高度なインタラクティブプロトタイプ作成に特化
 - [UI/UXツール一覧](../UI_UXツール/)
 - [Figma](./Figma.md)
 - [Balsamiq](./Balsamiq.md)
-- [Adobe XD](./Adobe_XD.md)
 - [プロトタイピングベストプラクティス](../../best-practices/prototyping.md)
 
 ---

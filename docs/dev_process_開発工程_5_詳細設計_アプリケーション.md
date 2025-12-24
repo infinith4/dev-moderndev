@@ -18,16 +18,15 @@
 
 | # | ツール名 | 公式サイト | 概要 | 用途 | メリット | デメリット |
 |---|---------|-----------|------|------|---------|-----------|
-| 1 | **Enterprise Architect** | [https://sparxsystems.com/](https://sparxsystems.com/) | 多機能UMLモデリングツール。詳細設計からコード生成まで | クラス図、シーケンス図、状態遷移図、コード生成 | ✅ 詳細設計に最適<br>✅ コード生成・逆生成<br>✅ トレーサビリティ<br>✅ 多様な図に対応<br>✅ チーム開発対応 | ❌ 学習曲線非常に急<br>❌ UI複雑<br>❌ 機能過多<br>❌ 動作やや重い |
-| 2 | **PlantUML** | [https://plantuml.com/](https://plantuml.com/) | テキストベースUML。Git管理、CI/CD統合に最適 | クラス図、シーケンス図、ER図、コンポーネント図 | ✅ テキストベース<br>✅ Git管理容易<br>✅ CI/CD統合<br>✅ 無料<br>✅ 差分管理容易 | ❌ GUI編集不可<br>❌ 記法学習必要<br>❌ 複雑な図困難<br>❌ レイアウト調整困難 |
-| 3 | **Swagger/OpenAPI** | [https://swagger.io/](https://swagger.io/) | API設計・ドキュメント生成ツール。RESTful API定義標準 | REST API設計、API仕様書、インタラクティブドキュメント | ✅ API設計標準<br>✅ 自動ドキュメント生成<br>✅ モック生成<br>✅ コード生成<br>✅ 無料 | ❌ REST専用<br>❌ YAML記述やや複雑<br>❌ GraphQL非対応<br>❌ バージョン管理工夫必要 |
-| 4 | **Postman** | [https://www.postman.com/](https://www.postman.com/) | API開発・テストプラットフォーム。設計・ドキュメント・テスト統合 | API設計、モックサーバー、API仕様書、コレクション管理 | ✅ API設計・テスト統合<br>✅ モックサーバー<br>✅ 自動ドキュメント<br>✅ チーム共有<br>✅ 無料プランあり | ❌ 無料版機能制限<br>❌ バージョン管理やや弱い<br>❌ 大規模では有料必須<br>❌ オフライン機能限定的 |
-| 5 | **dbdiagram.io** | [https://dbdiagram.io/](https://dbdiagram.io/) | データベース設計ツール。ER図作成、SQL生成 | ER図作成、データベーススキーマ設計、DDL生成 | ✅ シンプルで使いやすい<br>✅ テキストベース<br>✅ SQL自動生成<br>✅ 共有容易<br>✅ 無料プランあり | ❌ 機能基本的<br>❌ 複雑なDB設計困難<br>❌ バージョン管理弱い<br>❌ オフライン不可 |
-| 6 | **MySQL Workbench** | [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/) | MySQL公式DB設計・管理ツール。ER図、SQL開発、管理 | データベース設計、ER図、SQL開発、リバースエンジニアリング | ✅ MySQL公式<br>✅ 完全無料<br>✅ ER図作成<br>✅ リバースエンジニアリング<br>✅ SQL開発環境 | ❌ MySQL専用<br>❌ UI古め<br>❌ 動作やや重い<br>❌ 学習コストあり |
-| 7 | **draw.io (diagrams.net)** | [https://www.diagrams.net/](https://www.diagrams.net/) | 汎用図作成ツール。クラス図、ER図、フローチャート | クラス図、ER図、フローチャート、コンポーネント図 | ✅ 完全無料<br>✅ 多様な図対応<br>✅ テンプレート豊富<br>✅ GitHub/Drive統合<br>✅ ブラウザ/デスクトップ | ❌ 専門ツール比で機能劣る<br>❌ コード生成不可<br>❌ コラボ機能弱い<br>❌ 大規模管理困難 |
-| 8 | **Visual Paradigm** | [https://www.visual-paradigm.com/](https://www.visual-paradigm.com/) | 総合モデリングツール。UML、ER、BPMN、コード生成 | 詳細設計、クラス図、ER図、コード生成、リバースエンジニアリング | ✅ 多機能統合<br>✅ コード生成豊富<br>✅ データベース設計<br>✅ リバースエンジニアリング<br>✅ チーム開発 | ❌ 高額（$99/月〜）<br>❌ 機能過多で複雑<br>❌ 動作重い<br>❌ 学習コスト高 |
-| 9 | **Mermaid** | [https://mermaid.js.org/](https://mermaid.js.org/) | JavaScriptダイアグラムライブラリ。Markdown統合、Git管理 | フローチャート、シーケンス図、クラス図、ER図（Markdown内） | ✅ Markdown統合<br>✅ Git管理容易<br>✅ 無料オープンソース<br>✅ GitHub対応<br>✅ 軽量 | ❌ 機能限定的<br>❌ 複雑な図困難<br>❌ レイアウト制御弱い<br>❌ エクスポート形式限定 |
-| 10 | **Stoplight Studio** | [https://stoplight.io/](https://stoplight.io/) | API設計プラットフォーム。OpenAPI、モック、ドキュメント | API詳細設計、OpenAPI定義、モックサーバー、ドキュメント | ✅ API設計特化<br>✅ ビジュアルエディタ<br>✅ モックサーバー<br>✅ Git統合<br>✅ 無料プランあり | ❌ API設計以外不向き<br>❌ 有料プラン推奨<br>❌ 学習コストあり<br>❌ 大規模では高額 |
+| 1 | **PlantUML** | [https://plantuml.com/](https://plantuml.com/) | テキストベースUML。Git管理、CI/CD統合に最適 | クラス図、シーケンス図、ER図、コンポーネント図 | ✅ テキストベース<br>✅ Git管理容易<br>✅ CI/CD統合<br>✅ 無料<br>✅ 差分管理容易 | ❌ GUI編集不可<br>❌ 記法学習必要<br>❌ 複雑な図困難<br>❌ レイアウト調整困難 |
+| 2 | **Swagger/OpenAPI** | [https://swagger.io/](https://swagger.io/) | API設計・ドキュメント生成ツール。RESTful API定義標準 | REST API設計、API仕様書、インタラクティブドキュメント | ✅ API設計標準<br>✅ 自動ドキュメント生成<br>✅ モック生成<br>✅ コード生成<br>✅ 無料 | ❌ REST専用<br>❌ YAML記述やや複雑<br>❌ GraphQL非対応<br>❌ バージョン管理工夫必要 |
+| 3 | **Postman** | [https://www.postman.com/](https://www.postman.com/) | API開発・テストプラットフォーム。設計・ドキュメント・テスト統合 | API設計、モックサーバー、API仕様書、コレクション管理 | ✅ API設計・テスト統合<br>✅ モックサーバー<br>✅ 自動ドキュメント<br>✅ チーム共有<br>✅ 無料プランあり | ❌ 無料版機能制限<br>❌ バージョン管理やや弱い<br>❌ 大規模では有料必須<br>❌ オフライン機能限定的 |
+| 4 | **dbdiagram.io** | [https://dbdiagram.io/](https://dbdiagram.io/) | データベース設計ツール。ER図作成、SQL生成 | ER図作成、データベーススキーマ設計、DDL生成 | ✅ シンプルで使いやすい<br>✅ テキストベース<br>✅ SQL自動生成<br>✅ 共有容易<br>✅ 無料プランあり | ❌ 機能基本的<br>❌ 複雑なDB設計困難<br>❌ バージョン管理弱い<br>❌ オフライン不可 |
+| 5 | **MySQL Workbench** | [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/) | MySQL公式DB設計・管理ツール。ER図、SQL開発、管理 | データベース設計、ER図、SQL開発、リバースエンジニアリング | ✅ MySQL公式<br>✅ 完全無料<br>✅ ER図作成<br>✅ リバースエンジニアリング<br>✅ SQL開発環境 | ❌ MySQL専用<br>❌ UI古め<br>❌ 動作やや重い<br>❌ 学習コストあり |
+| 6 | **draw.io (diagrams.net)** | [https://www.diagrams.net/](https://www.diagrams.net/) | 汎用図作成ツール。クラス図、ER図、フローチャート | クラス図、ER図、フローチャート、コンポーネント図 | ✅ 完全無料<br>✅ 多様な図対応<br>✅ テンプレート豊富<br>✅ GitHub/Drive統合<br>✅ ブラウザ/デスクトップ | ❌ 専門ツール比で機能劣る<br>❌ コード生成不可<br>❌ コラボ機能弱い<br>❌ 大規模管理困難 |
+| 7 | **Visual Paradigm** | [https://www.visual-paradigm.com/](https://www.visual-paradigm.com/) | 総合モデリングツール。UML、ER、BPMN、コード生成 | 詳細設計、クラス図、ER図、コード生成、リバースエンジニアリング | ✅ 多機能統合<br>✅ コード生成豊富<br>✅ データベース設計<br>✅ リバースエンジニアリング<br>✅ チーム開発 | ❌ 高額（$99/月〜）<br>❌ 機能過多で複雑<br>❌ 動作重い<br>❌ 学習コスト高 |
+| 8 | **Mermaid** | [https://mermaid.js.org/](https://mermaid.js.org/) | JavaScriptダイアグラムライブラリ。Markdown統合、Git管理 | フローチャート、シーケンス図、クラス図、ER図（Markdown内） | ✅ Markdown統合<br>✅ Git管理容易<br>✅ 無料オープンソース<br>✅ GitHub対応<br>✅ 軽量 | ❌ 機能限定的<br>❌ 複雑な図困難<br>❌ レイアウト制御弱い<br>❌ エクスポート形式限定 |
+| 9 | **Stoplight Studio** | [https://stoplight.io/](https://stoplight.io/) | API設計プラットフォーム。OpenAPI、モック、ドキュメント | API詳細設計、OpenAPI定義、モックサーバー、ドキュメント | ✅ API設計特化<br>✅ ビジュアルエディタ<br>✅ モックサーバー<br>✅ Git統合<br>✅ 無料プランあり | ❌ API設計以外不向き<br>❌ 有料プラン推奨<br>❌ 学習コストあり<br>❌ 大規模では高額 |
 
 <!-- ### その他利用可能なツール
 
@@ -59,12 +58,11 @@
 
 | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
 |---------|------|------|------|---------|----------|
-| [**Enterprise Architect**](https://sparxsystems.com/) | 多機能UMLモデリングツール。詳細設計からコード生成まで対応。エンタープライズ標準。 | クラス図、シーケンス図、状態遷移図、コンポーネント図、コード生成 | 💰 $159～（買い切り）<br>💰 $30/月（ライセンス）<br>💰 Team: $3,000/年 | ✅ 詳細設計に最適<br>✅ コード生成・逆生成<br>✅ トレーサビリティ管理<br>✅ 多様な図に対応<br>✅ チーム開発対応 | ❌ 学習曲線非常に急<br>❌ UI複雑<br>❌ 機能過多で迷う<br>❌ 動作やや重い |
 | [**PlantUML**](https://plantuml.com/) | テキストベースUML。Git管理、CI/CD統合に最適。 | クラス図、シーケンス図、ER図、コンポーネント図、ステート図 | 🟢 完全無料 | ✅ テキストで記述<br>✅ Git管理容易<br>✅ CI/CD統合可能<br>✅ 差分管理容易<br>✅ 完全無料 | ❌ GUI編集不可<br>❌ 記法学習必要<br>❌ 複雑な図困難<br>❌ レイアウト調整困難 |
 | [**draw.io**](https://www.diagrams.net/) | 汎用図作成ツール。クラス図、ER図、フローチャートに対応。 | クラス図、ER図、フローチャート、コンポーネント図、デプロイメント図 | 🟢 完全無料 | ✅ 完全無料<br>✅ 多様な図対応<br>✅ テンプレート豊富<br>✅ GitHub/Drive統合<br>✅ ブラウザ/デスクトップ対応 | ❌ 専門ツール比で機能劣る<br>❌ コード生成不可<br>❌ コラボ機能弱い<br>❌ 大規模管理困難 |
 | [**Mermaid**](https://mermaid.js.org/) | JavaScriptダイアグラムライブラリ。Markdown統合、Git管理に最適。 | フローチャート、シーケンス図、クラス図、ER図（Markdown内）、ガントチャート | 🟢 完全無料 | ✅ Markdown統合<br>✅ Git管理容易<br>✅ 無料オープンソース<br>✅ GitHub対応<br>✅ 軽量で高速 | ❌ 機能限定的<br>❌ 複雑な図困難<br>❌ レイアウト制御弱い<br>❌ エクスポート形式限定 |
 | [**Visual Paradigm**](https://www.visual-paradigm.com/) | 総合モデリングツール。UML、ER、BPMN、コード生成対応。 | 詳細設計、クラス図、ER図、コード生成、リバースエンジニアリング | 💰 $99/月～<br>🟢 Community Edition無料 | ✅ 多機能統合<br>✅ コード生成豊富<br>✅ データベース設計<br>✅ リバースエンジニアリング<br>✅ チーム開発対応 | ❌ 高額（$99/月～）<br>❌ 機能過多で複雑<br>❌ 動作重い<br>❌ 学習コスト高い |
-| [**StarUML**](https://staruml.io/) | モダンUIのUMLツール。拡張機能とテーマカスタマイズに対応。 | UMLモデリング、クラス図、ER図、コード生成・逆生成 | 💰 $89（買い切り）<br>💰 $4.99/月（サブスク） | ✅ モダンで美しいUI<br>✅ 軽量で高速<br>✅ 拡張機能対応<br>✅ コード生成・逆生成<br>✅ 安価 | ❌ Enterprise Architectより機能少<br>❌ チーム開発機能弱い<br>❌ 日本語ドキュメント少ない<br>❌ サポート限定的 |
+| [**StarUML**](https://staruml.io/) | モダンUIのUMLツール。拡張機能とテーマカスタマイズに対応。 | UMLモデリング、クラス図、ER図、コード生成・逆生成 | 💰 $89（買い切り）<br>💰 $4.99/月（サブスク） | ✅ モダンで美しいUI<br>✅ 軽量で高速<br>✅ 拡張機能対応<br>✅ コード生成・逆生成<br>✅ 安価 | ❌ 商用ツール比で機能少<br>❌ チーム開発機能弱い<br>❌ 日本語ドキュメント少ない<br>❌ サポート限定的 |
 
 **有用なドキュメント**
 
@@ -187,6 +185,7 @@
 
 | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
 |---------|------|------|------|---------|----------|
+| [**DevContainer (VS Code)**](https://code.visualstudio.com/docs/devcontainers/containers) | コンテナベース開発環境。VS Code統合で即座に開発開始。 | 開発環境構築、チーム環境統一、リモート開発、Docker開発 | 🟢 完全無料 | ✅ 完全無料<br>✅ 環境統一容易<br>✅ VS Code統合<br>✅ 設定ファイル共有<br>✅ 即座に開発開始 | ❌ VS Code必須<br>❌ Docker必要<br>❌ 初期ビルド時間<br>❌ リソース消費多い |
 | [**Docker**](https://www.docker.com/) | コンテナ化プラットフォーム。開発環境の標準化。 | 開発環境構築、環境標準化、マイクロサービス開発 | 🟢 完全無料 | ✅ 完全無料<br>✅ 環境標準化<br>✅ 再現性高い<br>✅ 本番環境と同一<br>✅ デプロイメント簡単 | ❌ 学習曲線が急<br>❌ Windowsでは制限あり<br>❌ リソース消費多い<br>❌ ネットワーク設定複雑 |
 | [**Vagrant**](https://www.vagrantup.com/) | 仮想マシン管理ツール。開発環境を簡単に構築・共有。 | 開発環境構築、チーム間での環境統一、オンプレ開発 | 🟢 完全無料 | ✅ 完全無料<br>✅ 環境再現性高い<br>✅ マルチプラットフォーム<br>✅ スクリプト自動化<br>✅ チーム共有容易 | ❌ 仮想マシン起動が遅い<br>❌ Dockerより重い<br>❌ リソース消費多い<br>❌ ディスク容量多要 |
 | [**VS Code**](https://code.visualstudio.com/) | 軽量マルチ言語コードエディタ。拡張機能で機能拡張。 | 開発環境、IDE、デバッグ環境、ターミナル | 🟢 完全無料 | ✅ 完全無料<br>✅ 軽量で高速<br>✅ 拡張機能豊富<br>✅ 複数言語対応<br>✅ Git統合 | ❌ IDE比で機能やや少ない<br>❌ 大規模プロジェクト向けでない<br>❌ 標準設定では限定的<br>❌ メモリ使用量増加 |
@@ -209,16 +208,15 @@
 
 | # | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
 |---|---------|------|------|------|---------|----------|
-| 1 | [**Enterprise Architect**](https://sparxsystems.com/) | 多機能UMLモデリングツール。詳細設計からコード生成まで。 | クラス図、シーケンス図、状態遷移図、コード生成、トレーサビリティ | 💰 $159～（買い切り） | ✅ 詳細設計に最適<br>✅ コード生成・逆生成<br>✅ トレーサビリティ<br>✅ 多様な図に対応<br>✅ チーム開発対応 | ❌ 学習曲線非常に急<br>❌ UI複雑<br>❌ 機能過多<br>❌ 動作やや重い |
-| 2 | [**PlantUML**](https://plantuml.com/) | テキストベースUML。Git管理、CI/CD統合に最適。 | クラス図、シーケンス図、ER図、コンポーネント図、バージョン管理 | 🟢 完全無料 | ✅ テキストベース<br>✅ Git管理容易<br>✅ CI/CD統合<br>✅ 無料<br>✅ 差分管理 | ❌ GUI編集不可<br>❌ 記法学習必要<br>❌ 複雑な図困難<br>❌ レイアウト調整困難 |
-| 3 | [**Swagger/OpenAPI**](https://swagger.io/) | API設計・ドキュメント生成ツール。REST API定義標準。 | API設計、仕様書、ドキュメント、モック、コード生成 | 🟢 完全無料 | ✅ 業界標準<br>✅ ドキュメント自動生成<br>✅ モック生成<br>✅ コード生成<br>✅ 多言語対応 | ❌ REST専用<br>❌ YAML記述複雑<br>❌ GraphQL非対応<br>❌ バージョン管理工夫必要 |
-| 4 | [**Postman**](https://www.postman.com/) | API開発・テストプラットフォーム。設計・テスト統合。 | API設計、テスト、モックサーバー、ドキュメント、コレクション | 🟢 無料プランあり<br>💰 Pro: $12/月 | ✅ 設計・テスト統合<br>✅ モックサーバー<br>✅ 自動ドキュメント<br>✅ チーム共有<br>✅ 直感的UI | ❌ 無料版機能制限<br>❌ バージョン管理弱い<br>❌ 大規模では有料<br>❌ オフライン限定的 |
-| 5 | [**Docker**](https://www.docker.com/) | コンテナ化プラットフォーム。開発環境標準化。 | 開発環境構築、標準化、本番環境統一、マイクロサービス | 🟢 完全無料 | ✅ 完全無料<br>✅ 環境標準化<br>✅ 再現性高い<br>✅ 本番統一<br>✅ デプロイ簡単 | ❌ 学習曲線急<br>❌ Windows制限<br>❌ リソース多量<br>❌ ネットワーク複雑 |
-| 6 | [**dbdiagram.io**](https://dbdiagram.io/) | データベース設計ツール。ER図作成、SQL生成。 | ER図作成、スキーマ設計、DDL生成、共有 | 🟢 無料プランあり<br>💰 Premium: $12/月 | ✅ シンプル<br>✅ テキストベース<br>✅ SQL自動生成<br>✅ 共有容易<br>✅ ブラウザ動作 | ❌ 機能基本的<br>❌ 複雑設計困難<br>❌ バージョン管理弱い<br>❌ オフライン不可 |
-| 7 | [**MySQL Workbench**](https://www.mysql.com/products/workbench/) | MySQL公式DB設計・管理ツール。ER図、SQL開発。 | DB設計、ER図、SQL開発、リバースエンジニアリング | 🟢 完全無料 | ✅ MySQL公式<br>✅ 完全無料<br>✅ ER図作成<br>✅ リバース機能<br>✅ SQL環境 | ❌ MySQL専用<br>❌ UI古め<br>❌ 動作重い<br>❌ 学習コスト |
-| 8 | [**VS Code**](https://code.visualstudio.com/) | 軽量マルチ言語エディタ。拡張機能豊富。 | コード編集、デバッグ、ターミナル、Git統合、拡張機能 | 🟢 完全無料 | ✅ 完全無料<br>✅ 軽量高速<br>✅ 拡張機能豊富<br>✅ 複数言語<br>✅ Git統合 | ❌ IDE比で機能少<br>❌ 大規模向けでない<br>❌ 標準では限定<br>❌ メモリ増加 |
-| 9 | [**draw.io**](https://www.diagrams.net/) | 汎用図作成ツール。UML、ER、フローチャート対応。 | 各種図作成、ER図、クラス図、フローチャート | 🟢 完全無料 | ✅ 完全無料<br>✅ 多様な図<br>✅ テンプレート<br>✅ GitHub統合<br>✅ ブラウザ/デスク | ❌ 機能比限定<br>❌ コード生成不可<br>❌ コラボ弱い<br>❌ 大規模困難 |
-| 10 | [**Git / GitHub**](https://github.com/) | 分散バージョン管理・チーム開発プラットフォーム。 | コード管理、チーム開発、CI/CD、リポジトリ、プロジェクト管理 | 🟢 無料プランあり<br>💰 Pro: $4/月 | ✅ 業界標準<br>✅ 分散管理<br>✅ CI/CD統合<br>✅ チーム機能<br>✅ リモート対応 | ❌ 学習曲線急<br>❌ CLI主体<br>❌ マージ複雑<br>❌ 大規模は高額 |
+| 1 | [**PlantUML**](https://plantuml.com/) | テキストベースUML。Git管理、CI/CD統合に最適。 | クラス図、シーケンス図、ER図、コンポーネント図、バージョン管理 | 🟢 完全無料 | ✅ テキストベース<br>✅ Git管理容易<br>✅ CI/CD統合<br>✅ 無料<br>✅ 差分管理 | ❌ GUI編集不可<br>❌ 記法学習必要<br>❌ 複雑な図困難<br>❌ レイアウト調整困難 |
+| 2 | [**Swagger/OpenAPI**](https://swagger.io/) | API設計・ドキュメント生成ツール。REST API定義標準。 | API設計、仕様書、ドキュメント、モック、コード生成 | 🟢 完全無料 | ✅ 業界標準<br>✅ ドキュメント自動生成<br>✅ モック生成<br>✅ コード生成<br>✅ 多言語対応 | ❌ REST専用<br>❌ YAML記述複雑<br>❌ GraphQL非対応<br>❌ バージョン管理工夫必要 |
+| 3 | [**Postman**](https://www.postman.com/) | API開発・テストプラットフォーム。設計・テスト統合。 | API設計、テスト、モックサーバー、ドキュメント、コレクション | 🟢 無料プランあり<br>💰 Pro: $12/月 | ✅ 設計・テスト統合<br>✅ モックサーバー<br>✅ 自動ドキュメント<br>✅ チーム共有<br>✅ 直感的UI | ❌ 無料版機能制限<br>❌ バージョン管理弱い<br>❌ 大規模では有料<br>❌ オフライン限定的 |
+| 4 | [**Docker**](https://www.docker.com/) | コンテナ化プラットフォーム。開発環境標準化。 | 開発環境構築、標準化、本番環境統一、マイクロサービス | 🟢 完全無料 | ✅ 完全無料<br>✅ 環境標準化<br>✅ 再現性高い<br>✅ 本番統一<br>✅ デプロイ簡単 | ❌ 学習曲線急<br>❌ Windows制限<br>❌ リソース多量<br>❌ ネットワーク複雑 |
+| 5 | [**dbdiagram.io**](https://dbdiagram.io/) | データベース設計ツール。ER図作成、SQL生成。 | ER図作成、スキーマ設計、DDL生成、共有 | 🟢 無料プランあり<br>💰 Premium: $12/月 | ✅ シンプル<br>✅ テキストベース<br>✅ SQL自動生成<br>✅ 共有容易<br>✅ ブラウザ動作 | ❌ 機能基本的<br>❌ 複雑設計困難<br>❌ バージョン管理弱い<br>❌ オフライン不可 |
+| 6 | [**MySQL Workbench**](https://www.mysql.com/products/workbench/) | MySQL公式DB設計・管理ツール。ER図、SQL開発。 | DB設計、ER図、SQL開発、リバースエンジニアリング | 🟢 完全無料 | ✅ MySQL公式<br>✅ 完全無料<br>✅ ER図作成<br>✅ リバース機能<br>✅ SQL環境 | ❌ MySQL専用<br>❌ UI古め<br>❌ 動作重い<br>❌ 学習コスト |
+| 7 | [**VS Code**](https://code.visualstudio.com/) | 軽量マルチ言語エディタ。拡張機能豊富。 | コード編集、デバッグ、ターミナル、Git統合、拡張機能 | 🟢 完全無料 | ✅ 完全無料<br>✅ 軽量高速<br>✅ 拡張機能豊富<br>✅ 複数言語<br>✅ Git統合 | ❌ IDE比で機能少<br>❌ 大規模向けでない<br>❌ 標準では限定<br>❌ メモリ増加 |
+| 8 | [**draw.io**](https://www.diagrams.net/) | 汎用図作成ツール。UML、ER、フローチャート対応。 | 各種図作成、ER図、クラス図、フローチャート | 🟢 完全無料 | ✅ 完全無料<br>✅ 多様な図<br>✅ テンプレート<br>✅ GitHub統合<br>✅ ブラウザ/デスク | ❌ 機能比限定<br>❌ コード生成不可<br>❌ コラボ弱い<br>❌ 大規模困難 |
+| 9 | [**Git / GitHub**](https://github.com/) | 分散バージョン管理・チーム開発プラットフォーム。 | コード管理、チーム開発、CI/CD、リポジトリ、プロジェクト管理 | 🟢 無料プランあり<br>💰 Pro: $4/月 | ✅ 業界標準<br>✅ 分散管理<br>✅ CI/CD統合<br>✅ チーム機能<br>✅ リモート対応 | ❌ 学習曲線急<br>❌ CLI主体<br>❌ マージ複雑<br>❌ 大規模は高額 |
 
 ---
 

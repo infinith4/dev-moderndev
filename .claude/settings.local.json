@@ -37,7 +37,9 @@
       "Bash(source venv/bin/activate)",
       "Bash(pip install:*)",
       "Bash(pip show:*)",
-      "Bash(python export_notion_to_csv.py:*)"
+      "Bash(python export_notion_to_csv.py:*)",
+      "Bash(dot:*)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []

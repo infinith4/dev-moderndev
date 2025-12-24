@@ -157,6 +157,7 @@
 | [**dbdiagram.io**](https://dbdiagram.io/) | データベース設計ツール。ER図作成、SQL生成。 | ER図作成、データベーススキーマ設計、DDL生成、共有 | 🟢 無料プランあり<br>💰 Premium: $12/月 | ✅ シンプルで使いやすい<br>✅ テキストベース<br>✅ SQL自動生成<br>✅ 共有容易<br>✅ ブラウザで動作 | ❌ 機能基本的<br>❌ 複雑なDB設計困難<br>❌ バージョン管理弱い<br>❌ オフライン不可 |
 | [**DBeaver**](https://dbeaver.io/) | 統合DB管理ツール。複数DB対応、ER図作成。 | データベース管理、ER図作成、SQL開発、リバースエンジニアリング | 🟢 Community無料<br>💰 Pro: $99.99/年<br>💰 Enterprise: カスタム | ✅ 複数DB対応<br>✅ 機能充実<br>✅ ER図作成<br>✅ リバースエンジニアリング<br>✅ Community無料 | ❌ UI複雑<br>❌ 学習曲線が急<br>❌ 動作やや重い<br>❌ Pro版で高額 |
 | [**pgModeler**](https://pgmodeler.io/) | PostgreSQL向けER図ツール。物理設計に最適。 | PostgreSQL ER図作成、テーブル定義、DDL生成 | 🟢 無料<br>💰 Pro: 一度限りの購入 | ✅ PostgreSQL特化<br>✅ 無料<br>✅ ER図作成<br>✅ DDL生成<br>✅ リバースエンジニアリング | ❌ PostgreSQL専用<br>❌ 他DBサポートなし<br>❌ UI古め<br>❌ コミュニティ規模小さい |
+| [**tbls**](./ツール/データベース/tbls.md) | 既存DBからER図・ドキュメント自動生成CLI。リバースエンジニアリング特化。 | 既存DBドキュメント化、ER図自動生成、CI/CD統合 | 🟢 完全無料 | ✅ リバースエンジニアリング<br>✅ 多様なDB対応<br>✅ Markdown/ER図自動生成<br>✅ CI/CD統合容易<br>✅ PlantUML/Mermaid出力 | ❌ CLI専用（GUI非対応）<br>❌ フォワード設計不可<br>❌ インタラクティブ編集不可<br>❌ 学習コスト |
 | [**draw.io**](https://www.diagrams.net/) | 汎用図作成ツール。ER図、テーブル定義図に対応。 | ER図作成、データベース構造図、物理設計図 | 🟢 完全無料 | ✅ 完全無料<br>✅ 多様な図対応<br>✅ テンプレート豊富<br>✅ GitHub/Drive統合<br>✅ ブラウザ/デスクトップ | ❌ DB設計機能限定<br>❌ SQL生成不可<br>❌ コード生成不可<br>❌ 大規模管理困難 |
 
 **有用なドキュメント**

@@ -110,16 +110,17 @@
 | 7 | [**pyresttest**](https://github.com/svanoort/pyresttest) | Python製REST APIテストフレームワーク。YAML/JSONで テスト定義 | REST API | 🟢 完全無料 | ✅ シンプルなYAML定義<br>✅ pytest統合容易<br>✅ Pythonコード埋め込み可能<br>✅ CI/CD統合容易<br>✅ 軽量 | ❌ UI なし（CLI only）<br>❌ GUI テストツール比で機能少ない<br>❌ コミュニティやや小<br>❌ 複雑なシナリオは難しい |
 | 8 | [**Apigee**](https://cloud.google.com/apigee) | Google製APIテスト・マネジメント・モニタリングプラットフォーム | REST / GraphQL | 💰 従量課金：$0.02～/テスト、Evaluation: 無料トライアル | ✅ エンタープライズ機能<br>✅ APIモニタリング統合<br>✅ セキュリティ監視<br>✅ SLA管理<br>✅ Google Cloud統合 | ❌ 非常に複雑<br>❌ 高額（大規模）<br>❌ 学習コスト高<br>❌ 小規模プロジェクトではオーバースペック |
 
-### 9.2.2 APIテスト用モックサーバツール（Top 6）
+### 9.2.2 APIテスト用モックサーバツール（Top 9）
 
 | # | ツール名 | 概要 | 対象技術 | 料金 | メリット | デメリット |
 |---|---------|------|----------|------|---------|-----------|
 | 1 | [**WireMock**](./ツール/テスト/WireMock.md) ([公式サイト](https://wiremock.org/)) | Java製HTTPモックサーバ。スタンドアロン・ライブラリ両対応 | REST API / HTTP / HTTPS | 🟢 完全無料 | ✅ 完全無料・オープンソース<br>✅ スタンドアロン・ライブラリ両対応<br>✅ リクエストマッチング強力<br>✅ CI/CD統合容易<br>✅ レスポンス遅延シミュレーション | ❌ Java環境必要<br>❌ GUI基本なし（Studio版は有料）<br>❌ 設定ファイル複雑化しやすい<br>❌ GraphQL対応限定的 |
 | 2 | [**MockServer**](./ツール/テスト/MockServer.md) ([公式サイト](https://www.mock-server.com/)) | HTTPモックサーバ・プロキシ。Java/Node.js/Docker対応 | REST API / HTTP / HTTPS / WebSocket | 🟢 完全無料 | ✅ 完全無料・オープンソース<br>✅ Java/Node.js/Docker対応<br>✅ プロキシモード対応<br>✅ UI付属<br>✅ 期待値検証機能 | ❌ セットアップやや複雑<br>❌ ドキュメント整理不十分<br>❌ パフォーマンス課題あり<br>❌ 学習コスト中程度 |
-| 3 | [**json-server**](./ツール/テスト/json-server.md) ([公式サイト](https://github.com/typicode/json-server)) | JSONファイルから即座にREST API作成。超軽量 | REST API | 🟢 完全無料 | ✅ 完全無料<br>✅ 超シンプル（JSONファイルのみ）<br>✅ npm一発インストール<br>✅ CRUD自動生成<br>✅ フロントエンド開発最適 | ❌ 機能限定的（基本CRUD）<br>❌ 複雑なロジック不可<br>❌ プロダクション非推奨<br>❌ 認証機能なし |
-| 4 | [**Mockoon**](./ツール/テスト/Mockoon.md) ([公式サイト](https://mockoon.com/)) | デスクトップGUIモックAPIサーバ。ノーコード | REST API / GraphQL | 🟢 完全無料 / 💰 Cloud: $8/月～ | ✅ 美しいGUI<br>✅ ノーコードで即作成<br>✅ テンプレート機能<br>✅ CLI対応（CI/CD）<br>✅ クロスプラットフォーム | ❌ GUI必要（自動化やや手間）<br>❌ 大規模データには不向き<br>❌ Cloud版は有料<br>❌ カスタムロジック限定的 |
+| 3 | [**MSW (Mock Service Worker)**](./ツール/テスト/MSW.md) ([公式サイト](https://mswjs.io/)) | ブラウザ・Node.js両対応APIモックライブラリ。Service Worker活用 | REST API / GraphQL | 🟢 完全無料 | ✅ ブラウザ・Node.js両対応<br>✅ Service Worker活用<br>✅ テストコード統合容易<br>✅ GraphQL対応<br>✅ TypeScript完全対応 | ❌ JavaScript/TypeScript環境必須<br>❌ スタンドアロンサーバではない<br>❌ 学習コスト中程度<br>❌ ブラウザ互換性制限あり |
+| 4 | [**Nock**](./ツール/テスト/Nock.md) ([公式サイト](https://github.com/nock/nock)) | Node.js用HTTPモックライブラリ。テストコード埋め込み型 | Node.js / HTTP / HTTPS | 🟢 完全無料 | ✅ 完全無料・オープンソース<br>✅ Node.jsテスト最適化<br>✅ HTTPリクエスト完全制御<br>✅ リクエスト記録・再生<br>✅ Jest/Mocha統合容易 | ❌ Node.js専用<br>❌ ブラウザ非対応<br>❌ スタンドアロンサーバではない<br>❌ GraphQL対応限定的 |
 | 5 | [**Prism**](./ツール/テスト/Prism.md) ([公式サイト](https://stoplight.io/open-source/prism)) | OpenAPI仕様からモックサーバ自動生成。Stoplight製 | REST API / OpenAPI 3.0 | 🟢 完全無料 | ✅ OpenAPI仕様から自動生成<br>✅ バリデーション機能<br>✅ 動的レスポンス生成<br>✅ CLI・Docker対応<br>✅ サンプル生成優秀 | ❌ OpenAPI仕様必須<br>❌ GraphQL非対応<br>❌ 複雑なビジネスロジック不可<br>❌ UI なし（CLI only） |
-| 6 | [**MSW (Mock Service Worker)**](./ツール/テスト/MSW.md) ([公式サイト](https://mswjs.io/)) | ブラウザ・Node.js両対応APIモックライブラリ。Service Worker活用 | REST API / GraphQL | 🟢 完全無料 | ✅ ブラウザ・Node.js両対応<br>✅ Service Worker活用<br>✅ テストコード統合容易<br>✅ GraphQL対応<br>✅ TypeScript完全対応 | ❌ JavaScript/TypeScript環境必須<br>❌ スタンドアロンサーバではない<br>❌ 学習コスト中程度<br>❌ ブラウザ互換性制限あり |
+| 6 | [**json-server**](./ツール/テスト/json-server.md) ([公式サイト](https://github.com/typicode/json-server)) | JSONファイルから即座にREST API作成。超軽量 | REST API | 🟢 完全無料 | ✅ 完全無料<br>✅ 超シンプル（JSONファイルのみ）<br>✅ npm一発インストール<br>✅ CRUD自動生成<br>✅ フロントエンド開発最適 | ❌ 機能限定的（基本CRUD）<br>❌ 複雑なロジック不可<br>❌ プロダクション非推奨<br>❌ 認証機能なし |
+| 7 | [**Mockoon**](./ツール/テスト/Mockoon.md) ([公式サイト](https://mockoon.com/)) | デスクトップGUIモックAPIサーバ。ノーコード | REST API / GraphQL | 🟢 完全無料 / 💰 Cloud: $8/月～ | ✅ 美しいGUI<br>✅ ノーコードで即作成<br>✅ テンプレート機能<br>✅ CLI対応（CI/CD）<br>✅ クロスプラットフォーム | ❌ GUI必要（自動化やや手間）<br>❌ 大規模データには不向き<br>❌ Cloud版は有料<br>❌ カスタムロジック限定的 |
 
 ---
 

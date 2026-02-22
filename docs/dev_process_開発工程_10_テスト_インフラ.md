@@ -30,6 +30,7 @@
 |-------|------|
 | [ISO/IEC/IEEE 29119 overview](https://www.softwaretestingstandards.org/iso-29119/) | インフラテスト成果物、管理観点の共通化 |
 | [NIST SP 800-34 Rev.1](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final) | バックアップ/復旧テストの基準 |
+| [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) | 運用・信頼性・セキュリティ観点でのテスト観点整理 |
 | [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) | 運用・信頼性・セキュリティ観点でのテスト観点整理 |
 
 ---

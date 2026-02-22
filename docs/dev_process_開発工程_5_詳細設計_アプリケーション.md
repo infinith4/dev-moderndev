@@ -9,7 +9,8 @@
   - [3.4 TypeScript](#34-typescript)
 - [4. データベース物理設計](#4-データベース物理設計)
 - [5. 開発環境構築](#5-開発環境構築)
-- [6. 参考資料](#6-参考資料)
+- [6. 運用設計](#6-運用設計)
+- [7. 参考資料](#7-参考資料)
 
 詳細設計（アプリケーション）のタスクと推奨ツール、有用なドキュメントを記載した。
 
@@ -143,7 +144,31 @@
 
 ---
 
-## 6. 参考資料
+## 6. 運用設計
+**成果物**
+- 監視設計書
+- バックアップ運用設計書
+- 構成管理運用設計書
+- 運用Runbook
+
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Prometheus](https://prometheus.io/) | 監視メトリクス設計、アラートルール設計 | 無料 |
+| [Grafana](https://grafana.com/) | 監視ダッシュボード設計、通知設計 | 無料枠あり |
+| [Velero](https://velero.io/) | バックアップ/リストア設計、DR手順設計 | 無料 |
+| [Ansible](https://www.ansible.com/) | 構成管理設計、設定ドリフト防止方針 | 無料 |
+
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [SRE Fundamentals - Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/) | 監視方針（SLI/SLO、アラート設計）の基準 |
+| [NIST SP 800-34 Rev.1](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final) | バックアップ/復旧方針、運用継続計画の基準 |
+| [The Twelve-Factor App - Config](https://12factor.net/config) | 構成管理方針（設定外部化、環境分離）の基準 |
+
+---
+
+## 7. 参考資料
 - IPA 共通フレーム2013 / ISO/IEC/IEEE 12207:2017
 - [IPA API標準設計ガイド](https://www.ipa.go.jp/digital/data/jod03a000000a82y-att/api_standard_design_guide.pdf)
 - [IPA 機能要件の合意形成ガイド（データモデル編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html)

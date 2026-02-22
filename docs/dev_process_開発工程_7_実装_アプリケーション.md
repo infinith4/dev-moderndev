@@ -1,6 +1,12 @@
 # 開発工程_7_実装（アプリケーション）
 
 - [1. プログラミング](#1-プログラミング)
+  - [1.1 モックツール](#11-モックツール)
+      - [Java](#java)
+      - [C#](#c)
+      - [Python](#python)
+      - [TypeScript](#typescript)
+  - [1.2 モックサーバー](#12-モックサーバー)
 - [2. ビルド・パッケージ管理](#2-ビルドパッケージ管理)
 - [3. 実装規約・品質管理](#3-実装規約品質管理)
   - [3.1 Java](#31-java)
@@ -33,6 +39,55 @@
 |-------|------|
 | [Clean Code / Clean Architecture](https://blog.cleancoder.com/) | 実装レイヤー分割、依存方向設計 |
 | [Refactoring Catalog](https://refactoring.com/catalog/) | リファクタリング方針の標準化 |
+
+### 1.1 モックツール
+
+##### Java
+
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Mockito](https://site.mockito.org/) | 単体テスト時の依存オブジェクトのモック化 | 無料 |
+
+##### C#
+
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Moq](https://github.com/devlooped/moq) | .NET単体テストでのモック/スタブ作成 | 無料 |
+
+##### Python
+
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) | 標準ライブラリでのモック/パッチ適用 | 無料 |
+
+##### TypeScript
+
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [MSW (Mock Service Worker)](https://mswjs.io/) | ブラウザ/Node.jsでのAPIモック | 無料 |
+| [ts-mockito](https://github.com/NagRock/ts-mockito) | TypeScript向けモック作成と振る舞い定義 | 無料 |
+
+### 1.2 モックサーバー
+
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [WireMock](https://wiremock.org/) | HTTP APIモックサーバによる外部依存のテスト | 無料 |
+| [MockServer](https://www.mock-server.com/) | HTTP/HTTPSモック・スタブ、リクエスト検証 | 無料 |
+| [Mountebank](https://www.mbtest.org/) | 複数プロトコル対応のサービス仮想化 | 無料 |
+| [Prism](https://stoplight.io/open-source/prism) | OpenAPIからのモックサーバ自動生成 | 無料 |
+| [Nock](https://github.com/nock/nock) | Node.js向けHTTPリクエストのモック | 無料 |
+
+**有用なドキュメント（モック）**
+
+| 資料名 | 用途 |
+|-------|------|
+| [Mockito Documentation](https://github.com/mockito/mockito/wiki) | Javaモックの基本パターン、検証手法の統一 |
+| [Moq Quickstart](https://github.com/devlooped/moq/wiki/Quickstart) | C#モック作成、セットアップ、検証手順の標準化 |
+| [unittest.mock — Python Docs](https://docs.python.org/3/library/unittest.mock.html) | Python標準モックのパッチ・スタブ利用指針 |
+| [ts-mockito README](https://github.com/NagRock/ts-mockito) | TypeScriptモック記法、振る舞い定義の統一 |
+| [WireMock Documentation](https://wiremock.org/docs/) | モックサーバ構築、スタブ定義、検証手順 |
+| [MockServer Documentation](https://www.mock-server.com/#documentation) | モックサーバ設定、期待値検証、プロキシ活用 |
+
 
 ## 2. ビルド・パッケージ管理
 **成果物**
@@ -115,7 +170,7 @@
 | [GitHub Pull Requests](https://github.com/features/code-review) | レビュー運用・差分確認 | 無料枠あり |
 | [GitLab Merge Requests](https://docs.gitlab.com/ee/user/project/merge_requests/) | レビュー運用・承認フロー | 無料枠あり |
 | [Danger](https://danger.systems/) | PR自動レビューコメント | 無料 |
-| [Reviewdog](https://reviewdog.github.io/) | Lint/静的解析結果をPRコメントとして自動通知 | 無料 |
+| [Reviewdog](https://github.com/reviewdog/reviewdog) | Lint/静的解析結果をPRコメントとして自動通知 | 無料 |
 | [CodeRabbit](https://www.coderabbit.ai/) | AIによるPRレビュー、改善提案コメントの自動生成 | 無料枠あり |
 
 **有用なドキュメント**
@@ -174,3 +229,4 @@
 - ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
 - [IPA 組込みソフトウェア向け 設計ガイド（事例編）ESDR](https://www.ipa.go.jp/)
 - [Google Engineering Practices](https://google.github.io/eng-practices/)
+

@@ -1,7 +1,6 @@
 # 開発工程_2_要件定義
 
 - [1. 概要](#1-概要)
-  - [1.1. 参考資料](#11-参考資料)
   - [1.2. 共通](#12-共通)
 - [2. 業務分析](#2-業務分析)
 - [3. ユースケース分析](#3-ユースケース分析)
@@ -19,9 +18,6 @@
 ## 1. 概要
 
 要件定義プロセスのタスクと推奨ツール、有用なドキュメントを記載した。
-
-### 1.1. 参考資料
-- [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 
 ---
 
@@ -171,7 +167,7 @@
 
 | ツール名 | 用途 | 料金 |
 |---------|------|------|
-| [Swagger/OpenAPI](https://swagger.io/) | REST API仕様記述標準 | 無料 |
+| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様記述標準 | 無料 |
 
 **有用なドキュメント**
 
@@ -240,5 +236,6 @@
 
 ## 12. 参考資料
 - [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
+- ISO/IEC/IEEE 12207:2017
 - [ユーザのための要件定義ガイド 第2版](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/youkenteigi20190912.html)
 - [機能要件の合意形成ガイド（画面/データモデル/バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html)

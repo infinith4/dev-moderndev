@@ -324,7 +324,6 @@ async function exportImage(nodeId) {
 
 - [デザインツール一覧](../デザインツール/)
 - [Sketch](./Sketch.md)
-- [Adobe XD](./Adobe_XD.md)
 
 ---
 

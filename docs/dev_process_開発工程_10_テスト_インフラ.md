@@ -46,6 +46,7 @@
 | [Terratest](https://terratest.gruntwork.io/) | IaCで作成したリソースの単体検証 | 無料 |
 | [Pester](https://pester.dev/) | PowerShellベースの検証テスト | 無料 |
 | [Goss](https://github.com/goss-org/goss) | サーバー設定値・サービス状態の検証 | 無料 |
+| [ARM/Bicep テスト ツールキット (arm-ttk)](https://github.com/Azure/arm-ttk) | Azure ARM/Bicepテンプレート検証 | 無料 |
 | [AWS CDK Assertions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html) | AWS CDKテンプレート検証 | 無料 |
 
 **有用なドキュメント**
@@ -54,6 +55,7 @@
 |-------|------|
 | [Terratest Documentation](https://terratest.gruntwork.io/docs/) | テスト記述パターンと実行方法 |
 | [Pester Documentation](https://pester.dev/docs/quick-start) | PowerShellテスト実装 |
+| [ARM Template Test Toolkit](https://learn.microsoft.com/azure/azure-resource-manager/templates/test-toolkit) | Azureテンプレートの単体検証ルール確認 |
 | [AWS CDK Testing Guide](https://docs.aws.amazon.com/cdk/v2/guide/testing.html) | CDK単体テスト設計 |
 
 ---

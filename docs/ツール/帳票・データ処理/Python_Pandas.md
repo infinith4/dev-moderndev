@@ -14,13 +14,13 @@ Python/Pandasは、データ分析・操作ライブラリで、基本設計フ�
 
 ### 料金プラン
 
-- **Python**: 完全無料（PSF Licenseライセンス）
-- **Pandas**: 完全無料（BSD 3-Clause Licenseライセンス）
+- **Python**: 無料（PSF Licenseライセンス）
+- **Pandas**: 無料（BSD 3-Clause Licenseライセンス）
 
 ### メリット・デメリット
 
 **メリット**
-- 完全無料でオープンソース
+- 無料でオープンソース
 - CSV、JSON、XML、Excel等の多様なフォーマットに対応
 - データ型検証、バリデーションが容易
 - サンプルデータを迅速に生成可能

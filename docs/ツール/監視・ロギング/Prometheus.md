@@ -14,12 +14,12 @@ Prometheusは、オープンソースの時系列データベース・監視シ�
 
 ### 料金プラン
 
-- **Prometheus**: 完全無料（Apache License 2.0）
+- **Prometheus**: 無料（Apache License 2.0）
 
 ### メリット・デメリット
 
 **メリット**
-- 完全無料でオープンソース
+- 無料でオープンソース
 - Kubernetesの標準監視ツール
 - スケーラブル（大規模環境に対応）
 - 柔軟なクエリ言語（PromQL）

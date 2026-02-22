@@ -8,16 +8,16 @@ Seleniumは、Webブラウザの自動化を行うオープンソースのテス
 
 | プラン | 料金 | 特徴 |
 |-------|------|------|
-| **Selenium WebDriver** | 🟢 完全無料 | オープンソース、無制限利用、Apache License 2.0 |
-| **Selenium Grid** | 🟢 完全無料 | 並列実行、複数ブラウザテスト |
-| **Selenium IDE** | 🟢 完全無料 | ブラウザ拡張機能、レコード&プレイバック |
+| **Selenium WebDriver** | 🟢 無料 | オープンソース、無制限利用、Apache License 2.0 |
+| **Selenium Grid** | 🟢 無料 | 並列実行、複数ブラウザテスト |
+| **Selenium IDE** | 🟢 無料 | ブラウザ拡張機能、レコード&プレイバック |
 
-**注意**: Selenium自体は完全無料ですが、クラウドベースの実行環境（Sauce Labs、BrowserStack等）は有料です。
+**注意**: Selenium自体は無料ですが、クラウドベースの実行環境（Sauce Labs、BrowserStack等）は有料です。
 
 ## メリット・デメリット
 
 ### メリット
-- ✅ **完全無料**: オープンソース、商用利用も無料
+- ✅ **無料**: オープンソース、商用利用も無料
 - ✅ **実ブラウザ対応**: Chrome、Firefox、Safari、Edge等の実際のブラウザで実行
 - ✅ **多言語対応**: Java、Python、C#、Ruby、JavaScript等
 - ✅ **クロスブラウザ**: 複数ブラウザで同一テストを実行可能

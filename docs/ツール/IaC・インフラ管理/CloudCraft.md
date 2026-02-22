@@ -158,7 +158,7 @@ CloudCraftは、AWSインフラストラクチャをビジュアルに設計・�
 | ツール | 特徴 | 比較 |
 |--------|------|------|
 | **Lucidchart** | マルチクラウド対応、AWS/Azure/GCP | CloudCraftよりコスト見積もり弱い |
-| **Draw.io (diagrams.net)** | 完全無料、AWSアイコンあり | CloudCraftより機能限定的だが無料 |
+| **Draw.io (diagrams.net)** | 無料、AWSアイコンあり | CloudCraftより機能限定的だが無料 |
 | **Cacoo** | 日本製、AWSアイコン対応 | CloudCraftより3D表示なし |
 | **AWS Application Composer** | AWS公式、無料 | CloudCraftよりビジュアルは劣る |
 | **Cloudockit** | AWS/Azure自動ドキュメント化 | CloudCraftよりドキュメント重視 |

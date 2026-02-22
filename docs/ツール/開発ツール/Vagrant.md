@@ -251,7 +251,7 @@ vagrant plugin install vagrant-disksize     # ディスクサイズ変更
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Vagrant** | 🟢 完全無料 | オープンソース、MIT License |
+| **Vagrant** | 🟢 無料 | オープンソース、MIT License |
 | **Vagrant VMware Plugin** | 💰 $79 USD（買い切り） | VMware Workstation/Fusion対応 |
 
 ## メリット

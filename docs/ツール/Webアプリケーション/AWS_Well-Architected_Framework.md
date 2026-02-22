@@ -201,15 +201,15 @@ aws wellarchitected get-answer \
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Well-Architected Framework** | 🟢 完全無料 | ドキュメント、ツール無料 |
-| **Well-Architected Tool** | 🟢 完全無料 | AWS Console標準機能 |
+| **Well-Architected Framework** | 🟢 無料 | ドキュメント、ツール無料 |
+| **Well-Architected Tool** | 🟢 無料 | AWS Console標準機能 |
 | **Well-Architected Review** | 💰 パートナーによる | プロフェッショナルレビュー有料 |
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: AWS標準提供
+1. **無料**: AWS標準提供
 2. **体系的**: 6つの柱でカバー
 3. **質問ベース**: 評価しやすい
 4. **リスク可視化**: High/Medium/Lowリスク分類

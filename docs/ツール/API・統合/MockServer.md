@@ -9,7 +9,7 @@ MockServerは、HTTP/HTTPSベースのAPIをモック・スタブ化するオー
 | 項目 | 内容 |
 |------|------|
 | **公式サイト** | https://www.mock-server.com/ |
-| **料金** | 🟢 完全無料 |
+| **料金** | 🟢 無料 |
 | **ライセンス** | Apache License 2.0 |
 | **対応言語** | Java、JavaScript、言語非依存（HTTPベース） |
 | **動作環境** | JVM、Node.js、Docker、スタンドアロンサーバー |

@@ -8,17 +8,17 @@ Checkovは、Bridgecrewが開発したInfrastructure as Code（IaC）のため�
 
 | プラン | 料金 | 特徴 |
 |-------|------|------|
-| **Checkov (OSS)** | 🟢 完全無料 | オープンソース、無制限スキャン、Apache License 2.0 |
+| **Checkov (OSS)** | 🟢 無料 | オープンソース、無制限スキャン、Apache License 2.0 |
 | **Bridgecrew Platform Free** | 🟢 無料 | クラウド統合、無制限スキャン、基本レポート |
 | **Bridgecrew Platform Team** | 💰 見積もり必要 | 高度な分析、カスタムポリシー、チーム機能 |
 | **Bridgecrew Platform Enterprise** | 💰 見積もり必要 | SSO、監査ログ、専用サポート、SLA |
 
-**注意**: Checkov本体は完全無料。Bridgecrew Platformは追加のクラウド機能を提供（任意）。
+**注意**: Checkov本体は無料。Bridgecrew Platformは追加のクラウド機能を提供（任意）。
 
 ## メリット・デメリット
 
 ### メリット
-- ✅ **完全無料**: オープンソース、商用利用も無料
+- ✅ **無料**: オープンソース、商用利用も無料
 - ✅ **多様なIaC対応**: Terraform、CloudFormation、K8s、Docker、ARM、Bicep等
 - ✅ **豊富なポリシー**: 2,000以上の組み込みポリシー
 - ✅ **コンプライアンス**: CIS、PCI-DSS、HIPAA、GDPR対応

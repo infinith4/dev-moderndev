@@ -8,8 +8,8 @@ Azure Bicepは、Microsoftが開発したAzure Resource Manager (ARM) テンプ�
 
 | プラン | 料金 | 特徴 |
 |-------|------|------|
-| **Bicep CLI** | 🟢 完全無料 | オープンソース、ローカル実行 |
-| **Azure Resource Manager** | 🟢 完全無料 | デプロイ自体は無料 |
+| **Bicep CLI** | 🟢 無料 | オープンソース、ローカル実行 |
+| **Azure Resource Manager** | 🟢 無料 | デプロイ自体は無料 |
 | **デプロイされたリソース** | 💰 従量課金 | 作成されたAzureリソースの料金は別途発生 |
 
 **注意**: Bicep自体とAzure Resource Managerは無料ですが、作成されたAzureリソース（VM、Database等）は通常のAzure料金が発生します。
@@ -20,7 +20,7 @@ Azure Bicepは、Microsoftが開発したAzure Resource Manager (ARM) テンプ�
 - ✅ **簡潔な構文**: JSONと比較して50%以上コード量を削減
 - ✅ **型安全**: IntelliSense、型チェック、構文検証
 - ✅ **モジュール化**: 再利用可能なモジュールで管理を効率化
-- ✅ **完全無料**: オープンソース、Azureネイティブサービス
+- ✅ **無料**: オープンソース、Azureネイティブサービス
 - ✅ **ARMテンプレート互換**: 既存ARMテンプレートをDecompile可能
 - ✅ **VS Code統合**: 拡張機能で強力な開発体験
 - ✅ **What-Ifデプロイ**: 変更内容を事前プレビュー可能

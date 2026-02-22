@@ -141,16 +141,16 @@ MySQL Workbenchは、Oracle社が提供するMySQL公式の統合開発環境（
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Community Edition** | 🟢 完全無料 | 全機能利用可能、オープンソース |
+| **Community Edition** | 🟢 無料 | 全機能利用可能、オープンソース |
 | **Commercial Edition** | MySQL Enterprise同梱 | エンタープライズサポート付き |
 
-※MySQL Workbench Community Editionは完全無料で、すべての機能を利用できます
+※MySQL Workbench Community Editionは無料で、すべての機能を利用できます
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: MySQL公式ツールで全機能無料
+1. **無料**: MySQL公式ツールで全機能無料
 2. **統合環境**: 設計・開発・管理を1ツールで完結
 3. **ビジュアル設計**: ER図でデータベース設計
 4. **リバースエンジニアリング**: 既存DBから図を自動生成

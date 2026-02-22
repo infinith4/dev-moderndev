@@ -1,306 +1,170 @@
-# 開発工程_3_基本設計（インフラ）
+# 開発工程_4_基本設計（インフラ）
 
-## 概要
+- [1. 概要](#1-概要)
+  - [1.2. 共通](#12-共通)
+- [2. ネットワーク設計](#2-ネットワーク設計)
+- [3. サーバー・コンピュート設計](#3-サーバーコンピュート設計)
+- [4. ストレージ設計](#4-ストレージ設計)
+- [5. セキュリティ設計](#5-セキュリティ設計)
+- [6. 可用性・冗長性設計](#6-可用性冗長性設計)
+- [7. 監視・運用設計](#7-監視運用設計)
+- [8. 参考資料](#8-参考資料)
 
-本ドキュメントは、IPA（独立行政法人 情報処理推進機構）の「共通フレーム2013」に基づく**基本設計プロセス（インフラ基本設計）**における開発タスクと推奨ツールをまとめたものです。
+## 1. 概要
 
-### 参考資料
-- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
-- ISO/IEC 12207:2008 / JIS X 0160:2012
-
----
-
-## 3.2 インフラ基本設計
-
-インフラ基本設計では、システムを稼働させるための基盤となるインフラストラクチャを設計します。
-
-### 主要タスク
-- ネットワーク構成の設計
-- サーバー構成の設計
-- ストレージ設計
-- セキュリティ設計（ファイアウォール、アクセス制御）
-- 可用性・冗長性設計
-- バックアップ・災害復旧設計
-- スケーラビリティ設計
-- 監視・運用設計
+基本設計（インフラ）のタスクと推奨ツール、有用なドキュメントを記載した。
 
 ---
 
-## 成果物と有用なツール・ドキュメント
-
-### 1. ネットワーク構成図
+### 1.2. 共通
 
 **対応項目**
-- ネットワーク構成の設計
+- インフラ基本設計
+- 非機能要件の具体化（性能・可用性・運用性・セキュリティ）
+- 設計成果物の作成・レビュー
 
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [非機能要求グレード（IPA）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 可用性・性能・運用性・保守性・セキュリティ要件の整理 |
+| [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) | クラウド設計原則、設計レビュー観点の統一 |
+| [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/) | Azure向け設計パターン、参照アーキテクチャ確認 |
+
+---
+
+## 2. ネットワーク設計
 **成果物**
 - ネットワーク構成図
-- ネットワークセグメント定義
-- VLAN設計書
-- ネットワークセキュリティ設計書
+- サブネット/CIDR設計書
+- ルーティング/FWポリシー設計書
 
-**有用なツール**
-
-| ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
-|---------|------|------|------|---------|----------|
-| [**Lucidchart**](https://www.lucidchart.com/) | クラウドベースの図作成ツール。ネットワーク図、インフラ構成図に特化。 | ネットワーク図、インフラ構成図、クラウドアーキテクチャ図 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ リアルタイム協業<br>✅ AWS/Azure/GCPアイコン豊富<br>✅ Visio互換<br>✅ テンプレート充実<br>✅ 自動レイアウト | ❌ 有料プランは高額<br>❌ オフライン不可<br>❌ 複雑な図は遅い<br>❌ IaC生成不可 |
-| [**Microsoft Visio**](https://www.microsoft.com/microsoft-365/visio/) | Microsoft製の図作成ツール。ネットワーク図、ラック図に強み。エンタープライズ標準。 | ネットワーク図、ラック図、データセンターレイアウト、フローチャート | 💰 $62～180/年<br>（Microsoft 365含む） | ✅ エンタープライズ標準<br>✅ 豊富なステンシル<br>✅ Microsoft 365統合<br>✅ 高度な図作成<br>✅ データリンク機能 | ❌ 高額<br>❌ Windows中心<br>❌ クラウド図はLucidchart推奨<br>❌ 学習曲線やや急 |
-| [**draw.io**](https://www.diagrams.net/) | 完全無料のオンライン図作成ツール。AWS/Azure/GCPアイコン対応。 | インフラ構成図、ネットワーク図、システム構成図 | 🟢 完全無料 | ✅ 完全無料<br>✅ AWS/Azure/GCPアイコン<br>✅ オフライン利用可<br>✅ Git連携<br>✅ インストール不要 | ❌ コスト見積不可<br>❌ 実インフラ連携なし<br>❌ コラボ機能弱い<br>❌ 自動レイアウト弱い |
-| [**Cacoo**](https://cacoo.com/) | 日本製オンライン図作成ツール。リアルタイム協業に特化。 | システム構成図、ネットワーク図、インフラ設計、フローチャート | 💰 $6/月～<br>（年払いで割引） | ✅ リアルタイム共同編集<br>✅ 日本語完全対応<br>✅ テンプレート豊富<br>✅ プレゼンモード<br>✅ クラウド管理 | ❌ 有料（$6/月～）<br>❌ 高度なモデリング不向き<br>❌ オフライン不可<br>❌ IaC生成不可 |
-| [**PlantUML**](https://plantuml.com/) | テキストベースの図作成ツール。C4モデル、デプロイメント図対応。 | インフラ構成図（テキスト記述）、デプロイメント図、Git管理 | 🟢 完全無料 | ✅ テキストで記述<br>✅ Git管理容易<br>✅ バージョン管理<br>✅ CI/CD統合<br>✅ 完全無料 | ❌ 記法学習必要<br>❌ 複雑な図困難<br>❌ レイアウト制御困難<br>❌ クラウドアイコン少ない |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図、通信経路図の作成 | 無料 |
+| [PlantUML](https://plantuml.com/) | ネットワーク構成をテキスト管理 | 無料 |
+| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC定義 | 無料 |
 
 **有用なドキュメント**
 
-| 資料名 | 概要 | リンク |
-|-------|------|--------|
-| **ネットワーク設計ガイドライン（IPA）** | ネットワークセキュリティ、冗長性、性能設計の基本 | [IPA公式](https://www.ipa.go.jp/) |
-| **RFC 3021 - VLAN設計** | VLANトランク、セグメンテーション設計 | [RFC 3021](https://www.ietf.org/rfc/rfc3021.txt) |
-| **AWS Well-Architected Network Design** | クラウドネットワーク設計のベストプラクティス | [AWS 公式](https://docs.aws.amazon.com/wellarchitected/) |
-
-**ツール詳細ドキュメント**
-
-各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
-- [Microsoft Visio - 詳細ガイド](./ツール/設計・モデリング/Microsoft_Visio.md)
-- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
-- [PlantUML - 詳細ガイド](./ツール/設計・モデリング/PlantUML.md)
+| 資料名 | 用途 |
+|-------|------|
+| [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918) | プライベートIPアドレス設計基準 |
+| [AWS VPC Documentation](https://docs.aws.amazon.com/vpc/) | VPC、サブネット、ルート設計 |
+| [Azure Virtual Network Documentation](https://learn.microsoft.com/azure/virtual-network/) | Azure VNet設計、接続設計 |
 
 ---
 
-### 2. サーバー構成図・ハードウェア仕様書
-
-**対応項目**
-- サーバー構成の設計
-
+## 3. サーバー・コンピュート設計
 **成果物**
 - サーバー構成図
-- サーバーハードウェア仕様書
-- サーバー冗長性設計書
-- ロードバランサー設計書
+- インスタンス/VMサイジング表
+- オートスケール方針書
 
-**有用なツール**
-
-| ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
-|---------|------|------|------|---------|----------|
-| [**CloudCraft**](https://www.cloudcraft.co/) | AWS/Azureインフラ可視化ツール。3D/2D図、コスト見積、実インフラスキャン機能。 | AWSアーキテクチャ図、コスト見積、インフラ可視化、実環境スキャン | 💰 $49/月～ | ✅ 美しい3D/2D図<br>✅ リアルタイムコスト見積<br>✅ AWSアカウント連携<br>✅ 実インフラスキャン<br>✅ エクスポート豊富 | ❌ AWS/Azure専用<br>❌ 有料（$49/月～）<br>❌ GCP非対応<br>❌ オンプレ環境非対応 |
-| [**Lucidchart**](https://www.lucidchart.com/) | クラウドベースの図作成ツール。複数クラウドのアイコンに対応。 | ネットワーク図、インフラ構成図、クラウドアーキテクチャ図 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ リアルタイム協業<br>✅ AWS/Azure/GCPアイコン<br>✅ Visio互換<br>✅ テンプレート充実<br>✅ 初心者向け | ❌ 有料プランは高額<br>❌ オフライン不可<br>❌ 複雑な図は遅い<br>❌ IaC生成不可 |
-| [**AWS CloudFormation Designer**](https://aws.amazon.com/cloudformation/) | AWSインフラ視覚設計ツール。CloudFormationテンプレート自動生成。 | AWSインフラ構成図、CloudFormation設計、視覚的設計 | 🟢 完全無料 | ✅ 完全無料<br>✅ CloudFormation自動生成<br>✅ ビジュアル設計<br>✅ AWS完全統合<br>✅ テンプレート可視化 | ❌ AWS専用<br>❌ 機能限定的<br>❌ 複雑な構成困難<br>❌ レイアウト自動調整弱い |
-| [**Diagrams (Python)**](https://diagrams.mingrammer.com/) | Pythonコードでクラウドインフラ図生成。AWS/Azure/GCP/K8s対応。 | インフラ構成図（Pythonコード記述）、コードベース図作成、自動生成 | 🟢 完全無料 | ✅ Pythonで記述<br>✅ Git管理容易<br>✅ AWS/Azure/GCP/K8sアイコン<br>✅ プログラマブル<br>✅ 完全無料 | ❌ Python知識必須<br>❌ レイアウト調整困難<br>❌ GUI編集不可<br>❌ コラボ機能なし |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | サーバー構成図、構成パターン図作成 | 無料 |
+| [Diagrams (Python)](https://diagrams.mingrammer.com/) | 構成図のコード化と再利用 | 無料 |
+| [AWS Pricing Calculator](https://calculator.aws/) | インスタンス費用試算 | 無料 |
+| [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) | Azure VM/サービス費用試算 | 無料 |
 
 **有用なドキュメント**
 
-| 資料名 | 概要 | リンク |
-|-------|------|--------|
-| **AWS EC2選択ガイド** | インスタンスタイプ、スペック選定基準 | [AWS 公式](https://aws.amazon.com/jp/ec2/instance-types/) |
-| **Azure Virtual Machine仕様書** | Azureサーバーハードウェア仕様 | [Azure 公式](https://docs.microsoft.com/azure/virtual-machines/) |
-| **GCP Compute Engine ドキュメント** | GCPサーバー構成の基本 | [GCP 公式](https://cloud.google.com/compute/docs) |
-
-**ツール詳細ドキュメント**
-
-各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+| 資料名 | 用途 |
+|-------|------|
+| [AWS EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/) | インスタンスタイプ選定 |
+| [Azure VM Sizes](https://learn.microsoft.com/azure/virtual-machines/sizes) | VMサイズ選定 |
 
 ---
 
-### 3. ストレージ設計書
-
-**対応項目**
-- ストレージ設計
-
+## 4. ストレージ設計
 **成果物**
 - ストレージ構成図
-- ストレージ容量計画書
-- バックアップ戦略書
-- ディザスタリカバリ(DR)設計書
+- 容量計画書
+- バックアップ/保持ポリシー
 
-**有用なツール**
-
-| ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
-|---------|------|------|------|---------|----------|
-| [**CloudCraft**](https://www.cloudcraft.co/) | AWS/Azureインフラ可視化。ストレージ設計とコスト見積に対応。 | ストレージアーキテクチャ、コスト計算、容量計画 | 💰 $49/月～ | ✅ ストレージコスト見積<br>✅ リアルタイムコスト最適化<br>✅ AWSアカウント連携<br>✅ 容量計画支援<br>✅ スケーリング提案 | ❌ AWS/Azure専用<br>❌ 有料（$49/月～）<br>❌ GCP対応限定<br>❌ オンプレ環境非対応 |
-| [**Lucidchart**](https://www.lucidchart.com/) | クラウド図作成。ストレージアーキテクチャの可視化。 | ストレージ構成図、DR設計図、アーキテクチャ図 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ リアルタイム協業<br>✅ テンプレート充実<br>✅ クラウド対応<br>✅ 初心者向け<br>✅ 多言語対応 | ❌ 有料プランは高額<br>❌ オフライン不可<br>❌ 複雑な図は遅い<br>❌ IaC生成不可 |
-| [**Excel / Google Sheets**](https://www.microsoft.com/microsoft-365/excel) | 表計算ソフト。容量計画、コスト計算に最適。 | ストレージ容量計画書、コスト見積、バックアップスケジュール表 | 🟢 無料～💰 低額 | ✅ 容量計算容易<br>✅ コスト見積簡単<br>✅ グラフ作成可能<br>✅ スケジュール管理<br>✅ 導入簡単 | ❌ 図作成能力弱い<br>❌ 大規模データ管理困難<br>❌ リアルタイム協業限定<br>❌ バージョン管理困難 |
-| [**draw.io**](https://www.diagrams.net/) | 無料図作成ツール。ストレージ構成図の作成。 | ストレージ構成図、バックアップトポロジー図 | 🟢 完全無料 | ✅ 完全無料<br>✅ オフライン利用可<br>✅ Git連携<br>✅ テンプレート豊富<br>✅ インストール不要 | ❌ コスト見積不可<br>❌ 容量計算機能なし<br>❌ 実インフラ連携なし<br>❌ 自動化機能なし |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | ストレージ構成図作成 | 無料 |
+| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 容量計画・コスト試算表の作成 | 無料枠あり |
+| [Terraform](https://www.terraform.io/) | ストレージ構成のIaC定義 | 無料 |
 
 **有用なドキュメント**
 
-| 資料名 | 概要 | リンク |
-|-------|------|--------|
-| **AWS S3ストレージ設計ガイド** | クラウドストレージの設計・最適化 | [AWS 公式](https://docs.aws.amazon.com/s3/) |
-| **バックアップ・DR設計ガイド（IPA）** | 災害復旧戦略、RPO/RTO設定 | [IPA 公式](https://www.ipa.go.jp/) |
-| **RAID構成設計ガイド** | オンプレミスストレージのRAID選定基準 | [RAID 設計参考](https://www.ipa.go.jp/) |
-
-**ツール詳細ドキュメント**
-
-各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
-- [Draw.io - 詳細ガイド](./ツール/設計・モデリング/Draw.io.md)
+| 資料名 | 用途 |
+|-------|------|
+| [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/) | オブジェクトストレージ設計 |
+| [Azure Storage Documentation](https://learn.microsoft.com/azure/storage/) | Azureストレージ設計 |
 
 ---
 
-### 4. セキュリティ設計書
-
-**対応項目**
-- セキュリティ設計（ファイアウォール、アクセス制御）
-
+## 5. セキュリティ設計
 **成果物**
-- ネットワークセキュリティ設計書
-- ファイアウォール設定書
-- アクセス制御ポリシー書
-- 暗号化設計書
+- セキュリティ設計書
+- IAM/認可設計書
+- 暗号化・鍵管理方針
 
-**有用なツール**
-
-| ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
-|---------|------|------|------|---------|----------|
-| [**Microsoft Threat Modeling Tool**](https://microsoft.com/en-us/securityriskmanagement/threatmodeling) | セキュリティ脅威分析ツール。STRIDE脅威モデル搭載。 | セキュリティ脅威分析、脅威モデル作成、対策提案 | 🟢 完全無料 | ✅ 完全無料<br>✅ 脅威分類体系搭載<br>✅ 図式化<br>✅ 対策提案自動生成<br>✅ Microsoft推奨 | ❌ Windowsのみ<br>❌ UI古い<br>❌ 学習コスト高い<br>❌ クラウドセキュリティ特化不足 |
-| [**CloudCraft**](https://www.cloudcraft.co/) | インフラ可視化によるセキュリティグループ可視化。 | セキュリティグループ設計、ファイアウォール設定確認 | 💰 $49/月～ | ✅ セキュリティグループ可視化<br>✅ ネットワークフロー可視化<br>✅ AWSアカウント連携<br>✅ 実環境スキャン<br>✅ コンプライアンス確認 | ❌ AWS/Azure専用<br>❌ 有料（$49/月～）<br>❌ GCP対応限定<br>❌ オンプレ環境非対応 |
-| [**Lucidchart**](https://www.lucidchart.com/) | セキュリティアーキテクチャ図の作成。 | セキュリティ構成図、ファイアウォール図、アクセス制御図 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ リアルタイム協業<br>✅ テンプレート充実<br>✅ 複雑な図対応<br>✅ プレゼン機能<br>✅ 初心者向け | ❌ 有料プランは高額<br>❌ オフライン不可<br>❌ 複雑な図は遅い<br>❌ 自動化機能なし |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） | 無料 |
+| [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件チェックリスト | 無料 |
+| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・検証 | 無料 |
 
 **有用なドキュメント**
 
-| 資料名 | 概要 | リンク |
-|-------|------|--------|
-| **AWS セキュリティベストプラクティス** | クラウドセキュリティ設計の標準 | [AWS 公式](https://aws.amazon.com/architecture/security-identity-compliance/) |
-| **Zero Trust モデル実装ガイド** | ゼロトラストセキュリティの設計 | [NIST 公式](https://www.nist.gov/) |
-| **ファイアウォール設定ガイド（IPA）** | セキュリティポリシー設計の基本 | [IPA 公式](https://www.ipa.go.jp/security/) |
-
-**ツール詳細ドキュメント**
-
-各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+| 資料名 | 用途 |
+|-------|------|
+| [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) | セキュリティ設計観点の整理 |
+| [AWS Security Best Practices](https://aws.amazon.com/architecture/security-identity-compliance/) | クラウドセキュリティ設計 |
+| [IPA セキュリティセンター](https://www.ipa.go.jp/security/) | 国内標準に沿った設計指針 |
 
 ---
 
-### 5. 可用性・冗長性設計書
-
-**対応項目**
-- 可用性・冗長性設計
-
+## 6. 可用性・冗長性設計
 **成果物**
-- 冗長性構成図
-- SLA/SLO定義書
-- フェイルオーバー戦略書
-- ヘルスチェック設計書
+- 可用性設計書
+- 冗長化構成図
+- フェイルオーバー手順書
 
-**有用なツール**
-
-| ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
-|---------|------|------|------|---------|----------|
-| [**Lucidchart**](https://www.lucidchart.com/) | 冗長構成の可視化。複数リージョン・ゾーン設計対応。 | 冗長構成図、フェイルオーバーフロー図、HA設計図 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ リアルタイム協業<br>✅ テンプレート充実<br>✅ クラウド図対応<br>✅ プレゼン機能<br>✅ 初心者向け | ❌ 有料プランは高額<br>❌ オフライン不可<br>❌ 複雑な図は遅い<br>❌ シミュレーション不可 |
-| [**Excel / Google Sheets**](https://www.microsoft.com/microsoft-365/excel) | SLA/SLO定義、稼働時間計算。 | SLA定義書、稼働率計算表、SLO管理表 | 🟢 無料～💰 低額 | ✅ SLA計算容易<br>✅ 稼働率計算機能<br>✅ グラフ作成可能<br>✅ スケジュール管理<br>✅ 導入簡単 | ❌ 図作成能力弱い<br>❌ 自動化機能限定<br>❌ リアルタイム協業限定<br>❌ 複雑な計算困難 |
-| [**Miro**](https://miro.com/) | オンライン図作成・ホワイトボード。複雑な可用性設計に対応。 | 可用性設計ワークショップ、HA設計ブレインストーミング | 🟢 無料プランあり<br>💰 Team: $8/月<br>💰 Business: $16/月 | ✅ リアルタイム協業<br>✅ 複数人編集容易<br>✅ テンプレート豊富<br>✅ ビデオ会議統合<br>✅ 低コスト | ❌ 図の品質やや劣る<br>❌ 大規模図は遅い<br>❌ エクスポート形式限定<br>❌ ネットワーク依存 |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | 冗長化・障害対策構成図作成 | 無料 |
+| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | SLA/SLO、RTO/RPO計画の整理 | 無料枠あり |
+| [Terraform](https://www.terraform.io/) | 冗長構成のIaC実装設計 | 無料 |
 
 **有用なドキュメント**
 
-| 資料名 | 概要 | リンク |
-|-------|------|--------|
-| **SLA/SLO設定ガイド（IPA）** | システム稼働率、SLA定義の基本 | [IPA 公式](https://www.ipa.go.jp/) |
-| **AWS 高可用性設計ガイド** | クラウド環境の冗長構成設計 | [AWS 公式](https://docs.aws.amazon.com/wellarchitected/) |
-| **フェイルオーバー戦略ガイド** | 自動フェイルオーバー、リカバリー戦略 | [ITILベストプラクティス](https://www.axelos.com/certifications/itil) |
-
-**ツール詳細ドキュメント**
-
-各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Lucidchart - 詳細ガイド](./ツール/設計・モデリング/Lucidchart.md)
+| 資料名 | 用途 |
+|-------|------|
+| [Site Reliability Engineering Book](https://sre.google/sre-book/table-of-contents/) | 可用性・SLO設計の基礎 |
+| [AWS Reliability Pillar](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/) | 信頼性設計の標準観点 |
+| [Azure Reliability Documentation](https://learn.microsoft.com/azure/reliability/) | Azure可用性設計の実装指針 |
 
 ---
 
-### 6. 監視・運用設計書
-
-**対応項目**
-- 監視・運用設計
-
+## 7. 監視・運用設計
 **成果物**
-- 監視戦略書
+- 監視設計書
 - アラート定義書
-- ログ収集・分析設計書
-- 運用手順書
+- 運用手順書（Runbook）
 
-**有用なツール**
-
-| ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
-|---------|------|------|------|---------|----------|
-| [**Grafana**](https://grafana.com/) | メトリクス可視化・ダッシュボード。複数データソース対応。 | 監視ダッシュボード設計、メトリクス可視化、アラート定義 | 🟢 完全無料（OSS）<br>💰 Cloud: $45/月～ | ✅ 完全無料（OSS版）<br>✅ 複数データソース対応<br>✅ 豊富なプラグイン<br>✅ ダッシュボード自由度高い<br>✅ アラート機能充実 | ❌ 初期構築が複雑<br>❌ 統計分析機能限定<br>❌ Cloud版は高額<br>❌ 学習曲線が急 |
-| [**Prometheus**](https://prometheus.io/) | 時系列データベース・監視システム。Kubernetesに最適。 | メトリクス収集・保存、監視基盤設計 | 🟢 完全無料 | ✅ 完全無料<br>✅ Kubernetes標準<br>✅ スケーラブル<br>✅ 柔軟なクエリ言語<br>✅ 豊富なエクスポーター | ❌ 初期構築が複雑<br>❌ ログ管理機能なし<br>❌ 学習曲線が急<br>❌ クラスタリング複雑 |
-| [**Datadog**](https://www.datadoghq.com/) | エンタープライズ監視プラットフォーム。AWS/Azure/GCP対応。 | 包括的監視設計、APM、ログ管理、セキュリティ監視 | 💰 $0.03/hour（従量課金）<br>💰 $15/月～（基本プラン） | ✅ 包括的監視<br>✅ 複数クラウド対応<br>✅ AI異常検知<br>✅ セキュリティ監視<br>✅ 手厚いサポート | ❌ 非常に高額<br>❌ 従量課金で予測困難<br>❌ ベンダーロックイン<br>❌ 設定が複雑 |
-| [**ELK Stack (Elasticsearch, Logstash, Kibana)**](https://www.elastic.co/) | ログ収集・解析・可視化スタック。オンプレ対応。 | ログ管理・分析設計、監視ダッシュボード、ログ集約 | 🟢 完全無料（OSS）<br>💰 Cloud: $73/月～ | ✅ 完全無料（OSS版）<br>✅ オンプレ・クラウド対応<br>✅ スケーラブル<br>✅ 強力な検索・分析<br>✅ コミュニティ活発 | ❌ 初期構築が複雑<br>❌ リソース消費量多い<br>❌ 保守運用負荷高い<br>❌ 学習曲線が急 |
-| [**CloudWatch（AWS）**](https://aws.amazon.com/cloudwatch/) | AWS統合監視サービス。AWSリソース監視に特化。 | AWS監視設計、ダッシュボード、アラート定義 | 🟢 月額$0～（従量課金） | ✅ AWS完全統合<br>✅ セットアップ簡単<br>✅ コスト低い<br>✅ 豊富なメトリクス<br>✅ ログ統合 | ❌ AWS専用<br>❌ 機能限定的<br>❌ オンプレ環境非対応<br>❌ カスタマイズ困難 |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Prometheus](https://prometheus.io/) | メトリクス収集・監視設計 | 無料 |
+| [Grafana](https://grafana.com/) | ダッシュボード設計・可視化 | 無料枠あり |
+| [Loki](https://grafana.com/oss/loki/) | ログ収集・分析設計 | 無料 |
 
 **有用なドキュメント**
 
-| 資料名 | 概要 | リンク |
-|-------|------|--------|
-| **監視・ロギング設計ガイド（IPA）** | インフラ監視の基本設計 | [IPA 公式](https://www.ipa.go.jp/) |
-| **Prometheus ベストプラクティス** | メトリクス設計、アラート定義のコツ | [Prometheus 公式](https://prometheus.io/docs/practices/) |
-| **AWS CloudWatch ガイド** | AWSクラウドウォッチの活用法 | [AWS 公式](https://docs.aws.amazon.com/cloudwatch/) |
-
-**ツール詳細ドキュメント**
-
-各ツールの詳細な使い方については、以下のドキュメントを参照してください:
-- [Grafana - 詳細ガイド](./ツール/監視・ロギング/Grafana.md)
-- [Prometheus - 詳細ガイド](./ツール/監視・ロギング/Prometheus.md)
+| 資料名 | 用途 |
+|-------|------|
+| [Prometheus Best Practices](https://prometheus.io/docs/practices/) | メトリクス設計、アラート運用基準 |
+| [Google SRE Workbook](https://sre.google/workbook/table-of-contents/) | 運用手順、障害対応プロセス整備 |
+| [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) | 運用品質特性の観点整理 |
 
 ---
 
-## 総合推奨ツール（生産性が高いもの Top 10）
-
-| # | ツール名 | 概要 | 用途 | 料金 | メリット | デメリット |
-|---|---------|------|------|------|---------|----------|
-| 1 | [**Lucidchart**](https://www.lucidchart.com/) | クラウドベースの図作成ツール。ネットワーク図、インフラ構成図に強み。 | ネットワーク図、インフラ構成図、クラウドアーキテクチャ図、セキュリティ図 | 🟢 無料プランあり<br>💰 Individual: $95/年<br>💰 Team: $480/年 | ✅ リアルタイム協業<br>✅ AWS/Azure/GCPアイコン豊富<br>✅ Visio互換<br>✅ テンプレート充実<br>✅ 自動レイアウト | ❌ 有料プランは高額<br>❌ オフライン不可<br>❌ 複雑な図は遅い<br>❌ IaC生成不可 |
-| 2 | [**CloudCraft**](https://www.cloudcraft.co/) | AWS/Azureインフラ可視化ツール。3D/2D図、コスト見積、実インフラスキャン機能。 | AWSアーキテクチャ図、コスト見積、インフラ可視化、実環境スキャン、容量計画 | 💰 $49/月～ | ✅ 美しい3D/2D図<br>✅ リアルタイムコスト見積<br>✅ AWSアカウント連携<br>✅ 実インフラスキャン<br>✅ エクスポート豊富 | ❌ AWS/Azure専用<br>❌ 有料（$49/月～）<br>❌ GCP対応限定<br>❌ オンプレ環境非対応 |
-| 3 | [**draw.io**](https://www.diagrams.net/) | 無料の図作成ツール。AWS/Azure/GCPアイコン対応。オンプレミス対応も充実。 | インフラ構成図、ネットワーク図、システム構成図、セキュリティ図 | 🟢 完全無料 | ✅ 完全無料<br>✅ AWS/Azure/GCPアイコン<br>✅ オフライン利用可<br>✅ Git連携<br>✅ インストール不要 | ❌ コスト見積不可<br>❌ 実インフラ連携なし<br>❌ コラボ機能弱い<br>❌ 自動レイアウト弱い |
-| 4 | [**Microsoft Visio**](https://www.microsoft.com/microsoft-365/visio/) | Microsoftの図作成ツール。ネットワーク図、ラック図、データセンターレイアウトに強み。 | ネットワーク図、ラック図、データセンターレイアウト、フローチャート、オンプレ構成図 | 💰 $62～180/年<br>（Microsoft 365含む） | ✅ エンタープライズ標準<br>✅ 豊富なステンシル<br>✅ Microsoft 365統合<br>✅ 高度な図作成<br>✅ データリンク機能 | ❌ 高額<br>❌ Windows中心<br>❌ クラウド図はLucidchart推奨<br>❌ 学習曲線やや急 |
-| 5 | [**Cacoo**](https://cacoo.com/) | 日本製オンライン図作成ツール。リアルタイム協業に特化。 | システム構成図、ネットワーク図、インフラ設計、フローチャート、ワイヤーフレーム | 💰 $6/月～<br>（年払いで割引） | ✅ リアルタイム共同編集<br>✅ 日本語完全対応<br>✅ テンプレート豊富<br>✅ プレゼンモード<br>✅ クラウド管理 | ❌ 有料（$6/月～）<br>❌ 高度なモデリング不向き<br>❌ オフライン不可<br>❌ IaC生成不可 |
-| 6 | [**Hava.io**](https://www.hava.io/) | クラウドインフラ自動可視化ツール。AWS/Azure/GCP実環境スキャン、自動図生成。 | 実インフラ自動図生成、ドキュメント自動化、変更追跡、セキュリティ可視化 | 💰 $149/月～ | ✅ 実インフラ自動スキャン<br>✅ ドキュメント自動生成<br>✅ 変更追跡・履歴<br>✅ セキュリティグループ可視化<br>✅ PDF/PNG出力 | ❌ 有料（$149/月～）<br>❌ 手動編集不可<br>❌ デザインカスタマイズ不可<br>❌ リアルタイムコスト見積なし |
-| 7 | [**Cloudockit**](https://www.cloudockit.com/) | Azure/AWS自動ドキュメント生成ツール。Word/Excel/Visio出力対応。 | インフラドキュメント自動生成、構成図、設計書作成、Visio連携 | 💰 $400/月～ | ✅ 自動ドキュメント生成<br>✅ Word/Excel出力<br>✅ Visio統合<br>✅ スケジュール実行<br>✅ 詳細設計書生成 | ❌ 有料（$400/月～）<br>❌ 図の美しさやや劣る<br>❌ リアルタイム性低い<br>❌ カスタマイズ困難 |
-| 8 | [**AWS CloudFormation Designer**](https://aws.amazon.com/cloudformation/) | AWSインフラ視覚設計ツール。CloudFormationテンプレート自動生成。 | AWSインフラ構成図、CloudFormation設計、視覚的設計、IaC生成 | 🟢 完全無料 | ✅ 完全無料<br>✅ CloudFormation自動生成<br>✅ ビジュアル設計<br>✅ AWS完全統合<br>✅ テンプレート可視化 | ❌ AWS専用<br>❌ 機能限定的<br>❌ 複雑な構成困難<br>❌ レイアウト自動調整弱い |
-| 9 | [**PlantUML**](https://plantuml.com/) | テキストベース図作成ツール。C4モデル、デプロイメント図対応。 | インフラ構成図（テキスト記述）、デプロイメント図、Git管理、バージョン管理 | 🟢 完全無料 | ✅ テキストで記述<br>✅ Git管理容易<br>✅ バージョン管理<br>✅ CI/CD統合<br>✅ 完全無料 | ❌ 記法学習必要<br>❌ 複雑な図困難<br>❌ レイアウト制御困難<br>❌ クラウドアイコン少ない |
-| 10 | [**Diagrams (Python)**](https://diagrams.mingrammer.com/) | Pythonコードでクラウドインフラ図生成。AWS/Azure/GCP/K8s対応。 | インフラ構成図（Pythonコード記述）、コードベース図作成、自動生成、CI/CD統合 | 🟢 完全無料 | ✅ Pythonで記述<br>✅ Git管理容易<br>✅ AWS/Azure/GCP/K8sアイコン<br>✅ プログラマブル<br>✅ 完全無料 | ❌ Python知識必須<br>❌ レイアウト調整困難<br>❌ GUI編集不可<br>❌ コラボ機能なし |
-
----
-
-## 補足：その他利用可能なツール
-
-### 図作成ツール
-- **Gliffy** - Webベースの図作成、Confluence/Jira統合
-- **Creately** - オンライン図作成、テンプレート豊富
-- **Miro** - オンラインホワイトボード、リアルタイム協業
-- **Mural** - 大規模協業ホワイトボード、デザインスプリント対応
-
-### Infrastructure as Code (IaC) ツール
-- **Azure Bicep** - Azureリソース管理用IaC言語、JSON代替
-- **AWS CDK** - AWS CloudFormation管理用Python/TypeScript DSL
-- **Pulumi** - マルチクラウドIaC、複数言語対応
-- **Terraform** - クラウド/オンプレ対応、HCL言語
-- **Ansible** - 構成管理・デプロイメント自動化
-
-### 監視・ロギングツール
-- **New Relic** - APM・インフラ監視（エンタープライズ向け）
-- **Splunk** - ログ分析・可視化（エンタープライズ向け）
-- **Sumo Logic** - クラウドログ管理・分析
-- **Dynatrace** - アプリケーション性能管理（APM）
-- **SignalFx** - リアルタイムメトリクス・ダッシュボード
-
----
-
-## 総合的なドキュメント・ガイド
-
-| 資料名 | 概要 | 用途 | リンク |
-|-------|------|------|--------|
-| **非機能要求グレード（IPA）** | 6大分類118要求項目と230指標からなる非機能要件定義の標準フレームワーク。インフラ基本設計における可用性、性能、拡張性、運用性、保守性、移行性、セキュリティを体系的に整理 | インフラ基本設計、可用性設計、性能設計、セキュリティ設計、バックアップ・DR設計 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) |
-| **システム構築の上流工程強化ガイド（IPA）** | システム構築の上流工程（要件定義・基本設計）における品質向上のための実践ガイド | システム基盤設計、インフラアーキテクチャ設計、上流工程品質向上 | [IPA公式サイト](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) |
-| **AWS Well-Architected Framework** | AWSでの設計・運用のベストプラクティス。5つの柱（運用上の優秀性、セキュリティ、信頼性、性能効率、コスト最適化）を網羅 | AWS環境の基本設計、アーキテクチャ評価、ベストプラクティス導入 | [AWS公式](https://aws.amazon.com/architecture/well-architected/) |
-| **Microsoft Azure Architecture Center** | Azureでの設計パターン・参照アーキテクチャ集 | Azure基本設計、アーキテクチャパターン、マイグレーション戦略 | [Azure 公式](https://docs.microsoft.com/azure/architecture/) |
-| **Google Cloud Architecture Framework** | GCPでのシステム設計ベストプラクティス | GCP基本設計、マルチクラウド戦略 | [GCP 公式](https://cloud.google.com/architecture) |
-| **NIST Cybersecurity Framework** | セキュリティ要件・管理の国際標準 | セキュリティ設計、リスク管理、コンプライアンス | [NIST 公式](https://www.nist.gov/cyberframework) |
-| **DevOps Handbook** | DevOps実装の実践ガイド。監視・運用設計に参考になる | 監視・運用設計、自動化戦略、チーム構築 | [O'Reilly](https://itrevolution.com/the-devops-handbook/) |
-
----
-
-**関連ドキュメント**:
-- [3. 基本設計（アプリケーション）](./dev_process_開発工程_3_基本設計_アプリケーション.md)
-- [4. 詳細設計](./dev_process_開発工程_4_詳細設計.md)
-
-**最終更新日**: 2025年（令和7年）
-**文書バージョン**: 1.1
+## 8. 参考資料
+- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
+- ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
+- [非機能要求グレード（IPA）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html)

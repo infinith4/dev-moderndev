@@ -14,7 +14,7 @@
 | **ライセンス** | MIT License |
 | **開発者** | k1LoW (日本) |
 | **対応DB** | PostgreSQL / MySQL / MariaDB / SQLite / BigQuery / Redshift / Snowflake / MongoDB / DynamoDB 等 |
-| **料金** | 🟢 完全無料・オープンソース |
+| **料金** | 🟢 無料・オープンソース |
 
 ## 主な機能
 
@@ -52,7 +52,7 @@
 
 ### メリット ✅
 
-- **完全無料・オープンソース** - ライセンス費用不要
+- **無料・オープンソース** - ライセンス費用不要
 - **リバースエンジニアリング** - 既存DBから自動生成
 - **多様なDB対応** - 主要DBほぼすべて対応
 - **ER図自動生成** - PNG/SVG/PlantUML/Mermaid出力

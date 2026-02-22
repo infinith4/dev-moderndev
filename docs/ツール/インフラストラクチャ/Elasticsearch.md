@@ -127,7 +127,7 @@ const aggResult = await client.search({
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Elasticsearch (OSS)** | 🟢 完全無料 | オープンソース、SSPL/Elastic License |
+| **Elasticsearch (OSS)** | 🟢 無料 | オープンソース、SSPL/Elastic License |
 | **Elastic Cloud** | 💰 $95/月〜 | マネージドElasticsearch |
 | **AWS OpenSearch** | 💰 従量課金 | AWS版Elasticsearch |
 

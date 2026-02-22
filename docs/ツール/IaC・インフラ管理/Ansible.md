@@ -201,9 +201,9 @@ ansible-playbook -i inventory/hosts playbook.yml --vault-password-file ~/.vault_
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Ansible（Community）** | 🟢 完全無料 | オープンソース、CLI |
+| **Ansible（Community）** | 🟢 無料 | オープンソース、CLI |
 | **Ansible Automation Platform** | 💰 要問い合わせ | Red Hat商用版、GUI（Automation Controller）、サポート |
-| **AWX** | 🟢 完全無料 | Automation Platformのオープンソース版 |
+| **AWX** | 🟢 無料 | Automation Platformのオープンソース版 |
 
 ## メリット
 
@@ -215,7 +215,7 @@ ansible-playbook -i inventory/hosts playbook.yml --vault-password-file ~/.vault_
 4. **豊富なモジュール**: 3,000以上の組み込みモジュール
 5. **マルチプラットフォーム**: Linux、Windows、Mac、クラウド
 6. **学習曲線緩やか**: シンプルな構文
-7. **無料**: Communityエディション完全無料
+7. **無料**: Communityエディション無料
 8. **Red Hatサポート**: 商用版は24/7サポート
 9. **Ansible Galaxy**: コミュニティRole共有
 10. **CI/CD統合**: Jenkins、GitLab CI等と統合

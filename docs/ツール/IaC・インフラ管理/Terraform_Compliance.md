@@ -112,13 +112,13 @@ jobs:
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Terraform Compliance** | 🟢 完全無料 | オープンソース、MIT License |
+| **Terraform Compliance** | 🟢 無料 | オープンソース、MIT License |
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: オープンソース、MIT License
+1. **無料**: オープンソース、MIT License
 2. **BDD形式**: 自然言語風で可読性高い
 3. **カスタムポリシー**: 組織独自のルール作成
 4. **CI/CD統合**: GitHub Actions、GitLab CI対応

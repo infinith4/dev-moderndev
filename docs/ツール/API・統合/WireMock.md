@@ -9,7 +9,7 @@ WireMockは、HTTP APIのモック・スタブ化を行うオープンソース�
 | 項目 | 内容 |
 |------|------|
 | **公式サイト** | https://wiremock.org/ |
-| **料金** | 🟢 完全無料（オープンソース）、🔴 WireMock Cloud（有料SaaS版あり） |
+| **料金** | 🟢 無料（オープンソース）、🔴 WireMock Cloud（有料SaaS版あり） |
 | **ライセンス** | Apache License 2.0 |
 | **対応言語** | Java、言語非依存（HTTPベース） |
 | **動作環境** | JVM、Docker、スタンドアロンサーバー |

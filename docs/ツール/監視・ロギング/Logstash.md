@@ -231,12 +231,12 @@ output {
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Logstash OSS** | 🟢 完全無料 | オープンソース、Apache License |
+| **Logstash OSS** | 🟢 無料 | オープンソース、Apache License |
 | **Elastic Cloud** | 💰 $95/月〜 | マネージドELK Stack |
 
 ## メリット
 
-1. **完全無料**: オープンソース
+1. **無料**: オープンソース
 2. **豊富なプラグイン**: 200+プラグイン
 3. **Grok**: 強力なログパース
 4. **Elastic Stack**: ELK統合

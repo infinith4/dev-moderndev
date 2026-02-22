@@ -116,13 +116,13 @@ $result = Search-AzGraph -Query $query -First 1000
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Azure Resource Graph** | 🟢 完全無料 | Azure標準機能 |
+| **Azure Resource Graph** | 🟢 無料 | Azure標準機能 |
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: Azure標準機能
+1. **無料**: Azure標準機能
 2. **高速**: 大規模クエリを数秒で実行
 3. **スケーラブル**: 数千サブスクリプション対応
 4. **KQL**: 強力なクエリ言語

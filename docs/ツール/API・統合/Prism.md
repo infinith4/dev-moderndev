@@ -9,7 +9,7 @@ Prismは、OpenAPI仕様（Swagger）をベースにしたHTTP APIモックサ�
 | 項目 | 内容 |
 |------|------|
 | **公式サイト** | https://stoplight.io/open-source/prism |
-| **料金** | 🟢 完全無料 |
+| **料金** | 🟢 無料 |
 | **ライセンス** | Apache License 2.0 |
 | **対応仕様** | OpenAPI 2.0 (Swagger)、OpenAPI 3.x |
 | **動作環境** | Node.js、Docker、スタンドアロンバイナリ |

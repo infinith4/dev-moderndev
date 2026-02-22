@@ -213,11 +213,11 @@ DirectoryIndex index.php index.html
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Apache HTTP Server** | 🟢 完全無料 | オープンソース、Apache License |
+| **Apache HTTP Server** | 🟢 無料 | オープンソース、Apache License |
 
 ## メリット
 
-1. **完全無料**: オープンソース
+1. **無料**: オープンソース
 2. **成熟**: 長年の実績
 3. **柔軟性**: モジュール豊富
 4. **LAMPスタック**: PHP標準

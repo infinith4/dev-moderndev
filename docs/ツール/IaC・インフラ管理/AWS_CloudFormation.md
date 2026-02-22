@@ -8,7 +8,7 @@ AWS CloudFormationは、Amazon Web Services（AWS）が提供するInfrastructur
 
 | プラン | 料金 | 特徴 |
 |-------|------|------|
-| **CloudFormation自体** | 🟢 完全無料 | テンプレート作成、スタック管理の利用は無料 |
+| **CloudFormation自体** | 🟢 無料 | テンプレート作成、スタック管理の利用は無料 |
 | **プロビジョニングされたリソース** | 💰 従量課金 | 作成されたAWSリソース（EC2、RDS等）の料金は別途発生 |
 
 **注意**: CloudFormation自体は無料ですが、作成されたAWSリソース（EC2、RDS、S3等）は通常のAWS料金が発生します。
@@ -17,7 +17,7 @@ AWS CloudFormationは、Amazon Web Services（AWS）が提供するInfrastructur
 
 ### メリット
 - ✅ **AWSネイティブ**: AWS公式サービス、全AWSリソースに完全対応
-- ✅ **完全無料**: CloudFormation自体に利用料金なし
+- ✅ **無料**: CloudFormation自体に利用料金なし
 - ✅ **スタック管理**: 関連リソースをスタック単位で一括管理
 - ✅ **ドリフト検出**: 実際のリソースとテンプレートの差分を検出
 - ✅ **ロールバック機能**: デプロイ失敗時の自動ロールバック

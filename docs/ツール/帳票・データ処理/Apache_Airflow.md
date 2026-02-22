@@ -15,13 +15,13 @@ Apache Airflowは、ワークフロー管理プラットフォームで、基本
 
 ### 料金プラン
 
-- **Apache Airflow**: 完全無料（Apache License 2.0）
+- **Apache Airflow**: 無料（Apache License 2.0）
 - **Managed Airflow（AWS MWAA、Google Cloud Composer）**: 有料
 
 ### メリット・デメリット
 
 **メリット**
-- 完全無料でオープンソース
+- 無料でオープンソース
 - Pythonコードでバッチ処理を定義（柔軟性が高い）
 - Web UIでDAGの可視化と監視
 - タスクの依存関係を明確に定義可能

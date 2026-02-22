@@ -198,14 +198,14 @@ pg_restore -U user -d mydb backup.dump
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **PostgreSQL** | 🟢 完全無料 | オープンソース、PostgreSQL License |
+| **PostgreSQL** | 🟢 無料 | オープンソース、PostgreSQL License |
 | **AWS RDS PostgreSQL** | 💰 従量課金 | マネージドPostgreSQL |
 | **Azure Database for PostgreSQL** | 💰 従量課金 | マネージドPostgreSQL |
 | **Google Cloud SQL PostgreSQL** | 💰 従量課金 | マネージドPostgreSQL |
 
 ## メリット
 
-1. **完全無料**: オープンソース
+1. **無料**: オープンソース
 2. **SQL標準**: 完全準拠
 3. **高度機能**: CTE、ウィンドウ関数
 4. **JSONB**: NoSQL的機能

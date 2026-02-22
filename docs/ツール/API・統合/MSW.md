@@ -9,7 +9,7 @@ MSW (Mock Service Worker)は、Service Worker APIを活用したJavaScript/TypeS
 | 項目 | 内容 |
 |------|------|
 | **公式サイト** | https://mswjs.io/ |
-| **料金** | 🟢 完全無料 |
+| **料金** | 🟢 無料 |
 | **ライセンス** | MIT License |
 | **対応言語** | JavaScript、TypeScript |
 | **動作環境** | ブラウザ（Service Worker）、Node.js（http/https） |

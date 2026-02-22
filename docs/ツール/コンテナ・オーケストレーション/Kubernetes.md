@@ -8,7 +8,7 @@ Kubernetes（K8s）は、Googleが開発したオープンソースのコンテ�
 
 | プラン | 料金 | 特徴 |
 |-------|------|------|
-| **Kubernetes (OSS)** | 🟢 完全無料 | オープンソース、セルフホスト、Apache License 2.0 |
+| **Kubernetes (OSS)** | 🟢 無料 | オープンソース、セルフホスト、Apache License 2.0 |
 | **マネージドKubernetes** | | クラウドプロバイダーのマネージドサービス |
 | - **Google GKE Standard** | 💰 $0.10/cluster/時間 + ノード | フルマネージド、自動アップグレード |
 | - **Amazon EKS** | 💰 $0.10/cluster/時間 + ノード | AWS統合、Fargate対応 |

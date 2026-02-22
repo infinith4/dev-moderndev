@@ -268,7 +268,7 @@ jobs:
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **REST Assured** | 🟢 完全無料 | オープンソース、Apache License 2.0 |
+| **REST Assured** | 🟢 無料 | オープンソース、Apache License 2.0 |
 
 ## メリット
 
@@ -276,7 +276,7 @@ jobs:
 
 1. **流暢なAPI**: Given-When-Thenで可読性高い
 2. **Java標準**: Java開発者にとって習得容易
-3. **完全無料**: オープンソース、Apache License
+3. **無料**: オープンソース、Apache License
 4. **JUnit/TestNG統合**: 既存テストフレームワークと統合
 5. **JSON/XML対応**: JSON Path、XML Path
 6. **Schema検証**: JSON Schema Validation

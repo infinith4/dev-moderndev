@@ -207,7 +207,7 @@ curl -X GET "localhost:9200/nginx-logs-*/_search?pretty" -H 'Content-Type: appli
 
 ### ✅ 主な利点
 
-1. **完全無料**: オープンソース版
+1. **無料**: オープンソース版
 2. **スケーラブル**: PB級データ対応
 3. **リアルタイム**: 準リアルタイム検索
 4. **柔軟な検索**: Lucene、KQL

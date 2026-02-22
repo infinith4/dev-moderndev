@@ -220,14 +220,14 @@ inspec exec https://github.com/dev-sec/linux-baseline
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **InSpec (OSS)** | 🟢 完全無料 | オープンソース、Apache License 2.0 |
+| **InSpec (OSS)** | 🟢 無料 | オープンソース、Apache License 2.0 |
 | **Chef Automate** | 💰 商用 | 中央管理、ダッシュボード、レポート |
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: オープンソース、Apache License
+1. **無料**: オープンソース、Apache License
 2. **人間が読める**: Ruby DSL、明確なテスト
 3. **マルチプラットフォーム**: Linux、Windows、macOS、クラウド
 4. **コンプライアンス**: CIS、STIG、PCI-DSS対応

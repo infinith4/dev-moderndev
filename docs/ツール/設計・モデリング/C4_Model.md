@@ -210,11 +210,11 @@ workspace {
 
 | ツール | 価格 | 特徴 |
 |--------|------|------|
-| **C4 Model (フレームワーク)** | 🟢 完全無料 | コンセプト、無料 |
-| **PlantUML + C4-PlantUML** | 🟢 完全無料 | オープンソース |
+| **C4 Model (フレームワーク)** | 🟢 無料 | コンセプト、無料 |
+| **PlantUML + C4-PlantUML** | 🟢 無料 | オープンソース |
 | **Structurizr Lite** | 🟢 無料 | ローカル実行 |
 | **Structurizr Cloud** | 💰 $7.50/月 | クラウド版 |
-| **diagrams.net** | 🟢 完全無料 | オンライン、無料 |
+| **diagrams.net** | 🟢 無料 | オンライン、無料 |
 
 ## メリット
 

@@ -177,13 +177,13 @@ Resources:
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **CloudFormation Designer** | 🟢 完全無料 | AWS Console標準機能 |
+| **CloudFormation Designer** | 🟢 無料 | AWS Console標準機能 |
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: AWS標準機能
+1. **無料**: AWS標準機能
 2. **ビジュアル**: GUI設計
 3. **学習向け**: IaC理解促進
 4. **リアルタイム同期**: GUI⇔コード双方向

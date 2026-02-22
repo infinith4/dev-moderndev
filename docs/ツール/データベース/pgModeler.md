@@ -145,7 +145,7 @@ CREATE INDEX idx_posts_user_id ON posts(user_id);
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **pgModeler (OSS)** | 🟢 完全無料 | オープンソース、GPLv3 License |
+| **pgModeler (OSS)** | 🟢 無料 | オープンソース、GPLv3 License |
 | **pgModeler Premium** | 💰 $30 USD（買い切り） | サポート、優先バグ修正 |
 
 ## メリット

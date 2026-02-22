@@ -220,12 +220,12 @@ services:
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **HAProxy Community** | 🟢 完全無料 | オープンソース、GPLv2 License |
+| **HAProxy Community** | 🟢 無料 | オープンソース、GPLv2 License |
 | **HAProxy Enterprise** | 💰 商用ライセンス | サポート、高度機能 |
 
 ## メリット
 
-1. **完全無料**: オープンソース
+1. **無料**: オープンソース
 2. **高性能**: 低レイテンシ、高スループット
 3. **Layer 4/7**: TCP、HTTP対応
 4. **SSL/TLS**: SSL終端

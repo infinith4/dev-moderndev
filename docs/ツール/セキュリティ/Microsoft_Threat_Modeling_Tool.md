@@ -165,13 +165,13 @@ API Server → Database (SQL)
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Threat Modeling Tool** | 🟢 完全無料 | Windows専用、無料ダウンロード |
+| **Threat Modeling Tool** | 🟢 無料 | Windows専用、無料ダウンロード |
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: Microsoft提供、無料
+1. **無料**: Microsoft提供、無料
 2. **STRIDE**: 業界標準フレームワーク
 3. **自動脅威検出**: DFDから自動生成
 4. **設計段階**: 早期の脅威特定

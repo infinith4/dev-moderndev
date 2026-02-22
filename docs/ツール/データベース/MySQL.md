@@ -184,14 +184,14 @@ mysqldump -u root -p --all-databases > all_backup.sql
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **MySQL Community** | 🟢 完全無料 | オープンソース、GPLv2 License |
+| **MySQL Community** | 🟢 無料 | オープンソース、GPLv2 License |
 | **MySQL Enterprise** | 💰 $5,000/年〜 | サポート、監視、バックアップ |
 | **AWS RDS MySQL** | 💰 従量課金 | マネージドMySQL |
 | **Azure Database for MySQL** | 💰 従量課金 | マネージドMySQL |
 
 ## メリット
 
-1. **完全無料**: オープンソース
+1. **無料**: オープンソース
 2. **成熟**: 長年の実績
 3. **高速**: 読み取り高速
 4. **エコシステム**: 豊富なツール

@@ -14,14 +14,14 @@ JasperReportsは、オープンソースのJava帳票ツールで、基本設計
 
 ### 料金プラン
 
-- **JasperReports Library**: 完全無料（LGPL v3.0ライセンス）
-- **Jaspersoft Studio**: 完全無料（帳票デザインツール）
+- **JasperReports Library**: 無料（LGPL v3.0ライセンス）
+- **Jaspersoft Studio**: 無料（帳票デザインツール）
 - **JasperReports Server**: Community Edition無料、Commercial版有料
 
 ### メリット・デメリット
 
 **メリット**
-- 完全無料で商用利用可能
+- 無料で商用利用可能
 - Java環境でのデファクトスタンダード
 - PDF、Excel、Word、HTML等の多様な出力形式に対応
 - Jaspersoft Studioでビジュアル設計が可能

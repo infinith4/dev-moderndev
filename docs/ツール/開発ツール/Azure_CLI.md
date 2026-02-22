@@ -232,13 +232,13 @@ echo "VM creation initiated"
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Azure CLI** | 🟢 完全無料 | オープンソース、MIT License |
+| **Azure CLI** | 🟢 無料 | オープンソース、MIT License |
 
 ## メリット
 
 ### ✅ 主な利点
 
-1. **完全無料**: オープンソース、MIT License
+1. **無料**: オープンソース、MIT License
 2. **クロスプラットフォーム**: Windows、macOS、Linux
 3. **公式ツール**: Microsoft公式サポート
 4. **スクリプト対応**: 自動化・CI/CD統合

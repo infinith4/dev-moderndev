@@ -258,7 +258,7 @@ git push -u origin main
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Studio Desktop** | 🟢 完全無料 | ローカル編集、無制限プロジェクト |
+| **Studio Desktop** | 🟢 無料 | ローカル編集、無制限プロジェクト |
 | **Stoplight Platform Starter** | 🟡 $0/月 | 公開プロジェクト無制限、1ユーザー |
 | **Stoplight Platform Professional** | 💰 $49/ユーザー/月 | プライベートプロジェクト、チーム協業 |
 | **Stoplight Platform Enterprise** | 💰 要問い合わせ | SSO、オンプレミス、専用サポート |
@@ -267,7 +267,7 @@ git push -u origin main
 
 ### ✅ 主な利点
 
-1. **デスクトップ版無料**: ローカル利用は完全無料
+1. **デスクトップ版無料**: ローカル利用は無料
 2. **ビジュアル編集**: GUIでOpenAPI作成
 3. **即座にモック**: API実装前にテスト可能
 4. **リアルタイムプレビュー**: ドキュメント即座確認

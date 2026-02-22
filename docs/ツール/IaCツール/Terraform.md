@@ -338,7 +338,7 @@ terraform import aws_s3_bucket.bucket my-existing-bucket
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Terraform OSS** | 🟢 完全無料 | オープンソース |
+| **Terraform OSS** | 🟢 無料 | オープンソース |
 | **Terraform Cloud** | 🟢/💰 | Free/Team ($20/user/月)/Business |
 | **Terraform Enterprise** | 💰 要問い合わせ | オンプレミス、エンタープライズ機能 |
 

@@ -15,7 +15,7 @@ Dockerは、アプリケーションをコンテナと呼ばれる軽量で移�
 | **Docker Hub Free** | 🟢 無料 | 無制限パブリックリポジトリ、1プライベートリポジトリ |
 | **Docker Hub Pro** | 💰 $5/月 | 無制限プライベートリポジトリ、並列ビルド |
 
-**注意**: Docker Engine（Linux）は完全無料のオープンソース。Docker Desktopは商用利用で有料（一定規模以上の企業）。
+**注意**: Docker Engine（Linux）は無料のオープンソース。Docker Desktopは商用利用で有料（一定規模以上の企業）。
 
 ## メリット・デメリット
 

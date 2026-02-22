@@ -381,11 +381,11 @@ export class UppercasePipe implements PipeTransform {
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Angular** | 🟢 完全無料 | オープンソース、MIT License |
+| **Angular** | 🟢 無料 | オープンソース、MIT License |
 
 ## メリット
 
-1. **完全無料**: オープンソース
+1. **無料**: オープンソース
 2. **TypeScript**: 型安全
 3. **フルスタック**: 機能豊富
 4. **エンタープライズ**: 大規模アプリ対応

@@ -49,10 +49,10 @@
 - 業務機能構成表
 - システム化業務フロー
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | フローチャート・BPMN図 | 無料 |
-| [Bizagi Modeler](https://www.bizagi.com/) | BPMN2.0準拠のプロセス図作成 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Draw.io](https://www.diagrams.net/) | フローチャート・BPMN図 |
+| [Bizagi Modeler](https://www.bizagi.com/) | BPMN2.0準拠のプロセス図作成 |
 
 **有用なドキュメント**
 
@@ -66,9 +66,9 @@
 - ユースケース図・一覧・記述
 - ビジネスルール一覧・定義書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [PlantUML](https://plantuml.com/) | テキストベースUML（Git管理可） | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [PlantUML](https://plantuml.com/) | テキストベースUML（Git管理可） |
 
 **有用なドキュメント**
 
@@ -104,9 +104,9 @@
 - 帳票一覧
 - 帳票レイアウト
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [JasperReports](https://community.jaspersoft.com/) | OSS帳票エンジン（Java） | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [JasperReports](https://community.jaspersoft.com/) | OSS帳票エンジン（Java） |
 
 **有用なドキュメント**
 
@@ -146,10 +146,10 @@
 - 概念モデル
 - 用語集
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [ERDPlus](https://erdplus.com/) | オンラインER図・SQL生成 | 無料 |
-| [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図・DB設計 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [ERDPlus](https://erdplus.com/) | オンラインER図・SQL生成 |
+| [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図・DB設計 |
 
 **有用なドキュメント**
 
@@ -165,9 +165,9 @@
 - 外部システム関連図
 - 外部インターフェース一覧
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様記述標準 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様記述標準 |
 
 **有用なドキュメント**
 
@@ -183,10 +183,10 @@
 - バッチ一覧
 - バッチ処理フロー
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | バッチ処理フロー・ジョブ依存関係の可視化 | 無料 |
-| [PlantUML](https://plantuml.com/) | テキストベースのバッチ処理フロー定義 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Draw.io](https://www.diagrams.net/) | バッチ処理フロー・ジョブ依存関係の可視化 |
+| [PlantUML](https://plantuml.com/) | テキストベースのバッチ処理フロー定義 |
 
 **有用なドキュメント**
 
@@ -202,10 +202,10 @@
 - システム構成図
 - ソフトウェア構成図
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | システム構成図・ネットワーク構成図の作成 | 無料 |
-| [PlantUML](https://plantuml.com/) | C4/UMLによるソフトウェア構成の可視化 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Draw.io](https://www.diagrams.net/) | システム構成図・ネットワーク構成図の作成 |
+| [PlantUML](https://plantuml.com/) | C4/UMLによるソフトウェア構成の可視化 |
 
 **有用なドキュメント**
 

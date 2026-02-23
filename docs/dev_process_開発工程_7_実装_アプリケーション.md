@@ -44,38 +44,38 @@
 
 ##### Java
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Mockito](https://site.mockito.org/) | 単体テスト時の依存オブジェクトのモック化 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Mockito](https://site.mockito.org/) | 単体テスト時の依存オブジェクトのモック化 |
 
 ##### C#
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Moq](https://github.com/devlooped/moq) | .NET単体テストでのモック/スタブ作成 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Moq](https://github.com/devlooped/moq) | .NET単体テストでのモック/スタブ作成 |
 
 ##### Python
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) | 標準ライブラリでのモック/パッチ適用 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) | 標準ライブラリでのモック/パッチ適用 |
 
 ##### TypeScript
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [MSW (Mock Service Worker)](https://mswjs.io/) | ブラウザ/Node.jsでのAPIモック | 無料 |
-| [ts-mockito](https://github.com/NagRock/ts-mockito) | TypeScript向けモック作成と振る舞い定義 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [MSW (Mock Service Worker)](https://mswjs.io/) | ブラウザ/Node.jsでのAPIモック |
+| [ts-mockito](https://github.com/NagRock/ts-mockito) | TypeScript向けモック作成と振る舞い定義 |
 
 ### 1.2 モックサーバー
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [WireMock](https://wiremock.org/) | HTTP APIモックサーバによる外部依存のテスト | 無料 |
-| [MockServer](https://www.mock-server.com/) | HTTP/HTTPSモック・スタブ、リクエスト検証 | 無料 |
-| [Mountebank](https://www.mbtest.org/) | 複数プロトコル対応のサービス仮想化 | 無料 |
-| [Prism](https://stoplight.io/open-source/prism) | OpenAPIからのモックサーバ自動生成 | 無料 |
-| [Nock](https://github.com/nock/nock) | Node.js向けHTTPリクエストのモック | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [WireMock](https://wiremock.org/) | HTTP APIモックサーバによる外部依存のテスト |
+| [MockServer](https://www.mock-server.com/) | HTTP/HTTPSモック・スタブ、リクエスト検証 |
+| [Mountebank](https://www.mbtest.org/) | 複数プロトコル対応のサービス仮想化 |
+| [Prism](https://stoplight.io/open-source/prism) | OpenAPIからのモックサーバ自動生成 |
+| [Nock](https://github.com/nock/nock) | Node.js向けHTTPリクエストのモック |
 
 **有用なドキュメント（モック）**
 
@@ -95,12 +95,12 @@
 - 依存関係定義
 - ビルド手順書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Maven](https://maven.apache.org/) | Javaビルド・依存管理 | 無料 |
-| [NuGet](https://www.nuget.org/) | .NETパッケージ管理 | 無料 |
-| [Poetry](https://python-poetry.org/) | Python依存管理・仮想環境管理 | 無料 |
-| [pnpm](https://pnpm.io/) | TypeScript依存管理・モノレポ管理 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Maven](https://maven.apache.org/) | Javaビルド・依存管理 |
+| [NuGet](https://www.nuget.org/) | .NETパッケージ管理 |
+| [Poetry](https://python-poetry.org/) | Python依存管理・仮想環境管理 |
+| [pnpm](https://pnpm.io/) | TypeScript依存管理・モノレポ管理 |
 
 **有用なドキュメント**
 
@@ -120,35 +120,35 @@
 
 ### 3.1 Java
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | 無料 |
-| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 | 無料 |
-| [Google Java Format](https://github.com/google/google-java-format) | Javaコード自動整形 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック |
+| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 |
+| [Google Java Format](https://github.com/google/google-java-format) | Javaコード自動整形 |
 
 ### 3.2 C#
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [StyleCop Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) | C#コーディング規約チェック | 無料 |
-| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析ルール適用 | 無料 |
-| [EditorConfig](https://editorconfig.org/) | C#コードスタイル統一 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [StyleCop Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) | C#コーディング規約チェック |
+| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析ルール適用 |
+| [EditorConfig](https://editorconfig.org/) | C#コードスタイル統一 |
 
 ### 3.3 Python
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Ruff](https://docs.astral.sh/ruff/) | Python静的解析・整形 | 無料 |
-| [Black](https://black.readthedocs.io/) | Pythonコード自動整形 | 無料 |
-| [mypy](https://mypy-lang.org/) | 型チェック | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Ruff](https://docs.astral.sh/ruff/) | Python静的解析・整形 |
+| [Black](https://black.readthedocs.io/) | Pythonコード自動整形 |
+| [mypy](https://mypy-lang.org/) | 型チェック |
 
 ### 3.4 TypeScript
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [ESLint](https://eslint.org/) | TypeScript静的解析 | 無料 |
-| [TypeScript ESLint](https://typescript-eslint.io/) | TypeScript専用ルール適用 | 無料 |
-| [Prettier](https://prettier.io/) | コード自動整形 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [ESLint](https://eslint.org/) | TypeScript静的解析 |
+| [TypeScript ESLint](https://typescript-eslint.io/) | TypeScript専用ルール適用 |
+| [Prettier](https://prettier.io/) | コード自動整形 |
 
 **有用なドキュメント**
 
@@ -186,12 +186,12 @@
 - テスト実行レポート
 - カバレッジレポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [JUnit 5](https://junit.org/junit5/) | Java単体テスト | 無料 |
-| [xUnit](https://xunit.net/) | C#単体テスト | 無料 |
-| [pytest](https://pytest.org/) | Python単体テスト | 無料 |
-| [Vitest](https://vitest.dev/) | TypeScript単体テスト | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [JUnit 5](https://junit.org/junit5/) | Java単体テスト |
+| [xUnit](https://xunit.net/) | C#単体テスト |
+| [pytest](https://pytest.org/) | Python単体テスト |
+| [Vitest](https://vitest.dev/) | TypeScript単体テスト |
 
 **有用なドキュメント**
 
@@ -226,7 +226,6 @@
 
 ## 7. 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
-- ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
 - [IPA 組込みソフトウェア向け 設計ガイド（事例編）ESDR](https://www.ipa.go.jp/)
 - [Google Engineering Practices](https://google.github.io/eng-practices/)
 

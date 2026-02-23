@@ -84,10 +84,10 @@
 - ファイルレイアウト定義
 - ファイル項目定義
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Visual Studio Code](https://code.visualstudio.com/) | ファイル仕様のテキスト定義・レビュー | 無料 |
-| [Draw.io](https://www.diagrams.net/) | ファイルレイアウト図・関連図作成 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Visual Studio Code](https://code.visualstudio.com/) | ファイル仕様のテキスト定義・レビュー |
+| [Draw.io](https://www.diagrams.net/) | ファイルレイアウト図・関連図作成 |
 
 **有用なドキュメント**
 
@@ -104,11 +104,11 @@
 - テーブル定義書
 - データ項目定義
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図作成・テーブル設計 | 無料 |
-| [ERDPlus](https://erdplus.com/) | オンラインER図作成・SQL生成 | 無料 |
-| [Draw.io](https://www.diagrams.net/) | 論理データモデルの可視化 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図作成・テーブル設計 |
+| [ERDPlus](https://erdplus.com/) | オンラインER図作成・SQL生成 |
+| [Draw.io](https://www.diagrams.net/) | 論理データモデルの可視化 |
 
 **有用なドキュメント**
 
@@ -125,11 +125,11 @@
 - API仕様書
 - 連携項目定義
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Swagger / OpenAPI](https://openapi.com/) | API仕様定義（REST） | 無料 |
-| [ReDoc](https://redocly.com/redoc/) | OpenAPI仕様のドキュメント化 | 無料 |
-| [Draw.io](https://www.diagrams.net/) | 外部連携図・データフロー図作成 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Swagger / OpenAPI](https://openapi.com/) | API仕様定義（REST） |
+| [ReDoc](https://redocly.com/redoc/) | OpenAPI仕様のドキュメント化 |
+| [Draw.io](https://www.diagrams.net/) | 外部連携図・データフロー図作成 |
 
 **有用なドキュメント**
 
@@ -146,12 +146,12 @@
 - バッチフロー図
 - バッチジョブスケジュール仕様書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Apache Airflow](https://airflow.apache.org/) | バッチワークフロー設計・ジョブオーケストレーション | 無料 |
-| [Quartz Scheduler](https://www.quartz-scheduler.org/) | ジョブスケジュール設計（Cronベース） | 無料 |
-| [Draw.io](https://www.diagrams.net/) | バッチフロー可視化 | 無料 |
-| [PlantUML](https://plantuml.com/) | バッチ処理フロー・シーケンスのテキストベース設計 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Apache Airflow](https://airflow.apache.org/) | バッチワークフロー設計・ジョブオーケストレーション |
+| [Quartz Scheduler](https://www.quartz-scheduler.org/) | ジョブスケジュール設計（Cronベース） |
+| [Draw.io](https://www.diagrams.net/) | バッチフロー可視化 |
+| [PlantUML](https://plantuml.com/) | バッチ処理フロー・シーケンスのテキストベース設計 |
 
 **有用なドキュメント**
 
@@ -169,11 +169,11 @@
 - 認証・認可仕様書
 - 監査ログ仕様書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） | 無料 |
-| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | 主要脆弱性観点の設計レビュー | 無料 |
-| [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件のチェック基準 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） |
+| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | 主要脆弱性観点の設計レビュー |
+| [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件のチェック基準 |
 
 **有用なドキュメント**
 

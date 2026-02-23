@@ -41,13 +41,13 @@
 - リソース設定確認結果
 - テスト実行レポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Terratest](https://terratest.gruntwork.io/) | IaCで作成したリソースの単体検証 | 無料 |
-| [Pester](https://pester.dev/) | PowerShellベースの検証テスト | 無料 |
-| [Goss](https://github.com/goss-org/goss) | サーバー設定値・サービス状態の検証 | 無料 |
-| [ARM/Bicep テスト ツールキット (arm-ttk)](https://github.com/Azure/arm-ttk) | Azure ARM/Bicepテンプレート検証 | 無料 |
-| [AWS CDK Assertions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html) | AWS CDKテンプレート検証 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Terratest](https://terratest.gruntwork.io/) | IaCで作成したリソースの単体検証 |
+| [Pester](https://pester.dev/) | PowerShellベースの検証テスト |
+| [Goss](https://github.com/goss-org/goss) | サーバー設定値・サービス状態の検証 |
+| [ARM/Bicep テスト ツールキット (arm-ttk)](https://github.com/Azure/arm-ttk) | Azure ARM/Bicepテンプレート検証 |
+| [AWS CDK Assertions](https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html) | AWS CDKテンプレート検証 |
 
 **有用なドキュメント**
 
@@ -66,13 +66,11 @@
 - 疎通確認結果
 - 連携テスト結果レポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [curl](https://curl.se/) | HTTP/HTTPS疎通、レスポンス検証 | 無料 |
-| [nc (netcat)](https://nc110.sourceforge.io/) | TCP/UDPポート疎通確認 | 無料 |
-| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureリソース連携確認 | 無料 |
-| [AWS CLI](https://aws.amazon.com/cli/) | AWSリソース連携確認 | 無料 |
-| [InSpec](https://www.inspec.io/) | リソース状態、設定準拠の結合確認 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureリソース連携確認 |
+| [AWS CLI](https://aws.amazon.com/cli/) | AWSリソース連携確認 |
+| [InSpec](https://www.inspec.io/) | リソース状態、設定準拠の結合確認 |
 
 **有用なドキュメント**
 
@@ -90,11 +88,11 @@
 - 障害注入テスト結果
 - 復旧手順検証レポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Chaos Mesh](https://chaos-mesh.org/) | Kubernetes環境での障害注入テスト | 無料 |
-| [Litmus](https://litmuschaos.io/) | カオスエンジニアリングの実施 | 無料 |
-| [k6](https://k6.io/) | 障害時のAPI応答劣化確認 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Chaos Mesh](https://chaos-mesh.org/) | Kubernetes環境での障害注入テスト |
+| [Litmus](https://litmuschaos.io/) | カオスエンジニアリングの実施 |
+| [k6](https://k6.io/) | 障害時のAPI応答劣化確認 |
 
 **有用なドキュメント**
 
@@ -112,12 +110,12 @@
 - 脆弱性診断結果
 - 準拠チェック結果
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 | 無料 |
-| [Trivy](https://trivy.dev/) | コンテナ/IaC脆弱性スキャン | 無料 |
-| [OWASP ZAP](https://www.zaproxy.org/) | 公開エンドポイント脆弱性検証 | 無料 |
-| [CloudFormation Guard](https://github.com/aws-cloudformation/cloudformation-guard) | CloudFormationポリシー準拠検証 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 |
+| [Trivy](https://trivy.dev/) | コンテナ/IaC脆弱性スキャン |
+| [OWASP ZAP](https://www.zaproxy.org/) | 公開エンドポイント脆弱性検証 |
+| [CloudFormation Guard](https://github.com/aws-cloudformation/cloudformation-guard) | CloudFormationポリシー準拠検証 |
 
 **有用なドキュメント**
 
@@ -135,12 +133,12 @@
 - 性能測定結果
 - スケール試験レポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Apache JMeter](https://jmeter.apache.org/) | 負荷・性能テスト実行 | 無料 |
-| [k6](https://k6.io/) | スクリプトベース性能試験 | 無料 |
-| [Locust](https://locust.io/) | 分散負荷試験 | 無料 |
-| [Prometheus](https://prometheus.io/) | テスト中メトリクス収集 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Apache JMeter](https://jmeter.apache.org/) | 負荷・性能テスト実行 |
+| [k6](https://k6.io/) | スクリプトベース性能試験 |
+| [Locust](https://locust.io/) | 分散負荷試験 |
+| [Prometheus](https://prometheus.io/) | テスト中メトリクス収集 |
 
 **有用なドキュメント**
 
@@ -177,7 +175,3 @@
 ## 8. 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 - ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
-- [開発工程_8_インフラ構築](./dev_process_開発工程_8_インフラ構築.md)
-- [開発工程_8-1_CI/CD構築](./dev_process_開発工程_8-1_CICD.md)
-- [開発工程_9_テスト_アプリケーション](./dev_process_開発工程_9_テスト_アプリケーション.md)
-- [開発工程_11_導入](./dev_process_開発工程_11_導入.md)

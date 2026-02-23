@@ -3,6 +3,11 @@
 - [1. 概要](#1-概要)
   - [1.2. 共通](#12-共通)
 - [2. 単体テスト](#2-単体テスト)
+  - [2.1 Java](#21-java)
+  - [2.2 C#](#22-c)
+  - [2.3 Python](#23-python)
+  - [2.4 TypeScript](#24-typescript)
+  - [2.5 Go](#25-go)
 - [3. 結合・APIテスト](#3-結合apiテスト)
 - [4. システム・E2Eテスト](#4-システムe2eテスト)
 - [5. 非機能テスト](#5-非機能テスト)
@@ -40,13 +45,40 @@
 - テストコード
 - カバレッジレポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [JUnit 5](https://junit.org/junit5/) | Javaの単体テスト実装 | 無料 |
-| [pytest](https://docs.pytest.org/) | Pythonの単体テスト実装 | 無料 |
-| [Jest](https://jestjs.io/) | JavaScript/TypeScriptの単体テスト実装 | 無料 |
-| [xUnit.net](https://xunit.net/) | C#/.NETの単体テスト実装 | 無料 |
-| [Go testing](https://pkg.go.dev/testing) | Goの単体テスト実装 | 無料 |
+### 2.1 Java
+
+| ツール名 | 用途 |
+|---------|------|
+| [JUnit 5](https://junit.org/junit5/) | Javaの単体テスト実装 |
+| [Mockito](https://site.mockito.org/) | Javaのモック作成、依存切り離しテスト |
+
+### 2.2 C#
+
+| ツール名 | 用途 |
+|---------|------|
+| [xUnit.net](https://xunit.net/) | C#/.NETの単体テスト実装 |
+| [Moq](https://github.com/devlooped/moq) | C#のモック作成、依存切り離しテスト |
+
+### 2.3 Python
+
+| ツール名 | 用途 |
+|---------|------|
+| [pytest](https://docs.pytest.org/) | Pythonの単体テスト実装 |
+| [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) | Python標準のモック作成 |
+
+### 2.4 TypeScript
+
+| ツール名 | 用途 |
+|---------|------|
+| [Jest](https://jestjs.io/) | TypeScriptの単体テスト実装 |
+| [ts-jest](https://kulshekhar.github.io/ts-jest/) | TypeScript向けJest実行設定 |
+
+### 2.5 Go
+
+| ツール名 | 用途 |
+|---------|------|
+| [Go testing](https://pkg.go.dev/testing) | Goの単体テスト実装 |
+| [GoMock](https://github.com/uber-go/mock) | Goのモック生成、依存切り離しテスト |
 
 **有用なドキュメント**
 
@@ -55,6 +87,8 @@
 | [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/) | JUnitテスト設計と実装 |
 | [pytest Documentation](https://docs.pytest.org/en/stable/) | pytestフィクスチャ、実行方法 |
 | [Jest Docs](https://jestjs.io/docs/getting-started) | Jest導入とテスト実装 |
+| [xUnit.net Documentation](https://xunit.net/docs/getting-started/v2/getting-started) | xUnit導入とテスト実装 |
+| [Go testing package](https://pkg.go.dev/testing) | Go標準テスト実装 |
 
 ---
 
@@ -88,11 +122,11 @@
 - 自動テストスクリプト
 - テスト証跡（動画/スクリーンショット/ログ）
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Playwright](https://playwright.dev/) | クロスブラウザE2Eテスト | 無料 |
-| [Selenium](https://www.selenium.dev/) | ブラウザ自動操作によるE2Eテスト | 無料 |
-| [Appium](https://appium.io/) | モバイルアプリE2Eテスト | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Playwright](https://playwright.dev/) | クロスブラウザE2Eテスト |
+| [Selenium](https://www.selenium.dev/) | ブラウザ自動操作によるE2Eテスト |
+| [Appium](https://appium.io/) | モバイルアプリE2Eテスト |
 
 **有用なドキュメント**
 
@@ -100,7 +134,6 @@
 |-------|------|
 | [Playwright Docs](https://playwright.dev/docs/intro) | Playwright導入と運用 |
 | [Selenium Documentation](https://www.selenium.dev/documentation/) | Selenium実装ガイド |
-| [Cypress Documentation](https://docs.cypress.io/) | Cypressテスト実装ガイド |
 
 ---
 
@@ -110,13 +143,13 @@
 - セキュリティテスト結果
 - ボトルネック分析レポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Apache JMeter](https://jmeter.apache.org/) | 負荷・性能テスト実行 | 無料 |
-| [k6](https://k6.io/) | スクリプトベース負荷テスト | 無料 |
-| [Locust](https://locust.io/) | Pythonベース分散負荷テスト | 無料 |
-| [OWASP ZAP](https://www.zaproxy.org/) | Webアプリ脆弱性テスト | 無料 |
-| [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/) | 依存ライブラリ脆弱性検査 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Apache JMeter](https://jmeter.apache.org/) | 負荷・性能テスト実行 |
+| [k6](https://k6.io/) | スクリプトベース負荷テスト |
+| [Locust](https://locust.io/) | Pythonベース分散負荷テスト |
+| [OWASP ZAP](https://www.zaproxy.org/) | Webアプリ脆弱性テスト |
+| [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/) | 依存ライブラリ脆弱性検査 |
 
 **有用なドキュメント**
 
@@ -136,7 +169,8 @@
 
 | ツール名 | 用途 | 料金 |
 |---------|------|------|
-| [TestLink](https://testlink.org/) | テストケース管理、実行管理 | 無料 |
+| [Xray](https://www.getxray.app/) / [Zephyr](https://smartbear.com/test-management/zephyr/) | Jira連携のテスト管理、テスト実行管理 | 有料 |
+| [TestRail](https://www.testrail.com/) | テストケース管理、テスト進捗・品質レポート | 有料 |
 | [Allure Report](https://allurereport.org/) | テスト結果可視化レポート | 無料 |
 
 **有用なドキュメント**
@@ -173,6 +207,3 @@
 ## 8. 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 - ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
-- [開発工程_7_実装_アプリケーション](./dev_process_開発工程_7_実装_アプリケーション.md)
-- [開発工程_8-1_CI/CD構築](./dev_process_開発工程_8-1_CICD.md)
-- [開発工程_10_テスト_インフラ](./dev_process_開発工程_10_テスト_インフラ.md)

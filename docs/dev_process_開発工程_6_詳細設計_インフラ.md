@@ -41,11 +41,11 @@
 - サブネット/CIDR設計書
 - ルーティング・疎通制御設計書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図・経路図作成 | 無料 |
-| [PlantUML](https://plantuml.com/) | ネットワーク構成のテキスト管理 | 無料 |
-| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC詳細定義 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図・経路図作成 |
+| [PlantUML](https://plantuml.com/) | ネットワーク構成のテキスト管理 |
+| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC詳細定義 |
 
 **有用なドキュメント**
 
@@ -103,11 +103,11 @@
 - IAM/RBAC設計書
 - 暗号化・鍵管理設計書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） | 無料 |
-| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 | 無料 |
-| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・準拠チェック | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） |
+| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 |
+| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・準拠チェック |
 
 **有用なドキュメント**
 

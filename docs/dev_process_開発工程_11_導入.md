@@ -53,7 +53,6 @@
 |-------|------|
 | [Flyway Documentation](https://documentation.red-gate.com/flyway) | マイグレーション運用手順 |
 | [Liquibase Documentation](https://docs.liquibase.com/) | 変更セット設計、ロールバック |
-| [AWS DMS Documentation](https://docs.aws.amazon.com/dms/) | DB移行方式と検証観点 |
 
 ---
 
@@ -84,12 +83,12 @@
 - 本番切替チェックリスト
 - 切替判定記録
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Cucumber](https://cucumber.io/) | 受入観点のシナリオ定義、実行 | 無料 |
-| [Playwright](https://playwright.dev/) | UI受入テスト自動化 | 無料 |
-| [Selenium](https://www.selenium.dev/) | 回帰を含むブラウザ受入検証 | 無料 |
-| [Robot Framework](https://robotframework.org/) | キーワード駆動での受入テスト実装 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Cucumber](https://cucumber.io/) | 受入観点のシナリオ定義、実行 |
+| [Playwright](https://playwright.dev/) | UI受入テスト自動化 |
+| [Selenium](https://www.selenium.dev/) | 回帰を含むブラウザ受入検証 |
+| [Robot Framework](https://robotframework.org/) | キーワード駆動での受入テスト実装 |
 
 **有用なドキュメント**
 
@@ -113,6 +112,7 @@
 | [Grafana](https://grafana.com/) | ダッシュボード/通知設定 | 無料枠あり |
 | [Loki](https://grafana.com/oss/loki/) | ログ収集/検索基盤の導入 | 無料 |
 | [OpenTelemetry](https://opentelemetry.io/) | トレース/メトリクス標準化 | 無料 |
+| [New Relic](https://newrelic.com/) | APM、インフラ監視、ログ/トレース統合監視 | 無料枠あり |
 
 **有用なドキュメント**
 
@@ -121,6 +121,7 @@
 | [Prometheus Getting Started](https://prometheus.io/docs/prometheus/latest/getting_started/) | 監視基盤初期構築 |
 | [Grafana Documentation](https://grafana.com/docs/grafana/latest/) | ダッシュボード・通知構築 |
 | [OpenTelemetry Documentation](https://opentelemetry.io/docs/) | 計測データの標準化 |
+| [New Relic Documentation](https://docs.newrelic.com/) | APM/監視導入、ダッシュボード設定 |
 
 ---
 
@@ -130,11 +131,11 @@
 - 運用手順書
 - 権限移管記録
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [GitHub Wiki](https://docs.github.com/communities/documenting-your-project-with-wikis) | 運用ドキュメント管理 | 無料 |
-| [MkDocs](https://www.mkdocs.org/) | 運用ドキュメントの静的サイト化 | 無料 |
-| [Docusaurus](https://docusaurus.io/) | 運用/手順ドキュメントサイト構築 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [GitHub Wiki](https://docs.github.com/communities/documenting-your-project-with-wikis) | 運用ドキュメント管理 |
+| [MkDocs](https://www.mkdocs.org/) | 運用ドキュメントの静的サイト化 |
+| [Docusaurus](https://docusaurus.io/) | 運用/手順ドキュメントサイト構築 |
 
 **有用なドキュメント**
 
@@ -156,13 +157,13 @@
 |---------|------|------|
 | [Zammad](https://zammad.com/) | サービスデスク、チケット管理 | 無料枠あり |
 | [OpenProject](https://www.openproject.org/) | 変更管理、課題管理、承認管理 | 無料枠あり |
-| [Grafana OnCall](https://grafana.com/products/cloud/oncall/) | 当番、通知、エスカレーション管理 | 無料枠あり |
+| [ServiceNow](https://www.servicenow.com/) | ITSM（インシデント/問題/変更管理） | 有料 |
 
 **有用なドキュメント**
 
 | 資料名 | 用途 |
 |-------|------|
-| [NIST SP 800-61 Rev.2](https://csrc.nist.gov/pubs/sp/800/61/r2/final) | インシデント対応プロセス |
+| [NIST SP 800-61 Rev.3](https://csrc.nist.gov/pubs/sp/800/61/r3/final) | インシデント対応プロセス |
 | [Atlassian Incident Management Guide](https://www.atlassian.com/incident-management) | インシデント管理の実装観点 |
 | [OpenProject Documentation](https://www.openproject.org/docs/) | 変更管理ワークフロー設定 |
 
@@ -171,7 +172,3 @@
 ## 8. 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 - ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
-- [開発工程_8_インフラ構築](./dev_process_開発工程_8_インフラ構築.md)
-- [開発工程_8-1_CI/CD構築](./dev_process_開発工程_8-1_CICD.md)
-- [開発工程_9_テスト_アプリケーション](./dev_process_開発工程_9_テスト_アプリケーション.md)
-- [開発工程_10_テスト_インフラ](./dev_process_開発工程_10_テスト_インフラ.md)

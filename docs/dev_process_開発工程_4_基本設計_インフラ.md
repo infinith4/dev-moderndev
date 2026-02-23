@@ -39,11 +39,11 @@
 - サブネット/CIDR設計書
 - ルーティング/FWポリシー設計書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図、通信経路図の作成 | 無料 |
-| [PlantUML](https://plantuml.com/) | ネットワーク構成をテキスト管理 | 無料 |
-| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC定義 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図、通信経路図の作成 |
+| [PlantUML](https://plantuml.com/) | ネットワーク構成をテキスト管理 |
+| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC定義 |
 
 **有用なドキュメント**
 
@@ -61,12 +61,12 @@
 - インスタンス/VMサイジング表
 - オートスケール方針書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | サーバー構成図、構成パターン図作成 | 無料 |
-| [Diagrams (Python)](https://diagrams.mingrammer.com/) | 構成図のコード化と再利用 | 無料 |
-| [AWS Pricing Calculator](https://calculator.aws/) | インスタンス費用試算 | 無料 |
-| [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) | Azure VM/サービス費用試算 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Draw.io](https://www.diagrams.net/) | サーバー構成図、構成パターン図作成 |
+| [Diagrams (Python)](https://diagrams.mingrammer.com/) | 構成図のコード化と再利用 |
+| [AWS Pricing Calculator](https://calculator.aws/) | インスタンス費用試算 |
+| [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) | Azure VM/サービス費用試算 |
 
 **有用なドキュメント**
 
@@ -104,11 +104,11 @@
 - IAM/認可設計書
 - 暗号化・鍵管理方針
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） | 無料 |
-| [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件チェックリスト | 無料 |
-| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・検証 | 無料 |
+| ツール名 | 用途 |
+|---------|------|
+| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） |
+| [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件チェックリスト |
+| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・検証 |
 
 **有用なドキュメント**
 

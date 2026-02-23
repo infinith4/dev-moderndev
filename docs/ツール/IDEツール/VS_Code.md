@@ -251,7 +251,7 @@ Host myserver
 // .devcontainer/devcontainer.json
 {
   "name": "Node.js",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
   "customizations": {
     "vscode": {
       "extensions": [

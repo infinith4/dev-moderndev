@@ -123,7 +123,7 @@ az webapp create \
   --resource-group myResourceGroup \
   --plan myAppServicePlan \
   --name myUniqueAppName \
-  --runtime "NODE:18-lts"
+  --runtime "node:24-lts"
 
 # デプロイ
 az webapp deployment source config \

@@ -2,44 +2,18 @@
 
 ## 概要
 
-Apidog は、API 設計、ドキュメント生成、テスト、モックを統合したオールインワンの API 開発プラットフォームです。Postman、Swagger、Mock.io の機能を一つのツールに統合し、API ライフサイクル全体をカバーします。
+Apidog は、API 設計、ドキュメント生成、テスト、モックを統合したオールインワンの API 開発プラットフォームである。Postman、Swagger、Mock.io の機能を一つのツールに統合し、API ライフサイクル全体をカバーする。
 
 ## 主な特徴
 
-### 1. 統合 API 開発環境
-- API 設計からテスト、ドキュメント化まで一元管理
-- OpenAPI 3.0/3.1 および Swagger 2.0 完全サポート
-- ビジュアルエディタとコードエディタの切り替え可能
-
-### 2. API 設計
-- 直感的な UI での API 設計
-- スキーマファーストアプローチ
-- データモデルとエンドポイントの視覚的管理
-- リアルタイムバリデーション
-
-### 3. ドキュメント自動生成
-- API 設計から自動的に美しいドキュメント生成
-- カスタマイズ可能なテーマとレイアウト
-- インタラクティブな API リファレンス
-- マルチ言語サポート
-
-### 4. モックサーバー
-- API 設計に基づいた自動モックサーバー生成
-- カスタムモックデータ設定
-- レスポンスシナリオの管理
-- クラウドまたはローカルモック
-
-### 5. API テスト
-- 機能テスト、統合テスト、パフォーマンステスト
-- テストケースの自動生成
-- テストスクリプト (JavaScript/Python)
-- CI/CD パイプライン統合
-
-### 6. コラボレーション
-- チームワークスペース
-- バージョン管理とブランチ機能
-- コメントとレビュー機能
-- 役割ベースのアクセス制御
+| 項目 | 内容 |
+|------|------|
+| 統合 API 開発環境 | API 設計、テスト、ドキュメント、モックを一元管理 |
+| API 設計 | OpenAPI 3.0/3.1、Swagger 2.0対応、スキーマ設計 |
+| ドキュメント自動生成 | 仕様からドキュメントを自動生成 |
+| モックサーバー | API 仕様からモックを自動生成（クラウド/ローカル） |
+| API テスト | 手動/自動テスト、テストケース管理、CI連携 |
+| コラボレーション | チーム共有、レビュー、権限管理 |
 
 ## 主な機能
 
@@ -75,75 +49,14 @@ Apidog は、API 設計、ドキュメント生成、テスト、モックを統
 | シナリオ管理 | 複数のレスポンスシナリオ |
 | クラウドモック | クラウドホスティング |
 
-## アーキテクチャ
-
-### デスクトップアプリケーション
-```
-Apidog Desktop
-├── API 設計ワークスペース
-│   ├── ビジュアルエディタ
-│   ├── コードエディタ (OpenAPI)
-│   └── データモデル管理
-├── テストワークスペース
-│   ├── リクエストビルダー
-│   ├── テストスクリプト
-│   └── テスト結果
-├── モックサーバー
-│   ├── モック設定
-│   └── モックログ
-└── ドキュメント
-    ├── API リファレンス
-    └── カスタマイズ設定
-```
-
-### クラウドサービス
-- チーム同期
-- クラウドモックサーバー
-- CI/CD 統合
-- API モニタリング
 
 ## インストールとセットアップ
 
-### デスクトップアプリケーション
-
-#### Windows
-```powershell
-# 公式サイトからインストーラーをダウンロード
-# https://apidog.com/download/
-
-# または Chocolatey を使用
-choco install apidog
-```
-
-#### macOS
-```bash
-# 公式サイトからインストーラーをダウンロード
-# https://apidog.com/download/
-
-# または Homebrew を使用
-brew install --cask apidog
-```
-
-#### Linux
-```bash
-# Debian/Ubuntu
-wget https://assets.apidog.com/download/latest/linux/deb/x64/Apidog-latest.deb
-sudo dpkg -i Apidog-latest.deb
-
-# Fedora/RHEL
-wget https://assets.apidog.com/download/latest/linux/rpm/x64/Apidog-latest.rpm
-sudo rpm -i Apidog-latest.rpm
-```
-
-### CLI ツール
-
-```bash
-# npm でインストール
-npm install -g @apidog/cli
-
-# 使用例
-apidog run <project-id> --environment <env-id>
-```
+公式URL:
+- [Apidog ダウンロードページ](https://apidog.com/download/)
+- [Apidog ヘルプセンター](https://apidog.com/help/)
+- [Apidog Getting Started](https://apidog.com/docs/getting-started/)
+- [Apidog CLI](https://docs.apidog.com/apidog-cli-346455m0)
 
 ## 基本的な使い方
 
@@ -330,7 +243,7 @@ jobs:
 ```yaml
 api_test:
   stage: test
-  image: node:18
+  image: node:24
   before_script:
     - npm install -g @apidog/cli
   script:
@@ -350,7 +263,7 @@ api_test:
 ### Dockerfile 例
 
 ```dockerfile
-FROM node:18-alpine
+FROM node:24-alpine
 
 # Apidog CLI のインストール
 RUN npm install -g @apidog/cli
@@ -406,44 +319,11 @@ services:
 
 ## ユースケース
 
-### 1. API ファースト開発
-
-```
-フェーズ1: API 設計
-- Apidog で API 仕様を設計
-- データモデルとエンドポイントを定義
-- チームレビュー
-
-フェーズ2: モックサーバー
-- 自動モックサーバー起動
-- フロントエンド開発開始
-
-フェーズ3: バックエンド開発
-- API 仕様に基づいた実装
-- Apidog でテスト
-
-フェーズ4: 統合
-- 実 API に切り替え
-- 統合テスト実行
-```
-
-### 2. マイクロサービステスト
-
-```
-- 各サービスの API を Apidog で定義
-- サービス間の依存関係をモック
-- 統合テストスイートの作成
-- CI/CD パイプラインに統合
-```
-
-### 3. API ドキュメンテーション
-
-```
-- OpenAPI 仕様から自動生成
-- カスタムドキュメントページ追加
-- 公開 URL で共有
-- バージョン管理
-```
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| APIファースト開発 | 設計先行で開発を進める | API設計、モック、テスト、実装の整合 |
+| マイクロサービステスト | サービス間連携を早期検証 | モックで依存を分離し、統合テストを実施 |
+| APIドキュメンテーション | 仕様共有と更新効率化 | OpenAPIからドキュメントを自動生成し共有 |
 
 ## ベストプラクティス
 
@@ -544,8 +424,6 @@ pm.test("User email is valid", () => {
 
 ### コミュニティ
 - GitHub: https://github.com/apidog
-- Discord: https://discord.gg/apidog
-- フォーラム: https://forum.apidog.com/
 
 ### チュートリアル
 - Getting Started: https://apidog.com/docs/getting-started/
@@ -561,4 +439,4 @@ Apidog は、API 開発ライフサイクル全体をカバーする統合プラ
 3. **マイクロサービス** - 複数 API の管理とテスト
 4. **CI/CD 統合** - 自動テストとデプロイメントパイプライン
 
-Postman の代替として、より統合的で設計重視のアプローチを提供します。
+Postman の代替として、より統合的で設計重視のアプローチを提供する。

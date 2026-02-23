@@ -160,3 +160,5 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 ---
 
 ## 8. 参考資料
+- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
+- [OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/)

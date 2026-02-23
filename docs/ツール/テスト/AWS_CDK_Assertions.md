@@ -11,7 +11,7 @@
 | **開発元** | Amazon Web Services (AWS) |
 | **種別** | IaCテストライブラリ（CDK専用） |
 | **ライセンス** | Apache License 2.0（オープンソース） |
-| **料金** | 🟢 無料 |
+| **料金** |  無料 |
 | **公式サイト** | https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.assertions-readme.html |
 | **ドキュメント** | https://docs.aws.amazon.com/cdk/v2/guide/testing.html |
 
@@ -665,3 +665,4 @@ AWS CDK Assertionsは、AWS CDKで作成したIaCをテストするための公�
 
 **最終更新**: 2025-12-06
 **対象バージョン**: AWS CDK v2.0+
+

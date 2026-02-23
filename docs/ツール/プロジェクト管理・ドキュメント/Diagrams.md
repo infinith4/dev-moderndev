@@ -340,7 +340,7 @@ with Diagram("3-Tier Web Application", show=False, direction="TB"):
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Diagrams** | 🟢 無料 | オープンソース、MIT ライセンス |
+| **Diagrams** |  無料 | オープンソース、MIT ライセンス |
 
 ## メリット
 
@@ -376,3 +376,4 @@ with Diagram("3-Tier Web Application", show=False, direction="TB"):
 **対象工程**: システム設計・ドキュメント作成
 **最終更新**: 2025年12月
 **ドキュメントバージョン**: 1.0
+

@@ -197,17 +197,17 @@ openapi-generator-cli generate \
 
 | ツール | 価格 | 特徴 |
 |--------|------|------|
-| **OpenAPI Specification** | 🟢 無料 | オープンスタンダード |
-| **Swagger UI** | 🟢 無料 | オープンソース |
-| **Swagger Editor** | 🟢 無料 | オープンソース |
-| **OpenAPI Generator** | 🟢 無料 | オープンソース |
-| **SwaggerHub Free** | 🟢 無料 | 1ユーザー、3API |
+| **OpenAPI Specification** |  無料 | オープンスタンダード |
+| **Swagger UI** |  無料 | オープンソース |
+| **Swagger Editor** |  無料 | オープンソース |
+| **OpenAPI Generator** |  無料 | オープンソース |
+| **SwaggerHub Free** |  無料 | 1ユーザー、3API |
 | **SwaggerHub Team** | $75/月～ | チーム協業、API管理 |
 | **SwaggerHub Enterprise** | 要問い合わせ | SSO、高度な管理機能 |
 
 ## メリット
 
-### ✅ 主な利点
+###  主な利点
 
 1. **業界標準**: RESTful APIのデファクトスタンダード
 2. **自動ドキュメント**: コードから最新ドキュメント生成
@@ -222,7 +222,7 @@ openapi-generator-cli generate \
 
 ## デメリット
 
-### ❌ 制約・課題
+###  制約・課題
 
 1. **学習曲線**: OpenAPI仕様の習得に時間がかかる
 2. **YAML記述**: 大規模APIでは記述が煩雑
@@ -267,3 +267,4 @@ openapi-generator-cli generate \
 **対象工程**: 基本設計、詳細設計、実装  
 **最終更新**: 2025年12月  
 **ドキュメントバージョン**: 1.0
+

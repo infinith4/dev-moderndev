@@ -11,7 +11,7 @@
 | **開発元** | Apache Software Foundation（元々はNSA開発） |
 | **種別** | データフロー自動化・ETL |
 | **ライセンス** | Apache License 2.0（オープンソース） |
-| **料金** | 🟢 無料 |
+| **料金** |  無料 |
 | **公式サイト** | https://nifi.apache.org/ |
 | **ドキュメント** | https://nifi.apache.org/docs.html |
 
@@ -384,3 +384,4 @@ Apache NiFiは、ビジュアルなデータフロー設計と強力なデータ
 
 **最終更新**: 2025-12-06
 **対象バージョン**: Apache NiFi 1.24+
+

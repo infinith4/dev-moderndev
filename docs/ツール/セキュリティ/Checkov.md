@@ -8,31 +8,31 @@ Checkovは、Bridgecrewが開発したInfrastructure as Code（IaC）のため�
 
 | プラン | 料金 | 特徴 |
 |-------|------|------|
-| **Checkov (OSS)** | 🟢 無料 | オープンソース、無制限スキャン、Apache License 2.0 |
-| **Bridgecrew Platform Free** | 🟢 無料 | クラウド統合、無制限スキャン、基本レポート |
-| **Bridgecrew Platform Team** | 💰 見積もり必要 | 高度な分析、カスタムポリシー、チーム機能 |
-| **Bridgecrew Platform Enterprise** | 💰 見積もり必要 | SSO、監査ログ、専用サポート、SLA |
+| **Checkov (OSS)** |  無料 | オープンソース、無制限スキャン、Apache License 2.0 |
+| **Bridgecrew Platform Free** |  無料 | クラウド統合、無制限スキャン、基本レポート |
+| **Bridgecrew Platform Team** |  見積もり必要 | 高度な分析、カスタムポリシー、チーム機能 |
+| **Bridgecrew Platform Enterprise** |  見積もり必要 | SSO、監査ログ、専用サポート、SLA |
 
 **注意**: Checkov本体は無料。Bridgecrew Platformは追加のクラウド機能を提供（任意）。
 
 ## メリット・デメリット
 
 ### メリット
-- ✅ **無料**: オープンソース、商用利用も無料
-- ✅ **多様なIaC対応**: Terraform、CloudFormation、K8s、Docker、ARM、Bicep等
-- ✅ **豊富なポリシー**: 2,000以上の組み込みポリシー
-- ✅ **コンプライアンス**: CIS、PCI-DSS、HIPAA、GDPR対応
-- ✅ **カスタムポリシー**: Pythonで独自ポリシーを作成可能
-- ✅ **CI/CD統合**: GitHub Actions、GitLab CI、Jenkins等と簡単に統合
-- ✅ **自動修正**: 一部の問題を自動修正可能
-- ✅ **詳細なレポート**: SARIF、JSON、JUnit XML等の形式で出力
+-  **無料**: オープンソース、商用利用も無料
+-  **多様なIaC対応**: Terraform、CloudFormation、K8s、Docker、ARM、Bicep等
+-  **豊富なポリシー**: 2,000以上の組み込みポリシー
+-  **コンプライアンス**: CIS、PCI-DSS、HIPAA、GDPR対応
+-  **カスタムポリシー**: Pythonで独自ポリシーを作成可能
+-  **CI/CD統合**: GitHub Actions、GitLab CI、Jenkins等と簡単に統合
+-  **自動修正**: 一部の問題を自動修正可能
+-  **詳細なレポート**: SARIF、JSON、JUnit XML等の形式で出力
 
 ### デメリット
-- ❌ **実行時間**: 大規模プロジェクトではスキャンに時間がかかる
-- ❌ **誤検知**: 環境によってはfalse positiveが発生
-- ❌ **Python依存**: Python環境が必要
-- ❌ **ドキュメント**: 一部のポリシーのドキュメントが不足
-- ❌ **学習曲線**: カスタムポリシー作成には Python知識が必要
+-  **実行時間**: 大規模プロジェクトではスキャンに時間がかかる
+-  **誤検知**: 環境によってはfalse positiveが発生
+-  **Python依存**: Python環境が必要
+-  **ドキュメント**: 一部のポリシーのドキュメントが不足
+-  **学習曲線**: カスタムポリシー作成には Python知識が必要
 
 ## 利用できる開発工程
 
@@ -449,16 +449,16 @@ echo "High issues: $HIGH_COUNT (threshold: $THRESHOLD_HIGH)"
 
 # しきい値チェック
 if [ "$CRITICAL_COUNT" -gt "$THRESHOLD_CRITICAL" ]; then
-    echo "❌ FAILED: Critical vulnerabilities found!"
+    echo " FAILED: Critical vulnerabilities found!"
     exit 1
 fi
 
 if [ "$HIGH_COUNT" -gt "$THRESHOLD_HIGH" ]; then
-    echo "❌ FAILED: Too many high severity issues!"
+    echo " FAILED: Too many high severity issues!"
     exit 1
 fi
 
-echo "✅ PASSED: Security gate checks passed!"
+echo " PASSED: Security gate checks passed!"
 exit 0
 ```
 
@@ -527,3 +527,4 @@ checkov -d terraform/ \
 
 **最終更新日**: 2025年11月30日
 **バージョン**: 1.0
+

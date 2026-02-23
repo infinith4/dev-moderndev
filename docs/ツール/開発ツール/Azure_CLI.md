@@ -232,11 +232,11 @@ echo "VM creation initiated"
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Azure CLI** | 🟢 無料 | オープンソース、MIT License |
+| **Azure CLI** |  無料 | オープンソース、MIT License |
 
 ## メリット
 
-### ✅ 主な利点
+###  主な利点
 
 1. **無料**: オープンソース、MIT License
 2. **クロスプラットフォーム**: Windows、macOS、Linux
@@ -251,7 +251,7 @@ echo "VM creation initiated"
 
 ## デメリット
 
-### ❌ 制約・課題
+###  制約・課題
 
 1. **Azure専用**: Azureのみ対応
 2. **学習曲線**: コマンド多数
@@ -293,3 +293,4 @@ echo "VM creation initiated"
 **対象工程**: インフラ構築、運用  
 **最終更新**: 2025年12月  
 **ドキュメントバージョン**: 1.0
+

@@ -338,9 +338,9 @@ terraform import aws_s3_bucket.bucket my-existing-bucket
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Terraform OSS** | 🟢 無料 | オープンソース |
-| **Terraform Cloud** | 🟢/💰 | Free/Team ($20/user/月)/Business |
-| **Terraform Enterprise** | 💰 要問い合わせ | オンプレミス、エンタープライズ機能 |
+| **Terraform OSS** |  無料 | オープンソース |
+| **Terraform Cloud** | / | Free/Team ($20/user/月)/Business |
+| **Terraform Enterprise** |  要問い合わせ | オンプレミス、エンタープライズ機能 |
 
 ## メリット
 
@@ -374,3 +374,4 @@ terraform import aws_s3_bucket.bucket my-existing-bucket
 **対象工程**: インフラ自動化
 **最終更新**: 2025年12月
 **ドキュメントバージョン**: 1.0
+

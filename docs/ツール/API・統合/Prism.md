@@ -9,7 +9,7 @@ Prismは、OpenAPI仕様（Swagger）をベースにしたHTTP APIモックサ�
 | 項目 | 内容 |
 |------|------|
 | **公式サイト** | https://stoplight.io/open-source/prism |
-| **料金** | 🟢 無料 |
+| **料金** |  無料 |
 | **ライセンス** | Apache License 2.0 |
 | **対応仕様** | OpenAPI 2.0 (Swagger)、OpenAPI 3.x |
 | **動作環境** | Node.js、Docker、スタンドアロンバイナリ |
@@ -294,66 +294,66 @@ jobs:
 ## メリット
 
 ### 1. OpenAPI仕様ベース
-✅ API仕様書がそのままモックになる
-✅ ドキュメントとモックの乖離がない
-✅ スキーマ駆動開発（Schema-Driven Development）を促進
+ API仕様書がそのままモックになる
+ ドキュメントとモックの乖離がない
+ スキーマ駆動開発（Schema-Driven Development）を促進
 
 ### 2. 強力なバリデーション
-✅ リクエストがOpenAPI仕様に準拠しているか自動検証
-✅ 開発中にAPI仕様違反を早期発見
-✅ クライアント・サーバー間の契約を保証
+ リクエストがOpenAPI仕様に準拠しているか自動検証
+ 開発中にAPI仕様違反を早期発見
+ クライアント・サーバー間の契約を保証
 
 ### 3. 軽量・高速
-✅ Node.js製で起動が速い
-✅ メモリ消費が少ない
-✅ 追加の設定やコードが不要
+ Node.js製で起動が速い
+ メモリ消費が少ない
+ 追加の設定やコードが不要
 
 ### 4. 柔軟なレスポンスモード
-✅ Static/Dynamicモードの切り替え
-✅ 複数のexampleを使い分け
-✅ エラーケースのシミュレーション
+ Static/Dynamicモードの切り替え
+ 複数のexampleを使い分け
+ エラーケースのシミュレーション
 
 ### 5. プロキシモード
-✅ 実APIとモックを併用可能
-✅ 段階的な開発をサポート
-✅ 未実装エンドポイントのみモック
+ 実APIとモックを併用可能
+ 段階的な開発をサポート
+ 未実装エンドポイントのみモック
 
 ### 6. CI/CD統合
-✅ Dockerコンテナで簡単に起動
-✅ GitHub Actions、GitLab CI等で利用しやすい
-✅ 自動テストに組み込みやすい
+ Dockerコンテナで簡単に起動
+ GitHub Actions、GitLab CI等で利用しやすい
+ 自動テストに組み込みやすい
 
 ### 7. 豊富なツールチェーン
-✅ Stoplight Studioと統合
-✅ OpenAPIエコシステムの一部
-✅ 他のOpenAPIツールと連携
+ Stoplight Studioと統合
+ OpenAPIエコシステムの一部
+ 他のOpenAPIツールと連携
 
 ## デメリット
 
 ### 1. OpenAPI依存
-❌ OpenAPI仕様ファイルが必須
-❌ OpenAPIがない場合は使えない
-❌ 仕様作成の手間が先行
+ OpenAPI仕様ファイルが必須
+ OpenAPIがない場合は使えない
+ 仕様作成の手間が先行
 
 ### 2. 複雑なロジック
-❌ 動的なレスポンス生成に限界
-❌ 状態管理やビジネスロジックは実装できない
-❌ データベースとの連携はない
+ 動的なレスポンス生成に限界
+ 状態管理やビジネスロジックは実装できない
+ データベースとの連携はない
 
 ### 3. WebSocket/gRPC非対応
-❌ HTTP/REST APIに特化
-❌ WebSocketやgRPCは未サポート
-❌ 双方向通信のモックには不向き
+ HTTP/REST APIに特化
+ WebSocketやgRPCは未サポート
+ 双方向通信のモックには不向き
 
 ### 4. 録画機能なし
-❌ 実APIとの通信を記録してモック化する機能がない
-❌ 既存APIのモック化には手動でOpenAPI定義が必要
-❌ WireMockやMountebankより自動化度が低い
+ 実APIとの通信を記録してモック化する機能がない
+ 既存APIのモック化には手動でOpenAPI定義が必要
+ WireMockやMountebankより自動化度が低い
 
 ### 5. UIなし
-❌ 管理画面やダッシュボードがない
-❌ リクエスト履歴の確認はログのみ
-❌ デバッグがコマンドライン依存
+ 管理画面やダッシュボードがない
+ リクエスト履歴の確認はログのみ
+ デバッグがコマンドライン依存
 
 ## ユースケース
 
@@ -386,12 +386,12 @@ jobs:
 
 | ツール | 料金 | OpenAPI対応 | バリデーション | 特徴 |
 |--------|------|------------|--------------|------|
-| **Prism** | 🟢 無料 | ✅ 専用 | ✅ 強力 | OpenAPI特化、軽量、バリデーション |
-| MockServer | 🟢 無料 | ✅ 強力 | ✅ あり | OpenAPI統合、UI、WebSocket |
-| WireMock | 🟢 無料 | ⚠️ 限定的 | ❌ なし | 成熟、柔軟なマッチング |
-| MSW | 🟢 無料 | ⚠️ 手動 | ❌ なし | JavaScript特化、Service Worker |
-| Mountebank | 🟢 無料 | ❌ なし | ❌ なし | マルチプロトコル |
-| Stoplight Studio | 🟡 一部有料 | ✅ 専用 | ✅ あり | OpenAPI編集、Prism統合、GUI |
+| **Prism** |  無料 |  専用 |  強力 | OpenAPI特化、軽量、バリデーション |
+| MockServer |  無料 |  強力 |  あり | OpenAPI統合、UI、WebSocket |
+| WireMock |  無料 |  限定的 |  なし | 成熟、柔軟なマッチング |
+| MSW |  無料 |  手動 |  なし | JavaScript特化、Service Worker |
+| Mountebank |  無料 |  なし |  なし | マルチプロトコル |
+| Stoplight Studio |  一部有料 |  専用 |  あり | OpenAPI編集、Prism統合、GUI |
 
 ### Prismを選ぶべきケース
 - OpenAPI仕様ベースの開発
@@ -490,10 +490,10 @@ services:
 
 ### 7. OpenAPI定義のバージョン管理
 ```
-✅ OpenAPI定義をGitで管理
-✅ 変更履歴を追跡
-✅ Pull Requestでの仕様レビュー
-✅ タグでバージョン管理
+ OpenAPI定義をGitで管理
+ 変更履歴を追跡
+ Pull Requestでの仕様レビュー
+ タグでバージョン管理
 ```
 
 ## 公式リンク
@@ -520,3 +520,4 @@ Prismは、OpenAPI仕様をベースにしたHTTP APIモックサーバーの決
 スキーマ駆動開発（Schema-Driven Development）を実践するプロジェクトにおいて、Prismは仕様とモックの乖離を防ぎ、クライアント・サーバー間の契約を保証する強力なツールです。軽量で起動が速く、CI/CDパイプラインにも容易に統合できます。
 
 OpenAPI仕様が整備されているプロジェクトにおいて、Prismは第一選択となるモックツールです。フロントエンド・バックエンドの並行開発や契約テストの実施において、高い価値を提供します。
+

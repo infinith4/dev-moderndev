@@ -226,7 +226,7 @@ app.event('app_mention', async ({ event, say }) => {
 
 ;(async () => {
   await app.start(process.env.PORT || 3000)
-  console.log('⚡️ Bolt app is running!')
+  console.log('⚡ Bolt app is running!')
 })()
 ```
 
@@ -348,10 +348,10 @@ jobs:
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Free** | 🟢 無料 | 90日履歴、10統合 |
-| **Pro** | 💰 $7.25/月 | 無制限履歴、無制限統合 |
-| **Business+** | 💰 $12.50/月 | SAML SSO、24/7サポート |
-| **Enterprise Grid** | 💰 要問い合わせ | 無制限ワークスペース |
+| **Free** |  無料 | 90日履歴、10統合 |
+| **Pro** |  $7.25/月 | 無制限履歴、無制限統合 |
+| **Business+** |  $12.50/月 | SAML SSO、24/7サポート |
+| **Enterprise Grid** |  要問い合わせ | 無制限ワークスペース |
 
 ## メリット
 
@@ -385,3 +385,4 @@ jobs:
 **対象工程**: チームコミュニケーション
 **最終更新**: 2025年12月
 **ドキュメントバージョン**: 1.0
+

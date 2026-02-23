@@ -459,7 +459,7 @@ def on_failure_callback(context):
     from airflow.providers.slack.hooks.slack_webhook import SlackWebhookHook
     slack = SlackWebhookHook(slack_webhook_conn_id='slack_webhook')
     slack.send(
-        text=f"❌ Task Failed: {task_instance.task_id}\nError: {exception}"
+        text=f" Task Failed: {task_instance.task_id}\nError: {exception}"
     )
 
 task = PythonOperator(
@@ -591,3 +591,4 @@ Airflow Web UI（http://localhost:8080）で以下を確認:
 - [Google Cloud Composer](https://cloud.google.com/composer)（マネージドAirflow）
 - [Prefect](https://www.prefect.io/)（Airflow代替ツール）
 - [Dagster](https://dagster.io/)（データオーケストレーションツール）
+

@@ -165,11 +165,11 @@ API Server → Database (SQL)
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Threat Modeling Tool** | 🟢 無料 | Windows専用、無料ダウンロード |
+| **Threat Modeling Tool** |  無料 | Windows専用、無料ダウンロード |
 
 ## メリット
 
-### ✅ 主な利点
+###  主な利点
 
 1. **無料**: Microsoft提供、無料
 2. **STRIDE**: 業界標準フレームワーク
@@ -184,7 +184,7 @@ API Server → Database (SQL)
 
 ## デメリット
 
-### ❌ 制約・課題
+###  制約・課題
 
 1. **Windows専用**: macOS、Linux非対応
 2. **更新頻度**: 更新が遅い
@@ -225,3 +225,4 @@ API Server → Database (SQL)
 **対象工程**: 設計、セキュリティ  
 **最終更新**: 2025年12月  
 **ドキュメントバージョン**: 1.0
+

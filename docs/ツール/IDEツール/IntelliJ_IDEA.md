@@ -347,9 +347,9 @@ Authorization: Bearer {{token}}
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Community Edition** | 🟢 無料 | Java、Kotlin、Groovy、Scala |
-| **Ultimate Edition** | 💰 $149/年 | Spring、Java EE、データベース、Web開発 |
-| **学生版** | 🟢 無料 | Ultimate Edition無料 |
+| **Community Edition** |  無料 | Java、Kotlin、Groovy、Scala |
+| **Ultimate Edition** |  $149/年 | Spring、Java EE、データベース、Web開発 |
+| **学生版** |  無料 | Ultimate Edition無料 |
 
 ## メリット
 
@@ -383,3 +383,4 @@ Authorization: Bearer {{token}}
 **対象工程**: Java開発
 **最終更新**: 2025年12月
 **ドキュメントバージョン**: 1.0
+

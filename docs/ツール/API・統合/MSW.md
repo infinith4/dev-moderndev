@@ -9,7 +9,7 @@ MSW (Mock Service Worker)は、Service Worker APIを活用したJavaScript/TypeS
 | 項目 | 内容 |
 |------|------|
 | **公式サイト** | https://mswjs.io/ |
-| **料金** | 🟢 無料 |
+| **料金** |  無料 |
 | **ライセンス** | MIT License |
 | **対応言語** | JavaScript、TypeScript |
 | **動作環境** | ブラウザ（Service Worker）、Node.js（http/https） |
@@ -351,66 +351,66 @@ http.get('/protected', ({ request, cookies }) => {
 ## メリット
 
 ### 1. 非侵襲的
-✅ アプリケーションコードの変更不要
-✅ 本番コードにモックロジックが混入しない
-✅ APIクライアントの実装を問わない（fetch、axios、ky等すべて対応）
+ アプリケーションコードの変更不要
+ 本番コードにモックロジックが混入しない
+ APIクライアントの実装を問わない（fetch、axios、ky等すべて対応）
 
 ### 2. 開発とテストの一貫性
-✅ 同じハンドラーを開発環境とテストで共有
-✅ ブラウザとNode.jsで同じコードが動く
-✅ DRY原則の徹底
+ 同じハンドラーを開発環境とテストで共有
+ ブラウザとNode.jsで同じコードが動く
+ DRY原則の徹底
 
 ### 3. リアルな動作
-✅ 実際のHTTPリクエストとして動作
-✅ ブラウザ開発者ツールのNetworkタブでリクエストを確認可能
-✅ リダイレクト、CORS、Cookieなど実環境と同じ挙動
+ 実際のHTTPリクエストとして動作
+ ブラウザ開発者ツールのNetworkタブでリクエストを確認可能
+ リダイレクト、CORS、Cookieなど実環境と同じ挙動
 
 ### 4. TypeScript完全サポート
-✅ 型安全なハンドラー定義
-✅ リクエスト/レスポンスの型推論
-✅ IDE補完が効く
+ 型安全なハンドラー定義
+ リクエスト/レスポンスの型推論
+ IDE補完が効く
 
 ### 5. 軽量・高速
-✅ ブラウザネイティブのService Worker API利用
-✅ 追加のサーバー不要
-✅ メモリ消費が少ない
+ ブラウザネイティブのService Worker API利用
+ 追加のサーバー不要
+ メモリ消費が少ない
 
 ### 6. GraphQL対応
-✅ REST APIとGraphQLを統一的に扱える
-✅ 型安全なGraphQLモック
-✅ Apollo ClientやUrqlなど主要クライアントに対応
+ REST APIとGraphQLを統一的に扱える
+ 型安全なGraphQLモック
+ Apollo ClientやUrqlなど主要クライアントに対応
 
 ### 7. 優れた開発者体験
-✅ 直感的なAPI設計
-✅ 詳細なエラーメッセージ
-✅ 豊富なドキュメントと事例
+ 直感的なAPI設計
+ 詳細なエラーメッセージ
+ 豊富なドキュメントと事例
 
 ## デメリット
 
 ### 1. Service Worker依存（ブラウザ）
-❌ Service Worker非対応ブラウザでは動作しない（IE11等）
-❌ HTTPSまたはlocalhostが必要
-❌ Service Workerの初回登録に少し時間がかかる
+ Service Worker非対応ブラウザでは動作しない（IE11等）
+ HTTPSまたはlocalhostが必要
+ Service Workerの初回登録に少し時間がかかる
 
 ### 2. 学習コスト
-❌ Service Workerの仕組みの理解が必要
-❌ 従来のXHR/fetchモンキーパッチと異なるアプローチ
-❌ 初期セットアップがやや複雑
+ Service Workerの仕組みの理解が必要
+ 従来のXHR/fetchモンキーパッチと異なるアプローチ
+ 初期セットアップがやや複雑
 
 ### 3. JavaScript/TypeScript専用
-❌ 他言語（Java、Python等）では使用不可
-❌ フロントエンド以外のテストには不向き
-❌ マルチ言語環境では別ツールが必要
+ 他言語（Java、Python等）では使用不可
+ フロントエンド以外のテストには不向き
+ マルチ言語環境では別ツールが必要
 
 ### 4. 複雑なシナリオ
-❌ 状態遷移が複雑な場合はハンドラーが煩雑に
-❌ プロキシ/録画機能がない
-❌ スタブの永続化機能がない
+ 状態遷移が複雑な場合はハンドラーが煩雑に
+ プロキシ/録画機能がない
+ スタブの永続化機能がない
 
 ### 5. デバッグ
-❌ ハンドラー内のエラーが見つけにくい場合がある
-❌ Service Workerのライフサイクルに注意が必要
-❌ ブラウザ再読み込み時の挙動に癖がある
+ ハンドラー内のエラーが見つけにくい場合がある
+ Service Workerのライフサイクルに注意が必要
+ ブラウザ再読み込み時の挙動に癖がある
 
 ## ユースケース
 
@@ -443,12 +443,12 @@ http.get('/protected', ({ request, cookies }) => {
 
 | ツール | 料金 | 対応環境 | 特徴 |
 |--------|------|----------|------|
-| **MSW** | 🟢 無料 | Browser/Node.js | Service Worker利用、非侵襲的 |
-| WireMock | 🟢 無料 | 言語非依存 | Java/スタンドアロン、成熟 |
-| MockServer | 🟢 無料 | 言語非依存 | OpenAPI統合、UI |
-| Nock | 🟢 無料 | Node.js | HTTPモック特化、軽量 |
-| Mirage.js | 🟢 無料 | Browser | フルスタックモック、ORM |
-| json-server | 🟢 無料 | Node.js | JSONベース、超軽量 |
+| **MSW** |  無料 | Browser/Node.js | Service Worker利用、非侵襲的 |
+| WireMock |  無料 | 言語非依存 | Java/スタンドアロン、成熟 |
+| MockServer |  無料 | 言語非依存 | OpenAPI統合、UI |
+| Nock |  無料 | Node.js | HTTPモック特化、軽量 |
+| Mirage.js |  無料 | Browser | フルスタックモック、ORM |
+| json-server |  無料 | Node.js | JSONベース、超軽量 |
 
 ### MSWを選ぶべきケース
 - React、Vue、Angularなどのフロントエンド開発
@@ -604,3 +604,4 @@ MSW (Mock Service Worker)は、Service Worker APIを活用したモダンなJava
 ブラウザとNode.js両方で同じハンドラーを使えるため、開発環境とテスト環境で一貫したモックを提供できます。TypeScriptの型安全性、直感的なAPI、豊富なドキュメントにより、優れた開発者体験を実現しています。
 
 React、Vue、Angularなどのモダンフロントエンド開発において、MSWはAPIモックのデファクトスタンダードとなりつつあり、積極的に採用する価値があります。
+

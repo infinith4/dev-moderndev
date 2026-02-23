@@ -201,13 +201,13 @@ ansible-playbook -i inventory/hosts playbook.yml --vault-password-file ~/.vault_
 
 | エディション | 価格 | 特徴 |
 |-------------|------|------|
-| **Ansible（Community）** | 🟢 無料 | オープンソース、CLI |
-| **Ansible Automation Platform** | 💰 要問い合わせ | Red Hat商用版、GUI（Automation Controller）、サポート |
-| **AWX** | 🟢 無料 | Automation Platformのオープンソース版 |
+| **Ansible（Community）** |  無料 | オープンソース、CLI |
+| **Ansible Automation Platform** |  要問い合わせ | Red Hat商用版、GUI（Automation Controller）、サポート |
+| **AWX** |  無料 | Automation Platformのオープンソース版 |
 
 ## メリット
 
-### ✅ 主な利点
+###  主な利点
 
 1. **エージェントレス**: SSHのみ、エージェント不要
 2. **YAMLベース**: 人間が読みやすい
@@ -222,7 +222,7 @@ ansible-playbook -i inventory/hosts playbook.yml --vault-password-file ~/.vault_
 
 ## デメリット
 
-### ❌ 制約・課題
+###  制約・課題
 
 1. **SSH接続必須**: ネットワーク接続が前提
 2. **パフォーマンス**: 大規模環境ではPuppet/Chefより遅い
@@ -265,3 +265,4 @@ ansible-playbook -i inventory/hosts playbook.yml --vault-password-file ~/.vault_
 **対象工程**: インフラ構築、デプロイ、運用  
 **最終更新**: 2025年12月  
 **ドキュメントバージョン**: 1.0
+

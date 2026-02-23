@@ -728,20 +728,20 @@ pytest tests/ --headed
 ### 1. Web-First Assertions を使用
 
 ```typescript
-// ❌ 悪い例
+//  悪い例
 expect(await page.locator('.message').textContent()).toBe('Success');
 
-// ✅ 良い例（自動リトライあり）
+//  良い例（自動リトライあり）
 await expect(page.locator('.message')).toHaveText('Success');
 ```
 
 ### 2. 役割ベースセレクタを優先
 
 ```typescript
-// ❌ CSS セレクタ（脆弱）
+//  CSS セレクタ（脆弱）
 await page.click('.btn-primary');
 
-// ✅ 役割ベースセレクタ（堅牢）
+//  役割ベースセレクタ（堅牢）
 await page.getByRole('button', { name: 'Submit' }).click();
 ```
 
@@ -828,3 +828,4 @@ Playwright は、以下の場面で特に有用です:
 4. **CI/CD統合** - Docker対応、豊富なレポート機能
 
 自動待機、強力なセレクタ、優れた開発者体験により、信頼性の高いE2Eテストを効率的に構築できます。
+

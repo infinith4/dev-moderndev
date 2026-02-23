@@ -1,66 +1,186 @@
 # Moq
 
 ## 概要
-Moq は、テスト で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 単体、結合、E2E、受入、レポートのいずれかに対応 |
-| 導入対象 | アプリケーション品質検証と継続テスト運用 |
-| 連携 | CI/CD、課題管理、レポート基盤 |
-| 運用 | テスト資産の再利用と標準化がしやすい |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+Moqは、.NET向けの最も広く使われているモッキングライブラリです。LINQ式とラムダ式を活用した直感的なAPIで、インターフェースや仮想メソッドのモックオブジェクトを作成し、単体テストでの依存関係の分離を実現します。Castle DynamicProxyを基盤としたプロキシ生成により、テスト対象のクラスを外部依存から切り離して検証できます。xUnit.net、NUnit、MSTestなど主要なテストフレームワークと組み合わせて使用します。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [Moq](https://github.com/devlooped/moq)
+### 1. モック作成
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+- **インターフェースモック**: `Mock<IService>`でインターフェースのモック生成
+- **クラスモック**: 仮想メソッドを持つクラスのモック（sealedクラスは不可）
+- **Strict/Looseモード**: 未設定メソッド呼び出し時の動作制御
+- **コンストラクタ引数**: モック対象クラスへのコンストラクタ引数受け渡し
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 2. セットアップ（振る舞い定義）
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+- **Setup**: メソッド呼び出し時の戻り値定義
+- **SetupSequence**: 呼び出し回数に応じた異なる戻り値
+- **SetupProperty**: プロパティのget/set動作定義
+- **Callback**: メソッド呼び出し時のコールバック処理
+- **Throws**: 例外をスローする設定
+- **ReturnsAsync**: 非同期メソッドの戻り値設定
 
-## 公式ドキュメント
-- [Moq](https://github.com/devlooped/moq)
+### 3. 検証（Verify）
 
-## まとめ
-Moq は、テスト の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+- **Verify**: メソッドが呼び出されたことの検証
+- **VerifyNoOtherCalls**: 想定外の呼び出しがないことの確認
+- **Times**: 呼び出し回数の検証（Exactly、AtLeast、AtMost、Never）
+- **VerifyAll**: 全Setupが呼び出されたことの確認
+
+### 4. 引数マッチング
+
+- **It.IsAny<T>()**: 任意の引数にマッチ
+- **It.Is<T>(predicate)**: 条件に合う引数にマッチ
+- **It.IsIn()**: 指定リスト内の値にマッチ
+- **It.IsRegex()**: 正規表現パターンにマッチ
+
+## 利用方法
+
+### インストール
+
+```bash
+# NuGetパッケージの追加
+dotnet add package Moq
+
+# テストプロジェクトへの追加（xUnit.netと併用）
+dotnet add package xunit
+dotnet add package Moq
+```
+
+### 基本的な使用例
+
+```csharp
+using Moq;
+using Xunit;
+
+public interface IUserRepository
+{
+    User GetById(int id);
+    Task<User> GetByIdAsync(int id);
+    void Save(User user);
+}
+
+public class UserServiceTests
+{
+    [Fact]
+    public void GetUser_ReturnsUser_WhenExists()
+    {
+        // Arrange
+        var mockRepo = new Mock<IUserRepository>();
+        mockRepo.Setup(r => r.GetById(1))
+                .Returns(new User { Id = 1, Name = "Alice" });
+
+        var service = new UserService(mockRepo.Object);
+
+        // Act
+        var user = service.GetUser(1);
+
+        // Assert
+        Assert.Equal("Alice", user.Name);
+        mockRepo.Verify(r => r.GetById(1), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetUserAsync_ReturnsUser()
+    {
+        var mockRepo = new Mock<IUserRepository>();
+        mockRepo.Setup(r => r.GetByIdAsync(It.IsAny<int>()))
+                .ReturnsAsync(new User { Id = 1, Name = "Bob" });
+
+        var service = new UserService(mockRepo.Object);
+        var user = await service.GetUserAsync(1);
+
+        Assert.Equal("Bob", user.Name);
+    }
+}
+```
+
+### 高度な使用例
+
+```csharp
+// シーケンス（呼び出し回数で戻り値を変える）
+mockRepo.SetupSequence(r => r.GetById(It.IsAny<int>()))
+        .Returns(new User { Name = "First" })
+        .Returns(new User { Name = "Second" })
+        .Throws(new InvalidOperationException());
+
+// コールバック
+var savedUsers = new List<User>();
+mockRepo.Setup(r => r.Save(It.IsAny<User>()))
+        .Callback<User>(u => savedUsers.Add(u));
+
+// プロパティ
+var mockConfig = new Mock<IConfiguration>();
+mockConfig.SetupGet(c => c.ConnectionString)
+          .Returns("Server=localhost;Database=test");
+
+// 条件付きマッチング
+mockRepo.Setup(r => r.GetById(It.Is<int>(id => id > 0)))
+        .Returns<int>(id => new User { Id = id });
+
+// Strict モード（未設定メソッド呼び出しで例外）
+var strictMock = new Mock<IUserRepository>(MockBehavior.Strict);
+```
+
+### protected/internal メンバーのモック
+
+```csharp
+// protected メンバー
+var mock = new Mock<MyAbstractClass>();
+mock.Protected()
+    .Setup<int>("ProtectedMethod", ItExpr.IsAny<string>())
+    .Returns(42);
+```
+
+## エディション・料金
+
+| エディション | 価格 | 特徴 |
+|-------------|------|------|
+| **Moq** | 無料 | オープンソース、BSD 3-Clause License |
+
+## メリット
+
+1. **直感的なAPI**: LINQ/ラムダ式による型安全なセットアップ
+2. **IDE補完**: Visual Studio/RiderのIntelliSenseで設定ミスを防止
+3. **柔軟な検証**: 呼び出し回数、引数パターン、順序の検証が可能
+4. **非同期対応**: `ReturnsAsync`/`ThrowsAsync`で非同期メソッドを簡単にモック
+5. **軽量**: 追加の依存関係が少なく導入が容易
+6. **.NET標準**: .NET開発のデファクトスタンダードモックライブラリ
+
+## デメリット
+
+1. **sealedクラス不可**: sealedクラスや静的メソッドのモックは非対応
+2. **プロキシベース**: Castle DynamicProxyに依存し、具象クラスの非仮想メソッドはモック不可
+3. **過度なモック**: モックの多用でテストが実装詳細に密結合するリスク
+4. **SponsorLink問題**: v4.20でSponsorLink（テレメトリ）が導入され議論に（v4.20.2で削除済み）
+5. **パフォーマンス**: 大量のモック生成時にプロキシ生成コストが発生
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **NSubstitute** | 自然言語に近いAPI | Moqより記述がシンプル、機能は同等 |
+| **FakeItEasy** | 流暢なAPI | Moqと同等機能、AAA（Arrange-Act-Assert）パターン重視 |
+| **Microsoft Fakes** | VS Enterprise機能 | Shimによるstaticメソッドモック可能だが高額 |
+| **Bogus** | テストデータ生成 | モックではなくフェイクデータ生成に特化 |
+
+## 公式リンク
+
+- **GitHub**: [https://github.com/devlooped/moq](https://github.com/devlooped/moq)
+- **NuGet**: [https://www.nuget.org/packages/Moq](https://www.nuget.org/packages/Moq)
+- **ドキュメント**: [https://github.com/devlooped/moq/wiki/Quickstart](https://github.com/devlooped/moq/wiki/Quickstart)
+
+## 関連ドキュメント
+
+- [xUnit.net](./xUnit_net.md)
+- [GoMock](./GoMock.md)
+- [unittest.mock](./unittest_mock.md)
+
+---
+
+**カテゴリ**: テスト
+**対象工程**: 実装・テスト
+**最終更新**: 2025年12月
+**ドキュメントバージョン**: 1.0

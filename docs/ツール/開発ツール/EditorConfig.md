@@ -1,66 +1,187 @@
 # EditorConfig
 
 ## 概要
-EditorConfig は、開発ツール で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 導入工程で使う主要機能を一通り備える |
-| 導入対象 | 個人開発からチーム開発まで対応 |
-| 連携 | 周辺ツールと連携しやすい |
-| 運用 | 手順標準化と再現性向上に有効 |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+EditorConfigは、異なるエディタやIDE間で一貫したコーディングスタイルを維持するためのファイルフォーマットおよびプラグインの仕組みです。プロジェクトのルートに`.editorconfig`ファイルを配置するだけで、インデントスタイル、文字コード、改行コードなどの基本的なフォーマット設定をチーム全体で統一できます。言語やエディタに依存しないため、多言語プロジェクトでの標準化に特に有効です。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [EditorConfig](https://editorconfig.org/)
+### 1. 基本プロパティ
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+- **indent_style**: `tab` または `space` を指定
+- **indent_size**: インデント幅（数値指定）
+- **tab_width**: タブ文字の表示幅
+- **end_of_line**: 改行コード（`lf`、`cr`、`crlf`）
+- **charset**: 文字エンコーディング（`utf-8`、`utf-8-bom`等）
+- **trim_trailing_whitespace**: 行末空白の自動除去
+- **insert_final_newline**: ファイル末尾の改行有無
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 2. グロブパターン
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+- **`*`**: 任意のファイル名にマッチ
+- **`*.{js,ts}`**: 複数拡張子の指定
+- **`[Mm]akefile`**: 文字クラス指定
+- **`**`**: ディレクトリの再帰的マッチ
 
-## 公式ドキュメント
-- [EditorConfig](https://editorconfig.org/)
+### 3. 階層的設定
 
-## まとめ
-EditorConfig は、開発ツール の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+- **root = true**: 上位ディレクトリの`.editorconfig`検索を停止
+- **セクション優先**: ファイル内で後に定義されたルールが優先
+- **ディレクトリ階層**: 対象ファイルに近い`.editorconfig`が優先
+
+### 4. エディタ対応
+
+- **ネイティブ対応**: VS Code、Visual Studio、IntelliJ IDEA、GitHub
+- **プラグイン対応**: Vim、Emacs、Sublime Text、Atom、Notepad++
+- **CI対応**: editorconfig-checker でCI上での検証
+
+## 利用方法
+
+### セットアップ
+
+プロジェクトルートに `.editorconfig` ファイルを作成するだけで、対応エディタが自動的に設定を読み込みます。
+
+### 設定ファイル例
+
+```ini
+# EditorConfig is awesome: https://editorconfig.org
+
+# 最上位の設定ファイル
+root = true
+
+# 全ファイル共通設定
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# JavaScript/TypeScript
+[*.{js,jsx,ts,tsx}]
+indent_size = 2
+
+# YAML
+[*.{yml,yaml}]
+indent_size = 2
+
+# Markdown（末尾空白を保持）
+[*.md]
+trim_trailing_whitespace = false
+
+# Makefile（タブ必須）
+[Makefile]
+indent_style = tab
+
+# JSON
+[*.json]
+indent_size = 2
+
+# C#
+[*.cs]
+indent_size = 4
+dotnet_sort_system_directives_first = true
+
+# Go
+[*.go]
+indent_style = tab
+```
+
+### .NET固有の拡張設定
+
+```ini
+# .NET / C# 固有のEditorConfig設定
+[*.cs]
+# var の使用
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+
+# 式形式メンバー
+csharp_style_expression_bodied_methods = false:none
+csharp_style_expression_bodied_properties = true:suggestion
+
+# 命名規則
+dotnet_naming_rule.interface_should_begin_with_i.severity = error
+dotnet_naming_rule.interface_should_begin_with_i.symbols = interface
+dotnet_naming_rule.interface_should_begin_with_i.style = begins_with_i
+```
+
+### CI/CDでの検証
+
+```bash
+# editorconfig-checker のインストール
+npm install -g editorconfig-checker
+
+# チェック実行
+editorconfig-checker
+
+# 特定ディレクトリのチェック
+editorconfig-checker src/
+```
+
+```yaml
+# .github/workflows/editorconfig.yml
+name: EditorConfig Check
+
+on: [push, pull_request]
+
+jobs:
+  editorconfig:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: editorconfig-checker/action-editorconfig-checker@main
+      - run: editorconfig-checker
+```
+
+## エディション・料金
+
+| エディション | 価格 | 特徴 |
+|-------------|------|------|
+| **EditorConfig** | 無料 | オープンソース、MIT/BSD License |
+
+## メリット
+
+1. **エディタ非依存**: 主要エディタ・IDEの大半で対応
+2. **ゼロコンフィグ**: ファイルを置くだけで動作（プラグイン不要のエディタも多い）
+3. **言語非依存**: すべてのプログラミング言語に適用可能
+4. **階層的設定**: ディレクトリ単位で異なる設定を適用可能
+5. **Git管理**: `.editorconfig`ファイルをリポジトリにコミットしてチーム共有
+6. **.NET統合**: C#/VBのコードスタイルルールをEditorConfigで設定可能
+7. **CI検証**: editorconfig-checkerでCI上での自動検証が可能
+
+## デメリット
+
+1. **基本設定のみ**: インデントや改行など基本的な設定に限定
+2. **高度な整形不可**: コード構造の整形にはフォーマッター（Black、Prettier等）が必要
+3. **プラグイン必要**: 古いエディタではプラグインのインストールが必要
+4. **上書き問題**: エディタ固有の設定と競合する場合がある
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **Prettier** | コードフォーマッター | EditorConfigより高度な整形、Web系言語向け |
+| **ESLint** | JavaScript/TypeScript リンター | EditorConfigよりルールが豊富 |
+| **IDE固有設定** | 各エディタの設定ファイル | エディタ依存だが詳細な設定が可能 |
+
+## 公式リンク
+
+- **公式サイト**: [https://editorconfig.org/](https://editorconfig.org/)
+- **仕様書**: [https://spec.editorconfig.org/](https://spec.editorconfig.org/)
+- **プロパティ一覧**: [https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties](https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties)
+- **GitHub**: [https://github.com/editorconfig](https://github.com/editorconfig)
+
+## 関連ドキュメント
+
+- [Prettier](./Prettier.md)
+- [ESLint](./ESLint.md)
+- [Roslyn Analyzers](./Roslyn_Analyzers.md)
+
+---
+
+**カテゴリ**: 開発ツール
+**対象工程**: 実装
+**最終更新**: 2025年12月
+**ドキュメントバージョン**: 1.0

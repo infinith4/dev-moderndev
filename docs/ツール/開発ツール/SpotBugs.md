@@ -1,66 +1,209 @@
 # SpotBugs
 
 ## 概要
-SpotBugs は、開発ツール で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 導入工程で使う主要機能を一通り備える |
-| 導入対象 | 個人開発からチーム開発まで対応 |
-| 連携 | 周辺ツールと連携しやすい |
-| 運用 | 手順標準化と再現性向上に有効 |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+SpotBugsは、Javaのコンパイル済みバイトコード（.classファイル）を解析してバグパターンを検出する静的解析ツールです。FindBugsの後継として開発され、400以上のバグパターンを検出します。NullPointerDereference、無限ループ、リソースリーク、スレッド安全性の問題などを、コードを実行せずに発見できます。Find Security Bugsプラグインを追加することで、OWASP Top 10に対応したセキュリティ脆弱性の検出も可能です。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [SpotBugs](https://spotbugs.github.io/)
+### 1. バグパターン検出（400+パターン）
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+- **Correctness**: NullPointerDereference、無限ループ、型キャストエラー
+- **Bad Practice**: equals/hashCodeの不整合、例外処理の問題、リソース未クローズ
+- **Performance**: 不要なオブジェクト生成、非効率なString操作
+- **Multithreaded**: デッドロック、競合状態、不正な同期処理
+- **Malicious Code**: 可変オブジェクトの公開、防御的コピーの欠如
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 2. セキュリティ検出（Find Security Bugs）
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+- **SQLインジェクション**: 動的クエリ構築の検出
+- **XSS**: クロスサイトスクリプティングの脆弱性
+- **パストラバーサル**: ファイルパス操作の脆弱性
+- **暗号化**: 弱い暗号アルゴリズムの使用
+- **デシリアライゼーション**: 安全でないデシリアライゼーション
+- **144脆弱性タイプ**: 826以上のAPIシグネチャを認識
 
-## 公式ドキュメント
-- [SpotBugs](https://spotbugs.github.io/)
+### 3. レポート出力
 
-## まとめ
-SpotBugs は、開発ツール の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+- **HTML**: ナビゲーション可能な概要レポート
+- **XML**: 機械処理用の詳細レポート
+- **SARIF**: GitHub Code Scanning連携
+- **Eclipse GUI**: SpotBugs Eclipse Pluginでの対話的表示
+
+### 4. フィルタリング
+
+- **XMLフィルタ**: 特定のバグパターン、クラス、メソッドの除外
+- **アノテーション**: `@SuppressFBWarnings` による個別抑制
+- **優先度フィルタ**: High/Medium/Low優先度でのフィルタリング
+
+## 利用方法
+
+### Maven統合
+
+```xml
+<!-- pom.xml -->
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-maven-plugin</artifactId>
+      <version>4.9.0</version>
+      <configuration>
+        <effort>Max</effort>
+        <threshold>Low</threshold>
+        <xmlOutput>true</xmlOutput>
+        <plugins>
+          <plugin>
+            <groupId>com.h3xstream.findsecbugs</groupId>
+            <artifactId>findsecbugs-plugin</artifactId>
+            <version>1.13.0</version>
+          </plugin>
+        </plugins>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+```
+
+```bash
+# Maven実行
+mvn spotbugs:check
+
+# レポート生成
+mvn spotbugs:spotbugs
+```
+
+### Gradle統合
+
+```groovy
+// build.gradle
+plugins {
+    id 'com.github.spotbugs' version '6.1.2'
+}
+
+spotbugs {
+    effort = com.github.spotbugs.snom.Effort.MAX
+    reportLevel = com.github.spotbugs.snom.Confidence.LOW
+}
+
+dependencies {
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0'
+}
+
+spotbugsMain {
+    reports {
+        html { required = true }
+        xml { required = false }
+    }
+}
+```
+
+```bash
+# Gradle実行
+./gradlew spotbugsMain
+```
+
+### フィルタ設定
+
+```xml
+<!-- spotbugs-exclude.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <!-- 生成コードを除外 -->
+  <Match>
+    <Package name="~.*\.generated\..*"/>
+  </Match>
+  <!-- 特定バグパターンを除外 -->
+  <Match>
+    <Bug pattern="DM_DEFAULT_ENCODING"/>
+  </Match>
+  <!-- テストコードの一部ルールを除外 -->
+  <Match>
+    <Class name="~.*Test"/>
+    <Bug category="PERFORMANCE"/>
+  </Match>
+</FindBugsFilter>
+```
+
+### CI/CD統合
+
+```yaml
+# .github/workflows/spotbugs.yml
+name: SpotBugs
+
+on: [push, pull_request]
+
+jobs:
+  spotbugs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - run: mvn compile spotbugs:check
+```
+
+## エディション・料金
+
+| エディション | 価格 | 特徴 |
+|-------------|------|------|
+| **SpotBugs** | 無料 | オープンソース、LGPL License |
+| **Find Security Bugs** | 無料 | オープンソース、セキュリティ検出プラグイン |
+
+## メリット
+
+1. **バイトコード解析**: ソースコードなしでもJARから解析可能
+2. **400+バグパターン**: 幅広いバグカテゴリをカバー
+3. **セキュリティ検出**: Find Security Bugsで脆弱性スキャン
+4. **ビルドツール統合**: Maven/Gradle/ANT/SBTとの統合
+5. **IDE統合**: Eclipse、IntelliJプラグイン
+6. **SARIF出力**: GitHub Code Scanningとの直接連携
+7. **FindBugs互換**: FindBugsからの移行が容易
+
+## デメリット
+
+1. **偽陽性**: 一部のバグパターンで誤検出が発生
+2. **バイトコード必要**: コンパイル後でないと解析できない
+3. **実行速度**: 大規模プロジェクトでは解析に時間がかかる
+4. **設定複雑**: フィルタ設定のXMLが煩雑
+5. **JDK 11+**: 実行にJDK 11以上が必要
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **Checkstyle** | ソースコードスタイルチェック | SpotBugsと補完関係（併用推奨） |
+| **PMD** | ソースコード解析 | SpotBugsよりソースレベルの問題に強い |
+| **Error Prone** | コンパイラプラグイン | コンパイル時に検出、SpotBugsより高速 |
+| **SonarQube** | 統合品質管理 | SpotBugsより包括的だがサーバ構築が必要 |
+| **Semgrep** | パターンマッチ解析 | 多言語対応、カスタムルール作成が容易 |
+
+## 公式リンク
+
+- **公式サイト**: [https://spotbugs.github.io/](https://spotbugs.github.io/)
+- **GitHub**: [https://github.com/spotbugs/spotbugs](https://github.com/spotbugs/spotbugs)
+- **Mavenプラグイン**: [https://spotbugs.github.io/spotbugs-maven-plugin/](https://spotbugs.github.io/spotbugs-maven-plugin/)
+- **Find Security Bugs**: [https://find-sec-bugs.github.io/](https://find-sec-bugs.github.io/)
+- **バグ解説**: [https://spotbugs.readthedocs.io/](https://spotbugs.readthedocs.io/)
+
+## 関連ドキュメント
+
+- [Checkstyle](./Checkstyle.md)
+- [Google Java Format](./Google_Java_Format.md)
+- [ESLint](./ESLint.md)
+
+---
+
+**カテゴリ**: 開発ツール
+**対象工程**: 実装・テスト
+**最終更新**: 2025年12月
+**ドキュメントバージョン**: 1.0

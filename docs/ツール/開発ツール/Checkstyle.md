@@ -1,66 +1,183 @@
 # Checkstyle
 
 ## 概要
-Checkstyle は、開発ツール で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 導入工程で使う主要機能を一通り備える |
-| 導入対象 | 個人開発からチーム開発まで対応 |
-| 連携 | 周辺ツールと連携しやすい |
-| 運用 | 手順標準化と再現性向上に有効 |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+Checkstyleは、Javaソースコードがコーディング規約に準拠しているかを自動チェックする静的解析ツールです。Google Java Style GuideやSun Code Conventionsなどのプリセット設定が付属し、高度にカスタマイズ可能なルール設定で、ほぼすべてのコーディング標準に対応できます。Maven、Gradle、ANTとのビルドツール統合やEclipse、IntelliJなどのIDE統合を備え、CI/CDパイプラインでの継続的な品質チェックに活用されます。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [Checkstyle](https://checkstyle.sourceforge.io/)
+### 1. コーディング規約チェック
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+- **命名規約**: クラス名、メソッド名、変数名のパターンチェック
+- **Javadoc**: Javadocコメントの有無・形式チェック
+- **インポート**: 不要インポート、順序、ワイルドカード使用の検出
+- **空白・フォーマット**: インデント、空行、波括弧位置のチェック
+- **コードサイズ**: メソッド長、ファイル長、パラメータ数の制限
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 2. プリセット設定
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+- **Google Checks**: `google_checks.xml` - Google Java Style Guide準拠
+- **Sun Checks**: `sun_checks.xml` - Sun Code Conventions準拠
+- **カスタム設定**: XMLベースで独自ルールセットを定義可能
 
-## 公式ドキュメント
-- [Checkstyle](https://checkstyle.sourceforge.io/)
+### 3. 検出レベル
 
-## まとめ
-Checkstyle は、開発ツール の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+- **error**: ビルド失敗を引き起こすルール違反
+- **warning**: 警告として報告されるルール違反
+- **info**: 情報レベルの通知
+- **抑制**: `@SuppressWarnings` やフィルタによる個別抑制
+
+### 4. レポート出力
+
+- **XML**: 機械処理用レポート
+- **HTML**: 人間が読みやすいレポート
+- **SARIF**: GitHub Code Scanning連携用
+- **コンソール**: CLI実行時の標準出力
+
+## 利用方法
+
+### インストール（コマンドライン）
+
+```bash
+# JARファイルをダウンロードして実行
+java -jar checkstyle-10.21.4-all.jar -c /google_checks.xml MyClass.java
+```
+
+### Maven統合
+
+```xml
+<!-- pom.xml -->
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-checkstyle-plugin</artifactId>
+      <version>3.6.0</version>
+      <configuration>
+        <configLocation>google_checks.xml</configLocation>
+        <consoleOutput>true</consoleOutput>
+        <failsOnError>true</failsOnError>
+      </configuration>
+      <executions>
+        <execution>
+          <id>validate</id>
+          <phase>validate</phase>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
+```
+
+### Gradle統合
+
+```groovy
+// build.gradle
+plugins {
+    id 'checkstyle'
+}
+
+checkstyle {
+    toolVersion = '10.21.4'
+    configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+    maxWarnings = 0
+}
+```
+
+### カスタム設定ファイル
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+  "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="MethodLength">
+      <property name="max" value="50"/>
+    </module>
+    <module name="ParameterNumber">
+      <property name="max" value="5"/>
+    </module>
+    <module name="JavadocMethod"/>
+    <module name="AvoidStarImport"/>
+    <module name="UnusedImports"/>
+  </module>
+</module>
+```
+
+### CI/CD統合
+
+```yaml
+# .github/workflows/checkstyle.yml
+name: Checkstyle
+
+on: [push, pull_request]
+
+jobs:
+  checkstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - run: mvn checkstyle:check
+```
+
+## エディション・料金
+
+| エディション | 価格 | 特徴 |
+|-------------|------|------|
+| **Checkstyle** | 無料 | オープンソース、LGPL 2.1 License |
+
+## メリット
+
+1. **高度にカスタマイズ可能**: XMLベースで細かくルールを設定可能
+2. **プリセット充実**: Google/Sun規約がすぐに使える
+3. **ビルドツール統合**: Maven/Gradle/ANTとのシームレスな統合
+4. **IDE統合**: Eclipse、IntelliJ、NetBeansのプラグイン
+5. **長い実績**: Java開発で広く採用されている成熟したツール
+6. **CI/CD対応**: ビルドパイプラインでの自動チェック
+7. **レポート出力**: HTML/XML/SARIF等の多様な出力形式
+
+## デメリット
+
+1. **設定XML複雑**: 初期設定のXMLが長く複雑になりやすい
+2. **ルール過多**: デフォルト設定でノイズ（過剰な警告）が発生しやすい
+3. **ソースコードのみ**: バイトコード解析は行わない（バグ検出はSpotBugs等）
+4. **スタイルチェック中心**: セキュリティ脆弱性の検出には非対応
+5. **Java限定**: Java以外の言語には使用不可
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **PMD** | ソースコード解析 | Checkstyleよりバグ検出寄り |
+| **SpotBugs** | バイトコード解析 | Checkstyleと補完関係（併用推奨） |
+| **SonarQube** | 統合品質管理 | Checkstyleより包括的だがサーバ構築が必要 |
+| **Error Prone** | Google製コンパイラプラグイン | コンパイル時にバグパターンを検出 |
+
+## 公式リンク
+
+- **公式サイト**: [https://checkstyle.sourceforge.io/](https://checkstyle.sourceforge.io/)
+- **GitHub**: [https://github.com/checkstyle/checkstyle](https://github.com/checkstyle/checkstyle)
+- **ルール一覧**: [https://checkstyle.sourceforge.io/checks.html](https://checkstyle.sourceforge.io/checks.html)
+- **Gradleプラグイン**: [https://docs.gradle.org/current/userguide/checkstyle_plugin.html](https://docs.gradle.org/current/userguide/checkstyle_plugin.html)
+
+## 関連ドキュメント
+
+- [Google Java Format](./Google_Java_Format.md)
+- [SpotBugs](./SpotBugs.md)
+- [ESLint](./ESLint.md)
+
+---
+
+**カテゴリ**: 開発ツール
+**対象工程**: 実装
+**最終更新**: 2025年12月
+**ドキュメントバージョン**: 1.0

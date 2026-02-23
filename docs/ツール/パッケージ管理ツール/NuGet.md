@@ -1,66 +1,301 @@
 # NuGet
 
 ## 概要
-NuGet は、パッケージ管理ツール で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 導入工程で使う主要機能を一通り備える |
-| 導入対象 | 個人開発からチーム開発まで対応 |
-| 連携 | 周辺ツールと連携しやすい |
-| 運用 | 手順標準化と再現性向上に有効 |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+NuGetは、.NETエコシステムにおける公式パッケージマネージャーです。nuget.orgを中心としたパブリックレジストリから、数十万のライブラリを検索・インストール・更新できます。`dotnet` CLIおよびVisual Studioと密接に統合されており、PackageReference形式による宣言的な依存関係管理、Central Package Management（CPM）によるソリューション全体のバージョン一元管理、Azure ArtifactsやGitHub Packagesなどのプライベートフィードとの連携、脆弱性監査機能など、エンタープライズ開発に必要な機能を備えています。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [NuGet](https://learn.microsoft.com/nuget/)
+### 1. パッケージ管理
+- **PackageReference**: csprojファイルでの宣言的な依存関係定義
+- **パッケージ復元**: `dotnet restore` による自動復元
+- **バージョン管理**: セマンティックバージョニング対応
+- **推移的依存関係**: 依存関係の自動解決
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+### 2. Central Package Management (CPM)
+- **Directory.Packages.props**: ソリューション全体のバージョン一元管理
+- **バージョン統一**: 複数プロジェクト間でのバージョン一貫性
+- **オーバーライド**: プロジェクト単位での例外指定
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 3. プライベートフィード
+- **Azure Artifacts**: Azure DevOpsとの統合
+- **GitHub Packages**: GitHubリポジトリとの連携
+- **NuGet.config**: フィード設定の管理
+- **認証**: トークンベースの認証
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+### 4. セキュリティ
+- **脆弱性監査**: `dotnet list package --vulnerable`
+- **署名付きパッケージ**: パッケージの改ざん検知
+- **ライセンス確認**: 依存パッケージのライセンス確認
+- **非推奨パッケージ警告**: 非推奨パッケージの検出
 
-## 公式ドキュメント
-- [NuGet](https://learn.microsoft.com/nuget/)
+### 5. CI/CD統合
+- **GitHub Actions**: ワークフローでのパッケージ復元・公開
+- **Azure Pipelines**: パイプラインでの自動化
+- **キャッシュ**: パッケージキャッシュによるビルド高速化
 
-## まとめ
-NuGet は、パッケージ管理ツール の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+## 利用方法
+
+### パッケージのインストール
+
+```bash
+# dotnet CLIでパッケージを追加
+dotnet add package Newtonsoft.Json
+
+# バージョン指定
+dotnet add package Newtonsoft.Json --version 13.0.3
+
+# プレリリース版を含む
+dotnet add package Newtonsoft.Json --prerelease
+
+# 特定プロジェクトに追加
+dotnet add src/MyApp/MyApp.csproj package Serilog
+```
+
+### PackageReference（csproj）
+
+```xml
+<!-- MyApp.csproj -->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+  </ItemGroup>
+</Project>
+```
+
+### Central Package Management
+
+```xml
+<!-- Directory.Packages.props（ソリューションルートに配置） -->
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="Serilog" Version="3.1.1" />
+    <PackageVersion Include="xunit" Version="2.7.0" />
+    <PackageVersion Include="Moq" Version="4.20.70" />
+  </ItemGroup>
+</Project>
+```
+
+```xml
+<!-- 各プロジェクトのcsproj（Versionを省略） -->
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Serilog" />
+  </ItemGroup>
+</Project>
+```
+
+### NuGet.config設定
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <!-- パッケージソースの定義 -->
+  <packageSources>
+    <clear />
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+    <add key="Azure Artifacts" value="https://pkgs.dev.azure.com/myorg/_packaging/myfeed/nuget/v3/index.json" />
+    <add key="GitHub Packages" value="https://nuget.pkg.github.com/myorg/index.json" />
+  </packageSources>
+
+  <!-- 認証情報 -->
+  <packageSourceCredentials>
+    <GitHub_Packages>
+      <add key="Username" value="USERNAME" />
+      <add key="ClearTextPassword" value="%GITHUB_TOKEN%" />
+    </GitHub_Packages>
+  </packageSourceCredentials>
+
+  <!-- パッケージソースのマッピング -->
+  <packageSourceMapping>
+    <packageSource key="nuget.org">
+      <package pattern="*" />
+    </packageSource>
+    <packageSource key="Azure Artifacts">
+      <package pattern="MyCompany.*" />
+    </packageSource>
+  </packageSourceMapping>
+</configuration>
+```
+
+### パッケージの管理コマンド
+
+```bash
+# インストール済みパッケージ一覧
+dotnet list package
+
+# 更新可能なパッケージ確認
+dotnet list package --outdated
+
+# 脆弱性のあるパッケージ確認
+dotnet list package --vulnerable
+
+# 非推奨パッケージ確認
+dotnet list package --deprecated
+
+# パッケージの更新
+dotnet add package Newtonsoft.Json --version 13.0.3
+
+# パッケージの削除
+dotnet remove package Newtonsoft.Json
+
+# パッケージの復元
+dotnet restore
+
+# キャッシュクリア
+dotnet nuget locals all --clear
+```
+
+### パッケージの作成と公開
+
+```xml
+<!-- ライブラリプロジェクトのcsproj -->
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageId>MyCompany.MyLibrary</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>My Team</Authors>
+    <Description>社内共通ライブラリ</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>
+```
+
+```bash
+# パッケージの作成
+dotnet pack --configuration Release
+
+# nuget.orgへの公開
+dotnet nuget push bin/Release/MyCompany.MyLibrary.1.0.0.nupkg \
+  --api-key $NUGET_API_KEY \
+  --source https://api.nuget.org/v3/index.json
+
+# Azure Artifactsへの公開
+dotnet nuget push bin/Release/MyCompany.MyLibrary.1.0.0.nupkg \
+  --api-key az \
+  --source "Azure Artifacts"
+```
+
+### CI/CD統合
+
+```yaml
+# .github/workflows/nuget.yml
+name: NuGet Package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore packages
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test
+        run: dotnet test --no-build --configuration Release
+
+      - name: Check vulnerabilities
+        run: dotnet list package --vulnerable --include-transitive
+
+      - name: Pack
+        if: github.ref == 'refs/heads/main'
+        run: dotnet pack --no-build --configuration Release
+
+      - name: Push to NuGet
+        if: github.ref == 'refs/heads/main'
+        run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+```
+
+## エディション・料金
+
+| エディション | 価格 | 特徴 |
+|-------------|------|------|
+| **NuGet CLI / dotnet CLI** | 無料 | オープンソース、Apache-2.0 License |
+| **nuget.org** | 無料 | パブリックパッケージレジストリ |
+| **Azure Artifacts** | 2 GiBまで無料 | プライベートフィード、Azure DevOps統合 |
+| **GitHub Packages** | 500 MBまで無料 | GitHubリポジトリ統合 |
+
+## メリット
+
+### 主な利点
+
+1. **.NET標準**: .NET SDKに組み込まれた公式パッケージマネージャー
+2. **大規模レジストリ**: nuget.orgに40万以上のパッケージ
+3. **宣言的管理**: PackageReferenceによる明確な依存関係定義
+4. **CPM対応**: ソリューション全体のバージョン一元管理
+5. **セキュリティ**: 脆弱性監査・署名・ライセンス確認
+6. **Visual Studio統合**: GUIからの直感的なパッケージ管理
+7. **プライベートフィード**: 社内パッケージの配布基盤
+8. **推移的依存解決**: 依存関係の自動解決
+9. **キャッシュ**: グローバルパッケージキャッシュによる高速復元
+10. **クロスプラットフォーム**: Windows/macOS/Linux対応
+
+## デメリット
+
+### 制約・課題
+
+1. **.NET限定**: .NETエコシステム以外では利用不可
+2. **バージョン競合**: 推移的依存関係でのバージョン競合
+3. **packages.config**: レガシー形式からの移行コスト
+4. **パッケージサイズ**: 大規模パッケージのダウンロード時間
+5. **オフライン対応**: オフライン環境での運用に事前準備が必要
+6. **CPM学習**: Central Package Managementの設計理解が必要
+7. **フィード管理**: 複数フィード運用時の設定複雑化
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **Paket** | 代替.NETパッケージマネージャー | NuGetよりロック管理が厳密 |
+| **npm** | Node.jsパッケージマネージャー | JavaScript/TypeScriptエコシステム |
+| **pip** | Pythonパッケージマネージャー | Pythonエコシステム |
+| **Maven** | Javaビルド・依存管理 | JVMエコシステム |
+| **Cargo** | Rustパッケージマネージャー | Rustエコシステム |
+
+## 公式リンク
+
+- **公式ドキュメント**: [https://learn.microsoft.com/nuget/](https://learn.microsoft.com/nuget/)
+- **nuget.org**: [https://www.nuget.org/](https://www.nuget.org/)
+- **GitHub**: [https://github.com/NuGet/Home](https://github.com/NuGet/Home)
+- **NuGet CLI**: [https://learn.microsoft.com/nuget/reference/nuget-exe-cli-reference](https://learn.microsoft.com/nuget/reference/nuget-exe-cli-reference)
+- **CPMガイド**: [https://learn.microsoft.com/nuget/consume-packages/central-package-management](https://learn.microsoft.com/nuget/consume-packages/central-package-management)
+
+## 関連ドキュメント
+
+- [パッケージ管理ツール一覧](../パッケージ管理ツール/)
+- [Visual Studio](../IDEツール/Visual_Studio.md)
+- [Azure Artifacts](../クラウドプラットフォームツール/)
+
+---
+
+**カテゴリ**: パッケージ管理ツール
+**対象工程**: 実装・ビルド
+**最終更新**: 2025年12月
+**ドキュメントバージョン**: 1.0

@@ -1,66 +1,220 @@
 # unittest.mock
 
 ## 概要
-unittest.mock は、テスト で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 単体、結合、E2E、受入、レポートのいずれかに対応 |
-| 導入対象 | アプリケーション品質検証と継続テスト運用 |
-| 連携 | CI/CD、課題管理、レポート基盤 |
-| 運用 | テスト資産の再利用と標準化がしやすい |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+unittest.mockは、Python標準ライブラリ（`unittest.mock`モジュール）に含まれるモッキングフレームワークです。`Mock`、`MagicMock`、`patch`を中心に、テスト対象の依存関係（外部API呼び出し、データベース接続、ファイルI/O等）を差し替えて単体テストの独立性を確保します。Python 3.3以降で標準搭載され、追加インストール不要で利用できます。pytest、unittestの両方で使用可能です。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [unittest.mock](https://docs.python.org/3/library/unittest.mock.html)
+### 1. Mockオブジェクト
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+- **Mock**: 基本的なモックオブジェクト（任意の属性・メソッドを動的生成）
+- **MagicMock**: マジックメソッド（`__len__`、`__iter__`等）もモック化したMock
+- **PropertyMock**: プロパティのモック化
+- **AsyncMock**: 非同期関数（`async def`）のモック（Python 3.8+）
+- **spec**: 実際のクラス/モジュールをスペックとして型安全なモック生成
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 2. patch
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+- **patch()**: モジュール内のオブジェクトを一時的にモックに差し替え
+- **patch.object()**: 特定オブジェクトの属性を差し替え
+- **patch.dict()**: 辞書の一時的な書き換え
+- **patch.multiple()**: 複数属性の同時差し替え
+- **デコレータ/コンテキストマネージャ**: `@patch`または`with patch(...)`で使用
 
-## 公式ドキュメント
-- [unittest.mock](https://docs.python.org/3/library/unittest.mock.html)
+### 3. 検証
 
-## まとめ
-unittest.mock は、テスト の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+- **assert_called()**: 呼び出されたことの確認
+- **assert_called_once()**: 1回だけ呼び出されたことの確認
+- **assert_called_with()**: 特定の引数で呼び出されたことの確認
+- **assert_not_called()**: 呼び出されていないことの確認
+- **call_count**: 呼び出し回数の取得
+- **call_args_list**: 全呼び出しの引数履歴
+
+### 4. 戻り値・副作用
+
+- **return_value**: モックの戻り値設定
+- **side_effect**: 例外送出、複数戻り値のイテレーション、関数による動的戻り値
+- **side_effect（リスト）**: 呼び出しごとに異なる値を返す
+
+## 利用方法
+
+### 基本的な使用例
+
+```python
+from unittest.mock import Mock, MagicMock
+
+# 基本的なMockオブジェクト
+mock = Mock()
+mock.some_method.return_value = 42
+result = mock.some_method("arg1", key="value")
+assert result == 42
+mock.some_method.assert_called_once_with("arg1", key="value")
+
+# MagicMock（マジックメソッド対応）
+magic = MagicMock()
+magic.__len__.return_value = 5
+assert len(magic) == 5
+
+# specによる型安全モック
+mock_list = MagicMock(spec=list)
+mock_list.append(1)       # OK
+# mock_list.nonexistent()  # AttributeError
+```
+
+### patchの使用
+
+```python
+from unittest.mock import patch, MagicMock
+import requests
+
+# デコレータとして使用
+@patch('mymodule.requests.get')
+def test_fetch_data(mock_get):
+    mock_get.return_value.status_code = 200
+    mock_get.return_value.json.return_value = {"key": "value"}
+
+    result = fetch_data("https://api.example.com/data")
+
+    assert result == {"key": "value"}
+    mock_get.assert_called_once_with("https://api.example.com/data")
+
+# コンテキストマネージャとして使用
+def test_fetch_data_context():
+    with patch('mymodule.requests.get') as mock_get:
+        mock_get.return_value.status_code = 200
+        mock_get.return_value.json.return_value = {"data": [1, 2, 3]}
+
+        result = fetch_data("https://api.example.com/items")
+        assert result == {"data": [1, 2, 3]}
+
+# 複数のpatch
+@patch('mymodule.db_connection')
+@patch('mymodule.cache_client')
+def test_with_multiple_mocks(mock_cache, mock_db):
+    mock_db.query.return_value = [{"id": 1}]
+    mock_cache.get.return_value = None
+    # テストロジック
+```
+
+### side_effectの活用
+
+```python
+from unittest.mock import Mock, patch
+
+# 例外を送出
+mock = Mock()
+mock.side_effect = ValueError("Invalid input")
+# mock()  # raises ValueError
+
+# 呼び出しごとに異なる値を返す
+mock = Mock()
+mock.side_effect = [1, 2, 3]
+assert mock() == 1
+assert mock() == 2
+assert mock() == 3
+
+# 関数による動的な戻り値
+def dynamic_return(arg):
+    return arg * 2
+
+mock = Mock(side_effect=dynamic_return)
+assert mock(5) == 10
+assert mock(3) == 6
+```
+
+### AsyncMock（非同期モック）
+
+```python
+from unittest.mock import AsyncMock, patch
+import pytest
+
+@pytest.mark.asyncio
+async def test_async_fetch():
+    mock_client = AsyncMock()
+    mock_client.fetch.return_value = {"status": "ok"}
+
+    result = await mock_client.fetch("/api/health")
+    assert result == {"status": "ok"}
+    mock_client.fetch.assert_awaited_once_with("/api/health")
+
+@patch('mymodule.aiohttp.ClientSession')
+@pytest.mark.asyncio
+async def test_async_service(mock_session):
+    mock_resp = AsyncMock()
+    mock_resp.json.return_value = {"data": "test"}
+    mock_session.return_value.__aenter__.return_value.get.return_value.__aenter__.return_value = mock_resp
+
+    result = await my_async_service()
+    assert result == {"data": "test"}
+```
+
+### pytestとの組み合わせ
+
+```python
+import pytest
+from unittest.mock import patch, MagicMock
+
+@pytest.fixture
+def mock_db():
+    with patch('mymodule.database') as mock:
+        mock.connect.return_value = MagicMock()
+        mock.connect.return_value.execute.return_value = [{"id": 1, "name": "Alice"}]
+        yield mock
+
+def test_get_users(mock_db):
+    users = get_users()
+    assert len(users) == 1
+    assert users[0]["name"] == "Alice"
+    mock_db.connect.assert_called_once()
+```
+
+## エディション・料金
+
+| エディション | 価格 | 特徴 |
+|-------------|------|------|
+| **unittest.mock** | 無料 | Python標準ライブラリ（追加インストール不要） |
+
+## メリット
+
+1. **標準ライブラリ**: 追加パッケージ不要でPython環境に組み込み済み
+2. **柔軟なpatch**: モジュールレベルの差し替えでテスト環境を制御
+3. **AsyncMock対応**: Python 3.8+で非同期関数のモックが容易
+4. **spec機能**: 実クラスの構造に基づく型安全なモック生成
+5. **pytest互換**: pytest、unittest両方のフレームワークで使用可能
+6. **副作用制御**: side_effectで例外送出・動的戻り値・イテレーションを定義
+
+## デメリット
+
+1. **patch対象の理解**: `patch`の対象パス（"モジュールから見た名前"）の指定が直感的でない
+2. **過度なモック化**: モックの多用でテストが実装詳細に依存するリスク
+3. **デバッグ困難**: モック関連のエラーメッセージが分かりにくい場合がある
+4. **型チェック**: mypyとの相性が悪く、型エラーが出ることがある
+5. **MagicMock万能性**: 任意の属性を生成するため、typoに気づきにくい
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **pytest-mock** | pytestプラグイン | unittest.mockのラッパー、mocker fixtureで使いやすい |
+| **responses** | HTTPモック | requests/httpxのモック専用、API呼び出しに特化 |
+| **freezegun** | 時刻モック | datetime.now()等の時刻固定に特化 |
+| **factory_boy** | テストデータ生成 | モックではなくファクトリパターンによるデータ生成 |
+
+## 公式リンク
+
+- **公式ドキュメント**: [https://docs.python.org/3/library/unittest.mock.html](https://docs.python.org/3/library/unittest.mock.html)
+- **Getting Started**: [https://docs.python.org/3/library/unittest.mock-examples.html](https://docs.python.org/3/library/unittest.mock-examples.html)
+- **pytest-mock**: [https://github.com/pytest-dev/pytest-mock](https://github.com/pytest-dev/pytest-mock)
+
+## 関連ドキュメント
+
+- [GoMock](./GoMock.md)
+- [Moq](./Moq.md)
+
+---
+
+**カテゴリ**: テスト
+**対象工程**: 実装・テスト
+**最終更新**: 2025年12月
+**ドキュメントバージョン**: 1.0

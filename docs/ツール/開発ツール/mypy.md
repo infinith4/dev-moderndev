@@ -1,66 +1,209 @@
 # mypy
 
 ## 概要
-mypy は、開発ツール で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 導入工程で使う主要機能を一通り備える |
-| 導入対象 | 個人開発からチーム開発まで対応 |
-| 連携 | 周辺ツールと連携しやすい |
-| 運用 | 手順標準化と再現性向上に有効 |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+mypyは、Python用のオプショナル静的型チェッカーです。PEP 484に基づく型ヒントを活用し、コードを実行せずに型の不整合やバグを検出します。動的型付けと静的型付けを自由に混在させる「段階的型付け（Gradual Typing）」をサポートしており、既存プロジェクトへの段階的な導入が可能です。デーモンモードによる高速なインクリメンタルチェックにも対応しています。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [mypy](https://mypy-lang.org/)
+### 1. 型チェック
+- **型推論**: 明示的な型注釈がなくても基本的な型を推論
+- **段階的型付け**: 型注釈のあるコードとないコードを混在可能
+- **ジェネリクス**: `List[int]`、`Dict[str, Any]` 等のジェネリック型
+- **ユニオン型**: `Union[int, str]`、`Optional[int]` 対応
+- **Protocol**: 構造的部分型付け（ダックタイピングの形式化）
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+### 2. 解析モード
+- **strict モード**: すべてのチェックを有効化（`--strict`）
+- **段階的導入**: `--ignore-missing-imports` で未型付けライブラリを許容
+- **デーモンモード**: `dmypy` による高速インクリメンタルチェック（サブ秒更新）
+- **型カバレッジ**: 型注釈のカバレッジレポート
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 3. 型システム機能
+- **TypedDict**: 辞書の型定義
+- **Literal型**: リテラル値の型指定
+- **Final**: 定数宣言
+- **TypeGuard**: 型ガード関数
+- **ParamSpec**: パラメータ仕様変数
+- **Callable型**: 関数型の定義
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+### 4. エディタ統合
+- **VS Code**: Pylance / mypy拡張機能
+- **PyCharm**: 内蔵型チェック + mypy plugin
+- **Vim/Neovim**: ALE / LSP経由
+- **Emacs**: flycheck-mypy
 
-## 公式ドキュメント
-- [mypy](https://mypy-lang.org/)
+## 利用方法
 
-## まとめ
-mypy は、開発ツール の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+### インストール
+
+```bash
+# pip
+pip install mypy
+
+# pipx
+pipx install mypy
+
+# conda
+conda install -c conda-forge mypy
+```
+
+### 設定ファイル作成
+
+```ini
+# mypy.ini
+[mypy]
+python_version = 3.11
+warn_return_any = True
+warn_unused_configs = True
+disallow_untyped_defs = True
+check_untyped_defs = True
+no_implicit_optional = True
+strict_equality = True
+
+# サードパーティライブラリの設定
+[mypy-requests.*]
+ignore_missing_imports = True
+
+[mypy-pandas.*]
+ignore_missing_imports = True
+```
+
+```toml
+# pyproject.toml での設定
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "requests.*"
+ignore_missing_imports = true
+```
+
+### 実行
+
+```bash
+# 単一ファイルのチェック
+mypy src/main.py
+
+# ディレクトリ全体
+mypy src/
+
+# strictモード
+mypy --strict src/
+
+# 型カバレッジレポート
+mypy --html-report report/ src/
+
+# デーモンモード（高速インクリメンタル）
+dmypy start
+dmypy check src/
+dmypy stop
+```
+
+### 型注釈の例
+
+```python
+from typing import Optional, Union
+
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+def find_user(user_id: int) -> Optional[dict]:
+    """ユーザーが見つからない場合はNoneを返す"""
+    ...
+
+def process(data: Union[str, bytes]) -> list[str]:
+    if isinstance(data, bytes):
+        data = data.decode()
+    return data.split(",")
+```
+
+### Pre-commit Hook統合
+
+```yaml
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-requests]
+```
+
+### CI/CD統合
+
+```yaml
+# .github/workflows/typecheck.yml
+name: Type Check
+
+on: [push, pull_request]
+
+jobs:
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install mypy
+      - run: mypy src/
+```
+
+## エディション・料金
+
+| エディション | 価格 | 特徴 |
+|-------------|------|------|
+| **mypy** | 無料 | オープンソース、MIT License |
+
+## メリット
+
+1. **実行前バグ検出**: コードを実行せずに型の不整合を発見
+2. **段階的導入**: 既存コードベースに少しずつ型注釈を追加可能
+3. **IDE連携**: エディタでリアルタイムにエラー表示
+4. **デーモンモード**: 大規模プロジェクトでもサブ秒でチェック
+5. **Protocol対応**: ダックタイピングを型安全に表現
+6. **リファクタリング支援**: 型情報に基づいた安全なリファクタリング
+7. **ドキュメント効果**: 型注釈がコードのドキュメントとして機能
+8. **Python標準**: PEP 484準拠の標準的な型チェッカー
+
+## デメリット
+
+1. **型注釈コスト**: 既存コードへの型注釈追加は手間がかかる
+2. **サードパーティ対応**: 型スタブのないライブラリは`ignore_missing_imports`が必要
+3. **学習コスト**: 高度な型システム（Protocol、TypeVar等）の理解が必要
+4. **偽陽性**: 動的なPythonコードで誤検出が発生する場合がある
+5. **設定複雑化**: プロジェクト規模が大きくなると設定が複雑になる
+
+## 代替ツール
+
+| ツール | 特徴 | 比較 |
+|--------|------|------|
+| **Pyright** | Microsoft製、高速 | mypyより高速、VS Code統合が強い |
+| **Pylance** | Pyrightベース、VS Code専用 | エディタ体験に特化 |
+| **Pyre** | Meta製型チェッカー | mypyより高速、大規模コード向け |
+| **pytype** | Google製型チェッカー | 型推論が強力、注釈なしでも解析可能 |
+
+## 公式リンク
+
+- **公式サイト**: [https://mypy-lang.org/](https://mypy-lang.org/)
+- **ドキュメント**: [https://mypy.readthedocs.io/](https://mypy.readthedocs.io/)
+- **GitHub**: [https://github.com/python/mypy](https://github.com/python/mypy)
+- **PyPI**: [https://pypi.org/project/mypy/](https://pypi.org/project/mypy/)
+
+## 関連ドキュメント
+
+- [Black](./Black.md)
+- [Ruff](./Ruff.md)
+- [ESLint](./ESLint.md)
+
+---
+
+**カテゴリ**: 開発ツール
+**対象工程**: 実装
+**最終更新**: 2025年12月
+**ドキュメントバージョン**: 1.0

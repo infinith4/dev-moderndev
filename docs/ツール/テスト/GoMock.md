@@ -1,66 +1,240 @@
 # GoMock
 
 ## 概要
-GoMock は、テスト で活用される代表的なツールである。要件整理から運用定着までの一連の作業を効率化し、成果物の品質と再現性を高める目的で利用する。
 
-## 主な特徴
-| 項目 | 内容 |
-|------|------|
-| 適用範囲 | 単体、結合、E2E、受入、レポートのいずれかに対応 |
-| 導入対象 | アプリケーション品質検証と継続テスト運用 |
-| 連携 | CI/CD、課題管理、レポート基盤 |
-| 運用 | テスト資産の再利用と標準化がしやすい |
-
-## 料金
-- 無料
-
-## メリット
-- 作業手順を標準化しやすい
-- チーム内でのレビュー観点を揃えやすい
-- 継続運用に必要な再現性を確保しやすい
-- 他ツール連携により自動化範囲を広げやすい
-
-## デメリット
-- 導入初期に設計方針と運用ルールの整備が必要である
-- 既存フローとの調整に一定の移行コストがかかる
-- 運用定着までに教育とガイド整備が必要である
+GoMockは、Go言語のインターフェースベースのモック生成フレームワークである。元々はGoogle社が開発し（`github.com/golang/mock`）、現在はUber社がフォーク・メンテナンスしている（`go.uber.org/mock`）。`mockgen`コマンドでインターフェースからモックコードを自動生成し、`gomock.Controller`を使って期待値（Expectation）の設定と検証を行う。Go標準の`testing`パッケージと組み合わせて使用し、依存関係を切り離した単体テストを効率的に記述できる。
 
 ## 主な機能
-| 機能 | 説明 |
-|------|------|
-| 基本機能 | 日次作業で使う主要機能を提供する |
-| 管理機能 | 設定、権限、履歴管理などの運用機能を提供する |
-| 連携機能 | CI/CD、課題管理、監視など外部連携を提供する |
-| 可視化機能 | 状況把握やレビューに必要な可視化を支援する |
 
-## インストールとセットアップ
-公式URL:
-- [GoMock](https://github.com/uber-go/mock)
+### 1. モックコード自動生成（mockgen）
 
-## ユースケース
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| PoC導入 | 短期間で適用可否を確認する | 最小構成で導入し、評価観点を明確化する |
-| 本導入 | チーム標準として運用する | 共通設定、ルール、レビュー観点を整備する |
-| CI/CD連携 | 継続的な品質確認を自動化する | パイプライン連携と失敗時通知を実装する |
-| 運用改善 | 継続的に改善する | 指標を定点観測し、運用手順を更新する |
+- インターフェース定義からモック実装を自動生成
+- ソースモード（`-source`）とリフレクトモード（パッケージ指定）の2つの生成方式
+- `go:generate`ディレクティブとの統合で生成を自動化
+- 生成先パッケージ名やモック名のカスタマイズ
 
-## ベストプラクティス
-- 適用対象、責任分担、完了基準を先に定義する
-- 環境差分は設定ファイルで管理し、手作業を減らす
-- レビュー観点をチェックリスト化して定着させる
-- 導入後は指標を定点観測し、運用ルールを更新する
+### 2. 期待値設定（EXPECT）
 
-## トラブルシューティング
-| 問題 | 主な原因 | 対応 |
-|------|----------|------|
-| 設定反映が不一致 | 環境差分や設定漏れ | 設定差分を比較し、適用順序を統一する |
-| 連携処理が失敗する | 認証情報や接続先設定の不一致 | 認証情報、URL、権限設定を再確認する |
-| 実行結果が不安定 | バージョン差異、依存関係の変化 | バージョン固定と依存関係の更新手順を整備する |
-| 運用負荷が高い | 手作業と例外処理が多い | 自動化対象を拡張し、例外処理を標準化する |
+- `EXPECT()`メソッドで呼び出し期待を定義
+- `Return()`で戻り値を指定
+- `DoAndReturn()`で任意のロジックを戻り値として実行
+- `Do()`で副作用のあるアクションを設定
+- `SetArg()`で引数のポインタ経由の値設定
 
-## 公式ドキュメント
-- [GoMock](https://github.com/uber-go/mock)
+### 3. 呼び出し回数制御
 
-## まとめ
-GoMock は、テスト の作業を標準化し、品質と再現性を高めるための有効な選択肢である。導入時は適用範囲を明確化し、運用ルールとレビュー基準を先に整備することが重要である。
+- `Times(n)` - 正確にn回呼ばれることを期待
+- `AnyTimes()` - 何回呼ばれてもよい
+- `MaxTimes(n)` - 最大n回まで許容
+- `MinTimes(n)` - 最低n回は呼ばれることを期待
+
+### 4. 引数マッチャー
+
+- `gomock.Any()` - 任意の値にマッチ
+- `gomock.Eq(value)` - 等値マッチ
+- `gomock.Nil()` - nil値にマッチ
+- `gomock.Not(matcher)` - マッチャーの否定
+- カスタムマッチャーの実装（`gomock.Matcher`インターフェース）
+
+### 5. 呼び出し順序制御
+
+- `gomock.InOrder()` - 複数の期待に対して呼び出し順序を強制
+- `After()` - 特定の呼び出しの後に実行されることを期待
+
+## 利用方法
+
+### インストール
+
+```bash
+# mockgenコマンドのインストール
+go install go.uber.org/mock/mockgen@latest
+
+# プロジェクトへの依存追加
+go get go.uber.org/mock/gomock
+```
+
+### mockgenによるモック生成
+
+```bash
+# リフレクトモード（パッケージとインターフェース名を指定）
+mockgen -destination=mocks/mock_repository.go -package=mocks myapp/repository UserRepository
+
+# ソースモード（ソースファイルを指定）
+mockgen -source=repository/user_repository.go -destination=mocks/mock_repository.go -package=mocks
+```
+
+### go:generateディレクティブの活用
+
+```go
+// repository/user_repository.go
+package repository
+
+//go:generate mockgen -destination=../mocks/mock_user_repository.go -package=mocks . UserRepository
+
+type UserRepository interface {
+    FindByID(id string) (*User, error)
+    Save(user *User) error
+    Delete(id string) error
+}
+```
+
+```bash
+# プロジェクト全体のモックを一括生成
+go generate ./...
+```
+
+### テストコードの記述
+
+```go
+package service_test
+
+import (
+    "testing"
+
+    "go.uber.org/mock/gomock"
+    "myapp/mocks"
+    "myapp/service"
+)
+
+func TestUserService_GetUser(t *testing.T) {
+    ctrl := gomock.NewController(t)
+    defer ctrl.Finish()
+
+    mockRepo := mocks.NewMockUserRepository(ctrl)
+
+    // 期待値の設定
+    mockRepo.EXPECT().
+        FindByID("user-123").
+        Return(&repository.User{ID: "user-123", Name: "Taro"}, nil).
+        Times(1)
+
+    svc := service.NewUserService(mockRepo)
+    user, err := svc.GetUser("user-123")
+
+    if err != nil {
+        t.Fatalf("unexpected error: %v", err)
+    }
+    if user.Name != "Taro" {
+        t.Errorf("expected name Taro, got %s", user.Name)
+    }
+}
+
+func TestUserService_CreateUser_WithOrder(t *testing.T) {
+    ctrl := gomock.NewController(t)
+    defer ctrl.Finish()
+
+    mockRepo := mocks.NewMockUserRepository(ctrl)
+
+    // 呼び出し順序の制御
+    gomock.InOrder(
+        mockRepo.EXPECT().FindByID("user-123").Return(nil, nil),
+        mockRepo.EXPECT().Save(gomock.Any()).Return(nil),
+    )
+
+    svc := service.NewUserService(mockRepo)
+    err := svc.CreateUserIfNotExists("user-123", "Taro")
+
+    if err != nil {
+        t.Fatalf("unexpected error: %v", err)
+    }
+}
+
+func TestUserService_DoAndReturn(t *testing.T) {
+    ctrl := gomock.NewController(t)
+    defer ctrl.Finish()
+
+    mockRepo := mocks.NewMockUserRepository(ctrl)
+
+    // DoAndReturnで動的な戻り値を生成
+    mockRepo.EXPECT().
+        Save(gomock.Any()).
+        DoAndReturn(func(user *repository.User) error {
+            if user.Name == "" {
+                return fmt.Errorf("name is required")
+            }
+            return nil
+        }).
+        AnyTimes()
+
+    svc := service.NewUserService(mockRepo)
+    err := svc.CreateUser(&repository.User{Name: ""})
+
+    if err == nil {
+        t.Fatal("expected error but got nil")
+    }
+}
+```
+
+### CI/CD統合（GitHub Actions）
+
+```yaml
+name: Go Tests
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Install mockgen
+        run: go install go.uber.org/mock/mockgen@latest
+      - name: Generate mocks
+        run: go generate ./...
+      - name: Run tests
+        run: go test -v -cover ./...
+```
+
+## エディション・料金
+
+| プラン | 料金 | 内容 |
+|--------|------|------|
+| オープンソース | 無料 | 全機能利用可能、Apache 2.0ライセンス |
+
+## メリット
+
+1. インターフェースからモックを自動生成するため、手動実装の手間を大幅に削減できる
+2. `EXPECT()`による宣言的な期待値設定で、テストの意図が明確になる
+3. `go:generate`との統合によりモック生成をビルドプロセスに組み込める
+4. `InOrder()`や`Times()`による呼び出し順序・回数の厳密な制御が可能
+5. Go標準の`testing`パッケージとシームレスに連携する
+6. Uber社による積極的なメンテナンスが継続されている
+
+## デメリット
+
+1. インターフェース定義変更時にモックの再生成が必要であり、更新漏れが発生しやすい
+2. 具象型やエクスポートされていないインターフェースにはモックを生成できない
+3. 過度なモック利用はテストの保守コストを増大させる可能性がある
+4. 旧リポジトリ（golang/mock）からの移行が必要な既存プロジェクトがある
+5. 生成コードがリポジトリに含まれる場合、差分管理の煩雑さがある
+
+## 代替ツール
+
+| ツール名 | 特徴 | 比較 |
+|----------|------|------|
+| testify/mock | アサーション付きモックライブラリ | 構造体ベース、手動実装が必要だがアサーションが豊富 |
+| counterfeiter | インターフェースからモック生成 | Cloud Foundry由来、シンプルなAPI |
+| mockery | testify/mock向けのコード生成ツール | testifyエコシステムとの統合に優れる |
+| moq (Go) | 型安全なモック生成 | 関数フィールドベース、軽量 |
+
+## 公式リンク
+
+- [GoMock GitHub（uber-go/mock）](https://github.com/uber-go/mock)
+- [GoMock pkg.go.dev](https://pkg.go.dev/go.uber.org/mock/gomock)
+- [mockgen ドキュメント](https://pkg.go.dev/go.uber.org/mock/mockgen)
+- [旧リポジトリ（golang/mock）](https://github.com/golang/mock)
+
+## 関連ドキュメント
+
+- [Go testing 標準パッケージ](https://pkg.go.dev/testing)
+- [Go generate コマンド](https://go.dev/blog/generate)
+- [Effective Go - Testing](https://go.dev/doc/effective_go)
+
+---
+
+カテゴリ: テスト
+対象工程: 単体テスト、結合テスト
+最終更新: 2025年12月
+ドキュメントバージョン: 1.0

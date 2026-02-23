@@ -101,6 +101,7 @@
 | ツール名 | 用途 | 料金 |
 |---------|------|------|
 | [Postman](https://www.postman.com/) | APIリクエスト作成・手動/自動テスト | 無料枠あり |
+| [Apidog](./ツール/API統合/Apidog.md) | APIテストケース作成、モック、自動テスト実行 | 無料枠あり |
 | [Newman](https://github.com/postmanlabs/newman) | PostmanコレクションのCLI実行 | 無料 |
 | [REST Assured](https://rest-assured.io/) | JavaでのAPI自動テスト実装 | 無料 |
 | [WireMock](https://wiremock.org/) | APIモックサーバによる結合テスト | 無料 |

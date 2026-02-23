@@ -125,11 +125,12 @@
 - API仕様書
 - 連携項目定義
 
-| ツール名 | 用途 |
-|---------|------|
-| [Swagger / OpenAPI](https://openapi.com/) | API仕様定義（REST） |
-| [ReDoc](https://redocly.com/redoc/) | OpenAPI仕様のドキュメント化 |
-| [Draw.io](https://www.diagrams.net/) | 外部連携図・データフロー図作成 |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Swagger / OpenAPI](https://openapi.com/) | API仕様定義（REST） | 無料 |
+| [Apidog](./ツール/API統合/Apidog.md) | API仕様設計、モック生成、テストケース管理 | 無料枠あり |
+| [ReDoc](https://redocly.com/redoc/) | OpenAPI仕様のドキュメント化 | 無料 |
+| [Draw.io](https://www.diagrams.net/) | 外部連携図・データフロー図作成 | 無料 |
 
 **有用なドキュメント**
 

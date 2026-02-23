@@ -165,9 +165,10 @@
 - 外部システム関連図
 - 外部インターフェース一覧
 
-| ツール名 | 用途 |
-|---------|------|
-| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様記述標準 |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様記述標準 | 無料 |
+| [Apidog](./ツール/API統合/Apidog.md) | API設計、モック、テストの統合管理 | 無料枠あり |
 
 **有用なドキュメント**
 

@@ -43,9 +43,10 @@
 - リクエスト/レスポンススキーマ
 - エラーハンドリング仕様
 
-| ツール名 | 用途 |
-|---------|------|
-| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様定義 |
+| ツール名 | 用途 | 料金 |
+|---------|------|------|
+| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様定義 | 無料 |
+| [Apidog](./ツール/API統合/Apidog.md) | API設計、モック、テストケース作成 | 無料枠あり |
 
 **有用なドキュメント**
 

@@ -39,10 +39,10 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 - パイプライントリガー設定（push/PR/tag/schedule）
 - 実行条件定義（対象ブランチ、パスフィルタ）
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [GitHub Actions](https://github.com/features/actions) | push/PR/tagをトリガーとしたCI実行 | 無料枠あり |
-| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | GitLabリポジトリ起点のパイプライン実行 | 無料枠あり |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [GitHub Actions](https://github.com/features/actions) | push/PR/tagをトリガーとしたCI実行 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitHub_Actions.md) |
+| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | GitLabリポジトリ起点のパイプライン実行 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitLab_CI_CD.md) |
 
 **有用なドキュメント**
 
@@ -59,10 +59,10 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 - テストジョブ定義（単体/結合）
 - テスト結果レポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [GitHub Actions](https://github.com/features/actions) | ビルド/テストワークフロー実装 | 無料枠あり |
-| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | ステージ分割でのビルド/テスト実装 | 無料枠あり |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [GitHub Actions](https://github.com/features/actions) | ビルド/テストワークフロー実装 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitHub_Actions.md) |
+| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | ステージ分割でのビルド/テスト実装 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitLab_CI_CD.md) |
 
 **有用なドキュメント**
 
@@ -79,11 +79,11 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 - シークレット検出設定
 - セキュリティゲート定義（失敗条件）
 
-| ツール名 | 用途 |
-|---------|------|
-| [Trivy](https://trivy.dev/) | コンテナ/依存関係/IaCの脆弱性検出 |
-| [Gitleaks](https://github.com/gitleaks/gitleaks) | シークレット漏えい検出 |
-| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Trivy](https://trivy.dev/) | コンテナ/依存関係/IaCの脆弱性検出 | [詳細](./ツール/セキュリティ/Trivy.md) |
+| [Gitleaks](https://github.com/gitleaks/gitleaks) | シークレット漏えい検出 |  |
+| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 | [詳細](./ツール/セキュリティ/Checkov.md) |
 
 **有用なドキュメント**
 
@@ -101,11 +101,11 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 - バージョニングルール
 - 保持期間/削除ポリシー
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [GitHub Packages](https://github.com/features/packages) | コンテナ/パッケージ保存 | 無料枠あり |
-| [GitLab Package Registry](https://docs.gitlab.com/ee/user/packages/package_registry/) | GitLab内アーティファクト管理 | 無料枠あり |
-| [JFrog Artifactory OSS](https://jfrog.com/open-source/) | 汎用アーティファクト管理 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [GitHub Packages](https://github.com/features/packages) | コンテナ/パッケージ保存 | 無料枠あり |  |
+| [GitLab Package Registry](https://docs.gitlab.com/ee/user/packages/package_registry/) | GitLab内アーティファクト管理 | 無料枠あり |  |
+| [JFrog Artifactory OSS](https://jfrog.com/open-source/) | 汎用アーティファクト管理 | 無料 | [詳細](./ツール/バージョン管理_CI_CD/JFrog_Artifactory_OSS.md) |
 
 **有用なドキュメント**
 
@@ -123,10 +123,10 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 - 承認フロー設定
 - ロールバック手順
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [GitHub Actions](https://github.com/features/actions) | 環境別デプロイジョブ実装 | 無料枠あり |
-| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | 段階的デプロイと承認フロー実装 | 無料枠あり |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [GitHub Actions](https://github.com/features/actions) | 環境別デプロイジョブ実装 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitHub_Actions.md) |
+| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | 段階的デプロイと承認フロー実装 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitLab_CI_CD.md) |
 
 **有用なドキュメント**
 
@@ -143,11 +143,11 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 - 失敗通知設定
 - 運用Runbook（再実行/復旧）
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Prometheus](https://prometheus.io/) | CI/CD実行メトリクス収集 | 無料 |
-| [Grafana](https://grafana.com/) | 実行状況の可視化/アラート設定 | 無料枠あり |
-| [Slack](https://slack.com/) | 失敗通知、承認依頼通知 | 無料枠あり |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Prometheus](https://prometheus.io/) | CI/CD実行メトリクス収集 | 無料 | [詳細](./ツール/監視_ロギング/Prometheus.md) |
+| [Grafana](https://grafana.com/) | 実行状況の可視化/アラート設定 | 無料枠あり | [詳細](./ツール/監視_ロギング/Grafana.md) |
+| [Slack](https://slack.com/) | 失敗通知、承認依頼通知 | 無料枠あり | [詳細](./ツール/コラボレーションツール/Slack.md) |
 
 **有用なドキュメント**
 

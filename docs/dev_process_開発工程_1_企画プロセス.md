@@ -37,11 +37,11 @@
 - システム化対象業務一覧
 - 構想レベル業務フロー
 
-| ツール名 | 用途 |
-|---------|------|
-| [Notion](https://www.notion.so/) | 構想メモ、検討ログ、レビュー記録の集約 |
-| [Draw.io](https://www.diagrams.net/) | 現行/将来業務フロー、構想図の可視化 |
-| [Miro](https://miro.com/) | 課題整理、アイデア整理、関係者合意形成 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Notion](https://www.notion.so/) | 構想メモ、検討ログ、レビュー記録の集約 | [詳細](./ツール/プロジェクト管理_ドキュメント/Notion.md) |
+| [Draw.io](https://www.diagrams.net/) | 現行/将来業務フロー、構想図の可視化 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Miro](https://miro.com/) | 課題整理、アイデア整理、関係者合意形成 | [詳細](./ツール/プロジェクト管理_ドキュメント/Miro.md) |
 
 **有用なドキュメント**
 
@@ -59,11 +59,10 @@
 - スケジュール計画
 - リスク一覧
 
-| ツール名 | 用途 |
-|---------|------|
-| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 概算見積り、WBS、費用試算 |
-| [Redmine](https://www.redmine.org/) | 課題管理、進捗管理、体制管理 |
-| [Draw.io](https://www.diagrams.net/) | システム全体構成、ロードマップ可視化 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 概算見積り、WBS、費用試算 | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
+| [Draw.io](https://www.diagrams.net/) | システム全体構成、ロードマップ可視化 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
 
 **有用なドキュメント**
 

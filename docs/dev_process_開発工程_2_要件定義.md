@@ -49,10 +49,10 @@
 - 業務機能構成表
 - システム化業務フロー
 
-| ツール名 | 用途 |
-|---------|------|
-| [Draw.io](https://www.diagrams.net/) | フローチャート・BPMN図 |
-| [Bizagi Modeler](https://www.bizagi.com/) | BPMN2.0準拠のプロセス図作成 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | フローチャート・BPMN図 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Bizagi Modeler](https://www.bizagi.com/) | BPMN2.0準拠のプロセス図作成 | [詳細](./ツール/設計_モデリング/Bizagi_Modeler.md) |
 
 **有用なドキュメント**
 
@@ -66,9 +66,9 @@
 - ユースケース図・一覧・記述
 - ビジネスルール一覧・定義書
 
-| ツール名 | 用途 |
-|---------|------|
-| [PlantUML](https://plantuml.com/) | テキストベースUML（Git管理可） |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [PlantUML](https://plantuml.com/) | テキストベースUML（Git管理可） | [詳細](./ツール/設計_モデリング/PlantUML.md) |
 
 **有用なドキュメント**
 
@@ -85,10 +85,10 @@
 - 画面遷移図
 - 画面レイアウト
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Figma](https://www.figma.com/) | 画面設計・ワイヤーフレーム・プロトタイプ作成 | 無料プランあり |
-| [Pencil](https://www.pencil.dev/) | オープンソースのワイヤーフレーム・モックアップ作成 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Figma](https://www.figma.com/) | 画面設計・ワイヤーフレーム・プロトタイプ作成 | 無料プランあり | [詳細](./ツール/デザインツール/Figma.md) |
+| [Pencil](https://www.pencil.dev/) | オープンソースのワイヤーフレーム・モックアップ作成 | 無料 | [詳細](./ツール/デザインツール/Pencil.md) |
 
 **有用なドキュメント**
 
@@ -104,9 +104,9 @@
 - 帳票一覧
 - 帳票レイアウト
 
-| ツール名 | 用途 |
-|---------|------|
-| [JasperReports](https://community.jaspersoft.com/) | OSS帳票エンジン（Java） |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [JasperReports](https://community.jaspersoft.com/) | OSS帳票エンジン（Java） | [詳細](./ツール/帳票_データ処理/JasperReports.md) |
 
 **有用なドキュメント**
 
@@ -126,10 +126,10 @@
 - ファイル一覧
 - ファイルレイアウト
 
-| ツール名 | 用途 |
-|---------|------|
-| [**Microsoft Excel**](https://www.microsoft.com/microsoft-365/excel) | ファイルレイアウト定義、データ項目一覧、形式定義 |
-| [**CSV Spec Validator**](https://github.com/) | CSVファイル仕様定義 | 
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [**Microsoft Excel**](https://www.microsoft.com/microsoft-365/excel) | ファイルレイアウト定義、データ項目一覧、形式定義 | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
+| [**CSV Spec Validator**](https://github.com/) | CSVファイル仕様定義 | [詳細](./ツール/標準_ガイドライン/CSV_Spec_Validator.md) |
 
 **有用なドキュメント**
 
@@ -146,10 +146,10 @@
 - 概念モデル
 - 用語集
 
-| ツール名 | 用途 |
-|---------|------|
-| [ERDPlus](https://erdplus.com/) | オンラインER図・SQL生成 |
-| [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図・DB設計 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [ERDPlus](https://erdplus.com/) | オンラインER図・SQL生成 | [詳細](./ツール/データベース/ERDPlus.md) |
+| [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図・DB設計 | [詳細](./ツール/データベース/MySQL_Workbench.md) |
 
 **有用なドキュメント**
 
@@ -165,10 +165,10 @@
 - 外部システム関連図
 - 外部インターフェース一覧
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様記述標準 | 無料 |
-| [Apidog](./ツール/API統合/Apidog.md) | API設計、モック、テストの統合管理 | 無料枠あり |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様記述標準 | 無料 | [詳細](./ツール/API_統合/Swagger_OpenAPI.md) |
+| [Apidog](https://apidog.com/) | API設計、モック、テストの統合管理 | 無料枠あり | [詳細](./ツール/API_統合/Apidog.md) |
 
 **有用なドキュメント**
 
@@ -184,10 +184,10 @@
 - バッチ一覧
 - バッチ処理フロー
 
-| ツール名 | 用途 |
-|---------|------|
-| [Draw.io](https://www.diagrams.net/) | バッチ処理フロー・ジョブ依存関係の可視化 |
-| [PlantUML](https://plantuml.com/) | テキストベースのバッチ処理フロー定義 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | バッチ処理フロー・ジョブ依存関係の可視化 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [PlantUML](https://plantuml.com/) | テキストベースのバッチ処理フロー定義 | [詳細](./ツール/設計_モデリング/PlantUML.md) |
 
 **有用なドキュメント**
 
@@ -203,10 +203,10 @@
 - システム構成図
 - ソフトウェア構成図
 
-| ツール名 | 用途 |
-|---------|------|
-| [Draw.io](https://www.diagrams.net/) | システム構成図・ネットワーク構成図の作成 |
-| [PlantUML](https://plantuml.com/) | C4/UMLによるソフトウェア構成の可視化 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | システム構成図・ネットワーク構成図の作成 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [PlantUML](https://plantuml.com/) | C4/UMLによるソフトウェア構成の可視化 | [詳細](./ツール/設計_モデリング/PlantUML.md) |
 
 **有用なドキュメント**
 
@@ -222,9 +222,9 @@
 **成果物**
 - 非機能要件定義書
 
-| ツール名 | 用途 |
-|---------|------|
-| [IPA 非機能要求グレード（Excel版）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 6大分類118項目の非機能要件定義テンプレート |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [IPA 非機能要求グレード（Excel版）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 6大分類118項目の非機能要件定義テンプレート | [詳細](./ツール/標準_ガイドライン/IPA_非機能要求グレード.md) |
 
 **有用なドキュメント**
 

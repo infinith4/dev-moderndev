@@ -23,11 +23,11 @@
 - ステートマシン図
 - コンポーネント図
 
-| ツール名 | 用途 |
-|---------|------|
-| [PlantUML](https://plantuml.com/) | テキストベースUML |
-| [Draw.io](https://www.diagrams.net/) | 汎用UML・フローチャート |
-| [Mermaid](https://mermaid.js.org/) | Markdown統合ダイアグラム |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [PlantUML](https://plantuml.com/) | テキストベースUML | [詳細](./ツール/設計_モデリング/PlantUML.md) |
+| [Draw.io](https://www.diagrams.net/) | 汎用UML・フローチャート | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Mermaid](https://mermaid.js.org/) | Markdown統合ダイアグラム | [詳細](./ツール/設計_モデリング/Mermaid.md) |
 
 **有用なドキュメント**
 
@@ -43,10 +43,10 @@
 - リクエスト/レスポンススキーマ
 - エラーハンドリング仕様
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様定義 | 無料 |
-| [Apidog](./ツール/API統合/Apidog.md) | API設計、モック、テストケース作成 | 無料枠あり |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Swagger/OpenAPI](https://openapi.com/) | REST API仕様定義 | 無料 | [詳細](./ツール/API_統合/Swagger_OpenAPI.md) |
+| [Apidog](./ツール/API統合/Apidog.md) | API設計、モック、テストケース作成 | 無料枠あり | [詳細](./ツール/API_統合/Apidog.md) |
 
 **有用なドキュメント**
 
@@ -64,19 +64,19 @@
 
 ### 3.1 Java
 
-| ツール名 | 用途 |
-|---------|------|
-| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック |
-| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 |
-| [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) | 命名規則・コーディング規約の標準化 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | [詳細](./ツール/開発ツール/Checkstyle.md) |
+| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 | [詳細](./ツール/開発ツール/SpotBugs.md) |
+| [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) | 命名規則・コーディング規約の標準化 | [詳細](./ツール/標準_ガイドライン/Google_Java_Style_Guide.md) |
 
 ### 3.2 C#
 
-| ツール名 | 用途 |
-|---------|------|
-| [StyleCop Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) | C#コーディング規約チェック |
-| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析と設計ルール適用 |
-| [.NET Coding Conventions](https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/coding-conventions) | 命名規則・設計方針の標準化 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [StyleCop Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) | C#コーディング規約チェック | |
+| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析と設計ルール適用 | [詳細](./ツール/開発ツール/Roslyn_Analyzers.md) |
+| [.NET Coding Conventions](https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/coding-conventions) | 命名規則・設計方針の標準化 | [詳細](./ツール/開発ツール/DotNET_Coding_Conventions.md) |
 
 ### 3.3 Python
 

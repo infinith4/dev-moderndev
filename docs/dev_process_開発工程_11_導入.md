@@ -40,12 +40,12 @@
 - 移行手順書
 - 移行結果レポート
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Flyway](https://flywaydb.org/) | スキーマ移行とバージョン管理 | 無料 |
-| [Liquibase](https://www.liquibase.com/) | DB変更管理と移行適用 | 無料枠あり |
-| [Apache NiFi](https://nifi.apache.org/) | データフロー設計、変換、移送 | 無料 |
-| [dbt Core](https://www.getdbt.com/product/dbt-core) | データ変換、検証、整合性確認 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Flyway](https://flywaydb.org/) | スキーマ移行とバージョン管理 | 無料 | [詳細](./ツール/データベース/Flyway.md) |
+| [Liquibase](https://www.liquibase.com/) | DB変更管理と移行適用 | 無料枠あり | [詳細](./ツール/データベース/Liquibase.md) |
+| [Apache NiFi](https://nifi.apache.org/) | データフロー設計、変換、移送 | 無料 | [詳細](./ツール/帳票_データ処理/Apache_NiFi.md) |
+| [dbt Core](https://www.getdbt.com/product/dbt-core) | データ変換、検証、整合性確認 | 無料 | [詳細](./ツール/帳票_データ処理/dbt_Core.md) |
 
 **有用なドキュメント**
 
@@ -62,11 +62,11 @@
 - デプロイ手順書
 - 切戻し手順書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [GitHub Actions](https://github.com/features/actions) | デプロイパイプライン実行 | 無料枠あり |
-| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | 環境別デプロイ実行と承認 | 無料枠あり |
-| [Docker](https://www.docker.com/) | コンテナイメージ作成/配布 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [GitHub Actions](https://github.com/features/actions) | デプロイパイプライン実行 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitHub_Actions.md) |
+| [GitLab CI/CD](https://about.gitlab.com/solutions/continuous-integration/) | 環境別デプロイ実行と承認 | 無料枠あり | [詳細](./ツール/バージョン管理_CI_CD/GitLab_CI_CD.md) |
+| [Docker](https://www.docker.com/) | コンテナイメージ作成/配布 | 無料 | [詳細](./ツール/コンテナ_オーケストレーション/Docker.md) |
 
 **有用なドキュメント**
 
@@ -83,12 +83,12 @@
 - 本番切替チェックリスト
 - 切替判定記録
 
-| ツール名 | 用途 |
-|---------|------|
-| [Cucumber](https://cucumber.io/) | 受入観点のシナリオ定義、実行 |
-| [Playwright](https://playwright.dev/) | UI受入テスト自動化 |
-| [Selenium](https://www.selenium.dev/) | 回帰を含むブラウザ受入検証 |
-| [Robot Framework](https://robotframework.org/) | キーワード駆動での受入テスト実装 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Cucumber](https://cucumber.io/) | 受入観点のシナリオ定義、実行 | [詳細](./ツール/E2Eテスト/Cucumber.md) |
+| [Playwright](https://playwright.dev/) | UI受入テスト自動化 | [詳細](./ツール/E2Eテスト/Playwright.md) |
+| [Selenium](https://www.selenium.dev/) | 回帰を含むブラウザ受入検証 | [詳細](./ツール/E2Eテスト/Selenium.md) |
+| [Robot Framework](https://robotframework.org/) | キーワード駆動での受入テスト実装 | [詳細](./ツール/E2Eテスト/Robot_Framework.md) |
 
 **有用なドキュメント**
 
@@ -106,13 +106,13 @@
 - アラート設定
 - ログ収集設定
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Prometheus](https://prometheus.io/) | メトリクス監視設定 | 無料 |
-| [Grafana](https://grafana.com/) | ダッシュボード/通知設定 | 無料枠あり |
-| [Loki](https://grafana.com/oss/loki/) | ログ収集/検索基盤の導入 | 無料 |
-| [OpenTelemetry](https://opentelemetry.io/) | トレース/メトリクス標準化 | 無料 |
-| [New Relic](https://newrelic.com/) | APM、インフラ監視、ログ/トレース統合監視 | 無料枠あり |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Prometheus](https://prometheus.io/) | メトリクス監視設定 | 無料 | [詳細](./ツール/監視_ロギング/Prometheus.md) |
+| [Grafana](https://grafana.com/) | ダッシュボード/通知設定 | 無料枠あり | [詳細](./ツール/監視_ロギング/Grafana.md) |
+| [Loki](https://grafana.com/oss/loki/) | ログ収集/検索基盤の導入 | 無料 | [詳細](./ツール/監視_ロギング/Loki.md) |
+| [OpenTelemetry](https://opentelemetry.io/) | トレース/メトリクス標準化 | 無料 | [詳細](./ツール/監視_ロギング/OpenTelemetry.md) |
+| [New Relic](https://newrelic.com/) | APM、インフラ監視、ログ/トレース統合監視 | 無料枠あり | [詳細](./ツール/監視_ロギング/New_Relic.md) |
 
 **有用なドキュメント**
 
@@ -131,11 +131,11 @@
 - 運用手順書
 - 権限移管記録
 
-| ツール名 | 用途 |
-|---------|------|
-| [GitHub Wiki](https://docs.github.com/communities/documenting-your-project-with-wikis) | 運用ドキュメント管理 |
-| [MkDocs](https://www.mkdocs.org/) | 運用ドキュメントの静的サイト化 |
-| [Docusaurus](https://docusaurus.io/) | 運用/手順ドキュメントサイト構築 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [GitHub Wiki](https://docs.github.com/communities/documenting-your-project-with-wikis) | 運用ドキュメント管理 | |
+| [MkDocs](https://www.mkdocs.org/) | 運用ドキュメントの静的サイト化 | [詳細](./ツール/プロジェクト管理_ドキュメント/MkDocs.md) |
+| [Docusaurus](https://docusaurus.io/) | 運用/手順ドキュメントサイト構築 | [詳細](./ツール/プロジェクト管理_ドキュメント/Docusaurus.md) |
 
 **有用なドキュメント**
 
@@ -153,11 +153,11 @@
 - 変更管理フロー
 - エスカレーションルール
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Zammad](https://zammad.com/) | サービスデスク、チケット管理 | 無料枠あり |
-| [OpenProject](https://www.openproject.org/) | 変更管理、課題管理、承認管理 | 無料枠あり |
-| [ServiceNow](https://www.servicenow.com/) | ITSM（インシデント/問題/変更管理） | 有料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Zammad](https://zammad.com/) | サービスデスク、チケット管理 | 無料枠あり | [詳細](./ツール/運用_ITSM/Zammad.md) |
+| [OpenProject](https://www.openproject.org/) | 変更管理、課題管理、承認管理 | 無料枠あり | [詳細](./ツール/プロジェクト管理_ドキュメント/OpenProject.md) |
+| [ServiceNow](https://www.servicenow.com/) | ITSM（インシデント/問題/変更管理） | 有料 | [詳細](./ツール/運用_ITSM/ServiceNow.md) |
 
 **有用なドキュメント**
 

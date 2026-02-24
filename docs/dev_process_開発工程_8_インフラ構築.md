@@ -42,11 +42,11 @@
 - ルート/ACL/NSG設定定義
 - 疎通確認レポート（疎通元/先、ポート、結果）
 
-| ツール名 | 用途 |
-|---------|------|
-| [Terraform](https://www.terraform.io/) | VNet/VPC/Subnet/Route/NSG等の一括構築 |
-| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureネットワークリソースの作成・更新・確認 |
-| [AWS CLI](https://aws.amazon.com/cli/) | AWSネットワークリソースの作成・更新・確認 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Terraform](https://www.terraform.io/) | VNet/VPC/Subnet/Route/NSG等の一括構築 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
+| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureネットワークリソースの作成・更新・確認 | [詳細](./ツール/開発ツール/Azure_CLI.md) |
+| [AWS CLI](https://aws.amazon.com/cli/) | AWSネットワークリソースの作成・更新・確認 |  |
 
 **有用なドキュメント**
 
@@ -102,11 +102,11 @@
 - IAM/RBAC適用結果（ロール、権限範囲）
 - セキュリティ検証レポート（検知事項、是正結果）
 
-| ツール名 | 用途 |
-|---------|------|
-| [Checkov](https://www.checkov.io/) | 適用前IaCセキュリティ検証 |
-| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | 構築設定のポリシー準拠チェック |
-| [Trivy](https://trivy.dev/) | コンテナイメージ/設定の脆弱性スキャン |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Checkov](https://www.checkov.io/) | 適用前IaCセキュリティ検証 | [詳細](./ツール/セキュリティ/Checkov.md) |
+| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | 構築設定のポリシー準拠チェック | [詳細](./ツール/IaC_インフラ管理/OPA.md) |
+| [Trivy](https://trivy.dev/) | コンテナイメージ/設定の脆弱性スキャン | [詳細](./ツール/セキュリティ/Trivy.md) |
 
 **有用なドキュメント**
 
@@ -124,11 +124,11 @@
 - バックアップ設定定義（世代、保持期間、取得頻度）
 - 復旧手順テスト結果（RTO/RPO達成可否）
 
-| ツール名 | 用途 |
-|---------|------|
-| [Terraform](https://www.terraform.io/) | ストレージ/バックアップ構成の適用 |
-| [AzCopy](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-v10) | Azureストレージへのデータ転送/初期投入 |
-| [AWS CLI](https://aws.amazon.com/cli/) | S3同期、ライフサイクル設定適用 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Terraform](https://www.terraform.io/) | ストレージ/バックアップ構成の適用 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
+| [AzCopy](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-v10) | Azureストレージへのデータ転送/初期投入 | [詳細](./ツール/開発ツール/AzCopy.md) |
+| [AWS CLI](https://aws.amazon.com/cli/) | S3同期、ライフサイクル設定適用 |  |
 
 **有用なドキュメント**
 
@@ -146,11 +146,11 @@
 - アラート設定（閾値、通知先、抑止条件）
 - 運用Runbook（障害一次対応、復旧手順）
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Prometheus](https://prometheus.io/) | メトリクス収集とアラート基盤構築 | 無料 |
-| [Grafana](https://grafana.com/) | ダッシュボード・通知ルール構築 | 無料枠あり |
-| [Loki](https://grafana.com/oss/loki/) | ログ収集/検索基盤構築 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Prometheus](https://prometheus.io/) | メトリクス収集とアラート基盤構築 | 無料 | [詳細](./ツール/監視_ロギング/Prometheus.md) |
+| [Grafana](https://grafana.com/) | ダッシュボード・通知ルール構築 | 無料枠あり | [詳細](./ツール/監視_ロギング/Grafana.md) |
+| [Loki](https://grafana.com/oss/loki/) | ログ収集/検索基盤構築 | 無料 | [詳細](./ツール/監視_ロギング/Loki.md) |
 
 **有用なドキュメント**
 
@@ -168,13 +168,13 @@
 - セキュリティスキャン結果（重大度別）
 - ポリシー準拠チェック結果（違反/是正）
 
-| ツール名 | 用途 |
-|---------|------|
-| [Terraform](https://www.terraform.io/) | `validate` / `plan` による適用前検証 |
-| [Azure Bicep Linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter) | Bicep構文・ベストプラクティスチェック |
-| [CloudFormation Guard](https://github.com/aws-cloudformation/cloudformation-guard) | CloudFormationポリシー検証 |
-| [Checkov](https://www.checkov.io/) | IaCセキュリティスキャン |
-| [Terratest](https://terratest.gruntwork.io/) | 実環境インフラテスト |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Terraform](https://www.terraform.io/) | `validate` / `plan` による適用前検証 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
+| [Azure Bicep Linter](https://learn.microsoft.com/azure/azure-resource-manager/bicep/linter) | Bicep構文・ベストプラクティスチェック |  |
+| [CloudFormation Guard](https://github.com/aws-cloudformation/cloudformation-guard) | CloudFormationポリシー検証 | [詳細](./ツール/IaC_インフラ管理/CloudFormation_Guard.md) |
+| [Checkov](https://www.checkov.io/) | IaCセキュリティスキャン | [詳細](./ツール/セキュリティ/Checkov.md) |
+| [Terratest](https://terratest.gruntwork.io/) | 実環境インフラテスト | [詳細](./ツール/インフラテスト/Terratest.md) |
 
 **有用なドキュメント**
 

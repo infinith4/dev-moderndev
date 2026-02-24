@@ -791,7 +791,7 @@ Header.Payload.Signature
 
 **Dockerfile例**:
 ```dockerfile
-FROM node:18-alpine
+FROM node:24-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production

@@ -40,7 +40,13 @@
       "Bash(python export_notion_to_csv.py:*)",
       "Bash(dot:*)",
       "Bash(python:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(while read f)",
+      "Bash(do echo \"=== $f ===\")",
+      "Bash(for f in MockServer MSW Postman Prism WireMock)",
+      "Bash(do cp \"c:/Projects/github/infinith4/dev-moderndev/docs/ツール/API_統合/$f.md\" \"c:/Projects/github/infinith4/dev-moderndev/docs/ツール/テスト/$f.md\")",
+      "Bash(do rm \"c:/Projects/github/infinith4/dev-moderndev/docs/ツール/API_統合/$f.md\")"
     ],
     "deny": [],
     "ask": []

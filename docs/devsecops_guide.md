@@ -546,7 +546,7 @@ grype myapp:latest
 
 ```dockerfile
 # 1. 最小限のベースイメージ
-FROM node:18-alpine AS base
+FROM node:24-alpine AS base
 
 # 2. 非rootユーザーで実行
 RUN addgroup -g 1001 -S nodejs

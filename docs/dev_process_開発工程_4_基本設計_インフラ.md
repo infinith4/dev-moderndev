@@ -39,11 +39,11 @@
 - サブネット/CIDR設計書
 - ルーティング/FWポリシー設計書
 
-| ツール名 | 用途 |
-|---------|------|
-| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図、通信経路図の作成 |
-| [PlantUML](https://plantuml.com/) | ネットワーク構成をテキスト管理 |
-| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC定義 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図、通信経路図の作成 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [PlantUML](https://plantuml.com/) | ネットワーク構成をテキスト管理 | [詳細](./ツール/設計_モデリング/PlantUML.md) |
+| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC定義 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
 
 **有用なドキュメント**
 
@@ -61,12 +61,12 @@
 - インスタンス/VMサイジング表
 - オートスケール方針書
 
-| ツール名 | 用途 |
-|---------|------|
-| [Draw.io](https://www.diagrams.net/) | サーバー構成図、構成パターン図作成 |
-| [Diagrams (Python)](https://diagrams.mingrammer.com/) | 構成図のコード化と再利用 |
-| [AWS Pricing Calculator](https://calculator.aws/) | インスタンス費用試算 |
-| [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) | Azure VM/サービス費用試算 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | サーバー構成図、構成パターン図作成 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Diagrams (Python)](https://diagrams.mingrammer.com/) | 構成図のコード化と再利用 | [詳細](./ツール/プロジェクト管理_ドキュメント/Diagrams.md) |
+| [AWS Pricing Calculator](https://calculator.aws/) | インスタンス費用試算 | |
+| [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) | Azure VM/サービス費用試算 | |
 
 **有用なドキュメント**
 
@@ -83,11 +83,11 @@
 - 容量計画書
 - バックアップ/保持ポリシー
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | ストレージ構成図作成 | 無料 |
-| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 容量計画・コスト試算表の作成 | 無料枠あり |
-| [Terraform](https://www.terraform.io/) | ストレージ構成のIaC定義 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Draw.io](https://www.diagrams.net/) | ストレージ構成図作成 | 無料 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 容量計画・コスト試算表の作成 | 無料枠あり | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
+| [Terraform](https://www.terraform.io/) | ストレージ構成のIaC定義 | 無料 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
 
 **有用なドキュメント**
 
@@ -104,11 +104,11 @@
 - IAM/認可設計書
 - 暗号化・鍵管理方針
 
-| ツール名 | 用途 |
-|---------|------|
-| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） |
-| [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件チェックリスト |
-| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・検証 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） | [詳細](./ツール/セキュリティ/Microsoft_Threat_Modeling_Tool.md) |
+| [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件チェックリスト | [詳細](./ツール/標準_ガイドライン/OWASP_ASVS.md) |
+| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・検証 | [詳細](./ツール/IaC_インフラ管理/OPA.md) |
 
 **有用なドキュメント**
 
@@ -126,11 +126,11 @@
 - 冗長化構成図
 - フェイルオーバー手順書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | 冗長化・障害対策構成図作成 | 無料 |
-| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | SLA/SLO、RTO/RPO計画の整理 | 無料枠あり |
-| [Terraform](https://www.terraform.io/) | 冗長構成のIaC実装設計 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Draw.io](https://www.diagrams.net/) | 冗長化・障害対策構成図作成 | 無料 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | SLA/SLO、RTO/RPO計画の整理 | 無料枠あり | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
+| [Terraform](https://www.terraform.io/) | 冗長構成のIaC実装設計 | 無料 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
 
 **有用なドキュメント**
 
@@ -148,11 +148,11 @@
 - アラート定義書
 - 運用手順書（Runbook）
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Prometheus](https://prometheus.io/) | メトリクス収集・監視設計 | 無料 |
-| [Grafana](https://grafana.com/) | ダッシュボード設計・可視化 | 無料枠あり |
-| [Loki](https://grafana.com/oss/loki/) | ログ収集・分析設計 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Prometheus](https://prometheus.io/) | メトリクス収集・監視設計 | 無料 | [詳細](./ツール/監視_ロギング/Prometheus.md) |
+| [Grafana](https://grafana.com/) | ダッシュボード設計・可視化 | 無料枠あり | [詳細](./ツール/監視_ロギング/Grafana.md) |
+| [Loki](https://grafana.com/oss/loki/) | ログ収集・分析設計 | 無料 | [詳細](./ツール/監視_ロギング/Loki.md) |
 
 **有用なドキュメント**
 

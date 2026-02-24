@@ -142,7 +142,7 @@ def convert_pricing_to_emoji(pricing: str) -> str:
     Returns:
         絵文字付き料金情報
     """
-    if '完全無料' in pricing or '無料' in pricing:
+    if '無料' in pricing or '無料' in pricing:
         return '🟢 無料'
     elif '有料' in pricing and '無料' in pricing:
         return '🟡 一部無料'

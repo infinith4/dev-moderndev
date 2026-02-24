@@ -4,39 +4,64 @@
 
 Mockitoは、Java/Kotlin向けオープンソースモックフレームワークです。ユニットテストでモックオブジェクト作成、スタブ化、検証を行い、依存関係を持つクラスのテストを容易にします。アノテーション、BDD（Behavior-Driven Development）スタイル、スパイ、引数キャプチャにより、JUnit、TestNG等のテストフレームワークと統合し、テスト駆動開発（TDD）を支援します。
 
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| オープンソース | MIT License、無料で利用可能 |
+| シンプルなAPI | 直感的なAPI設計で学習が容易 |
+| JUnit統合 | JUnit 5とのシームレスな統合 |
+| アノテーション | @Mock、@InjectMocks、@Spyで簡潔に記述 |
+| BDDスタイル | given-when-thenパターンをサポート |
+| 引数キャプチャ | ArgumentCaptorによる引数検証 |
+| Java/Kotlinデファクト | Java/Kotlinモックフレームワークの標準 |
+
 ## 主な機能
 
-### 1. モック作成
-- **@Mock**: モックオブジェクト作成
-- **mock()**: プログラマティックモック
-- **@Spy**: スパイオブジェクト
-- **@InjectMocks**: 依存性注入
+### モック作成
 
-### 2. スタブ化
-- **when().thenReturn()**: 戻り値設定
-- **when().thenThrow()**: 例外スロー
-- **doReturn()**: void メソッド
-- **Answer**: カスタム動作
+| 機能 | 説明 |
+|------|------|
+| @Mock | アノテーションによるモックオブジェクト作成 |
+| mock() | プログラマティックなモック生成 |
+| @Spy | 実オブジェクトの部分モック（スパイ） |
+| @InjectMocks | モックの依存性自動注入 |
 
-### 3. 検証
-- **verify()**: メソッド呼び出し検証
-- **times()**: 呼び出し回数
-- **never()**: 呼び出されていない
-- **ArgumentCaptor**: 引数キャプチャ
+### スタブ化
 
-### 4. Matcher
-- **any()**: 任意の引数
-- **eq()**: 等価性
-- **argThat()**: カスタムマッチャー
-- **anyString()**: 任意の文字列
+| 機能 | 説明 |
+|------|------|
+| when().thenReturn() | 戻り値の設定 |
+| when().thenThrow() | 例外のスロー |
+| doReturn() | voidメソッドへのスタブ設定 |
+| Answer | カスタム動作の定義 |
 
-### 5. BDDスタイル
-- **given().willReturn()**: BDD given-when-then
-- **then().should()**: BDD検証
+### 検証
 
-## 利用方法
+| 機能 | 説明 |
+|------|------|
+| verify() | メソッド呼び出しの検証 |
+| times() | 呼び出し回数の指定 |
+| never() | 呼び出されていないことの検証 |
+| ArgumentCaptor | 引数のキャプチャと検証 |
 
-### インストール（Maven）
+### Matcher
+
+| 機能 | 説明 |
+|------|------|
+| any() | 任意の引数にマッチ |
+| eq() | 等価性でマッチ |
+| argThat() | カスタムマッチャー |
+| anyString() | 任意の文字列にマッチ |
+
+## インストールとセットアップ
+
+公式URL:
+- [Mockito 公式サイト](https://site.mockito.org/)
+- [GitHub リポジトリ](https://github.com/mockito/mockito)
+- [JavaDoc](https://javadoc.io/doc/org.mockito/mockito-core)
+
+### Maven
 
 ```xml
 <dependencies>
@@ -55,17 +80,19 @@ Mockitoは、Java/Kotlin向けオープンソースモックフレームワー�
 </dependencies>
 ```
 
-### 基本例
+## 基本的な使い方
+
+### 1. 基本的なモックとスタブ
 
 ```java
 // テスト対象クラス
 public class UserService {
     private UserRepository userRepository;
-    
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    
+
     public User getUserById(Long id) {
         return userRepository.findById(id);
     }
@@ -88,22 +115,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-    
+
     @Mock
     private UserRepository userRepository;
-    
+
     @InjectMocks
     private UserService userService;
-    
+
     @Test
     void testGetUserById() {
         // モック設定
         User mockUser = new User(1L, "John Doe");
         when(userRepository.findById(1L)).thenReturn(mockUser);
-        
+
         // テスト実行
         User result = userService.getUserById(1L);
-        
+
         // 検証
         assertEquals("John Doe", result.getName());
         verify(userRepository).findById(1L);
@@ -111,38 +138,38 @@ class UserServiceTest {
 }
 ```
 
-### スタブ化
+### 2. スタブ化
 
 ```java
 @Test
 void testStubbing() {
     List<String> mockList = mock(List.class);
-    
+
     // 戻り値設定
     when(mockList.get(0)).thenReturn("first");
     when(mockList.get(1)).thenReturn("second");
-    
+
     assertEquals("first", mockList.get(0));
     assertEquals("second", mockList.get(1));
     assertNull(mockList.get(999)); // スタブされていない
-    
+
     // 例外スロー
     when(mockList.get(anyInt())).thenThrow(new RuntimeException());
     assertThrows(RuntimeException.class, () -> mockList.get(0));
 }
 ```
 
-### 検証
+### 3. 検証
 
 ```java
 @Test
 void testVerification() {
     List<String> mockList = mock(List.class);
-    
+
     mockList.add("one");
     mockList.add("two");
     mockList.add("two");
-    
+
     // 呼び出し検証
     verify(mockList).add("one");
     verify(mockList, times(2)).add("two");
@@ -152,27 +179,27 @@ void testVerification() {
 }
 ```
 
-### 引数キャプチャ
+### 4. 引数キャプチャ
 
 ```java
 @Test
 void testArgumentCaptor() {
     UserRepository mockRepo = mock(UserRepository.class);
     UserService service = new UserService(mockRepo);
-    
+
     User newUser = new User(1L, "Alice");
     service.saveUser(newUser);
-    
+
     // 引数キャプチャ
     ArgumentCaptor<User> userCaptor = ArgumentCaptor.forClass(User.class);
     verify(mockRepo).save(userCaptor.capture());
-    
+
     User capturedUser = userCaptor.getValue();
     assertEquals("Alice", capturedUser.getName());
 }
 ```
 
-### BDDスタイル
+### 5. BDDスタイル
 
 ```java
 import static org.mockito.BDDMockito.*;
@@ -183,118 +210,200 @@ void testBDDStyle() {
     UserRepository mockRepo = mock(UserRepository.class);
     User mockUser = new User(1L, "Bob");
     given(mockRepo.findById(1L)).willReturn(mockUser);
-    
+
     UserService service = new UserService(mockRepo);
-    
+
     // When
     User result = service.getUserById(1L);
-    
+
     // Then
     then(mockRepo).should().findById(1L);
     assertEquals("Bob", result.getName());
 }
 ```
 
-### スパイ
+### 6. スパイ
 
 ```java
 @Test
 void testSpy() {
     List<String> list = new ArrayList<>();
     List<String> spyList = spy(list);
-    
+
     // 実際のメソッド呼び出し
     spyList.add("one");
     spyList.add("two");
-    
+
     assertEquals(2, spyList.size());
     assertEquals("one", spyList.get(0));
-    
+
     // スタブ化も可能
     when(spyList.size()).thenReturn(100);
     assertEquals(100, spyList.size());
-    
+
     verify(spyList).add("one");
 }
 ```
 
-### Answer
+### 7. Answer
 
 ```java
 @Test
 void testAnswer() {
     UserRepository mockRepo = mock(UserRepository.class);
-    
+
     when(mockRepo.findById(anyLong())).thenAnswer(invocation -> {
         Long id = invocation.getArgument(0);
         return new User(id, "User" + id);
     });
-    
+
     User user = mockRepo.findById(5L);
     assertEquals("User5", user.getName());
 }
 ```
 
-## エディション・料金
+## CI/CD 統合
 
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Mockito** |  無料 | オープンソース、MIT License |
+### GitHub Actions
 
-## メリット
+```yaml
+name: Unit Tests
 
-###  主な利点
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-1. **無料**: オープンソース
-2. **シンプル**: 学習容易
-3. **JUnit統合**: JUnit 5連携
-4. **アノテーション**: @Mock、@InjectMocks
-5. **BDD**: given-when-then
-6. **スパイ**: 実オブジェクト部分モック
-7. **引数キャプチャ**: 引数検証
-8. **Matcher**: 柔軟なマッチング
-9. **活発な開発**: 継続的改善
-10. **標準**: Java/Kotlinデファクトスタンダード
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Run Tests
+        run: mvn test
+```
 
-## デメリット
+### GitLab CI
 
-###  制約・課題
+```yaml
+unit_test:
+  stage: test
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - mvn test
+  artifacts:
+    reports:
+      junit: target/surefire-reports/*.xml
+    when: always
+```
 
-1. **Java専用**: Java/Kotlinのみ
-2. **final制限**: finalクラス・メソッドモック困難（mockito-inline使用で可能）
-3. **staticメソッド**: 標準ではモック不可（mockito-inline必要）
-4. **複雑な検証**: 複雑な検証は冗長
-5. **学習曲線**: 初心者には難しい
-6. **パフォーマンス**: 大量モック生成で遅延
-7. **エラーメッセージ**: わかりにくい場合あり
-8. **過剰モック**: テストが脆くなりがち
+## 他ツールとの比較
 
-## 代替ツール
+### Mockito vs JMockit
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **JMockit** | Javaモックライブラリ | Mockitoより高機能だが複雑 |
-| **PowerMock** | static、finalモック | Mockitoより強力だが非推奨 |
-| **EasyMock** | Javaモックライブラリ | Mockitoと類似 |
-| **WireMock** | HTTPモック | MockitoよりHTTP特化 |
-| **Testcontainers** | 統合テスト | Mockitoより実環境テスト |
+| 機能 | Mockito | JMockit |
+|------|---------|---------|
+| API | シンプル・直感的 | 高機能だが複雑 |
+| finalクラス | mockito-inlineで対応 | 標準対応 |
+| staticメソッド | mockito-inline必要 | 標準対応 |
+| コミュニティ | 非常に活発 | 小規模 |
+| 学習曲線 | 低い | 高い |
 
-## 公式リンク
+### Mockito vs PowerMock
 
-- **公式サイト**: [https://site.mockito.org/](https://site.mockito.org/)
-- **GitHub**: [https://github.com/mockito/mockito](https://github.com/mockito/mockito)
-- **JavaDoc**: [https://javadoc.io/doc/org.mockito/mockito-core](https://javadoc.io/doc/org.mockito/mockito-core)
+| 機能 | Mockito | PowerMock |
+|------|---------|-----------|
+| finalモック | mockito-inline | 標準対応 |
+| staticモック | mockito-inline | 標準対応 |
+| メンテナンス | 活発 | 非推奨傾向 |
+| JUnit 5 | 完全対応 | 限定的 |
 
-## 関連ドキュメント
+## ユースケース
 
-- [モックツール一覧](../モックツール/)
-- [JUnit](../テストツール/JUnit.md)
-- [テストベストプラクティス](../../best-practices/testing.md)
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| ユニットテスト | 依存関係を分離したテスト | モックオブジェクトで外部依存を置換 |
+| TDD | テスト駆動開発の実践 | モックで未実装の依存をスタブ化 |
+| リポジトリ層テスト | DB接続なしでサービス層テスト | リポジトリをモック化してビジネスロジック検証 |
+| 外部API統合テスト | 外部サービス呼び出しのテスト | HTTPクライアントをモック化 |
 
----
+## ベストプラクティス
 
-**カテゴリ**: モックツール  
-**対象工程**: ユニットテスト  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+### 1. 適切なモック範囲
 
+- テスト対象クラスの直接的な依存のみモック化する
+- 過剰なモックはテストの信頼性を下げる
+- 値オブジェクトやDTOはモックせず実オブジェクトを使用する
+
+### 2. 検証の適切な利用
+
+- 振る舞い（メソッド呼び出し）の検証は必要最小限にする
+- 戻り値の検証を優先し、verifyは副作用の確認に限定する
+- times()の過度な使用は脆いテストの原因になる
+
+### 3. テストの可読性
+
+- BDDスタイル（given-when-then）で構造化する
+- テストメソッド名は振る舞いを明確に記述する
+- Arrangeブロックを小さく保つ
+
+## トラブルシューティング
+
+### よくある問題と解決策
+
+#### 1. finalクラス/メソッドのモックが失敗する
+
+```
+原因: Mockitoのデフォルトではfinalクラス/メソッドをモックできない
+解決策:
+- mockito-inlineをdependencyに追加する
+- またはMockito 5以降を使用する（デフォルトでinline有効）
+```
+
+#### 2. @InjectMocksで依存が注入されない
+
+```
+原因: コンストラクタやフィールドの型が一致しない
+解決策:
+- テスト対象クラスのコンストラクタ引数の型を確認する
+- @Mockフィールドの型が正しいか確認する
+- @ExtendWith(MockitoExtension.class)が付与されているか確認する
+```
+
+#### 3. UnnecessaryStubbingException
+
+```
+原因: 定義したスタブがテスト中に使用されていない
+解決策:
+- 不要なスタブ定義を削除する
+- lenient()を使用して厳密な検証を緩和する
+```
+
+## 参考リソース
+
+### 公式ドキュメント
+- 公式サイト: https://site.mockito.org/
+- ドキュメント: https://javadoc.io/doc/org.mockito/mockito-core
+
+### コミュニティ
+- GitHub: https://github.com/mockito/mockito
+
+### チュートリアル
+- Getting Started: https://site.mockito.org/#how
+- Mockito Wiki: https://github.com/mockito/mockito/wiki
+
+## まとめ
+
+Mockitoは、以下の場面で特に有用です:
+
+1. **Javaユニットテスト** - 依存関係を分離してクラス単体のテストを実現
+2. **テスト駆動開発（TDD）** - 未実装の依存をモックで置換し開発を進行
+3. **CI/CDパイプライン** - JUnit統合により自動テストに組み込み品質を維持
+
+Java/Kotlinでのユニットテストにおけるデファクトスタンダードとして、シンプルなAPIと豊富な機能により生産性の高いテスト開発を実現する。

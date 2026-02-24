@@ -1,43 +1,56 @@
-# Apache Airflow（バッチ設計）
+# Apache Airflow
 
 ## 概要
 
-Apache Airflowは、ワークフロー管理プラットフォームで、基本設計フェーズではバッチ処理フロー設計、ジョブスケジューリング設計、依存関係管理、エラーハンドリング設計に活用します。Pythonコードでバッチ処理を定義（DAG: Directed Acyclic Graph）し、可視化、実行、監視が可能です。
+Apache Airflowは、Pythonベースのワークフロー管理プラットフォームで、バッチ処理フロー設計、ジョブスケジューリング、依存関係管理、エラーハンドリングに活用します。DAG（Directed Acyclic Graph）としてタスクの依存関係をコードで定義し、Web UIによる可視化、実行、監視が可能です。
 
-### 基本設計フェーズでの活用
+## 主な特徴
 
-- **バッチフロー設計**: タスクの依存関係と実行順序の定義
-- **スケジュール設計**: 実行タイミング（日次、週次、月次、cron式）
-- **リトライ設計**: エラー時の再試行ポリシー
-- **並列実行設計**: 複数タスクの並列処理設計
-- **データパイプライン設計**: ETL処理の設計
-- **アラート設計**: 失敗時の通知設計
+| 項目 | 内容 |
+|------|------|
+| 開発元 | Apache Software Foundation |
+| ライセンス | Apache License 2.0（無料） |
+| 言語 | Python |
+| UI | Web UIでDAGの可視化・監視 |
+| スケジューリング | cron形式・プリセットによる柔軟なスケジュール |
+| 拡張性 | 豊富なOperatorプラグインでMySQL、PostgreSQL、S3等と連携 |
+| マネージドサービス | AWS MWAA、Google Cloud Composer（有料） |
 
-### 料金プラン
+## 主な機能
 
-- **Apache Airflow**: 無料（Apache License 2.0）
-- **Managed Airflow（AWS MWAA、Google Cloud Composer）**: 有料
+### DAG管理
 
-### メリット・デメリット
+| 機能 | 説明 |
+|------|------|
+| DAG定義 | Pythonコードでタスクの依存関係を定義 |
+| スケジュール設定 | cron式・プリセットによる実行タイミング制御 |
+| 条件分岐 | BranchPythonOperatorによるデータ量等に応じた処理分岐 |
+| 並列実行 | 複数タスクの並列処理 |
 
-**メリット**
-- 無料でオープンソース
-- Pythonコードでバッチ処理を定義（柔軟性が高い）
-- Web UIでDAGの可視化と監視
-- タスクの依存関係を明確に定義可能
-- リトライ、アラート、並列実行等の機能が充実
-- 豊富なプラグイン（Operator）でMySQL、PostgreSQL、S3等と連携
+### データ連携
 
-**デメリット**
-- 学習コストが高い（Python、DAG概念の理解が必要）
-- 小規模なバッチにはオーバースペック
-- セットアップが複雑
+| 機能 | 説明 |
+|------|------|
+| XCom | タスク間のデータ受け渡し（Cross-Communication） |
+| センサー | 外部イベントやファイルの存在を待機（FileSensor等） |
+| Operator | MySQL、S3、Slack等との豊富な連携プラグイン |
 
-## 利用方法
+### エラーハンドリング・監視
 
-### 1. Apache Airflowのインストール
+| 機能 | 説明 |
+|------|------|
+| リトライ | 回数、間隔、指数バックオフの設定 |
+| タイムアウト | タスク単位のタイムアウト設定 |
+| コールバック | on_failure_callbackによるSlack等への通知 |
+| Web UI監視 | Graph View、Gantt Chart、Tree View、ログ確認 |
 
-#### Dockerでのインストール（推奨）
+## インストールとセットアップ
+
+公式URL:
+- [Apache Airflow](https://airflow.apache.org/)
+- [Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
+
+### Dockerでのインストール（推奨）
 
 ```bash
 # Docker Composeファイルをダウンロード
@@ -55,7 +68,7 @@ docker-compose up
 # パスワード: airflow
 ```
 
-#### pipでのインストール
+### pipでのインストール
 
 ```bash
 # Python 3.8以上が必要
@@ -79,45 +92,27 @@ airflow webserver --port 8080
 airflow scheduler
 ```
 
-### 2. DAG（Directed Acyclic Graph）の基本概念
+## 基本的な使い方
 
-DAGは、タスクの依存関係を表す有向非巡回グラフです。
+### 1. DAGファイルの作成
 
-**DAGの構成要素:**
-- **Task（タスク）**: 個別の処理単位
-- **Dependency（依存関係）**: タスク間の実行順序
-- **Schedule（スケジュール）**: DAGの実行タイミング
-
-**例: 日次売上集計バッチ**
-
-```
-[データ抽出] → [データ変換] → [データ集計] → [レポート生成] → [メール送信]
-```
-
-### 3. DAGファイルの作成
-
-#### 例: 日次売上集計DAG
-
-**ファイル配置:** `dags/daily_sales_report.py`
+DAGは、タスクの依存関係を表す有向非巡回グラフです。ファイルは `dags/` ディレクトリに配置します。
 
 ```python
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
-from airflow.providers.mysql.operators.mysql import MySqlOperator
-from airflow.providers.amazon.aws.transfers.mysql_to_s3 import MySQLToS3Operator
 
 # デフォルト引数
 default_args = {
     'owner': 'data_team',
-    'depends_on_past': False,  # 過去の実行結果に依存しない
+    'depends_on_past': False,
     'email': ['data-team@example.com'],
-    'email_on_failure': True,  # 失敗時にメール通知
-    'email_on_retry': False,
-    'retries': 3,  # リトライ回数
-    'retry_delay': timedelta(minutes=5),  # リトライ間隔
-    'execution_timeout': timedelta(hours=2),  # タイムアウト時間
+    'email_on_failure': True,
+    'retries': 3,
+    'retry_delay': timedelta(minutes=5),
+    'execution_timeout': timedelta(hours=2),
 }
 
 # DAG定義
@@ -125,53 +120,22 @@ dag = DAG(
     dag_id='daily_sales_report',
     default_args=default_args,
     description='日次売上集計バッチ処理',
-    schedule_interval='0 2 * * *',  # 毎日2:00 AM実行（cron形式）
+    schedule_interval='0 2 * * *',  # 毎日2:00 AM実行
     start_date=datetime(2025, 1, 1),
-    catchup=False,  # 過去の未実行分を実行しない
+    catchup=False,
     tags=['sales', 'daily', 'report'],
 )
+```
 
-# タスク1: データ抽出
+### 2. タスクの定義とデータ受け渡し
+
+```python
 def extract_sales_data(**context):
-    """
-    MySQLから前日の売上データを抽出
-    """
+    """MySQLから前日の売上データを抽出"""
     execution_date = context['execution_date']
     target_date = execution_date - timedelta(days=1)
-
-    import mysql.connector
-
-    conn = mysql.connector.connect(
-        host='mysql-server',
-        user='etl_user',
-        password='password',
-        database='sales_db'
-    )
-    cursor = conn.cursor()
-
-    query = """
-        SELECT
-            order_id,
-            customer_id,
-            product_id,
-            quantity,
-            unit_price,
-            total_amount,
-            order_date
-        FROM orders
-        WHERE DATE(order_date) = %s
-    """
-
-    cursor.execute(query, (target_date.date(),))
-    results = cursor.fetchall()
-
-    # XComに保存（次のタスクに渡す）
+    # データ抽出処理...
     context['task_instance'].xcom_push(key='sales_data', value=results)
-
-    cursor.close()
-    conn.close()
-
-    print(f"抽出件数: {len(results)}件")
 
 extract_task = PythonOperator(
     task_id='extract_sales_data',
@@ -180,36 +144,12 @@ extract_task = PythonOperator(
     dag=dag,
 )
 
-# タスク2: データ変換
 def transform_sales_data(**context):
-    """
-    抽出したデータを変換・クレンジング
-    """
-    # XComから前のタスクの結果を取得
+    """抽出したデータを変換・クレンジング"""
     sales_data = context['task_instance'].xcom_pull(
-        task_ids='extract_sales_data',
-        key='sales_data'
+        task_ids='extract_sales_data', key='sales_data'
     )
-
-    import pandas as pd
-
-    # DataFrameに変換
-    df = pd.DataFrame(sales_data, columns=[
-        'order_id', 'customer_id', 'product_id',
-        'quantity', 'unit_price', 'total_amount', 'order_date'
-    ])
-
-    # データクレンジング
-    df = df.dropna()  # NULL値除去
-    df = df[df['total_amount'] >= 0]  # 負の金額除去
-
-    # 変換済みデータをXComに保存
-    context['task_instance'].xcom_push(
-        key='transformed_data',
-        value=df.to_dict('records')
-    )
-
-    print(f"変換後件数: {len(df)}件")
+    # 変換処理...
 
 transform_task = PythonOperator(
     task_id='transform_sales_data',
@@ -218,111 +158,11 @@ transform_task = PythonOperator(
     dag=dag,
 )
 
-# タスク3: データ集計
-def aggregate_sales_data(**context):
-    """
-    商品別・カテゴリ別の売上集計
-    """
-    transformed_data = context['task_instance'].xcom_pull(
-        task_ids='transform_sales_data',
-        key='transformed_data'
-    )
-
-    import pandas as pd
-
-    df = pd.DataFrame(transformed_data)
-
-    # 商品別集計
-    product_summary = df.groupby('product_id').agg({
-        'quantity': 'sum',
-        'total_amount': 'sum'
-    }).reset_index()
-
-    # 集計結果をXComに保存
-    context['task_instance'].xcom_push(
-        key='product_summary',
-        value=product_summary.to_dict('records')
-    )
-
-    print(f"集計完了: {len(product_summary)}商品")
-
-aggregate_task = PythonOperator(
-    task_id='aggregate_sales_data',
-    python_callable=aggregate_sales_data,
-    provide_context=True,
-    dag=dag,
-)
-
-# タスク4: レポート生成（SQL実行）
-generate_report_sql = MySqlOperator(
-    task_id='generate_report',
-    mysql_conn_id='mysql_default',
-    sql="""
-        INSERT INTO daily_sales_summary (
-            report_date,
-            total_orders,
-            total_revenue,
-            created_at
-        )
-        SELECT
-            '{{ ds }}' AS report_date,
-            COUNT(*) AS total_orders,
-            SUM(total_amount) AS total_revenue,
-            NOW() AS created_at
-        FROM orders
-        WHERE DATE(order_date) = '{{ ds }}'
-    """,
-    dag=dag,
-)
-
-# タスク5: S3へのエクスポート
-export_to_s3 = MySQLToS3Operator(
-    task_id='export_to_s3',
-    mysql_conn_id='mysql_default',
-    query="""
-        SELECT * FROM daily_sales_summary
-        WHERE report_date = '{{ ds }}'
-    """,
-    s3_bucket='sales-reports',
-    s3_key='daily/{{ ds }}/sales_summary.csv',
-    replace=True,
-    dag=dag,
-)
-
-# タスク6: 完了通知
-def send_completion_email(**context):
-    """
-    処理完了メールを送信
-    """
-    execution_date = context['execution_date']
-
-    from airflow.utils.email import send_email
-
-    send_email(
-        to=['manager@example.com'],
-        subject=f'[Airflow] 日次売上集計完了 - {execution_date.date()}',
-        html_content=f"""
-        <h3>日次売上集計が完了しました</h3>
-        <p>実行日: {execution_date.date()}</p>
-        <p>S3: s3://sales-reports/daily/{execution_date.date()}/sales_summary.csv</p>
-        """
-    )
-
-notification_task = PythonOperator(
-    task_id='send_completion_email',
-    python_callable=send_completion_email,
-    provide_context=True,
-    dag=dag,
-)
-
 # タスク依存関係の定義
-extract_task >> transform_task >> aggregate_task
-aggregate_task >> generate_report_sql >> export_to_s3 >> notification_task
+extract_task >> transform_task
 ```
 
-### 4. スケジュール設定
-
-#### Cron形式でのスケジュール
+### 3. スケジュール設定
 
 | スケジュール | cron式 | 説明 |
 |------------|--------|------|
@@ -332,57 +172,21 @@ aggregate_task >> generate_report_sql >> export_to_s3 >> notification_task
 | 毎時0分 | `0 * * * *` | 時間単位バッチ |
 | 15分ごと | `*/15 * * * *` | 短時間間隔バッチ |
 
-#### プリセットスケジュール
+プリセット: `@daily`、`@hourly`、`@weekly`、`@monthly`、`@yearly`
 
-```python
-from airflow.timetables.trigger import CronTriggerTimetable
-
-dag = DAG(
-    dag_id='hourly_batch',
-    schedule_interval='@hourly',  # 毎時0分実行
-    # その他のプリセット:
-    # '@daily' - 毎日0時
-    # '@weekly' - 毎週日曜0時
-    # '@monthly' - 毎月1日0時
-    # '@yearly' - 毎年1月1日0時
-)
-```
-
-### 5. タスク間のデータ受け渡し（XCom）
-
-XCom（Cross-Communication）を使用してタスク間でデータを共有:
-
-```python
-# データをプッシュ
-context['task_instance'].xcom_push(key='my_data', value={'count': 100})
-
-# データをプル
-data = context['task_instance'].xcom_pull(
-    task_ids='previous_task',
-    key='my_data'
-)
-```
-
-### 6. 条件分岐（BranchPythonOperator）
-
-#### 例: データ量に応じた処理分岐
+### 4. 条件分岐
 
 ```python
 from airflow.operators.python import BranchPythonOperator
 
 def check_data_volume(**context):
-    """
-    データ量をチェックして処理を分岐
-    """
     sales_data = context['task_instance'].xcom_pull(
-        task_ids='extract_sales_data',
-        key='sales_data'
+        task_ids='extract_sales_data', key='sales_data'
     )
-
     if len(sales_data) > 10000:
-        return 'heavy_processing'  # 大量データ処理タスクへ
+        return 'heavy_processing'
     else:
-        return 'light_processing'  # 軽量処理タスクへ
+        return 'light_processing'
 
 branch_task = BranchPythonOperator(
     task_id='check_data_volume',
@@ -390,91 +194,32 @@ branch_task = BranchPythonOperator(
     provide_context=True,
     dag=dag,
 )
-
-heavy_task = BashOperator(
-    task_id='heavy_processing',
-    bash_command='python heavy_process.py',
-    dag=dag,
-)
-
-light_task = BashOperator(
-    task_id='light_processing',
-    bash_command='python light_process.py',
-    dag=dag,
-)
-
-extract_task >> branch_task >> [heavy_task, light_task]
 ```
 
-### 7. 並列実行
-
-#### 複数タスクの並列実行
-
-```python
-# タスク定義
-task_a = PythonOperator(task_id='task_a', ...)
-task_b = PythonOperator(task_id='task_b', ...)
-task_c = PythonOperator(task_id='task_c', ...)
-task_d = PythonOperator(task_id='task_d', ...)
-
-# 並列実行の依存関係
-#       task_a
-#      /      \
-#  task_b    task_c
-#      \      /
-#       task_d
-
-task_a >> [task_b, task_c]  # task_a実行後、task_bとtask_cを並列実行
-[task_b, task_c] >> task_d  # 両方完了後、task_d実行
-```
-
-### 8. エラーハンドリング
-
-#### リトライとタイムアウト
-
-```python
-task = PythonOperator(
-    task_id='my_task',
-    python_callable=my_function,
-    retries=3,  # 最大3回リトライ
-    retry_delay=timedelta(minutes=5),  # 5分間隔でリトライ
-    retry_exponential_backoff=True,  # 指数バックオフ（5分、10分、20分）
-    max_retry_delay=timedelta(hours=1),  # 最大リトライ間隔
-    execution_timeout=timedelta(hours=2),  # 2時間でタイムアウト
-    dag=dag,
-)
-```
-
-#### エラー時のコールバック
+### 5. エラーハンドリング
 
 ```python
 def on_failure_callback(context):
-    """
-    タスク失敗時のコールバック関数
-    """
+    """タスク失敗時のSlack通知"""
     task_instance = context['task_instance']
     exception = context.get('exception')
-
-    # Slackに通知
     from airflow.providers.slack.hooks.slack_webhook import SlackWebhookHook
     slack = SlackWebhookHook(slack_webhook_conn_id='slack_webhook')
-    slack.send(
-        text=f" Task Failed: {task_instance.task_id}\nError: {exception}"
-    )
+    slack.send(text=f"Task Failed: {task_instance.task_id}\nError: {exception}")
 
 task = PythonOperator(
     task_id='my_task',
     python_callable=my_function,
+    retries=3,
+    retry_delay=timedelta(minutes=5),
+    retry_exponential_backoff=True,
+    execution_timeout=timedelta(hours=2),
     on_failure_callback=on_failure_callback,
     dag=dag,
 )
 ```
 
-### 9. センサー（Sensor）
-
-外部イベントやファイルの存在を待機:
-
-#### ファイルセンサー
+### 6. センサー
 
 ```python
 from airflow.sensors.filesystem import FileSensor
@@ -482,113 +227,138 @@ from airflow.sensors.filesystem import FileSensor
 wait_for_file = FileSensor(
     task_id='wait_for_csv',
     filepath='/data/input/sales_{{ ds }}.csv',
-    poke_interval=60,  # 60秒ごとにチェック
-    timeout=3600,  # 1時間待機
-    mode='poke',  # poke（ポーリング）またはreschedule
+    poke_interval=60,
+    timeout=3600,
+    mode='poke',
     dag=dag,
 )
 
 wait_for_file >> extract_task
 ```
 
-### 10. バッチ設計書の作成
+## Docker での使用
 
-#### バッチ設計書の構成
+### docker-compose.yml 例
 
-**1. バッチ概要**
+```yaml
+# Docker Composeファイルをダウンロード
+# curl -LfO 'https://airflow.apache.org/docs/apache-airflow/2.8.0/docker-compose.yaml'
 
-| 項目 | 内容 |
-|------|------|
-| バッチID | daily_sales_report |
-| バッチ名 | 日次売上集計バッチ |
-| 目的 | 前日の売上データを集計し、レポートを生成 |
-| 実行タイミング | 毎日2:00 AM |
-| 実行時間 | 約30分（推定） |
-| 依存バッチ | なし |
+# カスタマイズ例
+version: '3.8'
+services:
+  airflow-webserver:
+    image: apache/airflow:2.8.0
+    command: webserver
+    ports:
+      - "8080:8080"
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    volumes:
+      - ./dags:/opt/airflow/dags
 
-**2. タスク一覧**
-
-| No. | タスクID | タスク名 | 処理内容 | 想定実行時間 |
-|-----|---------|---------|---------|------------|
-| 1 | extract_sales_data | データ抽出 | MySQLから前日売上データを抽出 | 5分 |
-| 2 | transform_sales_data | データ変換 | データクレンジング | 3分 |
-| 3 | aggregate_sales_data | データ集計 | 商品別・カテゴリ別集計 | 10分 |
-| 4 | generate_report | レポート生成 | サマリーテーブルへ登録 | 2分 |
-| 5 | export_to_s3 | S3エクスポート | CSVファイルをS3に保存 | 5分 |
-| 6 | send_completion_email | 完了通知 | 処理完了メール送信 | 1分 |
-
-**3. データフロー図**
-
-```
-┌──────────────┐
-│ MySQLデータベース │
-└───────┬──────┘
-        ↓ (抽出)
-┌──────────────┐
-│ XCom: sales_data │
-└───────┬──────┘
-        ↓ (変換)
-┌─────────────────┐
-│ XCom: transformed_data │
-└───────┬─────────┘
-        ↓ (集計)
-┌─────────────────┐
-│ XCom: product_summary │
-└───────┬─────────┘
-        ↓ (登録)
-┌─────────────────┐
-│ daily_sales_summary │
-└───────┬─────────┘
-        ↓ (エクスポート)
-┌─────────────────┐
-│ S3: sales_summary.csv │
-└─────────────────┘
+  airflow-scheduler:
+    image: apache/airflow:2.8.0
+    command: scheduler
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    volumes:
+      - ./dags:/opt/airflow/dags
 ```
 
-**4. エラーハンドリング**
+## 他ツールとの比較
 
-| エラーケース | 対処方法 |
-|------------|---------|
-| データベース接続失敗 | 5分間隔で3回リトライ |
-| データ抽出件数0件 | ログに記録し、処理継続 |
-| S3アップロード失敗 | リトライ後、メール通知 |
-| タイムアウト（2時間） | 処理を中断し、アラート送信 |
+### Apache Airflow vs Prefect
 
-**5. 監視・アラート**
+| 機能 | Apache Airflow | Prefect |
+|------|---------------|---------|
+| DAG定義 | Python（静的DAG） | Python（動的フロー） |
+| UI | Web UI標準搭載 | Cloud UIまたはOSS Server |
+| スケジューリング | 内蔵 | Prefect Server/Cloud |
+| 学習コスト | 高い | 比較的低い |
+| コミュニティ | 非常に大きい | 成長中 |
 
-| 監視項目 | 閾値 | アラート先 |
-|---------|------|-----------|
-| 実行時間 | 60分以上 | data-team@example.com |
-| タスク失敗 | 1回でも失敗 | data-team@example.com, Slack |
-| データ件数 | 0件 | 警告ログ |
+### Apache Airflow vs Dagster
 
-### 11. Web UIでの監視
+| 機能 | Apache Airflow | Dagster |
+|------|---------------|---------|
+| コンセプト | タスクベース | アセットベース |
+| テスト | 限定的 | ネイティブサポート |
+| 型安全性 | なし | あり |
+| ローカル開発 | 複雑 | 簡易 |
 
-Airflow Web UI（http://localhost:8080）で以下を確認:
+## ユースケース
 
-- **DAGs**: DAG一覧と実行履歴
-- **Graph View**: DAGの依存関係を可視化
-- **Gantt Chart**: タスクの実行時間をガントチャートで表示
-- **Tree View**: 過去の実行履歴をツリー表示
-- **Logs**: 各タスクの実行ログ
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| 日次ETLバッチ | データウェアハウスへのデータ集約 | DAGでデータ抽出・変換・ロード処理を自動化 |
+| レポート自動生成 | 売上・KPIレポートの自動配信 | データ集計後にメールやSlackで通知 |
+| データパイプライン | 複数データソースの統合 | Operatorで各種データソースを連携 |
+| ML パイプライン | モデルの学習・評価・デプロイ | PythonOperatorで学習タスクをオーケストレーション |
 
-## 公式ドキュメント
+## ベストプラクティス
 
-- **公式サイト**: [Apache Airflow](https://airflow.apache.org/)
-- **ドキュメント**: [Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
-- **チュートリアル**: [Tutorial](https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html)
-- **Concepts**: [Core Concepts](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/index.html)
+### 1. DAG設計
 
-## 学習リソース
+- タスクの粒度を適切に保つ（1タスク=1責務）
+- XComで大量データを渡さない（外部ストレージを利用）
+- `catchup=False` でDAG作成時の過去分実行を防止
 
-- **公式チュートリアル**: [Airflow Tutorial](https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html)
-- **YouTube**: [Apache Airflow Tutorial](https://www.youtube.com/results?search_query=apache+airflow+tutorial)
-- **Udemy**: [Apache Airflow Course](https://www.udemy.com/topic/apache-airflow/)
+### 2. エラーハンドリング
 
-## 関連リンク
+- すべてのDAGに `on_failure_callback` を設定
+- リトライ回数と間隔を適切に設定
+- `execution_timeout` でタスクの暴走を防止
 
-- [AWS MWAA](https://aws.amazon.com/managed-workflows-for-apache-airflow/)（マネージドAirflow）
-- [Google Cloud Composer](https://cloud.google.com/composer)（マネージドAirflow）
-- [Prefect](https://www.prefect.io/)（Airflow代替ツール）
-- [Dagster](https://dagster.io/)（データオーケストレーションツール）
+### 3. 運用
 
+- DAGファイルはGitで管理
+- テスト環境でDAGの動作確認を行ってからデプロイ
+- Web UIの監視機能を活用し、失敗タスクを即座に検知
+
+## トラブルシューティング
+
+### よくある問題と解決策
+
+#### 1. DAGがWeb UIに表示されない
+
+```
+原因: DAGファイルにインポートエラーや構文エラーがある
+解決策: `python dags/my_dag.py` でファイルを直接実行してエラーを確認する
+```
+
+#### 2. タスクがスケジュール通りに実行されない
+
+```
+原因: スケジューラーが停止している、またはDAGが一時停止されている
+解決策: `airflow scheduler` が稼働していることを確認し、Web UIでDAGのトグルをONにする
+```
+
+#### 3. XComでのデータ受け渡し失敗
+
+```
+原因: XComに保存するデータが大きすぎる（デフォルト上限あり）
+解決策: 大きなデータはS3やGCS等の外部ストレージに保存し、パスのみをXComで渡す
+```
+
+## 参考リソース
+
+### 公式ドキュメント
+- 公式サイト: [https://airflow.apache.org/](https://airflow.apache.org/)
+- ドキュメント: [https://airflow.apache.org/docs/apache-airflow/stable/index.html](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
+- チュートリアル: [https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html](https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html)
+
+### コミュニティ
+- GitHub: [https://github.com/apache/airflow](https://github.com/apache/airflow)
+- AWS MWAA: [https://aws.amazon.com/managed-workflows-for-apache-airflow/](https://aws.amazon.com/managed-workflows-for-apache-airflow/)
+- Google Cloud Composer: [https://cloud.google.com/composer](https://cloud.google.com/composer)
+
+## まとめ
+
+Apache Airflowは、以下の場面で特に有用です:
+
+1. **データパイプラインの自動化** - DAGでETL処理の依存関係を明確に定義し、スケジュール実行を自動化
+2. **バッチ処理の監視・管理** - Web UIでDAGの実行状況をリアルタイム監視し、障害時に即座に対応
+3. **複雑なワークフローの設計** - 条件分岐、並列実行、センサーを組み合わせた柔軟なワークフロー構築
+
+Pythonの知識があるチームにとって、データオーケストレーションのデファクトスタンダードとして活用できます。

@@ -4,46 +4,58 @@
 
 Stoplight Studioは、API設計とドキュメント作成に特化したビジュアルエディタです。OpenAPI（Swagger）仕様書をGUIまたはコードエディタで編集でき、リアルタイムプレビュー、モックサーバー、バリデーション機能を提供します。デスクトップアプリとWeb版の両方があり、個人開発者からエンタープライズチームまで、API設計を効率化します。
 
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| デスクトップ版無料 | ローカル利用は完全無料で無制限 |
+| ビジュアルAPI設計 | GUIでOpenAPI仕様書をフォーム編集 |
+| リアルタイムプレビュー | ドキュメントを即座に確認可能 |
+| モックサーバー | API定義から自動モック生成 |
+| Git統合 | ファイルベースでバージョン管理 |
+| バリデーション | OpenAPI仕様準拠のリアルタイム検証 |
+| OpenAPI 3.x対応 | 最新のOpenAPI 3.0/3.1をサポート |
+
 ## 主な機能
 
-### 1. ビジュアルAPI設計
-- **Form Editor**: GUIでOpenAPI仕様書作成
-- **Code Editor**: YAML/JSON直接編集
-- **スプリットビュー**: フォーム+コードの同時表示
-- **リアルタイムプレビュー**: ドキュメント即座に確認
+### ビジュアルAPI設計
 
-### 2. OpenAPI 3.xサポート
-- **OpenAPI 3.0/3.1**: 最新仕様対応
-- **Swagger 2.0**: レガシーサポート
-- **自動変換**: Swagger 2.0 → OpenAPI 3.x
-- **バリデーション**: 仕様準拠チェック
+| 機能 | 説明 |
+|------|------|
+| Form Editor | GUIでOpenAPI仕様書を作成 |
+| Code Editor | YAML/JSON直接編集 |
+| スプリットビュー | フォーム+コードの同時表示 |
+| リアルタイムプレビュー | ドキュメントを即座に確認 |
 
-### 3. モックサーバー
-- **即座にモック生成**: API定義から自動モック
-- **サンプルレスポンス**: Examplesベースの返却
-- **動的レスポンス**: ランダムデータ生成
-- **ローカルサーバー**: localhost:4010で起動
+### モックサーバー
 
-### 4. ドキュメント生成
-- **美しいドキュメント**: インタラクティブなAPI Docs
-- **Try It Out**: ブラウザからAPIテスト
-- **認証サポート**: OAuth、API Key、Bearer Token
-- **多言語コードサンプル**: cURL、JavaScript、Python等
+| 機能 | 説明 |
+|------|------|
+| 即座にモック生成 | API定義から自動モック |
+| サンプルレスポンス | Examplesベースの返却 |
+| 動的レスポンス | ランダムデータ生成 |
+| ローカルサーバー | localhost:4010で起動 |
 
-### 5. バリデーション
-- **リアルタイム検証**: 編集中にエラー検出
-- **Linting**: スタイルガイド適用
-- **ベストプラクティス**: API設計推奨事項
+### バリデーション・Linting
 
-### 6. Git統合
-- **ファイルベース**: YAMLファイルで管理
-- **GitHub/GitLab連携**: リポジトリと同期
-- **バージョン管理**: Git履歴で変更追跡
-- **ブランチ切り替え**: ブランチ間の編集
+| 機能 | 説明 |
+|------|------|
+| リアルタイム検証 | 編集中にエラー検出 |
+| Linting | スタイルガイド適用 |
+| ベストプラクティス | API設計推奨事項の提示 |
+| 自動変換 | Swagger 2.0からOpenAPI 3.xへの変換 |
 
-## 利用方法
+## インストールとセットアップ
 
-### インストール
+公式URL:
+- [Stoplight Studio ダウンロード](https://stoplight.io/studio)
+- [ドキュメント](https://docs.stoplight.io/)
+- [Stoplight Platform](https://stoplight.io/platform)
+- [コミュニティ](https://community.stoplight.io/)
+
+## 基本的な使い方
+
+### 1. インストール
 
 ```bash
 # デスクトップ版ダウンロード
@@ -63,55 +75,22 @@ chmod +x Stoplight-Studio-x.x.x.AppImage
 # https://stoplight.io/studio-app
 ```
 
-### 新規API作成
-
-```
-1. Stoplight Studio起動
-2. Create New API
-3. API名入力: "User API"
-4. OpenAPI Version: 3.1
-
-5. 自動生成されたファイル構造:
-   user-api/
-   ├── reference/
-   │   └── user-api.yaml    # OpenAPI仕様書
-   └── README.md
-```
-
-### フォームエディタでAPI設計
+### 2. フォームエディタでAPI設計
 
 ```
 1. reference/user-api.yaml を開く
-
 2. Form Editorタブに切り替え
-
 3. Paths → Add Path
    - Path: /users
    - Method: GET
    - Summary: "ユーザー一覧取得"
-
 4. Responses → 200 → Add Response
    - Content Type: application/json
-   - Schema: 
-     type: array
-     items:
-       type: object
-       properties:
-         id:
-           type: integer
-         name:
-           type: string
-         email:
-           type: string
-
+   - Schema定義
 5. Examples → Add Example
-   [
-     {"id": 1, "name": "Alice", "email": "alice@example.com"},
-     {"id": 2, "name": "Bob", "email": "bob@example.com"}
-   ]
 ```
 
-### コードエディタで編集
+### 3. コードエディタで編集
 
 ```yaml
 # reference/user-api.yaml
@@ -142,9 +121,6 @@ paths:
                     - id: 1
                       name: Alice
                       email: alice@example.com
-                    - id: 2
-                      name: Bob
-                      email: bob@example.com
     post:
       summary: ユーザー作成
       operationId: createUser
@@ -157,10 +133,6 @@ paths:
       responses:
         '201':
           description: 作成成功
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
 
 components:
   schemas:
@@ -179,7 +151,7 @@ components:
         email:
           type: string
           format: email
-    
+
     UserInput:
       type: object
       required:
@@ -193,36 +165,20 @@ components:
           format: email
 ```
 
-### モックサーバー起動
+### 4. モックサーバー起動
 
 ```bash
 # Stoplight Studio内
-1. 左サイドバー → Mock Servers
-2. Start Mock Server
-3. モックサーバーURL: http://localhost:4010
+# 左サイドバー → Mock Servers → Start Mock Server
+# モックサーバーURL: http://localhost:4010
 
 # cURLでテスト
 curl http://localhost:4010/users
-
 # レスポンス（Examplesから返却）
-[
-  {"id": 1, "name": "Alice", "email": "alice@example.com"},
-  {"id": 2, "name": "Bob", "email": "bob@example.com"}
-]
+# [{"id": 1, "name": "Alice", "email": "alice@example.com"}]
 ```
 
-### ドキュメントプレビュー
-
-```
-1. 左サイドバー → Docs
-2. リアルタイムでAPI Docsが表示される
-3. Try It Out でAPIテスト実行
-   - Parameters入力
-   - Send Request
-   - レスポンス確認
-```
-
-### Git連携
+### 5. Git連携
 
 ```bash
 # ローカルGitリポジトリとして管理
@@ -230,96 +186,110 @@ cd user-api
 git init
 git add .
 git commit -m "Initial API design"
-
-# GitHub連携
 git remote add origin https://github.com/user/user-api.git
 git push -u origin main
-
-# Stoplight Studioで編集・コミット
-1. File → Open Folder → Gitリポジトリ選択
-2. 編集
-3. 左サイドバー → Source Control
-4. コミットメッセージ入力 → Commit
-5. Push
 ```
 
-### プロジェクト共有
+## 他ツールとの比較
+
+### Stoplight Studio vs Swagger Editor
+
+| 機能 | Stoplight Studio | Swagger Editor |
+|------|-----------------|----------------|
+| エディタ | GUI + コード | コードのみ |
+| モック | 内蔵モックサーバー | なし |
+| バリデーション | リアルタイム | リアルタイム |
+| オフライン | デスクトップ版対応 | Web版のみ |
+| 価格 | デスクトップ無料 | 無料 |
+
+### Stoplight Studio vs Postman
+
+| 機能 | Stoplight Studio | Postman |
+|------|-----------------|---------|
+| API設計 | ビジュアル設計が得意 | テストが得意 |
+| テスト機能 | 限定的 | 強力 |
+| モック | API定義から自動生成 | 基本的 |
+| Git統合 | ファイルベース | 独自形式 |
+
+## ユースケース
+
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| APIファースト設計 | 実装前にAPI仕様を定義 | ビジュアルエディタでOpenAPI仕様を設計 |
+| フロントエンド並行開発 | バックエンド未完成でもUI開発 | モックサーバーでフロントエンド開発を進行 |
+| API仕様レビュー | チームでの仕様合意 | Git連携でPull Requestベースのレビュー |
+| OpenAPI学習 | OpenAPI仕様の習得 | GUIで直感的にOpenAPIの構造を理解 |
+
+## ベストプラクティス
+
+### 1. API設計ワークフロー
+
+- 最初にForm Editorでエンドポイントとスキーマの全体構造を設計する
+- 詳細な設定はCode Editorに切り替えて調整する
+- Examplesを充実させてモックの品質を上げる
+
+### 2. Git管理
+
+- OpenAPI定義ファイルをGitリポジトリで管理する
+- ブランチを使ってAPI仕様の変更を管理する
+- Pull Requestでチームレビューを行う
+
+### 3. モックの活用
+
+- API設計完了後すぐにモックサーバーを起動する
+- フロントエンド開発チームにモックURLを共有する
+- Examplesを複数用意してエラーケースもカバーする
+
+## トラブルシューティング
+
+### よくある問題と解決策
+
+#### 1. モックサーバーが起動しない
 
 ```
-# Stoplight Platform（クラウド）連携
-1. File → Publish to Stoplight
-2. Stoplight Platformアカウント作成
-3. Project作成
-4. チームメンバー招待
-5. https://your-workspace.stoplight.io/docs/user-api
+原因: ポート4010が既に使用されている
+解決策:
+- 既存のプロセスを終了する
+- 設定でポート番号を変更する
 ```
 
-## エディション・料金
+#### 2. OpenAPIバリデーションエラー
 
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Studio Desktop** | 🟢 完全無料 | ローカル編集、無制限プロジェクト |
-| **Stoplight Platform Starter** | 🟡 $0/月 | 公開プロジェクト無制限、1ユーザー |
-| **Stoplight Platform Professional** | 💰 $49/ユーザー/月 | プライベートプロジェクト、チーム協業 |
-| **Stoplight Platform Enterprise** | 💰 要問い合わせ | SSO、オンプレミス、専用サポート |
+```
+原因: OpenAPI仕様に違反する記述
+解決策:
+- エラーパネルの詳細メッセージを確認する
+- $refの参照先が存在するか確認する
+- required配列にpropertiesに存在しないキーがないか確認する
+```
 
-## メリット
+#### 3. Electronアプリが重い
 
-### ✅ 主な利点
+```
+原因: 大きなOpenAPIファイルを編集している
+解決策:
+- ファイルを分割して$refで参照する
+- 不要な拡張機能を無効化する
+```
 
-1. **デスクトップ版無料**: ローカル利用は完全無料
-2. **ビジュアル編集**: GUIでOpenAPI作成
-3. **即座にモック**: API実装前にテスト可能
-4. **リアルタイムプレビュー**: ドキュメント即座確認
-5. **Git統合**: ファイルベースでバージョン管理
-6. **バリデーション**: OpenAPI仕様準拠チェック
-7. **美しいドキュメント**: インタラクティブなAPI Docs
-8. **Try It Out**: ブラウザからAPIテスト
-9. **コード生成**: クライアントSDK生成
-10. **学習容易**: OpenAPI初心者でも使いやすい
+## 参考リソース
 
-## デメリット
+### 公式ドキュメント
+- 公式サイト: https://stoplight.io/studio
+- ドキュメント: https://docs.stoplight.io/
 
-### ❌ 制約・課題
+### コミュニティ
+- コミュニティフォーラム: https://community.stoplight.io/
 
-1. **チーム協業**: デスクトップ版は単独作業
-2. **Platform高価**: チーム利用は有料
-3. **オフライン制限**: Web版はインターネット必須
-4. **Electronアプリ**: デスクトップ版はリソース消費
-5. **機能制限**: Postmanほど高度なテスト機能なし
-6. **モック制限**: 複雑なビジネスロジックは未対応
-7. **学習曲線**: OpenAPI仕様理解が必要
-8. **プラグイン**: 拡張機能が限定的
+### チュートリアル
+- Getting Started: https://docs.stoplight.io/docs/studio/
 
-## 代替ツール
+## まとめ
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Swagger Editor** | OpenAPIエディタ、無料 | Stoplightよりシンプルだが基本機能のみ |
-| **Postman** | APIテスト+設計 | Stoplightよりテスト機能強い |
-| **Insomnia** | APIテスト+設計 | Stoplightと類似、軽量 |
-| **Apicurio Studio** | オープンソースAPI設計 | Stoplightより機能少ない |
-| **VS Code + OpenAPI Extension** | コードエディタ統合 | Stoplightより手動作業多い |
+Stoplight Studioは、以下の場面で特に有用です:
 
-## 公式リンク
+1. **APIファースト設計** - ビジュアルエディタで直感的にOpenAPI仕様を設計
+2. **フロントエンド並行開発** - 内蔵モックサーバーでバックエンド未完成でもUI開発を進行
+3. **OpenAPI初心者** - GUIでOpenAPIの構造を学びながらAPI設計ができる
 
-- **公式サイト**: [https://stoplight.io/studio](https://stoplight.io/studio)
-- **ダウンロード**: [https://stoplight.io/studio](https://stoplight.io/studio)
-- **ドキュメント**: [https://docs.stoplight.io/](https://docs.stoplight.io/)
-- **Stoplight Platform**: [https://stoplight.io/platform](https://stoplight.io/platform)
-- **コミュニティ**: [https://community.stoplight.io/](https://community.stoplight.io/)
-
-## 関連ドキュメント
-
-- [APIツール一覧](../APIツール/)
-- [Swagger/OpenAPI](./Swagger_OpenAPI.md)
-- [Postman](./Postman.md)
-- [ReDoc](./ReDoc.md)
-- [API設計ベストプラクティス](../../best-practices/api-design.md)
-
----
-
-**カテゴリ**: APIツール  
-**対象工程**: 要件定義、設計  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+デスクトップ版は完全無料で、個人開発からチーム開発まで幅広くAPI設計を効率化するツールである。

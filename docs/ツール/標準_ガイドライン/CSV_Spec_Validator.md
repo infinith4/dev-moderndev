@@ -2,42 +2,73 @@
 
 ## 概要
 
-CSV Spec Validatorは、CSVファイルがRFC 4180（Common Format and MIME Type for Comma-Separated Values）およびプロジェクト固有の仕様に準拠しているかを検証するためのツール・アプローチの総称です。カラム数、データ型、文字エンコーディング、区切り文字、引用符の使用、必須フィールドの存在等をチェックし、データインターフェースの品質を事前に確保します。Python（csvkit、pandas、Great Expectations）、Java、.NET等の各言語でバリデーション実装が可能です。
+CSV Spec Validatorは、CSVファイルがRFC 4180およびプロジェクト固有の仕様に準拠しているかを検証するためのツール・アプローチの総称です。カラム数、データ型、文字エンコーディング、区切り文字、引用符の使用、必須フィールドの存在等をチェックし、データインターフェースの品質を事前に確保します。Python（csvkit、pandas、Great Expectations）、Java、.NET等の各言語で実装が可能です。
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| 対象 | CSVファイルの形式・内容の検証 |
+| 基準 | RFC 4180（Common Format and MIME Type for CSV） |
+| 主なツール | csvkit（無料）、pandas（無料）、Great Expectations（無料/有料） |
+| 自動化 | CI/CDパイプラインに組み込んで継続的に検証可能 |
+| 多言語対応 | Python、Java、.NET等で実装可能 |
+| スキーマ定義 | プロジェクト固有の検証ルールをコードで定義 |
 
 ## 主な機能
 
-### 1. RFC 4180準拠チェック
+### RFC 4180準拠チェック
 
-- **区切り文字**: カンマ（`,`）区切りの検証
-- **引用符**: ダブルクォート（`"`）によるフィールド囲みの正当性
-- **改行**: CRLF改行コードの検証
-- **ヘッダー行**: 先頭行のヘッダー有無の判定
-- **エスケープ**: フィールド内のダブルクォートエスケープ（`""`）
+| 機能 | 説明 |
+|------|------|
+| 区切り文字 | カンマ（`,`）区切りの検証 |
+| 引用符 | ダブルクォート（`"`）によるフィールド囲みの正当性 |
+| 改行 | CRLF改行コードの検証 |
+| ヘッダー行 | 先頭行のヘッダー有無の判定 |
+| エスケープ | フィールド内のダブルクォートエスケープ（`""`） |
 
-### 2. スキーマバリデーション
+### スキーマバリデーション
 
-- **カラム数**: 期待するカラム数との一致検証
-- **カラム名**: ヘッダー名の正当性チェック
-- **データ型**: 整数、浮動小数点、日付、メール等の型チェック
-- **必須チェック**: NULL/空文字の検出
-- **値の範囲**: 最小値・最大値・許容値リストの検証
-- **正規表現**: パターンマッチによるフォーマット検証
+| 機能 | 説明 |
+|------|------|
+| カラム数・名チェック | 期待するカラム数・名との一致検証 |
+| データ型チェック | 整数、浮動小数点、日付、メール等の型チェック |
+| 必須チェック | NULL/空文字の検出 |
+| 値の範囲 | 最小値・最大値・許容値リストの検証 |
+| 正規表現 | パターンマッチによるフォーマット検証 |
 
-### 3. エンコーディング・形式チェック
+### エンコーディング・形式チェック
 
-- **文字エンコーディング**: UTF-8、Shift_JIS、EUC-JP等の検証
-- **BOM**: UTF-8 BOMの有無チェック
-- **行末文字**: LF/CRLF/CRの統一性検証
-- **ファイルサイズ**: 最大行数・最大ファイルサイズのチェック
+| 機能 | 説明 |
+|------|------|
+| 文字エンコーディング | UTF-8、Shift_JIS、EUC-JP等の検証 |
+| BOM | UTF-8 BOMの有無チェック |
+| 行末文字 | LF/CRLF/CRの統一性検証 |
+| ファイルサイズ | 最大行数・最大ファイルサイズのチェック |
 
-## 利用方法
+## インストールとセットアップ
 
-### csvkit（Python CLIツール）
+公式URL:
+- [RFC 4180](https://datatracker.ietf.org/doc/html/rfc4180)
+- [csvkit](https://csvkit.readthedocs.io/)
+- [Great Expectations](https://greatexpectations.io/)
 
 ```bash
-# インストール
+# csvkit インストール
 pip install csvkit
 
+# pandas インストール
+pip install pandas
+
+# Great Expectations インストール
+pip install great-expectations
+```
+
+## 基本的な使い方
+
+### 1. csvkit（CLIツール）
+
+```bash
 # CSVの統計情報表示
 csvstat data.csv
 
@@ -48,17 +79,15 @@ csvclean data.csv
 iconv -f SHIFT_JIS -t UTF-8 input.csv > output.csv
 ```
 
-### Python（pandas + カスタムバリデーション）
+### 2. Python（pandas + カスタムバリデーション）
 
 ```python
 import pandas as pd
-from pathlib import Path
 
 def validate_csv(filepath: str, schema: dict) -> list[str]:
     """CSVファイルをスキーマに基づいて検証する"""
     errors = []
 
-    # エンコーディング・読み込みチェック
     try:
         df = pd.read_csv(filepath, encoding=schema.get("encoding", "utf-8"))
     except UnicodeDecodeError:
@@ -94,24 +123,19 @@ schema = {
     "required": ["id", "name", "email"],
     "types": {"id": "integer", "amount": "integer"}
 }
-
 errors = validate_csv("data.csv", schema)
-for e in errors:
-    print(f"ERROR: {e}")
 ```
 
-### Great Expectations（データバリデーションフレームワーク）
+### 3. Great Expectations
 
 ```python
 import great_expectations as gx
 
 context = gx.get_context()
 
-# データソース設定
 datasource = context.sources.add_pandas("my_datasource")
 asset = datasource.add_csv_asset("orders", filepath_or_buffer="orders.csv")
 
-# Expectation定義
 batch = asset.get_batch()
 batch.expect_column_to_exist("order_id")
 batch.expect_column_values_to_not_be_null("order_id")
@@ -120,12 +144,13 @@ batch.expect_column_values_to_be_unique("order_id")
 batch.expect_column_values_to_match_regex("email", r"^[\w.-]+@[\w.-]+\.\w+$")
 batch.expect_column_values_to_be_between("amount", min_value=0, max_value=1000000)
 
-# バリデーション実行
 result = batch.validate()
 print(f"Success: {result.success}")
 ```
 
-### CI/CD統合（GitHub Actions）
+## CI/CD 統合
+
+### GitHub Actions
 
 ```yaml
 # .github/workflows/csv-validate.yml
@@ -155,53 +180,93 @@ jobs:
           done
 ```
 
-## エディション・料金
+## 他ツールとの比較
 
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **csvkit** | 無料 | MIT License、CLI向け |
-| **Great Expectations** | 無料（OSS） / 有料（Cloud） | Apache 2.0、エンタープライズ機能は有料 |
-| **pandas** | 無料 | BSD License、汎用データ処理 |
+### csvkit vs Great Expectations
 
-## メリット
+| 機能 | csvkit | Great Expectations |
+|------|--------|-------------------|
+| 用途 | CSV専用CLI | 汎用データバリデーションFW |
+| 学習コスト | 低い | 中程度 |
+| スキーマ定義 | 限定的 | 柔軟なExpectation定義 |
+| CI/CD連携 | コマンドラインで簡単 | Checkpoint機能で統合 |
+| 対象形式 | CSVのみ | CSV、DB、Spark等 |
 
-1. **データ品質保証**: インターフェースのCSVファイルを受入時に自動検証
-2. **早期エラー検出**: データ連携前に形式不整合やエンコーディング問題を発見
-3. **自動化可能**: CI/CDパイプラインに組み込んで継続的に検証
-4. **柔軟なスキーマ定義**: プロジェクト固有の検証ルールをコードで定義可能
-5. **多言語対応**: Python、Java、.NET等で実装可能
+### pandas vs Cerberus
 
-## デメリット
+| 機能 | pandas | Cerberus |
+|------|--------|----------|
+| 用途 | データ処理+検証 | スキーマバリデーション専用 |
+| 柔軟性 | 自由度が高い | スキーマ定義ベース |
+| パフォーマンス | 大容量対応 | 軽量 |
 
-1. **標準ツールなし**: 統一的なCSVバリデーションツールが存在せず、自作が必要な場合がある
-2. **スキーマ管理**: バリデーションルールの保守・更新が必要
-3. **大容量対応**: 大容量CSVファイルの検証にはメモリ・パフォーマンスの考慮が必要
-4. **エンコーディング**: Shift_JIS等のレガシーエンコーディングの自動判定が困難
-5. **RFC 4180限界**: 実務のCSVはRFC 4180に完全準拠しないケースが多い
+## ユースケース
 
-## 代替ツール
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| データ受入検証 | インターフェースCSVの品質検証 | スキーマに基づく自動バリデーションで不正データを早期検出 |
+| CI/CDパイプライン | データ連携の継続的検証 | PRマージ前にCSVファイルの形式チェックを自動実行 |
+| エンコーディング検証 | 文字コードの統一 | UTF-8/Shift_JIS等のエンコーディング整合性チェック |
+| データ移行前検証 | 移行データの事前確認 | 移行元CSVデータの型・必須チェックで移行エラーを防止 |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Great Expectations** | データバリデーションFW | CSV以外も対応、エンタープライズ向け |
-| **csvkit** | CSV専用CLI | 軽量、コマンドラインで即利用可能 |
-| **Cerberus** | Pythonバリデーション | スキーマ定義によるデータ検証ライブラリ |
-| **JSON Schema** | JSONバリデーション | CSV→JSON変換後にスキーマ検証する方法 |
+## ベストプラクティス
 
-## 公式リンク
+### 1. スキーマ定義の管理
 
-- **RFC 4180**: [https://datatracker.ietf.org/doc/html/rfc4180](https://datatracker.ietf.org/doc/html/rfc4180)
-- **csvkit**: [https://csvkit.readthedocs.io/](https://csvkit.readthedocs.io/)
-- **Great Expectations**: [https://greatexpectations.io/](https://greatexpectations.io/)
-- **pandas**: [https://pandas.pydata.org/](https://pandas.pydata.org/)
+- バリデーションルール（スキーマ）をコードで定義しGitで管理
+- カラム名、データ型、必須/任意、値の範囲を明文化
 
-## 関連ドキュメント
+### 2. エンコーディング統一
 
-- [PEP 8](./PEP_8.md)
+- プロジェクト全体でCSVエンコーディングをUTF-8に統一
+- Shift_JIS等のレガシーエンコーディングは変換スクリプトを用意
 
----
+### 3. CI/CD統合
 
-**カテゴリ**: 標準ガイドライン
-**対象工程**: 設計・実装・テスト
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+- CSVファイルの変更をトリガーにバリデーションを自動実行
+- エラー時はPRのマージをブロック
+
+## トラブルシューティング
+
+### よくある問題と解決策
+
+#### 1. Shift_JISファイルの読み込みエラー
+
+```
+原因: UTF-8として読み込もうとしてUnicodeDecodeErrorが発生
+解決策: encoding='shift_jis' または encoding='cp932' を指定する
+```
+
+#### 2. カラム数が行によって異なる
+
+```
+原因: フィールド内にエスケープされていない区切り文字やダブルクォートが含まれている
+解決策: csvcleanで問題行を特定し、RFC 4180に準拠するようデータを修正する
+```
+
+#### 3. 大容量CSVでメモリ不足
+
+```
+原因: pandasが全データをメモリに読み込む
+解決策: chunksize パラメータでチャンク分割読み込みを行う
+```
+
+## 参考リソース
+
+### 公式ドキュメント
+- RFC 4180: [https://datatracker.ietf.org/doc/html/rfc4180](https://datatracker.ietf.org/doc/html/rfc4180)
+- csvkit: [https://csvkit.readthedocs.io/](https://csvkit.readthedocs.io/)
+- pandas: [https://pandas.pydata.org/](https://pandas.pydata.org/)
+
+### コミュニティ
+- Great Expectations: [https://greatexpectations.io/](https://greatexpectations.io/)
+
+## まとめ
+
+CSV Spec Validatorは、以下の場面で特に有用です:
+
+1. **データインターフェースの品質保証** - CSVファイルの受入時に形式・内容を自動検証し、データ連携の信頼性を確保
+2. **CI/CDパイプラインでの継続的検証** - PRやデータ更新のタイミングでバリデーションを自動実行
+3. **エンコーディング・形式の標準化** - プロジェクト全体のCSV仕様を統一し、文字化けやパースエラーを防止
+
+csvkit、pandas、Great Expectations等のツールを組み合わせることで、柔軟なCSVバリデーション体制を構築できます。

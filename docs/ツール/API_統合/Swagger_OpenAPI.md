@@ -4,40 +4,58 @@
 
 Swagger（現在はOpenAPI）は、RESTful APIを設計・文書化・テストするためのオープンソースツールセットです。OpenAPI Specification (OAS)という標準仕様に基づき、APIをYAML/JSON形式で定義し、インタラクティブなAPIドキュメント、コード生成、モックサーバーなどを自動生成できます。API開発の標準として広く採用されています。
 
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| 業界標準 | RESTful APIのデファクトスタンダード仕様 |
+| 自動ドキュメント | コード/定義から最新ドキュメントを生成 |
+| コード生成 | 50以上の言語/フレームワークのSDK・サーバースタブ生成 |
+| インタラクティブ | Swagger UIでブラウザからAPIテスト可能 |
+| エコシステム | 豊富なツール・ライブラリとの連携 |
+| オープンソース | Swagger UI、Editor、OpenAPI Generatorは無料 |
+
 ## 主な機能
 
-### 1. API仕様定義（OpenAPI Specification）
-- YAML/JSON形式でAPI定義
-- エンドポイント、パラメータ、レスポンスの記述
-- データモデル（スキーマ）定義
-- 認証・セキュリティ設定
+### API仕様定義（OpenAPI Specification）
 
-### 2. Swagger UI
-- インタラクティブなAPIドキュメント自動生成
-- ブラウザ上でAPIテスト実行
-- "Try it out" 機能でリクエスト送信
-- レスポンスのリアルタイム表示
+| 機能 | 説明 |
+|------|------|
+| YAML/JSON形式 | 人間にも機械にも読みやすいAPI定義 |
+| エンドポイント定義 | パス、パラメータ、レスポンスの記述 |
+| データモデル | スキーマ定義とコンポーネント再利用 |
+| セキュリティ | 認証・セキュリティスキーム設定 |
 
-### 3. Swagger Editor
-- OpenAPI定義のリアルタイムエディタ
-- シンタックスハイライト、自動補完
-- バリデーション（文法チェック）
-- プレビュー機能
+### Swagger UI
 
-### 4. Swagger Codegen / OpenAPI Generator
-- API定義からクライアントSDK自動生成
-- サーバースタブ生成
-- 50以上の言語/フレームワーク対応
-- カスタムテンプレート
+| 機能 | 説明 |
+|------|------|
+| ドキュメント自動生成 | OpenAPI定義からインタラクティブなドキュメント |
+| Try it out | ブラウザ上でAPIリクエストを送信 |
+| レスポンス表示 | リアルタイムでレスポンスを確認 |
+| 認証対応 | OAuth、API Key等の認証フロー |
 
-### 5. SwaggerHub（商用サービス）
-- クラウドベースAPI設計プラットフォーム
-- チーム協業、バージョン管理
-- API自動テスト、モックサーバー
+### コード生成
 
-## 利用方法
+| 機能 | 説明 |
+|------|------|
+| クライアントSDK | TypeScript、Python、Java等のクライアント自動生成 |
+| サーバースタブ | Express、Spring Boot等のサーバースケルトン生成 |
+| カスタムテンプレート | 生成コードのテンプレートカスタマイズ |
+| 50以上の言語 | 多数の言語/フレームワーク対応 |
 
-### OpenAPI定義作成
+## インストールとセットアップ
+
+公式URL:
+- [OpenAPI Specification](https://spec.openapis.org/)
+- [Swagger.io](https://swagger.io/)
+- [Swagger UI](https://swagger.io/tools/swagger-ui/)
+- [Swagger Editor](https://editor.swagger.io/)
+- [OpenAPI Generator](https://openapi-generator.tech/)
+
+## 基本的な使い方
+
+### 1. OpenAPI定義作成
 
 ```yaml
 openapi: 3.0.0
@@ -62,7 +80,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/User'
-    
+
     post:
       summary: ユーザー作成
       requestBody:
@@ -113,7 +131,7 @@ components:
           type: string
           format: email
           example: "yamada@example.com"
-    
+
     UserInput:
       type: object
       required:
@@ -136,7 +154,7 @@ security:
   - bearerAuth: []
 ```
 
-### Swagger UI の使用
+### 2. Swagger UIの起動
 
 ```bash
 # Dockerで起動
@@ -145,20 +163,17 @@ docker run -p 80:8080 -e SWAGGER_JSON=/openapi.yaml \
   swaggerapi/swagger-ui
 
 # ブラウザで http://localhost にアクセス
-# "Try it out" ボタンでAPIテスト実行可能
 ```
 
-### Swagger Editor の使用
+### 3. Swagger Editorの起動
 
 ```bash
 # Dockerで起動
 docker run -p 8080:8080 swaggerapi/swagger-editor
-
 # ブラウザで http://localhost:8080 にアクセス
-# 左ペインでYAML編集、右ペインでプレビュー
 ```
 
-### OpenAPI Generator でクライアントSDK生成
+### 4. クライアントSDK生成
 
 ```bash
 # OpenAPI Generatorインストール
@@ -177,7 +192,7 @@ openapi-generator-cli generate \
   -o ./generated-client-python
 ```
 
-### サーバースタブ生成
+### 5. サーバースタブ生成
 
 ```bash
 # Node.js Express サーバースタブ生成
@@ -193,78 +208,172 @@ openapi-generator-cli generate \
   -o ./generated-server-spring
 ```
 
-## ツール・料金
+## CI/CD 統合
 
-| ツール | 価格 | 特徴 |
-|--------|------|------|
-| **OpenAPI Specification** |  無料 | オープンスタンダード |
-| **Swagger UI** |  無料 | オープンソース |
-| **Swagger Editor** |  無料 | オープンソース |
-| **OpenAPI Generator** |  無料 | オープンソース |
-| **SwaggerHub Free** |  無料 | 1ユーザー、3API |
-| **SwaggerHub Team** | $75/月～ | チーム協業、API管理 |
-| **SwaggerHub Enterprise** | 要問い合わせ | SSO、高度な管理機能 |
+### GitHub Actions
 
-## メリット
+```yaml
+name: API Docs & Validation
 
-###  主な利点
+on:
+  push:
+    branches: [ main ]
 
-1. **業界標準**: RESTful APIのデファクトスタンダード
-2. **自動ドキュメント**: コードから最新ドキュメント生成
-3. **インタラクティブ**: ブラウザでAPIテスト可能
-4. **コード生成**: クライアントSDK、サーバースタブ自動生成
-5. **言語非依存**: 50以上の言語/フレームワーク対応
-6. **オープンソース**: 無料で利用可能
-7. **エコシステム**: 豊富なツール・ライブラリ
-8. **バリデーション**: API定義の妥当性チェック
-9. **チーム協業**: SwaggerHubでAPI設計協業
-10. **API-First開発**: 設計→実装のワークフロー
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Validate OpenAPI
+        uses: char0n/swagger-editor-validate@v1
+        with:
+          definition-file: openapi.yaml
+```
 
-## デメリット
+### GitLab CI
 
-###  制約・課題
+```yaml
+validate_api:
+  stage: test
+  image: node:24
+  before_script:
+    - npm install -g @openapitools/openapi-generator-cli
+  script:
+    - openapi-generator-cli validate -i openapi.yaml
+```
 
-1. **学習曲線**: OpenAPI仕様の習得に時間がかかる
-2. **YAML記述**: 大規模APIでは記述が煩雑
-3. **バージョン管理**: 定義ファイルのGit管理が必要
-4. **完全性**: 複雑なビジネスロジックは表現困難
-5. **ツール品質**: 生成コードの品質はツール依存
-6. **カスタマイズ**: 生成コードのカスタマイズが必要な場合あり
-7. **REST API専用**: GraphQL、gRPCには非対応
-8. **SwaggerHub有料**: チーム利用は有料プラン必要
+## Docker での使用
 
-## 代替ツール
+### Dockerfile 例（Swagger UI）
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Postman** | APIテスト・ドキュメント化 | Swagger/OpenAPIより手動作業多い |
-| **API Blueprint** | Markdown形式のAPI記述 | OpenAPIより簡潔だが機能少ない |
-| **RAML** | RESTful API Modeling Language | OpenAPIと類似、採用率低い |
-| **ReDoc** | OpenAPIからドキュメント生成 | Swagger UIの代替、美しいUI |
-| **GraphQL Schema** | GraphQL専用 | REST API非対応 |
-| **Protobuf (gRPC)** | gRPC専用 | REST API非対応 |
+```dockerfile
+FROM swaggerapi/swagger-ui
+COPY openapi.yaml /usr/share/nginx/html/openapi.yaml
+ENV SWAGGER_JSON=/usr/share/nginx/html/openapi.yaml
+```
 
-## 公式リンク
+### docker-compose.yml 例
 
-- **OpenAPI Specification**: [https://spec.openapis.org/](https://spec.openapis.org/)
-- **Swagger.io**: [https://swagger.io/](https://swagger.io/)
-- **Swagger UI**: [https://swagger.io/tools/swagger-ui/](https://swagger.io/tools/swagger-ui/)
-- **Swagger Editor**: [https://editor.swagger.io/](https://editor.swagger.io/)
-- **OpenAPI Generator**: [https://openapi-generator.tech/](https://openapi-generator.tech/)
-- **SwaggerHub**: [https://swagger.io/tools/swaggerhub/](https://swagger.io/tools/swaggerhub/)
+```yaml
+version: '3.8'
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./openapi.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml
 
-## 関連ドキュメント
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    ports:
+      - "8081:8080"
+```
 
-- [APIツール一覧](../APIツール/)
-- [Postman](./Postman.md)
-- [Insomnia](./Insomnia.md)
-- [API設計ベストプラクティス](../../best-practices/api-design.md)
-- [OpenAPI仕様書作成ガイド](../../best-practices/openapi-spec.md)
+## 他ツールとの比較
 
----
+### Swagger/OpenAPI vs Postman
 
-**カテゴリ**: APIツール  
-**対象工程**: 基本設計、詳細設計、実装  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+| 機能 | Swagger/OpenAPI | Postman |
+|------|----------------|---------|
+| API定義 | YAML/JSON仕様 | コレクション形式 |
+| コード生成 | 50以上の言語 | 限定的 |
+| テスト機能 | Try it out | 強力なテスト機能 |
+| チーム協業 | SwaggerHub（有料） | ワークスペース |
+| 価格 | ツール無料 | 有料プランあり |
 
+### Swagger/OpenAPI vs GraphQL
+
+| 機能 | Swagger/OpenAPI | GraphQL |
+|------|----------------|---------|
+| API形式 | REST API | GraphQL |
+| スキーマ | OpenAPI Spec | GraphQL Schema |
+| ツール | Swagger UI等 | GraphiQL等 |
+| データ取得 | 固定レスポンス | クライアント指定 |
+
+## ユースケース
+
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| APIファースト開発 | 実装前にAPI仕様を定義 | OpenAPI定義→モック→実装の順序で開発 |
+| SDKクライアント生成 | マルチ言語クライアント配布 | OpenAPI Generatorで各言語のSDKを自動生成 |
+| APIドキュメント公開 | 外部開発者向けリファレンス | Swagger UIで公開、ReDocで美しいドキュメント |
+| 契約テスト | API仕様の遵守確認 | スキーマバリデーションで仕様との一致を検証 |
+
+## ベストプラクティス
+
+### 1. OpenAPI定義の管理
+
+- YAMLファイルをGitでバージョン管理する
+- コンポーネント（$ref）を活用してスキーマを再利用する
+- examplesを充実させてドキュメントの品質を上げる
+
+### 2. API設計ガイドライン
+
+- 一貫した命名規則（camelCase / snake_case）を適用する
+- 適切なHTTPステータスコードを使用する
+- エラーレスポンスの形式を統一する
+
+### 3. バリデーション
+
+- CIパイプラインにOpenAPI定義のバリデーションを組み込む
+- スキーマの変更はPull Requestでレビューする
+- 破壊的変更を検出するツールを導入する
+
+## トラブルシューティング
+
+### よくある問題と解決策
+
+#### 1. YAML構文エラー
+
+```
+原因: インデントの不整合やコロンの後のスペース不足
+解決策:
+- YAMLバリデータでチェックする
+- Swagger Editorのリアルタイム検証を活用する
+```
+
+#### 2. $refの参照エラー
+
+```
+原因: 参照先のコンポーネントが存在しない
+解決策:
+- components/schemas に定義が存在するか確認する
+- パスの大文字小文字を確認する
+```
+
+#### 3. 生成コードの品質問題
+
+```
+原因: OpenAPI Generatorのテンプレートが要件に合わない
+解決策:
+- カスタムテンプレートを作成する
+- 生成後の手動調整をスクリプト化する
+- configオプションで生成設定を調整する
+```
+
+## 参考リソース
+
+### 公式ドキュメント
+- 公式サイト: https://swagger.io/
+- OpenAPI Specification: https://spec.openapis.org/
+
+### コミュニティ
+- GitHub (Swagger UI): https://github.com/swagger-api/swagger-ui
+- GitHub (OpenAPI Generator): https://github.com/OpenAPITools/openapi-generator
+
+### チュートリアル
+- Getting Started: https://swagger.io/docs/
+- Swagger Editor Online: https://editor.swagger.io/
+
+## まとめ
+
+Swagger/OpenAPIは、以下の場面で特に有用です:
+
+1. **APIファースト開発** - 実装前にAPI仕様を定義し、チーム全体で合意形成
+2. **マルチ言語SDK生成** - OpenAPI Generatorで50以上の言語のクライアントを自動生成
+3. **インタラクティブドキュメント** - Swagger UIで開発者がブラウザからAPIを試験
+
+RESTful API開発の業界標準として、設計から実装、テスト、ドキュメントまでAPI開発ライフサイクル全体を支援する。

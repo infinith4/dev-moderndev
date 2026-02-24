@@ -2,286 +2,122 @@
 
 ## 概要
 
-OPA（Open Policy Agent）は、CNCF（Cloud Native Computing Foundation）のGraduatedプロジェクトである汎用ポリシーエンジンです。Rego言語でポリシーをコード化し、マイクロサービス、Kubernetes、CI/CD、API Gateway等のあらゆるレイヤーで統一的なポリシー管理を実現します。宣言的なポリシー定義により、認可、アドミッション制御、データフィルタリング、コンプライアンスチェックを自動化します。
+OPA はポリシー判断を外部化するためのオープンソースポリシーエンジンである。インフラ設定、Kubernetes、API 認可などに対して統一ルールを適用でき、ガバナンスと自動チェックを強化しやすい。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| OSS 版 | 無料（Apache License 2.0） |
+| 商用利用 | ライセンス上可能（組織ポリシー確認は必要） |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| ポリシー一元化 | 各システムのルールを共通化しやすい |
+| Rego 言語 | 宣言的にポリシーを記述可能 |
+| 多用途対応 | IaC、Kubernetes、API 認可などに適用 |
+| 組み込み/サイドカー | 実行形態を用途に応じて選択 |
+| テスト可能 | ポリシー自体をテストできる |
 
 ## 主な機能
 
-### 1. 汎用ポリシーエンジン
-- **統一的なポリシー管理**: アプリケーション、インフラ、データ
-- **Rego言語**: 宣言的ポリシー記述言語
-- **JSON/YAMLサポート**: 構造化データの評価
-- **APIベース**: RESTful APIでポリシー評価
+### ポリシー記述機能
 
-### 2. Kubernetes統合
-- **Admission Control**: Pod、Service等の作成制御
-- **Gatekeeper**: Kubernetes用OPAフレームワーク
-- **カスタムリソース**: CRDでポリシー管理
-- **監査モード**: 違反検出のみ（enforcement無効）
+| 機能 | 説明 |
+|------|------|
+| Rego | ルールを宣言的に定義 |
+| 入力データ評価 | JSON 入力に対する判定 |
+| 部分評価 | 実行前最適化で高速化 |
+| ルール分割 | ドメイン単位で管理可能 |
 
-### 3. マイクロサービス認可
-- **API認可**: HTTP APIアクセス制御
-- **サービスメッシュ**: Istio、Envoy統合
-- **動的ポリシー**: リアルタイムポリシー更新
-- **コンテキスト評価**: リクエストコンテキストベースの判断
+### 検証・判定機能
 
-### 4. CI/CD統合
-- **IaC検証**: Terraform、CloudFormation検証
-- **コンテナイメージ**: Dockerイメージポリシー
-- **パイプラインゲート**: デプロイ前検証
+| 機能 | 説明 |
+|------|------|
+| CLI 評価 | ローカルで即時検証 |
+| テスト実行 | ポリシーのユニットテスト |
+| 監査判断 | 許可/拒否理由の可視化 |
+| Bundle 配布 | ポリシー配布を標準化 |
 
-### 5. データフィルタリング
-- **JSONフィルタ**: データマスキング
-- **RBAC**: ロールベースアクセス制御
-- **動的クエリ**: ユーザーコンテキストベースのデータ取得
+### 運用機能
 
-### 6. パフォーマンス
-- **高速**: メモリ内評価
-- **スケーラブル**: 分散デプロイ対応
-- **キャッシング**: ポリシー評価結果キャッシュ
+| 機能 | 説明 |
+|------|------|
+| Gatekeeper 連携 | Kubernetes ポリシー運用 |
+| CI 組み込み | 設定変更時の事前判定 |
+| バージョン管理 | ポリシー改定履歴を追跡 |
+| 例外管理 | 一時例外ルールを明示 |
 
-## 利用方法
+## インストールとセットアップ
 
-### インストール
+公式URL:
+- [OPA 公式](https://www.openpolicyagent.org/)
+- [OPA Docs](https://www.openpolicyagent.org/docs/latest/)
+- [OPA GitHub](https://github.com/open-policy-agent/opa)
 
-```bash
-# バイナリダウンロード（Linux/macOS）
-curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
-chmod +x opa
-sudo mv opa /usr/local/bin/
+セットアップの要点:
+1. OPA CLI を導入する。
+2. `policy` と `data` のディレクトリ構成を決める。
+3. 判定対象（IaC、K8s、API）ごとにパッケージを分ける。
 
-# Homebrew (macOS)
-brew install opa
+## 基本的な使い方
 
-# Docker
-docker pull openpolicyagent/opa
+1. まず最小ポリシーで `allow/deny` 条件を定義する。
+2. サンプル入力データを用意して `eval` で判定確認する。
+3. ポリシーテストを作成して回帰を防ぐ。
+4. 運用環境へ適用する前に例外ルールを整理する。
 
-# バージョン確認
-opa version
-```
-
-### 基本的な使い方
-
-```bash
-# OPAサーバー起動
-opa run --server
-
-# ポリシーロード
-opa run --server policy.rego
-
-# ポリシー評価（CLI）
-opa eval -d policy.rego -i input.json "data.authz.allow"
-```
-
-### Regoポリシー例
-
-#### 1. 基本的な認可ポリシー
-
-```rego
-# policy.rego
-package authz
-
-# デフォルトは拒否
-default allow = false
-
-# 管理者は全許可
-allow {
-    input.user.role == "admin"
-}
-
-# 自分自身のデータのみ許可
-allow {
-    input.user.id == input.resource.owner_id
-}
-```
-
-```json
-# input.json
-{
-  "user": {
-    "id": "user123",
-    "role": "user"
-  },
-  "resource": {
-    "owner_id": "user123"
-  }
-}
-```
-
-```bash
-# 評価
-opa eval -d policy.rego -i input.json "data.authz.allow"
-# 結果: true
-```
-
-#### 2. Kubernetes Admission Control
-
-```rego
-# k8s_admission.rego
-package kubernetes.admission
-
-deny[msg] {
-    input.request.kind.kind == "Pod"
-    image := input.request.object.spec.containers[_].image
-    not startswith(image, "myregistry.com/")
-    msg := sprintf("Image '%v' is not from trusted registry", [image])
-}
-
-deny[msg] {
-    input.request.kind.kind == "Pod"
-    not input.request.object.spec.securityContext.runAsNonRoot
-    msg := "Pods must run as non-root user"
-}
-```
-
-#### 3. Terraform検証
-
-```rego
-# terraform.rego
-package terraform
-
-deny[msg] {
-    resource := input.resource_changes[_]
-    resource.type == "aws_s3_bucket"
-    not resource.change.after.server_side_encryption_configuration
-    msg := sprintf("S3 bucket '%v' must have encryption enabled", [resource.name])
-}
-
-deny[msg] {
-    resource := input.resource_changes[_]
-    resource.type == "aws_security_group"
-    rule := resource.change.after.ingress[_]
-    rule.cidr_blocks[_] == "0.0.0.0/0"
-    rule.from_port == 22
-    msg := "Security group allows SSH from internet"
-}
-```
-
-### REST API使用
-
-```bash
-# ポリシーアップロード
-curl -X PUT http://localhost:8181/v1/policies/authz \
-  --data-binary @policy.rego
-
-# ポリシー評価
-curl -X POST http://localhost:8181/v1/data/authz/allow \
-  -H "Content-Type: application/json" \
-  -d '{
-    "input": {
-      "user": {"id": "user123", "role": "user"},
-      "resource": {"owner_id": "user123"}
-    }
-  }'
-
-# レスポンス
-{
-  "result": true
-}
-```
-
-### Kubernetes Gatekeeper
-
-```yaml
-# constraint-template.yaml
-apiVersion: templates.gatekeeper.sh/v1beta1
-kind: ConstraintTemplate
-metadata:
-  name: k8strustedimages
-spec:
-  crd:
-    spec:
-      names:
-        kind: K8sTrustedImages
-  targets:
-    - target: admission.k8s.gatekeeper.sh
-      rego: |
-        package k8strustedimages
-        
-        violation[{"msg": msg}] {
-          container := input.review.object.spec.containers[_]
-          not startswith(container.image, "myregistry.com/")
-          msg := sprintf("Image '%v' is not from trusted registry", [container.image])
-        }
-```
-
-```yaml
-# constraint.yaml
-apiVersion: constraints.gatekeeper.sh/v1beta1
-kind: K8sTrustedImages
-metadata:
-  name: trusted-images
-spec:
-  match:
-    kinds:
-      - apiGroups: [""]
-        kinds: ["Pod"]
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **OPA (OSS)** |  無料 | オープンソース、Apache License 2.0 |
-| **Styra DAS** |  商用 | エンタープライズ版、UIダッシュボード、サポート |
+最小コマンド:
+- 評価: `opa eval -d policy.rego -i input.json "data.example.allow"`
+- テスト: `opa test .`
 
 ## メリット
 
-###  主な利点
-
-1. **汎用性**: あらゆるレイヤーでポリシー管理
-2. **無料**: オープンソース、Apache License
-3. **CNCF Graduated**: 成熟した安定プロジェクト
-4. **Kubernetes統合**: Gatekeeper標準化
-5. **宣言的**: Regoで明確なポリシー記述
-6. **パフォーマンス**: 高速評価
-7. **テスト可能**: ユニットテスト記述可能
-8. **動的更新**: リアルタイムポリシー変更
-9. **エコシステム**: Istio、Envoy、Terraform統合
-10. **スケーラブル**: 大規模環境対応
+- ポリシーをコードとして管理できる
+- ルールの再利用と標準化を進めやすい
+- 監査性と説明可能性を高めやすい
+- 対象領域を段階的に拡張できる
 
 ## デメリット
 
-###  制約・課題
+- Rego 学習コストが発生する
+- ルール設計が不十分だと複雑化しやすい
+- 運用ルールがないと例外管理が崩れやすい
 
-1. **学習曲線**: Rego言語の習得必要
-2. **デバッグ困難**: ポリシーデバッグに時間
-3. **ドキュメント**: 日本語情報少ない
-4. **GUI不在**: コマンドライン中心（Styra DAS除く）
-5. **複雑なポリシー**: 大規模ポリシー管理が煩雑
-6. **パフォーマンス**: 超複雑ポリシーで遅延
-7. **エラーメッセージ**: 分かりにくい場合あり
-8. **ツール不足**: IDE統合が限定的
+## 他ツールとの比較
 
-## 代替ツール
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| OPA | 汎用ポリシー評価 | 多用途で共通ポリシー運用が可能 |
+| CloudFormation Guard | CloudFormation 検証 | AWS テンプレートに特化 |
+| Kyverno | Kubernetes ポリシー | K8s ネイティブ運用に強い |
+| Checkov | IaC スキャン | 多 IaC のセキュリティ検査に強い |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Kyverno** | Kubernetes専用、YAML | OPAよりKubernetes特化、学習容易 |
-| **HashiCorp Sentinel** | Terraform専用 | OPAよりTerraform特化 |
-| **Casbin** | 認可ライブラリ | OPAよりシンプルだが汎用性低い |
-| **AWS IAM** | AWS専用 | OPAより管理容易だがAWS限定 |
-| **Istio AuthorizationPolicy** | Service Mesh専用 | OPAよりIstio特化 |
+## ベストプラクティス
 
-## 公式リンク
+### 1. ルールを小さく分離
 
-- **公式サイト**: [https://www.openpolicyagent.org/](https://www.openpolicyagent.org/)
-- **ドキュメント**: [https://www.openpolicyagent.org/docs/](https://www.openpolicyagent.org/docs/)
-- **GitHub**: [https://github.com/open-policy-agent/opa](https://github.com/open-policy-agent/opa)
-- **Gatekeeper**: [https://open-policy-agent.github.io/gatekeeper/](https://open-policy-agent.github.io/gatekeeper/)
-- **Playground**: [https://play.openpolicyagent.org/](https://play.openpolicyagent.org/)
+- 単一責務のポリシーへ分割する
+- 共通ルールはモジュール化する
 
-## 関連ドキュメント
+### 2. テストを必須化
 
-- [ポリシー管理ツール一覧](../ポリシー管理ツール/)
-- [Kubernetes](../コンテナオーケストレーション/Kubernetes.md)
-- [Terraform](../IaCツール/Terraform.md)
-- [Istio](../サービスメッシュ/Istio.md)
-- [ポリシー管理ベストプラクティス](../../best-practices/policy-management.md)
+- ルール追加時はテストケースを同時に作成する
+- 破壊的変更を防ぐレビュー手順を定義する
 
----
+### 3. 例外を厳格管理
 
-**カテゴリ**: ポリシー管理ツール  
-**対象工程**: セキュリティ、インフラ構築、運用  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+- 例外には期限・理由を付与する
+- 定期的に例外を棚卸しする
 
+## 公式ドキュメント
+
+- 公式サイト: https://www.openpolicyagent.org/
+- ドキュメント: https://www.openpolicyagent.org/docs/latest/
+- GitHub: https://github.com/open-policy-agent/opa
+
+## まとめ
+
+OPA はポリシーをコード化して統一運用するための強力な基盤である。IaC や認可ルールを横断的に管理したい組織で特に有効である。

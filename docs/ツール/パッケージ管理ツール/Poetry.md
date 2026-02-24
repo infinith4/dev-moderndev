@@ -317,9 +317,9 @@ jobs:
 ## 関連ドキュメント
 
 - [パッケージ管理ツール一覧](../パッケージ管理ツール/)
-- [Black](../開発ツール/Black.md)
-- [Ruff](../開発ツール/Ruff.md)
-- [mypy](../開発ツール/mypy.md)
+- [Black](../Formatter_Linter/Black.md)
+- [Ruff](../Formatter_Linter/Ruff.md)
+- [mypy](../静的解析_型チェック/mypy.md)
 
 ---
 
@@ -327,3 +327,4 @@ jobs:
 **対象工程**: 実装・ビルド
 **最終更新**: 2025年12月
 **ドキュメントバージョン**: 1.0
+

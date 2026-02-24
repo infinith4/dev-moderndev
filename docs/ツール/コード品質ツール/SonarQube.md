@@ -2,338 +2,129 @@
 
 ## 概要
 
-SonarQubeは、ソースコード品質管理プラットフォームです。静的コード解析、バグ検出、脆弱性スキャン、コードスメル検出、技術的負債測定により、コード品質を継続的に改善します。30+言語対応、CI/CD統合、オープンソースで広く使用されています。
+SonarQube は、静的解析を中心にコード品質を継続監視するプラットフォームである。バグ、脆弱性、コードスメル、重複、テストカバレッジを可視化し、Quality Gate でリリース可否を統制できる。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| Community Edition | 無料（基本的な静的解析） |
+| Developer 以上 | 有料（ブランチ/PR 分析などを拡張） |
+| Enterprise / Data Center | 有料（大規模組織向け運用機能） |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| 静的解析 | 多言語ソースコードを継続的に解析 |
+| Quality Gate | 品質基準を満たさない変更を検知 |
+| PR 連携 | Pull Request 単位で課題を可視化 |
+| メトリクス | カバレッジ、複雑度、重複率を集約 |
+| IDE 連携 | SonarLint と組み合わせて早期検出 |
+| CI/CD 統合 | Jenkins / GitHub Actions などに組み込み可能 |
 
 ## 主な機能
 
-### 1. コード品質分析
-- **バグ検出**: 潜在的バグ
-- **脆弱性**: セキュリティ問題
-- **コードスメル**: 保守性問題
-- **重複コード**: コピペ検出
+### コード品質分析機能
 
-### 2. メトリクス
-- **カバレッジ**: テストカバレッジ
-- **複雑度**: サイクロマティック複雑度
-- **技術的負債**: 修正工数
-- **信頼性**: A-E評価
+| 機能 | 説明 |
+|------|------|
+| バグ検出 | 実行時不具合につながる問題を検出 |
+| 脆弱性検出 | セキュリティ上のリスクを検出 |
+| コードスメル | 保守性低下につながる記述を検出 |
+| 重複検出 | コピペコードの割合を可視化 |
 
-### 3. Quality Gate
-- **合否判定**: 品質基準
-- **カスタムルール**: プロジェクト別
-- **CI/CD統合**: ビルド失敗
-- **レポート**: ダッシュボード
+### 品質統制機能
 
-### 4. 多言語対応
-- **Java/C#/JavaScript**: サポート
-- **Python/Go/PHP**: サポート
-- **TypeScript/Ruby**: サポート
-- **30+言語**: 対応
+| 機能 | 説明 |
+|------|------|
+| Quality Gate | 閾値ベースで合否判定 |
+| Quality Profile | 言語別ルールセットの管理 |
+| 課題管理 | 検出結果の担当・優先度管理 |
+| 履歴追跡 | 品質トレンドを継続観測 |
 
-## 利用方法
+### CI/開発連携機能
 
-### インストール（Docker）
+| 機能 | 説明 |
+|------|------|
+| Scanner 連携 | Maven/Gradle/CLI で解析実行 |
+| PR 装飾 | 差分に対する品質結果を表示 |
+| レポート連携 | CI 結果と品質指標を統合 |
+| IDE 連携 | SonarLint でローカル解析 |
 
-```bash
-# SonarQube起動
-docker run -d --name sonarqube \
-  -p 9000:9000 \
-  sonarqube:latest
+## インストールとセットアップ
 
-# アクセス
-http://localhost:9000
+公式URL:
+- [SonarQube 公式ページ](https://www.sonarsource.com/products/sonarqube/)
+- [SonarQube Docs](https://docs.sonarsource.com/sonarqube/)
+- [SonarScanner](https://docs.sonarsource.com/sonarqube/analyzing-source-code/scanners/)
+- [SonarLint](https://www.sonarsource.com/products/sonarlint/)
 
-# デフォルト認証
-ユーザー: admin
-パスワード: admin
-```
+セットアップの要点:
+1. Docker などで SonarQube サーバーを起動する。
+2. 管理画面でプロジェクトキーとトークンを作成する。
+3. ビルドツール（Maven/Gradle/CLI）に Scanner 設定を追加する。
+4. CI で解析を実行し、Quality Gate を必須化する。
 
-### プロジェクト設定
+## 基本的な使い方
 
-```
-SonarQube > Create new project
+1. サーバー起動後、対象プロジェクトを作成する。
+2. 解析コマンドを実行して初回レポートを生成する。
+3. 検出された課題を重要度順に整理する。
+4. Quality Gate 条件（例: カバレッジ、重複率）を設定する。
+5. PR 単位で解析し、リリース前に品質を確認する。
 
-Project key: my-project
-Display name: My Project
-
-Generate token:
-Token: squ_abc123xyz...
-
-Choose analysis method:
-- Maven
-- Gradle
-- .NET
-- Other
-```
-
-### Maven統合
-
-```xml
-<!-- pom.xml -->
-<properties>
-  <sonar.host.url>http://localhost:9000</sonar.host.url>
-  <sonar.login>squ_abc123xyz...</sonar.login>
-</properties>
-
-<build>
-  <plugins>
-    <plugin>
-      <groupId>org.sonarsource.scanner.maven</groupId>
-      <artifactId>sonar-maven-plugin</artifactId>
-      <version>3.10.0.2594</version>
-    </plugin>
-  </plugins>
-</build>
-```
-
-```bash
-# スキャン実行
-mvn clean verify sonar:sonar
-```
-
-### Gradle統合
-
-```groovy
-// build.gradle
-plugins {
-    id "org.sonarqube" version "4.4.1.3373"
-}
-
-sonarqube {
-    properties {
-        property "sonar.host.url", "http://localhost:9000"
-        property "sonar.login", "squ_abc123xyz..."
-        property "sonar.projectKey", "my-project"
-        property "sonar.projectName", "My Project"
-    }
-}
-```
-
-```bash
-# スキャン実行
-./gradlew sonarqube
-```
-
-### SonarScanner CLI
-
-```bash
-# インストール
-wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-unzip sonar-scanner-cli-5.0.1.3006-linux.zip
-export PATH=$PATH:/path/to/sonar-scanner/bin
-
-# 設定ファイル
-# sonar-project.properties
-sonar.projectKey=my-project
-sonar.projectName=My Project
-sonar.projectVersion=1.0
-sonar.sources=src
-sonar.host.url=http://localhost:9000
-sonar.login=squ_abc123xyz...
-
-# スキャン実行
-sonar-scanner
-```
-
-### JavaScript/TypeScript
-
-```bash
-# 依存関係インストール
-npm install --save-dev sonarqube-scanner
-
-# package.json
-{
-  "scripts": {
-    "sonar": "sonar-scanner"
-  }
-}
-```
-
-```javascript
-// sonar-project.js
-const scanner = require('sonarqube-scanner');
-
-scanner({
-  serverUrl: 'http://localhost:9000',
-  token: 'squ_abc123xyz...',
-  options: {
-    'sonar.projectKey': 'my-project',
-    'sonar.projectName': 'My Project',
-    'sonar.sources': 'src',
-    'sonar.tests': 'tests',
-    'sonar.javascript.lcov.reportPaths': 'coverage/lcov.info'
-  }
-}, () => process.exit());
-```
-
-```bash
-# スキャン実行
-npm run sonar
-```
-
-### GitHub Actions統合
-
-```yaml
-# .github/workflows/sonarqube.yml
-name: SonarQube Analysis
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  sonarqube:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: 'temurin'
-
-      - name: Cache SonarQube packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-
-      - name: SonarQube Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: |
-          mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=my-project \
-            -Dsonar.host.url=$SONAR_HOST_URL \
-            -Dsonar.login=$SONAR_TOKEN
-```
-
-### Quality Gate
-
-```
-SonarQube > Quality Gates > Create
-
-Conditions:
-- Coverage < 80%: FAILED
-- Duplicated Lines > 3%: FAILED
-- Maintainability Rating worse than A: FAILED
-- Reliability Rating worse than A: FAILED
-- Security Rating worse than A: FAILED
-
-適用:
-Project Settings > Quality Gate > Select gate
-```
-
-### カスタムルール
-
-```
-SonarQube > Rules > Create
-
-Language: Java
-Type: Code Smell
-Severity: Major
-
-Rule:
-メソッド長は50行以内にすべき
-
-Activate:
-Quality Profiles > Java > Activate rule
-```
-
-### Pull Request分析
-
-```yaml
-# GitHub Actions
-- name: SonarQube PR Analysis
-  env:
-    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  run: |
-    mvn sonar:sonar \
-      -Dsonar.pullrequest.key=${{ github.event.pull_request.number }} \
-      -Dsonar.pullrequest.branch=${{ github.head_ref }} \
-      -Dsonar.pullrequest.base=${{ github.base_ref }}
-```
-
-### Webhook通知
-
-```
-SonarQube > Administration > Webhooks > Create
-
-Name: Slack Notification
-URL: https://hooks.slack.com/services/YOUR/WEBHOOK/URL
-
-Trigger:
-- Quality Gate status changes
-
-Slack通知:
-Quality Gate FAILED on my-project
-Coverage: 75% (< 80%)
-```
-
-### SonarLint（IDE統合）
-
-```
-VSCode:
-Extensions > SonarLint
-
-IntelliJ IDEA:
-Preferences > Plugins > SonarLint
-
-設定:
-- SonarQube Server: http://localhost:9000
-- Token: squ_abc123xyz...
-- Project binding: my-project
-
-リアルタイム:
-コード入力中にリアルタイムでバグ・脆弱性検出
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Community** |  無料 | オープンソース、個人・小規模 |
-| **Developer** |  $150/年 | ブランチ分析、PR装飾 |
-| **Enterprise** |  $12,000/年 | ポートフォリオ、セキュリティレポート |
-| **Data Center** |  $120,000/年 | 高可用性、スケーラビリティ |
+最小実行例:
+- Maven: `mvn clean verify sonar:sonar`
+- Gradle: `./gradlew sonarqube`
 
 ## メリット
 
-1. **無料枠**: Community版無料
-2. **多言語**: 30+言語対応
-3. **CI/CD統合**: Jenkins、GitHub Actions等
-4. **継続的改善**: トレンド可視化
-5. **IDE統合**: SonarLint
+- 品質課題を定量化し、改善優先度を決めやすい。
+- Quality Gate により CI 上で品質を統制しやすい。
+- SonarLint 連携でレビュー前に問題を減らしやすい。
 
 ## デメリット
 
-1. **リソース**: 大規模で重い
-2. **誤検知**: ルール調整必要
-3. **有料機能**: ブランチ分析有料
-4. **学習曲線**: ルール理解必要
+- ルール調整をしないと誤検知や過検知が発生しやすい。
+- 大規模プロジェクトでは解析時間とサーバー負荷が増える。
+- 高度な運用機能は有料エディションが前提になる。
 
-## 公式リンク
+## 他ツールとの比較
 
-- **公式サイト**: [https://www.sonarsource.com/products/sonarqube/](https://www.sonarsource.com/products/sonarqube/)
-- **ドキュメント**: [https://docs.sonarsource.com/sonarqube/](https://docs.sonarsource.com/sonarqube/)
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| SonarQube | 継続的コード品質管理 | Quality Gate と多言語解析を統合 |
+| ESLint | JavaScript/TypeScript 静的解析 | フロントエンド向けに軽量運用しやすい |
+| Semgrep | ルールベース解析 | セキュリティルールの追加が柔軟 |
+| Code Climate | クラウド品質管理 | SaaS 中心で導入を簡素化しやすい |
 
-## 関連ドキュメント
+## ベストプラクティス
 
-- [コード品質ツール一覧](../コード品質ツール/)
-- [Jenkins](../CI_CDツール/Jenkins.md)
-- [GitHub Actions](../CI_CDツール/GitHub_Actions.md)
+### 1. Quality Gate を段階導入
 
----
+- 初期は重要指標（重大バグ、脆弱性、カバレッジ）に絞る。
+- 運用が安定したら閾値を段階的に引き上げる。
 
-**カテゴリ**: コード品質ツール
-**対象工程**: コード品質管理
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 2. ルールセットを標準化
 
+- 言語ごとに Quality Profile を定義する。
+- 例外ルールは理由を明記して管理する。
+
+### 3. PR 運用を必須化
+
+- PR ごとに解析を実行して差分品質を確認する。
+- 失敗時はログと課題URLをレビューに添付する。
+
+## 公式ドキュメント
+
+- 公式ページ: https://www.sonarsource.com/products/sonarqube/
+- SonarQube Docs: https://docs.sonarsource.com/sonarqube/
+- SonarScanner: https://docs.sonarsource.com/sonarqube/analyzing-source-code/scanners/
+- SonarLint: https://www.sonarsource.com/products/sonarlint/
+
+## まとめ
+
+- 静的解析と Quality Gate でコード品質を継続的に管理しやすい。
+- CI/CD と統合することで、品質基準をリリース前に強制しやすい。
+- ルール設計と段階導入を行うと、過検知を抑えて運用しやすい。

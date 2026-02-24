@@ -2,267 +2,122 @@
 
 ## 概要
 
-Ansibleは、Red Hat社が提供するオープンソースの構成管理・自動化ツールです。エージェントレスアーキテクチャにより、SSHベースでサーバーの構成管理、アプリケーションデプロイ、タスク自動化を実現します。YAML形式のPlaybookで人間が読みやすい設定を記述し、冪等性を保証することで、インフラストラクチャの一貫性と再現性を確保します。
+Ansible はエージェントレスでサーバー構成管理と自動化を行う IaC ツールである。SSH ベースで複数サーバーへ同一設定を適用でき、構成の標準化と運用作業の自動化に向いている。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| OSS 版 | 無料（GPLv3） |
+| Red Hat Ansible Automation Platform | エンタープライズ向け有料サブスクリプション |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| エージェントレス | 管理対象に専用エージェント不要 |
+| YAML 記述 | Playbook で可読性の高い自動化定義 |
+| 冪等性 | 同じ Playbook を再実行しても状態を維持 |
+| 豊富なモジュール | OS、クラウド、ミドルウェア操作に対応 |
+| 運用統合 | 定期実行やジョブ管理と組み合わせやすい |
 
 ## 主な機能
 
-### 1. 構成管理
-- サーバー設定の自動化
-- パッケージインストール
-- ファイル配布・編集
-- サービス起動・停止
+### 構成管理機能
 
-### 2. アプリケーションデプロイ
-- コードデプロイ
-- 依存関係インストール
-- 設定ファイル配布
-- ローリングアップデート
+| 機能 | 説明 |
+|------|------|
+| Playbook | 手順を宣言的に定義 |
+| Inventory | 対象サーバー群を管理 |
+| Role | 再利用可能な設定単位に分離 |
+| Variables | 環境差分を吸収 |
 
-### 3. オーケストレーション
-- 複数サーバーの連携
-- 順序制御（シーケンシャル/並列）
-- 条件分岐・ループ
-- エラーハンドリング
+### 自動化機能
 
-### 4. プロビジョニング
-- クラウドインスタンス作成
-- ネットワーク設定
-- セキュリティグループ設定
+| 機能 | 説明 |
+|------|------|
+| 一括適用 | 複数ホストへ同時実行 |
+| 条件分岐 | ホスト属性や変数で処理分岐 |
+| ハンドラー | 設定変更時のみサービス再起動 |
+| タグ実行 | 必要タスクだけ部分実行 |
 
-### 5. エージェントレス
-- SSH接続のみ（エージェント不要）
-- WinRM（Windows対応）
-- 軽量・セットアップ簡単
+### 運用機能
 
-### 6. 冪等性
-- 何度実行しても同じ結果
-- 安全な再実行
-- 変更がある場合のみ適用
+| 機能 | 説明 |
+|------|------|
+| ドライラン | 変更予定を事前確認 |
+| Vault | シークレット暗号化 |
+| ログ出力 | 実行結果の追跡 |
+| テスト連携 | lint や Molecule との連携 |
 
-## 利用方法
+## インストールとセットアップ
 
-### インストール
+公式URL:
+- [Ansible 公式](https://www.ansible.com/)
+- [Ansible Documentation](https://docs.ansible.com/)
+- [Ansible GitHub](https://github.com/ansible/ansible)
 
-```bash
-# Ubuntu/Debian
-sudo apt update
-sudo apt install ansible
+セットアップの要点:
+1. 実行ノードに Ansible をインストールする。
+2. `inventory` と `playbook` のディレクトリ構成を決める。
+3. SSH 鍵、権限、接続先グループを先に整理する。
 
-# RHEL/CentOS
-sudo yum install ansible
+## 基本的な使い方
 
-# macOS
-brew install ansible
+1. 管理対象ホストを Inventory に登録する。
+2. まず最小 Playbook で疎通確認と共通設定適用を行う。
+3. 次に Role 化して再利用性を高める。
+4. 本番適用前に `--check` で差分確認する。
 
-# Python pip
-pip install ansible
-```
-
-### インベントリファイル作成
-
-```ini
-# inventory/hosts
-[webservers]
-web1.example.com
-web2.example.com
-web3.example.com
-
-[dbservers]
-db1.example.com
-db2.example.com
-
-[webservers:vars]
-ansible_user=ubuntu
-ansible_ssh_private_key_file=~/.ssh/id_rsa
-```
-
-### Playbook作成例（Webサーバーセットアップ）
-
-```yaml
-# playbook.yml
----
-- name: Webサーバーセットアップ
-  hosts: webservers
-  become: yes
-  
-  vars:
-    nginx_port: 80
-    app_name: myapp
-  
-  tasks:
-    - name: Nginxインストール
-      apt:
-        name: nginx
-        state: present
-        update_cache: yes
-    
-    - name: Nginx設定ファイル配布
-      template:
-        src: templates/nginx.conf.j2
-        dest: /etc/nginx/sites-available/{{ app_name }}
-      notify: Nginxリロード
-    
-    - name: シンボリックリンク作成
-      file:
-        src: /etc/nginx/sites-available/{{ app_name }}
-        dest: /etc/nginx/sites-enabled/{{ app_name }}
-        state: link
-    
-    - name: アプリケーションディレクトリ作成
-      file:
-        path: /var/www/{{ app_name }}
-        state: directory
-        owner: www-data
-        group: www-data
-    
-    - name: Nginx起動・有効化
-      systemd:
-        name: nginx
-        state: started
-        enabled: yes
-  
-  handlers:
-    - name: Nginxリロード
-      systemd:
-        name: nginx
-        state: reloaded
-```
-
-### Playbook実行
-
-```bash
-# Playbookチェック（dry-run）
-ansible-playbook -i inventory/hosts playbook.yml --check
-
-# Playbook実行
-ansible-playbook -i inventory/hosts playbook.yml
-
-# 特定のタグのみ実行
-ansible-playbook -i inventory/hosts playbook.yml --tags "nginx"
-
-# verboseモード
-ansible-playbook -i inventory/hosts playbook.yml -v
-```
-
-### Ad-hocコマンド
-
-```bash
-# パッケージ更新
-ansible webservers -i inventory/hosts -m apt -a "update_cache=yes" -b
-
-# サービス再起動
-ansible webservers -i inventory/hosts -m systemd -a "name=nginx state=restarted" -b
-
-# ファイルコピー
-ansible webservers -i inventory/hosts -m copy -a "src=app.conf dest=/etc/app.conf"
-
-# コマンド実行
-ansible webservers -i inventory/hosts -m command -a "uptime"
-```
-
-### Role構造（ベストプラクティス）
-
-```
-roles/
-  webserver/
-    tasks/
-      main.yml         # メインタスク
-    handlers/
-      main.yml         # ハンドラー
-    templates/
-      nginx.conf.j2    # Jinjaテンプレート
-    files/
-      index.html       # 静的ファイル
-    vars/
-      main.yml         # 変数
-    defaults/
-      main.yml         # デフォルト変数
-    meta/
-      main.yml         # メタ情報・依存関係
-```
-
-### Ansible Vault（機密情報管理）
-
-```bash
-# Vaultファイル作成
-ansible-vault create secrets.yml
-
-# Vaultファイル編集
-ansible-vault edit secrets.yml
-
-# Playbook実行時にVaultパスワード指定
-ansible-playbook -i inventory/hosts playbook.yml --ask-vault-pass
-
-# パスワードファイル使用
-ansible-playbook -i inventory/hosts playbook.yml --vault-password-file ~/.vault_pass
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Ansible（Community）** |  無料 | オープンソース、CLI |
-| **Ansible Automation Platform** |  要問い合わせ | Red Hat商用版、GUI（Automation Controller）、サポート |
-| **AWX** |  無料 | Automation Platformのオープンソース版 |
+最小コマンド:
+- 接続確認: `ansible all -i inventory -m ping`
+- Playbook 実行: `ansible-playbook -i inventory site.yml`
 
 ## メリット
 
-###  主な利点
-
-1. **エージェントレス**: SSHのみ、エージェント不要
-2. **YAMLベース**: 人間が読みやすい
-3. **冪等性**: 何度実行しても同じ結果
-4. **豊富なモジュール**: 3,000以上の組み込みモジュール
-5. **マルチプラットフォーム**: Linux、Windows、Mac、クラウド
-6. **学習曲線緩やか**: シンプルな構文
-7. **無料**: Communityエディション無料
-8. **Red Hatサポート**: 商用版は24/7サポート
-9. **Ansible Galaxy**: コミュニティRole共有
-10. **CI/CD統合**: Jenkins、GitLab CI等と統合
+- 導入コストが低く、既存環境へ段階導入しやすい
+- 構成の再現性を高めやすい
+- 運用作業を標準化しやすい
+- モジュールが豊富で拡張しやすい
 
 ## デメリット
 
-###  制約・課題
+- 大規模環境では実行時間や運用設計に工夫が必要
+- Playbook 設計が不十分だと保守性が下がる
+- 手続き的な記述が増えると複雑化しやすい
 
-1. **SSH接続必須**: ネットワーク接続が前提
-2. **パフォーマンス**: 大規模環境ではPuppet/Chefより遅い
-3. **状態管理弱い**: Terraformのような状態ファイルなし
-4. **Windows対応**: WinRM設定が必要、Linux比で機能劣る
-5. **デバッグ困難**: エラーメッセージが不明瞭な場合あり
-6. **バージョン管理**: Playbookのバージョン管理はGitに依存
-7. **複雑なロジック**: 複雑な条件分岐は記述が煩雑
-8. **スケーラビリティ**: 数千台規模ではツール選定検討必要
+## 他ツールとの比較
 
-## 代替ツール
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Ansible | 構成管理/運用自動化 | エージェントレスで導入しやすい |
+| Terraform | インフラプロビジョニング | リソース定義と状態管理に強い |
+| Chef | 構成管理 | Ruby ベースで柔軟性が高い |
+| Puppet | 構成管理 | 大規模運用で実績が豊富 |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Terraform** | IaC、クラウドプロビジョニング | Ansibleは構成管理、Terraformはプロビジョニング |
-| **Chef** | Ruby、エージェントベース | Ansibleよりパフォーマンス高いがエージェント必要 |
-| **Puppet** | Ruby、エージェントベース | Ansibleより大規模向け |
-| **SaltStack** | Python、エージェント/エージェントレス | Ansibleより高速 |
-| **PowerShell DSC** | Windows専用 | Ansibleより Windows対応強い |
+## ベストプラクティス
 
-## 公式リンク
+### 1. Role 単位で分離
 
-- **公式サイト**: [https://www.ansible.com/](https://www.ansible.com/)
-- **ドキュメント**: [https://docs.ansible.com/](https://docs.ansible.com/)
-- **Ansible Galaxy**: [https://galaxy.ansible.com/](https://galaxy.ansible.com/)
-- **GitHub**: [https://github.com/ansible/ansible](https://github.com/ansible/ansible)
-- **Red Hat Ansible Automation Platform**: [https://www.redhat.com/en/technologies/management/ansible](https://www.redhat.com/en/technologies/management/ansible)
+- OS 基盤、ミドルウェア、アプリ設定を分ける
+- 変更影響を局所化する
 
-## 関連ドキュメント
+### 2. 変数管理を明確化
 
-- [IaCツール一覧](../IaCツール/)
-- [Terraform](./Terraform.md)
-- [Chef](./Chef.md)
-- [構成管理ベストプラクティス](../../best-practices/configuration-management.md)
-- [Ansible Playbook作成ガイド](../../best-practices/ansible-playbook.md)
+- 環境変数は `group_vars` / `host_vars` に分離する
+- 機密情報は Vault で暗号化する
 
----
+### 3. 事前検証を標準化
 
-**カテゴリ**: IaCツール  
-**対象工程**: インフラ構築、デプロイ、運用  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+- `--check` と lint を実行してから本番反映する
+- 失敗時ロールバック手順を用意する
 
+## 公式ドキュメント
+
+- 公式サイト: https://www.ansible.com/
+- ドキュメント: https://docs.ansible.com/
+- GitHub: https://github.com/ansible/ansible
+
+## まとめ
+
+Ansible はサーバー構成管理と運用自動化を段階的に整備しやすい IaC ツールである。既存サーバー群を標準化し、手作業を減らしたいチームに適している。

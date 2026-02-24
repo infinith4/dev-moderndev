@@ -2,294 +2,127 @@
 
 ## 概要
 
-Stoplight Studioは、API設計とドキュメント作成に特化したビジュアルエディタです。OpenAPI（Swagger）仕様書をGUIまたはコードエディタで編集でき、リアルタイムプレビュー、モックサーバー、バリデーション機能を提供します。デスクトップアプリとWeb版の両方があり、個人開発者からエンタープライズチームまで、API設計を効率化します。
+Stoplight Studio は、OpenAPI ベースの API 設計を GUI とコード編集で進められる設計ツールである。API 定義、モック、レビューを早い段階で回し、API ファースト開発を進めやすくする。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| 無料利用枠 | ローカル利用・基本機能の利用が可能な範囲あり |
+| 有料プラン | チーム運用・管理機能を拡張 |
 
 ## 主な特徴
 
 | 項目 | 内容 |
 |------|------|
-| デスクトップ版無料 | ローカル利用は完全無料で無制限 |
-| ビジュアルAPI設計 | GUIでOpenAPI仕様書をフォーム編集 |
-| リアルタイムプレビュー | ドキュメントを即座に確認可能 |
-| モックサーバー | API定義から自動モック生成 |
-| Git統合 | ファイルベースでバージョン管理 |
-| バリデーション | OpenAPI仕様準拠のリアルタイム検証 |
-| OpenAPI 3.x対応 | 最新のOpenAPI 3.0/3.1をサポート |
+| ビジュアル設計 | Form ベースで OpenAPI を編集可能 |
+| コード編集 | YAML/JSON を直接編集可能 |
+| モック生成 | 仕様からモックを起動し並行開発を支援 |
+| 仕様検証 | バリデーションとLintで品質を確認 |
+| Git 運用 | ファイルベースで差分管理しやすい |
 
 ## 主な機能
 
-### ビジュアルAPI設計
+### API 設計機能
 
 | 機能 | 説明 |
 |------|------|
-| Form Editor | GUIでOpenAPI仕様書を作成 |
-| Code Editor | YAML/JSON直接編集 |
-| スプリットビュー | フォーム+コードの同時表示 |
-| リアルタイムプレビュー | ドキュメントを即座に確認 |
+| Form Editor | パス、パラメータ、レスポンスをGUIで編集 |
+| Code Editor | OpenAPI を直接編集 |
+| スプリット表示 | GUI とコードを並行確認 |
+| Examples 管理 | モックやドキュメント用の例データ管理 |
 
-### モックサーバー
-
-| 機能 | 説明 |
-|------|------|
-| 即座にモック生成 | API定義から自動モック |
-| サンプルレスポンス | Examplesベースの返却 |
-| 動的レスポンス | ランダムデータ生成 |
-| ローカルサーバー | localhost:4010で起動 |
-
-### バリデーション・Linting
+### モック・検証機能
 
 | 機能 | 説明 |
 |------|------|
-| リアルタイム検証 | 編集中にエラー検出 |
-| Linting | スタイルガイド適用 |
-| ベストプラクティス | API設計推奨事項の提示 |
-| 自動変換 | Swagger 2.0からOpenAPI 3.xへの変換 |
+| ローカルモック | 仕様からモックエンドポイントを生成 |
+| 仕様バリデーション | 記述ミスや不整合を検出 |
+| Lint ルール | 設計標準の統制 |
+| 変更レビュー | 仕様差分を確認しやすい |
+
+### 協業・運用機能
+
+| 機能 | 説明 |
+|------|------|
+| Git 連携 | ブランチ/PR で仕様変更を管理 |
+| コメント共有 | レビュー観点をチームで共有 |
+| 設計先行運用 | 実装前に仕様合意を形成 |
+| 反復改善 | フロント・バック間で仕様調整しやすい |
 
 ## インストールとセットアップ
 
 公式URL:
-- [Stoplight Studio ダウンロード](https://stoplight.io/studio)
-- [ドキュメント](https://docs.stoplight.io/)
-- [Stoplight Platform](https://stoplight.io/platform)
-- [コミュニティ](https://community.stoplight.io/)
+- [Stoplight Studio](https://stoplight.io/studio)
+- [Docs](https://docs.stoplight.io/)
+- [Platform](https://stoplight.io/platform)
+- [Community](https://community.stoplight.io/)
+
+セットアップの要点:
+1. Studio を導入し、API 定義プロジェクトを作成する。
+2. OpenAPI のファイル構成と命名規約を決める。
+3. Lint ルールとレビュー手順をチームで合意する。
+4. モック URL をフロントエンド開発へ共有する。
 
 ## 基本的な使い方
 
-### 1. インストール
+1. Form Editor で API の骨格（path、method、schema）を作る。
+2. Code Editor で詳細（`$ref`、例外レスポンス等）を調整する。
+3. モックを起動して、実装前に I/F 接続確認を行う。
+4. Git で差分をレビューし、仕様を確定する。
+5. 仕様を実装へ引き継ぎ、変更時は同じ流れで更新する。
 
-```bash
-# デスクトップ版ダウンロード
-# https://stoplight.io/studio
+最小実行例:
+- 入力: `openapi.yaml`
+- 出力: モックエンドポイント、レビュー済み仕様差分
 
-# Windows: インストーラー実行
-Stoplight-Studio-Setup-x.x.x.exe
+## メリット
 
-# macOS: DMGマウント
-Stoplight-Studio-x.x.x.dmg
+- GUI とコード編集を併用でき、設計と修正の往復を短縮しやすい。
+- モックを早期に利用でき、フロントエンド並行開発を進めやすい。
+- OpenAPI を Git 管理し、変更履歴を追跡しやすい。
 
-# Linux: AppImage
-chmod +x Stoplight-Studio-x.x.x.AppImage
-./Stoplight-Studio-x.x.x.AppImage
+## デメリット
 
-# Web版（ブラウザ）
-# https://stoplight.io/studio-app
-```
-
-### 2. フォームエディタでAPI設計
-
-```
-1. reference/user-api.yaml を開く
-2. Form Editorタブに切り替え
-3. Paths → Add Path
-   - Path: /users
-   - Method: GET
-   - Summary: "ユーザー一覧取得"
-4. Responses → 200 → Add Response
-   - Content Type: application/json
-   - Schema定義
-5. Examples → Add Example
-```
-
-### 3. コードエディタで編集
-
-```yaml
-# reference/user-api.yaml
-openapi: 3.1.0
-info:
-  title: User API
-  version: 1.0.0
-  description: ユーザー管理API
-servers:
-  - url: https://api.example.com/v1
-paths:
-  /users:
-    get:
-      summary: ユーザー一覧取得
-      operationId: getUsers
-      responses:
-        '200':
-          description: 成功
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-              examples:
-                default:
-                  value:
-                    - id: 1
-                      name: Alice
-                      email: alice@example.com
-    post:
-      summary: ユーザー作成
-      operationId: createUser
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserInput'
-      responses:
-        '201':
-          description: 作成成功
-
-components:
-  schemas:
-    User:
-      type: object
-      required:
-        - id
-        - name
-        - email
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-
-    UserInput:
-      type: object
-      required:
-        - name
-        - email
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-```
-
-### 4. モックサーバー起動
-
-```bash
-# Stoplight Studio内
-# 左サイドバー → Mock Servers → Start Mock Server
-# モックサーバーURL: http://localhost:4010
-
-# cURLでテスト
-curl http://localhost:4010/users
-# レスポンス（Examplesから返却）
-# [{"id": 1, "name": "Alice", "email": "alice@example.com"}]
-```
-
-### 5. Git連携
-
-```bash
-# ローカルGitリポジトリとして管理
-cd user-api
-git init
-git add .
-git commit -m "Initial API design"
-git remote add origin https://github.com/user/user-api.git
-git push -u origin main
-```
+- 設計中心ツールのため、実行系テストは別ツール連携が必要。
+- 大規模仕様ではファイル分割・運用ルールが必須になる。
+- チームで使う場合はレビュー規約の整備が前提になる。
 
 ## 他ツールとの比較
 
-### Stoplight Studio vs Swagger Editor
-
-| 機能 | Stoplight Studio | Swagger Editor |
-|------|-----------------|----------------|
-| エディタ | GUI + コード | コードのみ |
-| モック | 内蔵モックサーバー | なし |
-| バリデーション | リアルタイム | リアルタイム |
-| オフライン | デスクトップ版対応 | Web版のみ |
-| 価格 | デスクトップ無料 | 無料 |
-
-### Stoplight Studio vs Postman
-
-| 機能 | Stoplight Studio | Postman |
-|------|-----------------|---------|
-| API設計 | ビジュアル設計が得意 | テストが得意 |
-| テスト機能 | 限定的 | 強力 |
-| モック | API定義から自動生成 | 基本的 |
-| Git統合 | ファイルベース | 独自形式 |
-
-## ユースケース
-
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| APIファースト設計 | 実装前にAPI仕様を定義 | ビジュアルエディタでOpenAPI仕様を設計 |
-| フロントエンド並行開発 | バックエンド未完成でもUI開発 | モックサーバーでフロントエンド開発を進行 |
-| API仕様レビュー | チームでの仕様合意 | Git連携でPull Requestベースのレビュー |
-| OpenAPI学習 | OpenAPI仕様の習得 | GUIで直感的にOpenAPIの構造を理解 |
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Stoplight Studio | OpenAPI 設計 | GUI とコード編集を両立 |
+| Swagger Editor | OpenAPI 編集 | 軽量に仕様編集を実施 |
+| Apidog | 設計〜テスト統合 | テスト/モックまで一体運用しやすい |
+| Postman | API 実行・検証 | 実行テストとコレクション運用に強い |
 
 ## ベストプラクティス
 
-### 1. API設計ワークフロー
+### 1. 仕様設計の責務を明確化
 
-- 最初にForm Editorでエンドポイントとスキーマの全体構造を設計する
-- 詳細な設定はCode Editorに切り替えて調整する
-- Examplesを充実させてモックの品質を上げる
+- エンドポイント設計とスキーマ設計の担当を分ける。
+- レビュー観点（命名、エラー設計）を固定化する。
 
-### 2. Git管理
+### 2. `$ref` 前提で分割管理
 
-- OpenAPI定義ファイルをGitリポジトリで管理する
-- ブランチを使ってAPI仕様の変更を管理する
-- Pull Requestでチームレビューを行う
+- コンポーネントを機能別に分割して再利用する。
+- 変更影響を PR で確認しやすい構成を維持する。
 
-### 3. モックの活用
+### 3. モックを実装前提で運用
 
-- API設計完了後すぐにモックサーバーを起動する
-- フロントエンド開発チームにモックURLを共有する
-- Examplesを複数用意してエラーケースもカバーする
+- フロントエンド接続確認を仕様確定前に行う。
+- 例データを更新し、仕様乖離を最小化する。
 
-## トラブルシューティング
+## 公式ドキュメント
 
-### よくある問題と解決策
-
-#### 1. モックサーバーが起動しない
-
-```
-原因: ポート4010が既に使用されている
-解決策:
-- 既存のプロセスを終了する
-- 設定でポート番号を変更する
-```
-
-#### 2. OpenAPIバリデーションエラー
-
-```
-原因: OpenAPI仕様に違反する記述
-解決策:
-- エラーパネルの詳細メッセージを確認する
-- $refの参照先が存在するか確認する
-- required配列にpropertiesに存在しないキーがないか確認する
-```
-
-#### 3. Electronアプリが重い
-
-```
-原因: 大きなOpenAPIファイルを編集している
-解決策:
-- ファイルを分割して$refで参照する
-- 不要な拡張機能を無効化する
-```
-
-## 参考リソース
-
-### 公式ドキュメント
 - 公式サイト: https://stoplight.io/studio
-- ドキュメント: https://docs.stoplight.io/
-
-### コミュニティ
-- コミュニティフォーラム: https://community.stoplight.io/
-
-### チュートリアル
-- Getting Started: https://docs.stoplight.io/docs/studio/
+- Docs: https://docs.stoplight.io/
+- Platform: https://stoplight.io/platform
+- Community: https://community.stoplight.io/
 
 ## まとめ
 
-Stoplight Studioは、以下の場面で特に有用です:
-
-1. **APIファースト設計** - ビジュアルエディタで直感的にOpenAPI仕様を設計
-2. **フロントエンド並行開発** - 内蔵モックサーバーでバックエンド未完成でもUI開発を進行
-3. **OpenAPI初心者** - GUIでOpenAPIの構造を学びながらAPI設計ができる
-
-デスクトップ版は完全無料で、個人開発からチーム開発まで幅広くAPI設計を効率化するツールである。
+- OpenAPI 設計を GUI とコードの両面で効率化しやすい。
+- モック活用で実装前の接続確認と合意形成を進めやすい。
+- Git ベース運用を組み込むことで、仕様変更管理を継続しやすい。

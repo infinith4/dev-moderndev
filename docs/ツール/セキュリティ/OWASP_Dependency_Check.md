@@ -2,50 +2,63 @@
 
 ## 概要
 
-OWASP Dependency-Checkは、プロジェクトの依存ライブラリに含まれる既知の脆弱性を検出するソフトウェアコンポジション分析（SCA）ツールです。依存関係からベンダー・製品・バージョン情報を収集し、NIST National Vulnerability Database（NVD）のCVEデータと照合して脆弱性を特定します。単純なハッシュマッチングではなく、エビデンスベースの分析エンジンにより、信頼度付きのCPEマッチングを行い偽陽性を低減します。
+OWASP Dependency-Checkは、プロジェクトの依存ライブラリに含まれる既知の脆弱性を検出するソフトウェアコンポジション分析（SCA）ツールである。依存関係からベンダー・製品・バージョン情報を収集し、NIST National Vulnerability Database（NVD）のCVEデータと照合して脆弱性を特定する。エビデンスベースの分析エンジンにより、信頼度付きのCPEマッチングを行い偽陽性を低減する。
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| オープンソース | OWASP公式プロジェクト、Apache License 2.0 |
+| NVD直接照合 | 公式脆弱性データベースとの直接連携 |
+| エビデンスベース | 信頼度付きのCPEマッチングで偽陽性を低減 |
+| 多言語対応 | Java、.NET、Node.js、Python、Ruby、Go、Rust等 |
+| ビルドツール統合 | Maven、Gradle、ANTプラグイン提供 |
+| サプレッション機能 | 誤検知の管理と監査証跡 |
+| CVSSフィルタ | 重要度閾値でビルド失敗を制御 |
 
 ## 主な機能
 
-### 1. 脆弱性検出
+### 脆弱性検出機能
 
-- **CVEデータベース照合**: NVD（National Vulnerability Database）との自動照合
-- **CPEマッチング**: エビデンスベースのCommon Platform Enumeration識別
-- **CVSSスコア**: 脆弱性の深刻度スコア表示（CVSS v2/v3）
-- **信頼度レベル**: 各検出結果にConfidence（High/Medium/Low）を付与
+| 機能 | 説明 |
+|------|------|
+| CVEデータベース照合 | NVDとの自動照合 |
+| CPEマッチング | エビデンスベースのCommon Platform Enumeration識別 |
+| CVSSスコア | 脆弱性の深刻度スコア表示（CVSS v2/v3） |
+| 信頼度レベル | 各検出結果にConfidence（High/Medium/Low）を付与 |
 
-### 2. 対応言語・エコシステム
+### レポート機能
 
-- **Java**: Maven、Gradle、JAR/WAR/EAR
-- **.NET**: NuGet、.NET assemblies
-- **Node.js**: npm、yarn
-- **Python**: pip（requirements.txt）、Poetry
-- **Ruby**: Bundler（Gemfile.lock）
-- **Go**: Go modules
-- **Rust**: Cargo
-- **C/C++**: CMake（実験的）
+| 機能 | 説明 |
+|------|------|
+| HTML | 詳細な脆弱性レポート |
+| JSON | 機械処理用レポート |
+| SARIF | GitHub Code Scanning連携 |
+| JUnit XML | CI/CDテスト結果連携 |
 
-### 3. レポート
+### サプレッション機能
 
-- **HTML**: 詳細な脆弱性レポート（CVE詳細、CVSSスコア、影響範囲）
-- **JSON**: 機械処理用レポート
-- **XML**: 他ツールとの統合用
-- **SARIF**: GitHub Code Scanning連携
-- **JUnit XML**: CI/CDテスト結果連携
+| 機能 | 説明 |
+|------|------|
+| XMLフィルタ | 誤検知をsuppression.xmlで管理 |
+| 監査証跡 | 抑制理由の記録 |
+| CVE単位除外 | 特定CVEの除外 |
+| ライブラリ単位除外 | 特定依存関係の除外 |
 
-### 4. サプレッション（誤検知管理）
+## インストールとセットアップ
 
-- **XMLフィルタ**: 誤検知をsuppression.xmlで管理
-- **監査証跡**: 抑制理由の記録
-- **CVE単位**: 特定CVEの除外
-- **ライブラリ単位**: 特定依存関係の除外
+公式URL:
+- [OWASP Dependency-Check 公式サイト](https://owasp.org/www-project-dependency-check/)
+- [GitHub](https://github.com/dependency-check/DependencyCheck)
+- [ドキュメント](https://jeremylong.github.io/DependencyCheck/)
+- [Mavenプラグイン](https://mvnrepository.com/artifact/org.owasp/dependency-check-maven)
 
-## 利用方法
+## 基本的な使い方
 
-### CLI実行
+### 1. CLIでのスキャン
 
 ```bash
-# ダウンロード
-# https://github.com/dependency-check/DependencyCheck/releases からZIPを取得
+# ダウンロード: https://github.com/dependency-check/DependencyCheck/releases
 
 # プロジェクトスキャン
 dependency-check --project "MyApp" --scan ./src --out ./reports
@@ -60,7 +73,7 @@ dependency-check --updateonly
 dependency-check --project "MyApp" --scan . --suppression suppression.xml
 ```
 
-### Maven統合
+### 2. Maven統合
 
 ```xml
 <!-- pom.xml -->
@@ -80,9 +93,7 @@ dependency-check --project "MyApp" --scan . --suppression suppression.xml
       </configuration>
       <executions>
         <execution>
-          <goals>
-            <goal>check</goal>
-          </goals>
+          <goals><goal>check</goal></goals>
         </execution>
       </executions>
     </plugin>
@@ -91,17 +102,12 @@ dependency-check --project "MyApp" --scan . --suppression suppression.xml
 ```
 
 ```bash
-# Maven実行
 mvn dependency-check:check
-
-# レポート生成のみ
-mvn dependency-check:aggregate
 ```
 
-### Gradle統合
+### 3. Gradle統合
 
 ```groovy
-// build.gradle
 plugins {
     id 'org.owasp.dependencycheck' version '11.1.1'
 }
@@ -114,24 +120,21 @@ dependencyCheck {
 ```
 
 ```bash
-# Gradle実行
 ./gradlew dependencyCheckAnalyze
 ```
 
-### サプレッションファイル
+### 4. サプレッションファイル
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
-  <!-- 特定CVEの除外（理由付き） -->
   <suppress>
     <notes><![CDATA[
-      This is a false positive - the vulnerable component is not used in our code path.
+      False positive - the vulnerable component is not used in our code path.
     ]]></notes>
     <cve>CVE-2023-12345</cve>
   </suppress>
 
-  <!-- 特定ライブラリのCVE除外 -->
   <suppress>
     <notes><![CDATA[Mitigated by WAF configuration]]></notes>
     <gav regex="true">^org\.example:mylib:.*$</gav>
@@ -140,10 +143,11 @@ dependencyCheck {
 </suppressions>
 ```
 
-### CI/CD統合（GitHub Actions）
+## CI/CD 統合
+
+### GitHub Actions
 
 ```yaml
-# .github/workflows/dependency-check.yml
 name: Dependency Check
 
 on: [push, pull_request]
@@ -171,54 +175,132 @@ jobs:
           path: reports/
 ```
 
-## エディション・料金
+### GitLab CI
 
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **OWASP Dependency-Check** | 無料 | オープンソース、Apache License 2.0 |
+```yaml
+dependency-check:
+  stage: security
+  image: owasp/dependency-check:latest
+  script:
+    - /usr/share/dependency-check/bin/dependency-check.sh
+      --project "MyApp"
+      --scan .
+      --format JSON
+      --format HTML
+      --out reports/
+      --failOnCVSS 7
+  artifacts:
+    paths:
+      - reports/
+    when: always
+```
 
-## メリット
+## 他ツールとの比較
 
-1. **無料・OSS**: OWASP公式プロジェクトとして無料で利用可能
-2. **NVD直接照合**: 公式脆弱性データベースとの直接連携
-3. **エビデンスベース**: 信頼度付きのCPEマッチングで偽陽性を低減
-4. **多言語対応**: Java、.NET、Node.js、Python、Ruby、Go等
-5. **ビルドツール統合**: Maven、Gradle、ANTプラグイン
-6. **サプレッション機能**: 誤検知の管理と監査証跡
-7. **CVSSフィルタ**: 重要度閾値でビルド失敗を制御
+### Dependency-Check vs Trivy
 
-## デメリット
+| 機能 | OWASP Dependency-Check | Trivy |
+|------|----------------------|-------|
+| 対象 | 依存ライブラリの脆弱性 | コンテナ、IaC、シークレットも対応 |
+| データソース | NVD | 複数DB（NVD、GitHub Advisory等） |
+| 速度 | 初回遅い（NVDダウンロード） | 高速 |
+| ビルドツール統合 | Maven/Gradle/ANTプラグイン | CLI中心 |
+| コンテナ対応 | なし | あり |
 
-1. **NVD APIキー**: NVD APIのレート制限対策にAPIキーの取得が推奨
-2. **初回スキャン遅い**: 初回はNVDデータベースのダウンロードに時間がかかる
-3. **偽陽性**: CPEマッチングの精度によっては誤検知が発生
-4. **DB更新必要**: 定期的なNVDデータベースの更新が必要
-5. **コンテナ非対応**: コンテナイメージのスキャンには非対応（Trivyが代替）
+### Dependency-Check vs Snyk
 
-## 代替ツール
+| 機能 | OWASP Dependency-Check | Snyk |
+|------|----------------------|------|
+| 価格 | 無料 | 無料枠あり、高機能は有料 |
+| 修正提案 | なし | PR自動生成 |
+| 精度 | エビデンスベース | キュレーションDB |
+| IDE統合 | なし | あり |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Trivy** | オールインワンスキャナー | コンテナ・IaC対応、Dependency-Checkより高速 |
-| **Snyk** | 商用SCAツール | 修正提案が充実だが有料 |
-| **GitHub Dependabot** | GitHub統合SCA | GitHub専用、PRで自動修正提案 |
-| **Renovate** | 依存関係更新自動化 | SCAではなく更新管理に特化 |
+## ユースケース
 
-## 公式リンク
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| 依存ライブラリの脆弱性検出 | 既知CVEの早期発見 | NVDとの照合で脆弱性を特定 |
+| CI/CDセキュリティゲート | ビルドパイプラインでの脆弱性チェック | CVSSスコア閾値でビルド制御 |
+| コンプライアンス対応 | セキュリティ監査への対応 | HTML/JSONレポートによる証跡管理 |
+| 誤検知管理 | 効率的な脆弱性トリアージ | サプレッションファイルによる管理 |
 
-- **公式サイト**: [https://owasp.org/www-project-dependency-check/](https://owasp.org/www-project-dependency-check/)
-- **GitHub**: [https://github.com/dependency-check/DependencyCheck](https://github.com/dependency-check/DependencyCheck)
-- **ドキュメント**: [https://jeremylong.github.io/DependencyCheck/](https://jeremylong.github.io/DependencyCheck/)
-- **Mavenプラグイン**: [https://mvnrepository.com/artifact/org.owasp/dependency-check-maven](https://mvnrepository.com/artifact/org.owasp/dependency-check-maven)
+## ベストプラクティス
 
-## 関連ドキュメント
+### 1. NVD APIキーの取得
 
-- [Trivy](./Trivy.md)
-- [SpotBugs](../開発ツール/SpotBugs.md)
+- NVD APIのレート制限対策にAPIキーの取得を推奨
+- https://nvd.nist.gov/developers/request-an-api-key から取得
+- CI/CDシークレットとして管理
 
----
+### 2. サプレッションファイルの管理
 
-**カテゴリ**: セキュリティ
-**対象工程**: 実装・テスト
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+- suppression.xmlをGit管理に含める
+- 除外理由を必ず記載する
+- 定期的に除外内容を見直す
+
+### 3. CI/CDパイプラインへの統合
+
+- CVSS閾値を段階的に引き上げる（まず9.0から開始）
+- PRマージ前にスキャンを実行
+- NVDデータベースのキャッシュで実行時間を短縮
+
+## トラブルシューティング
+
+### よくある問題と解決策
+
+#### 1. 初回スキャンが非常に遅い
+
+```
+原因: NVDデータベースの初回ダウンロードに時間がかかる
+解決策:
+- NVD APIキーを設定してダウンロード速度を向上
+- CI/CDではNVDデータベースをキャッシュ
+- --updateonly で事前にDB更新
+```
+
+#### 2. 偽陽性が多い
+
+```
+原因: CPEマッチングの精度による誤検知
+解決策:
+- suppression.xmlで誤検知を管理
+- 信頼度レベル（Confidence）を確認
+- GAV（groupId:artifactId:version）での精密な除外設定
+```
+
+#### 3. NVD API接続エラー
+
+```
+原因: NVD APIのレート制限またはネットワーク問題
+解決策:
+- NVD APIキーを設定
+- プロキシ設定を確認
+- オフラインDBの利用を検討
+```
+
+## 参考リソース
+
+### 公式ドキュメント
+- 公式サイト: https://owasp.org/www-project-dependency-check/
+- GitHub: https://github.com/dependency-check/DependencyCheck
+- ドキュメント: https://jeremylong.github.io/DependencyCheck/
+
+### コミュニティ
+- GitHub Issues: https://github.com/dependency-check/DependencyCheck/issues
+- OWASP Slack: https://owasp.org/slack/invite
+
+### チュートリアル
+- Getting Started: https://jeremylong.github.io/DependencyCheck/
+- Maven Plugin: https://jeremylong.github.io/DependencyCheck/dependency-check-maven/
+
+## まとめ
+
+OWASP Dependency-Checkは、依存ライブラリの脆弱性検出のためのOSS SCAツールとして、以下の場面で特に有用である:
+
+1. **依存ライブラリのセキュリティ検証** - NVDとの直接照合で既知CVEを検出
+2. **CI/CDセキュリティゲート** - CVSSスコア閾値によるビルドパイプライン制御
+3. **コンプライアンス対応** - 詳細なレポート生成による監査証跡の管理
+4. **Javaエコシステムとの統合** - Maven/Gradleプラグインによるシームレスな統合
+
+OWASP公式プロジェクトとして信頼性が高く、無料で利用できるため、あらゆるプロジェクトのSCA導入に適している。

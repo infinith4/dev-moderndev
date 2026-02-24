@@ -2,341 +2,127 @@
 
 ## 概要
 
-ReDocは、OpenAPI（Swagger）仕様書から美しく読みやすいAPIドキュメントを自動生成するオープンソースツールです。Redocly社が開発し、レスポンシブデザイン、3カラムレイアウト、検索機能、サンプルコード生成により、開発者フレンドリーなAPIリファレンスを提供します。HTMLファイル1つで公開でき、SwaggerUIの代替として広く利用されています。
+ReDoc は、OpenAPI 仕様から API ドキュメントを生成・公開するためのドキュメントツールである。3カラム構成の閲覧性と静的配布のしやすさを活かし、開発者向けリファレンス公開で利用される。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| OSS 版 ReDoc | 無料（MIT License） |
+| Redocly 商用機能 | 追加機能は有料プランあり |
 
 ## 主な特徴
 
 | 項目 | 内容 |
 |------|------|
-| 美しい3カラムレイアウト | ナビゲーション、説明、サンプルコードの同時表示 |
-| レスポンシブデザイン | モバイル・デスクトップ両対応 |
-| OpenAPI完全サポート | OpenAPI 3.x、Swagger 2.0対応 |
-| 軽量・高速 | SwaggerUIより高速なレンダリング |
-| 静的HTML出力 | 単一HTMLファイルで簡単に公開 |
-| カスタマイズ | テーマ、ロゴ、カラー設定が柔軟 |
-| 無料 | MIT License、オープンソース |
+| OpenAPI 対応 | OpenAPI 3.x / Swagger 2.0 を表示 |
+| 高い可読性 | ナビゲーションと本文を分けたUI |
+| 静的配布 | 単一 HTML として公開しやすい |
+| テーマ設定 | ロゴ、色、表示設定を調整可能 |
+| CI 連携 | ビルドして Pages/S3 等に配布可能 |
 
 ## 主な機能
 
-### ドキュメント表示
+### ドキュメント表示機能
 
 | 機能 | 説明 |
 |------|------|
-| 3カラムレイアウト | ナビゲーション、説明、サンプルを同時表示 |
-| 検索機能 | キーワードでAPI要素を検索 |
-| ディープリンク | 特定エンドポイントへの直接リンク |
-| 折りたたみ | セクションの展開/折りたたみ |
+| エンドポイント一覧 | API の全体像を把握しやすい |
+| セクション遷移 | ディープリンクで目的箇所へ移動 |
+| 検索 | エンドポイントやスキーマを検索 |
+| 例示表示 | リクエスト/レスポンス例を表示 |
 
-### OpenAPIサポート
-
-| 機能 | 説明 |
-|------|------|
-| OpenAPI 3.x | 最新仕様対応 |
-| Swagger 2.0 | レガシーサポート |
-| 複数仕様書統合 | マルチファイル対応 |
-| $ref解決 | 外部参照自動解決 |
-
-### コードサンプル生成
+### 仕様連携機能
 
 | 機能 | 説明 |
 |------|------|
-| cURL | コマンドライン例 |
-| JavaScript | fetch、axios |
-| Python | requests |
-| 多言語対応 | Ruby、PHP、Java等 |
+| OpenAPI 読み込み | YAML/JSON 仕様を読み込み |
+| `$ref` 解決 | 参照構造を解決して表示 |
+| バンドル運用 | 単一ファイル化して配布しやすい |
+| 変更追従 | 仕様更新をドキュメントへ反映 |
+
+### 公開・運用機能
+
+| 機能 | 説明 |
+|------|------|
+| 静的 HTML 出力 | ホスティング先に依存せず公開可能 |
+| テーマ調整 | ブランドに合わせた表示設定 |
+| CI 配布 | GitHub Actions/GitLab CI で自動配布 |
+| バージョン管理 | 仕様とドキュメントを同時管理 |
 
 ## インストールとセットアップ
 
 公式URL:
-- [ReDoc 公式サイト](https://redocly.com/redoc)
-- [GitHub リポジトリ](https://github.com/Redocly/redoc)
+- [ReDoc 公式ページ](https://redocly.com/redoc)
+- [ReDoc Docs](https://redocly.com/docs/redoc/)
 - [Redocly CLI](https://redocly.com/docs/cli/)
+- [GitHub](https://github.com/Redocly/redoc)
+
+セットアップの要点:
+1. CDN 埋め込みか CLI ビルドの方式を選ぶ。
+2. OpenAPI 仕様ファイルの配置先を決める。
+3. テーマ設定と表示オプションを調整する。
+4. 静的ホスティングと CI 配布手順を確定する。
 
 ## 基本的な使い方
 
-### 1. CDNで利用（最もシンプル）
+1. OpenAPI 仕様（`openapi.yaml` など）を準備する。
+2. ReDoc で仕様を読み込み、表示内容を確認する。
+3. 必要なテーマ設定を適用する。
+4. `build-docs` で静的 HTML を生成する。
+5. 生成物を Pages や S3 に配置して公開する。
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>API Documentation</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-</head>
-<body>
-  <redoc spec-url="https://api.example.com/openapi.yaml"></redoc>
-  <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
-</body>
-</html>
-```
+最小実行例:
+- 生成: `redocly build-docs openapi.yaml -o index.html`
+- プレビュー: `redocly preview-docs openapi.yaml`
 
-### 2. CLIで静的HTML生成
+## メリット
 
-```bash
-# npmでインストール
-npm install -g @redocly/cli
+- OpenAPI 仕様から読みやすいドキュメントを素早く公開しやすい。
+- 静的配布中心でインフラ構成を単純化しやすい。
+- CI 連携で仕様変更と公開更新を同期しやすい。
 
-# OpenAPIファイルからHTML生成
-redocly build-docs openapi.yaml -o index.html
+## デメリット
 
-# ローカルサーバー起動（プレビュー）
-redocly preview-docs openapi.yaml
-# ブラウザで http://localhost:8080 にアクセス
-```
-
-### 3. カスタマイズ（テーマ設定）
-
-```html
-<redoc spec-url="openapi.yaml" theme='{
-    "colors": {
-      "primary": {
-        "main": "#00A86B"
-      }
-    },
-    "typography": {
-      "fontSize": "16px",
-      "fontFamily": "Roboto, sans-serif"
-    },
-    "sidebar": {
-      "backgroundColor": "#f5f5f5"
-    },
-    "logo": {
-      "maxHeight": "50px"
-    }
-  }'></redoc>
-<script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
-```
-
-### 4. React Component
-
-```jsx
-import { RedocStandalone } from 'redoc';
-
-function ApiDocs() {
-  return (
-    <RedocStandalone
-      specUrl="https://api.example.com/openapi.yaml"
-      options={{
-        nativeScrollbars: true,
-        theme: {
-          colors: {
-            primary: { main: '#00A86B' }
-          }
-        }
-      }}
-    />
-  );
-}
-
-export default ApiDocs;
-```
-
-### 5. 詳細オプション
-
-```html
-<redoc
-  spec-url="openapi.yaml"
-  hide-download-button
-  disable-search
-  expand-responses="200,201"
-  expand-single-schema-field
-  hide-hostname
-  hide-loading
-  lazy-rendering
-  native-scrollbars
-  no-auto-auth
-  path-in-middle-panel
-  required-props-first
-  sort-props-alphabetically
-  theme='{"colors": {"primary": {"main": "#00A86B"}}}'
-></redoc>
-```
-
-## CI/CD 統合
-
-### GitHub Actions（GitHub Pages公開）
-
-```yaml
-name: Deploy API Docs
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install Redocly CLI
-        run: npm install -g @redocly/cli
-
-      - name: Build docs
-        run: redocly build-docs openapi.yaml -o index.html
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
-```
-
-### GitLab CI
-
-```yaml
-deploy_docs:
-  stage: deploy
-  image: node:24
-  before_script:
-    - npm install -g @redocly/cli
-  script:
-    - redocly build-docs openapi.yaml -o public/index.html
-  artifacts:
-    paths:
-      - public
-```
-
-## Docker での使用
-
-### Dockerfile 例
-
-```dockerfile
-FROM node:24-alpine AS builder
-RUN npm install -g @redocly/cli
-WORKDIR /app
-COPY openapi.yaml .
-RUN redocly build-docs openapi.yaml -o index.html
-
-FROM nginx:alpine
-COPY --from=builder /app/index.html /usr/share/nginx/html/
-```
-
-### docker-compose.yml 例
-
-```yaml
-version: '3.8'
-services:
-  redoc:
-    image: redocly/redoc
-    ports:
-      - "8080:80"
-    volumes:
-      - ./openapi.yaml:/usr/share/nginx/html/openapi.yaml
-    environment:
-      SPEC_URL: openapi.yaml
-```
+- API テスト実行機能は専用ツールに比べると限定的。
+- 仕様品質が低いと表示品質も下がりやすい。
+- 高度なポータル運用は別製品や追加構成が必要。
 
 ## 他ツールとの比較
 
-### ReDoc vs Swagger UI
-
-| 機能 | ReDoc | Swagger UI |
-|------|-------|------------|
-| デザイン | 3カラム、美しい | 標準的 |
-| Try It Out | なし（表示のみ） | あり（APIテスト可能） |
-| パフォーマンス | 高速 | 標準 |
-| カスタマイズ | テーマ設定 | CSSカスタマイズ |
-| 検索 | あり | なし |
-
-### ReDoc vs Stoplight Elements
-
-| 機能 | ReDoc | Stoplight Elements |
-|------|-------|-------------------|
-| Try It Out | なし | あり |
-| デザイン | 3カラム | モダン |
-| React統合 | あり | あり |
-| 無料利用 | 完全無料 | 無料版あり |
-
-## ユースケース
-
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| APIリファレンス公開 | 外部開発者向けドキュメント | OpenAPIから美しいドキュメントを自動生成 |
-| 社内APIドキュメント | チーム間のAPI仕様共有 | 静的HTMLをイントラネットで公開 |
-| GitHub Pages公開 | 無料でAPIドキュメントをホスト | CI/CDでビルドし自動デプロイ |
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| ReDoc | API ドキュメント公開 | 表示品質と静的配布に強い |
+| Swagger UI | API 試行付きドキュメント | Try it out 機能で検証しやすい |
+| Stoplight Studio | API 設計中心 | 設計・モック・レビューに強い |
+| Apidog | 設計〜テスト統合 | ドキュメント以外の運用機能も広い |
 
 ## ベストプラクティス
 
-### 1. OpenAPI定義の充実
+### 1. 仕様を単一ソース化
 
-- examplesを充実させることでドキュメントの品質が向上する
-- descriptionフィールドにMarkdown記法を使用して詳細な説明を記述する
-- スキーマの再利用（$ref）でドキュメントの一貫性を保つ
+- OpenAPI を正本としてドキュメント生成する。
+- 手書き差分を最小化し、仕様更新を優先する。
 
-### 2. テーマのカスタマイズ
+### 2. 公開フローを自動化
 
-- 企業のブランドカラーに合わせたテーマ設定を行う
-- ロゴを設定してブランドアイデンティティを確立する
-- フォントサイズやフォントファミリーを調整して読みやすさを向上させる
+- 仕様変更時に自動ビルド・自動デプロイを行う。
+- 公開URLを固定して参照先を安定させる。
 
-### 3. CI/CDでの自動生成
+### 3. 表示品質を継続改善
 
-- OpenAPI定義の変更時に自動でドキュメントをビルド・デプロイする
-- バリデーション（redocly lint）をCIに組み込む
+- 例データ、説明文、エラー仕様を定期的に整備する。
+- 利用者フィードバックを基に構成を更新する。
 
-## トラブルシューティング
+## 公式ドキュメント
 
-### よくある問題と解決策
-
-#### 1. OpenAPI仕様のパースエラー
-
-```
-原因: YAMLの構文エラーまたはOpenAPI仕様の違反
-解決策:
-- redocly lint openapi.yaml でバリデーションを実行
-- オンラインのOpenAPIバリデータで確認
-```
-
-#### 2. $refが解決されない
-
-```
-原因: 外部参照ファイルのパスが正しくない
-解決策:
-- 相対パスを確認する
-- redocly bundle で単一ファイルにバンドルする
-```
-
-#### 3. カスタムテーマが反映されない
-
-```
-原因: JSON形式のテーマ設定が不正
-解決策:
-- theme属性のJSON構文を確認する
-- ブラウザのコンソールでエラーを確認する
-```
-
-## 参考リソース
-
-### 公式ドキュメント
-- 公式サイト: https://redocly.com/redoc
-- ドキュメント: https://redocly.com/docs/redoc/
-
-### コミュニティ
+- 公式ページ: https://redocly.com/redoc
+- Docs: https://redocly.com/docs/redoc/
+- CLI: https://redocly.com/docs/cli/
 - GitHub: https://github.com/Redocly/redoc
-
-### チュートリアル
-- Getting Started: https://redocly.com/docs/redoc/quickstart/
-- デモ: https://redocly.github.io/redoc/
 
 ## まとめ
 
-ReDocは、以下の場面で特に有用です:
-
-1. **APIドキュメント公開** - OpenAPIから美しい3カラムレイアウトのドキュメントを自動生成
-2. **静的サイトホスティング** - 単一HTMLファイルでGitHub PagesやS3に簡単にデプロイ
-3. **ブランディング** - テーマカスタマイズでブランドに合ったドキュメントを作成
-
-SwaggerUIより美しいデザインと高速なレンダリングで、APIドキュメントの閲覧体験を向上させる。
+- OpenAPI 仕様を高い可読性で公開する運用を作りやすい。
+- 静的 HTML 配布により、シンプルな公開基盤を維持しやすい。
+- CI 連携を組み込むことで、仕様変更の反映を継続しやすい。

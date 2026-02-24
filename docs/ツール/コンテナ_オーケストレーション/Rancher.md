@@ -2,39 +2,25 @@
 
 ## 概要
 
-Rancher は、SUSE が提供するオープンソースの Kubernetes 管理プラットフォームです。複数の Kubernetes クラスタを統合的に管理し、マルチクラスタ、マルチクラウド環境での運用を簡素化します。Web UI による直感的な操作、認証・認可、モニタリング、カタログアプリケーションのデプロイなど、エンタープライズ環境に必要な機能を包括的に提供します。
+Rancher は、複数 Kubernetes クラスタを一元管理するためのプラットフォームである。オンプレミス、クラウド、エッジに分散したクラスタを単一UIで運用し、アクセス制御、アプリ配布、監視を統合できる。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| OSS 版 | 無料（Rancher Manager / 関連OSSを利用可能） |
+| 商用サポート | SUSE サブスクリプションで運用支援やエンタープライズ機能を拡張 |
 
 ## 主な特徴
 
-### 1. マルチクラスタ管理
-- 単一の UI から複数の Kubernetes クラスタを管理
-- オンプレミス、パブリッククラウド、エッジ環境に対応
-- クラスタのプロビジョニング、アップグレード、削除
-- 一元的なモニタリングとアラート
-
-### 2. Kubernetes ディストリビューションの選択
-- RKE (Rancher Kubernetes Engine)
-- RKE2 (セキュリティ強化版)
-- K3s (軽量版)
-- 既存の EKS、GKE、AKS クラスタのインポート
-
-### 3. 統合認証とアクセス制御
-- Active Directory、LDAP、SAML、OAuth 統合
-- ロールベースアクセス制御（RBAC）
-- プロジェクトとネームスペースの階層管理
-- マルチテナント対応
-
-### 4. アプリケーションカタログ
-- Helm チャートカタログ
-- カスタムカタログの追加
-- アプリケーションのバージョン管理
-- ワンクリックデプロイ
-
-### 5. 統合モニタリング
-- Prometheus + Grafana の統合
-- クラスタ、ノード、Pod レベルのメトリクス
-- カスタムダッシュボード
-- アラート管理
+| 項目 | 内容 |
+|------|------|
+| マルチクラスタ管理 | 複数クラスタを単一コンソールで管理 |
+| ディストリ統合 | RKE2、K3s、既存 EKS/GKE/AKS を扱える |
+| RBAC 統制 | 組織・プロジェクト単位で権限を分離 |
+| アプリ配布 | Helm カタログや GitOps で配布を標準化 |
+| 運用可視化 | 監視、ログ、アラート連携を統合しやすい |
+| マルチテナント | チーム単位の分離運用を実施しやすい |
 
 ## 主な機能
 
@@ -42,565 +28,106 @@ Rancher は、SUSE が提供するオープンソースの Kubernetes 管理プ�
 
 | 機能 | 説明 |
 |------|------|
-| クラスタプロビジョニング | AWS、Azure、GCP、vSphere等へのクラスタ作成 |
-| クラスタインポート | 既存クラスタの Rancher への取り込み |
-| クラスタアップグレード | Kubernetes バージョンのアップグレード |
-| ノード管理 | ノードの追加、削除、ラベリング |
-| バックアップ/リストア | etcd のバックアップとリストア |
+| クラスタ作成 | 新規 Kubernetes クラスタを作成 |
+| クラスタ取込 | 既存クラスタを Rancher 配下へ登録 |
+| アップグレード管理 | Kubernetes バージョン更新を計画実施 |
+| ノード管理 | 追加、削除、ラベル管理をGUIで実行 |
 
-### アプリケーション管理
-
-| 機能 | 説明 |
-|------|------|
-| Workload 管理 | Deployment、StatefulSet、DaemonSet 管理 |
-| Service Discovery | Service、Ingress の管理 |
-| ConfigMap/Secret | 設定とシークレットの管理 |
-| ストレージ管理 | PV、PVC、StorageClass の管理 |
-| ネットワークポリシー | ネットワークセキュリティルール |
-
-### セキュリティ機能
+### アクセス・セキュリティ機能
 
 | 機能 | 説明 |
 |------|------|
-| RBAC | きめ細かなアクセス制御 |
-| Pod Security Policies | Pod セキュリティポリシー管理 |
-| ネットワークポリシー | トラフィック制御 |
-| イメージスキャン | 脆弱性スキャン（Trivy統合） |
-| 監査ログ | 操作ログの記録 |
+| 認証連携 | LDAP、AD、SAML、OIDC などに対応 |
+| RBAC | グローバル/クラスタ/プロジェクト権限を制御 |
+| 監査ログ | 操作履歴の追跡を支援 |
+| ポリシー運用 | 組織ルールに沿った運用統制を実施 |
 
-## アーキテクチャ
+### アプリ運用機能
 
-### Rancher アーキテクチャ
-
-```
-┌─────────────────────────────────────────┐
-│         Rancher Management Server       │
-│  ┌──────────┐  ┌──────────┐  ┌───────┐ │
-│  │   API    │  │   UI     │  │ Auth  │ │
-│  └──────────┘  └──────────┘  └───────┘ │
-└─────────────────────────────────────────┘
-                    │
-        ┌───────────┼───────────┐
-        ▼           ▼           ▼
-┌──────────┐  ┌──────────┐  ┌──────────┐
-│ Cluster A│  │ Cluster B│  │ Cluster C│
-│  (RKE2)  │  │  (K3s)   │  │  (EKS)   │
-└──────────┘  └──────────┘  └──────────┘
-```
-
-### コンポーネント
-
-- **Rancher Server**: 管理サーバー（中央コントロールプレーン）
-- **Cluster Agent**: 各クラスタにデプロイされるエージェント
-- **Node Agent**: 各ノードで動作するエージェント
-- **Authentication Proxy**: 認証プロキシ
+| 機能 | 説明 |
+|------|------|
+| Helm 管理 | チャート導入と更新を一元管理 |
+| GitOps 連携 | 宣言的デプロイで環境差分を抑制 |
+| プロジェクト分離 | Namespace 単位で利用領域を分離 |
+| 監視連携 | Prometheus/Grafana 連携で可視化 |
 
 ## インストールとセットアップ
 
-### Rancher のインストール方法
+公式URL:
+- [Rancher 公式サイト](https://www.rancher.com/)
+- [Rancher Documentation](https://ranchermanager.docs.rancher.com/)
+- [Rancher GitHub](https://github.com/rancher/rancher)
+- [RKE2 Documentation](https://docs.rke2.io/)
 
-#### 1. Docker による単一ノードインストール（開発/テスト用）
-
-```bash
-# Rancher サーバーの起動
-docker run -d --restart=unless-stopped \
-  -p 80:80 -p 443:443 \
-  --privileged \
-  rancher/rancher:latest
-
-# アクセス
-https://<SERVER_IP>
-
-# 初期パスワードの取得
-docker logs <container_id> 2>&1 | grep "Bootstrap Password:"
-```
-
-#### 2. Helm による本番環境インストール
-
-```bash
-# 前提: 既存の Kubernetes クラスタ
-
-# Helm リポジトリの追加
-helm repo add rancher-latest https://releases.rancher.com/server-charts/latest
-helm repo update
-
-# cert-manager のインストール（証明書管理）
-kubectl create namespace cattle-system
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.3/cert-manager.crds.yaml
-
-helm repo add jetstack https://charts.jetstack.io
-helm repo update
-
-helm install cert-manager jetstack/cert-manager \
-  --namespace cert-manager \
-  --create-namespace \
-  --version v1.13.3
-
-# Rancher のインストール
-helm install rancher rancher-latest/rancher \
-  --namespace cattle-system \
-  --set hostname=rancher.example.com \
-  --set bootstrapPassword=admin \
-  --set ingress.tls.source=letsEncrypt \
-  --set letsEncrypt.email=admin@example.com
-
-# インストール確認
-kubectl -n cattle-system rollout status deploy/rancher
-kubectl -n cattle-system get deploy rancher
-```
-
-#### 3. RKE2 による高可用性インストール
-
-```bash
-# 3台のサーバーノードで HA 構成
-
-# 最初のサーバーノード
-curl -sfL https://get.rke2.io | sh -
-systemctl enable rke2-server.service
-systemctl start rke2-server.service
-
-# トークンの取得
-cat /var/lib/rancher/rke2/server/node-token
-
-# 2台目、3台目のサーバーノード
-curl -sfL https://get.rke2.io | sh -
-
-mkdir -p /etc/rancher/rke2
-cat > /etc/rancher/rke2/config.yaml <<EOF
-server: https://<FIRST_SERVER_IP>:9345
-token: <TOKEN>
-EOF
-
-systemctl enable rke2-server.service
-systemctl start rke2-server.service
-
-# Rancher を Helm でインストール（上記手順参照）
-```
-
-### 初期セットアップ
-
-```
-1. ブラウザで Rancher UI にアクセス
-   https://rancher.example.com
-
-2. 初期パスワードを入力
-
-3. 新しいパスワードを設定
-
-4. サーバー URL を確認
-
-5. 利用規約に同意
-
-6. ダッシュボードが表示される
-```
+セットアップの要点:
+1. 導入方式（Docker 単体、既存Kubernetes上の Helm）を決める。
+2. TLS 証明書と DNS 名を準備して管理UIを公開する。
+3. 初期管理者作成後、認証基盤と RBAC を設定する。
+4. 管理対象クラスタを作成またはインポートする。
 
 ## 基本的な使い方
 
-### 1. クラスタの作成
-
-#### カスタムクラスタ（RKE2）
-
-```
-1. Rancher UI で「Cluster Management」を選択
-2. 「Create」をクリック
-3. 「Custom」を選択
-4. クラスタ名を入力
-5. Kubernetes バージョンを選択
-6. ノード登録コマンドをコピー
-7. 各ノードで登録コマンドを実行
-
-# ノード登録コマンド例
-sudo docker run -d --privileged --restart=unless-stopped \
-  --net=host -v /etc/kubernetes:/etc/kubernetes \
-  -v /var/run:/var/run rancher/rancher-agent:v2.7.0 \
-  --server https://rancher.example.com \
-  --token <TOKEN> \
-  --ca-checksum <CHECKSUM> \
-  --etcd --controlplane --worker
-```
-
-#### クラウドプロバイダークラスタ（AWS EKS）
-
-```
-1. 「Create」→「Amazon EKS」を選択
-2. AWS 認証情報を設定
-   - Access Key
-   - Secret Key
-   - Region
-3. クラスタ設定
-   - クラスタ名
-   - Kubernetes バージョン
-   - VPC、サブネット
-4. ノードグループ設定
-   - インスタンスタイプ
-   - ノード数（min/max/desired）
-5. 「Create」をクリック
-```
-
-### 2. 既存クラスタのインポート
-
-```bash
-# 既存の EKS、GKE、AKS クラスタをインポート
-
-1. Rancher UI で「Import Existing」を選択
-2. クラスタ名を入力
-3. インポートコマンドが表示される
-4. kubectl で実行
-
-# インポートコマンド例
-kubectl apply -f https://rancher.example.com/v3/import/<CLUSTER_ID>.yaml
-
-# インポート確認
-# Rancher UI でクラスタが表示される
-```
-
-### 3. アプリケーションのデプロイ
-
-#### Helm チャートからデプロイ
-
-```
-1. クラスタを選択
-2. 「Apps & Marketplace」を選択
-3. 「Charts」からアプリを検索（例: Nginx）
-4. インストールをクリック
-5. 設定値を入力
-   - ネームスペース
-   - レプリカ数
-   - リソース制限
-6. 「Install」をクリック
-```
-
-#### Workload の作成（GUI）
-
-```
-1. クラスタ → プロジェクト → Workloads を選択
-2. 「Create」→「Deployment」を選択
-3. 基本情報
-   - 名前: nginx-app
-   - コンテナイメージ: nginx:latest
-   - レプリカ数: 3
-4. ポート設定
-   - コンテナポート: 80
-5. リソース制限
-   - CPU: 100m
-   - Memory: 128Mi
-6. 「Launch」をクリック
-```
-
-### 4. Service と Ingress の設定
-
-#### Service の作成
-
-```
-1. Workloads → Service Discovery → Services
-2. 「Create」をクリック
-3. 設定
-   - 名前: nginx-service
-   - ターゲット Workload: nginx-app
-   - ポートマッピング: 80 → 80
-   - タイプ: ClusterIP
-4. 「Save」をクリック
-```
-
-#### Ingress の作成
-
-```
-1. Service Discovery → Ingresses
-2. 「Create」をクリック
-3. 設定
-   - 名前: nginx-ingress
-   - ホスト: nginx.example.com
-   - パス: /
-   - ターゲット Service: nginx-service
-   - ポート: 80
-4. TLS 設定（オプション）
-   - Secret を選択
-5. 「Save」をクリック
-```
-
-## ユーザーとアクセス管理
-
-### ユーザーの追加
-
-```
-1. 右上のユーザーアイコン → Users & Authentication
-2. 「Users」タブ → 「Create」
-3. ユーザー情報
-   - Username
-   - Password
-   - Display Name
-4. Global Permissions（グローバル権限）
-   - Administrator
-   - Standard User
-   - User-Base（制限付きユーザー）
-5. 「Create」をクリック
-```
-
-### プロジェクトとロール
-
-```
-# プロジェクトの作成
-1. クラスタ → Projects/Namespaces
-2. 「Create Project」をクリック
-3. プロジェクト名を入力
-4. メンバーを追加
-   - Owner: 完全な権限
-   - Member: 読み書き権限
-   - Read Only: 読み取り専用
-5. 「Create」をクリック
-
-# ロールの種類
-- Cluster Owner: クラスタ全体の管理
-- Cluster Member: クラスタ内のリソース操作
-- Project Owner: プロジェクト管理
-- Project Member: プロジェクト内のリソース操作
-- Read Only: 読み取り専用
-```
-
-### 認証プロバイダーの設定
-
-#### Active Directory 統合
-
-```
-1. Security → Authentication
-2. 「Active Directory」を選択
-3. 設定
-   - Server: ldap.example.com
-   - Port: 389 (LDAP) / 636 (LDAPS)
-   - Service Account: CN=rancher,OU=users,DC=example,DC=com
-   - Password: <パスワード>
-   - User Search Base: OU=users,DC=example,DC=com
-   - Group Search Base: OU=groups,DC=example,DC=com
-4. 「Authenticate」でテスト
-5. 「Enable」をクリック
-```
-
-## モニタリングとロギング
-
-### モニタリングの有効化
-
-```
-1. クラスタ → Monitoring
-2. 「Enable Monitoring」をクリック
-3. 設定
-   - Prometheus Retention: 12h
-   - Storage: 50Gi
-   - Resource Limits
-4. 「Enable」をクリック
-
-# Grafana ダッシュボードにアクセス
-1. Cluster Tools → Monitoring
-2. 「Grafana」をクリック
-```
-
-### カスタムダッシュボード
-
-```yaml
-# custom-dashboard.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-dashboard
-  namespace: cattle-monitoring-system
-  labels:
-    grafana_dashboard: "1"
-data:
-  custom-dashboard.json: |
-    {
-      "dashboard": {
-        "title": "Custom Dashboard",
-        "panels": [
-          {
-            "type": "graph",
-            "title": "CPU Usage",
-            "targets": [
-              {
-                "expr": "sum(rate(container_cpu_usage_seconds_total[5m])) by (pod)"
-              }
-            ]
-          }
-        ]
-      }
-    }
-```
-
-### ロギングの設定
-
-```
-1. クラスタ → Logging
-2. 「Enable Logging」をクリック
-3. 出力先の選択
-   - Elasticsearch
-   - Splunk
-   - Kafka
-   - Fluentd
-   - Syslog
-4. 出力先の設定
-   - Elasticsearch の場合:
-     - Endpoint: http://elasticsearch:9200
-     - Index Pattern: rancher-logs
-5. 「Enable」をクリック
-```
-
-## バックアップとリストア
-
-### etcd バックアップ
-
-```bash
-# Rancher UI からのバックアップ
-1. クラスタ → Snapshots
-2. 「Take Snapshot」をクリック
-3. スナップショット名を入力
-4. 「Save」をクリック
-
-# 定期バックアップの設定
-1. クラスタ → Edit Config
-2. 「Advanced」→「etcd」
-3. バックアップ設定
-   - Interval Hours: 12
-   - Retention: 6
-   - S3 Backup（オプション）
-     - Bucket Name
-     - Region
-     - Access Key / Secret Key
-4. 「Save」をクリック
-```
-
-### クラスタのリストア
-
-```bash
-# スナップショットからのリストア
-1. クラスタ → Snapshots
-2. リストアしたいスナップショットを選択
-3. 「Restore」をクリック
-4. 確認してリストアを実行
-
-# CLI からのリストア（RKE2）
-rke2 server \
-  --cluster-reset \
-  --cluster-reset-restore-path=/var/lib/rancher/rke2/server/db/snapshots/snapshot.db
-```
-
-## CI/CD 統合
-
-### Fleet（GitOps）
-
-```yaml
-# fleet.yaml
-defaultNamespace: default
-
-helm:
-  chart: nginx
-  repo: https://charts.bitnami.com/bitnami
-  version: 13.2.0
-  values:
-    replicaCount: 3
-    service:
-      type: LoadBalancer
-
-# Git リポジトリの登録
-1. Continuous Delivery → Git Repos
-2. 「Create」をクリック
-3. 設定
-   - Name: my-apps
-   - Repository URL: https://github.com/user/fleet-apps
-   - Branch: main
-   - Paths: charts/*
-4. ターゲットクラスタを選択
-5. 「Create」をクリック
-```
-
-### Rancher CLI
-
-```bash
-# Rancher CLI のインストール
-# GitHub releases からダウンロード
-wget https://github.com/rancher/cli/releases/download/v2.7.0/rancher-linux-amd64-v2.7.0.tar.gz
-tar -xzf rancher-linux-amd64-v2.7.0.tar.gz
-sudo mv rancher-v2.7.0/rancher /usr/local/bin/
-
-# ログイン
-rancher login https://rancher.example.com --token <API_TOKEN>
-
-# クラスタの一覧
-rancher clusters ls
-
-# コンテキストの切り替え
-rancher context switch
-
-# kubectl コマンドの実行
-rancher kubectl get nodes
-rancher kubectl get pods --all-namespaces
-```
-
-## トラブルシューティング
-
-### よくある問題と解決策
-
-#### 1. Rancher Server にアクセスできない
-
-```bash
-# コンテナの状態確認
-docker ps -a | grep rancher
-docker logs <container_id>
-
-# ポートの確認
-netstat -tuln | grep -E '80|443'
-
-# ファイアウォールの確認
-sudo firewall-cmd --list-all
-```
-
-#### 2. クラスタエージェントが接続できない
-
-```bash
-# エージェント Pod の確認
-kubectl -n cattle-system get pods
-
-# ログの確認
-kubectl -n cattle-system logs -l app=cattle-cluster-agent
-
-# ネットワーク接続の確認
-curl -k https://rancher.example.com/ping
-```
-
-#### 3. ノードが NotReady 状態
-
-```bash
-# ノードの詳細確認
-kubectl describe node <node-name>
-
-# kubelet ログの確認
-journalctl -u kubelet -f
-
-# Docker/containerd の確認
-systemctl status docker
-systemctl status containerd
-```
-
-## 参考リソース
-
-### 公式ドキュメント
+1. Rancher 管理画面へログインし、管理対象クラスタを登録する。
+2. プロジェクトとネームスペースを作成して責務分離する。
+3. RBAC を設定し、チームごとのアクセス範囲を定義する。
+4. Helm/GitOps でアプリを配布し、変更を運用手順化する。
+5. 監視ダッシュボードとアラートを有効化して継続監視する。
+
+最小運用例:
+- 管理対象: 開発クラスタ + 本番クラスタ
+- 権限: `platform-admin` / `project-owner` / `read-only`
+
+## メリット
+
+- 複数クラスタを1つの運用基盤で管理しやすい。
+- 認証・権限・配布の統制を横断的に適用しやすい。
+- GUI と宣言的運用を組み合わせて保守しやすい。
+
+## デメリット
+
+- 基盤構築（証明書、DNS、権限設計）に初期工数がかかる。
+- 運用対象が増えるほど監視・更新ポリシー整備が必要。
+- GUI 依存運用に寄ると IaC との整合管理が難しくなる。
+
+## Rancher での使用
+
+Rancher は、複数クラスタ運用の「管理面」を統合する用途で効果が高い。クラスタ自体の実行基盤（RKE2/EKS/GKE/AKS）と組み合わせ、ガバナンスと配布の標準化を進めると運用負荷を下げやすい。
+
+## 他ツールとの比較
+
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Rancher | マルチクラスタ管理 | GUI中心で統制・運用を一元化 |
+| Kubernetes Dashboard | 単一クラスタ可視化 | 軽量だが統合管理機能は限定的 |
+| OpenShift | エンタープライズ基盤 | 統合機能が広いが導入前提が重い |
+| Lens | 開発者向け閲覧 | 操作性は高いが組織統制は弱い |
+
+## ベストプラクティス
+
+### 1. 権限モデルを先に設計
+
+- グローバル、クラスタ、プロジェクトの権限境界を定義する。
+- 管理者権限の配布を最小化する。
+
+### 2. クラスタ運用を標準化
+
+- バージョンアップ方針とメンテナンス周期を固定化する。
+- 監視・バックアップ・復旧手順をRunbook化する。
+
+### 3. 配布方式を統一
+
+- Helm または GitOps の主運用方式を決める。
+- 変更はPRベースで審査し、環境差分を残さない。
+
+## 公式ドキュメント
+
 - 公式サイト: https://www.rancher.com/
-- ドキュメント: https://rancher.com/docs/
+- Rancher Docs: https://ranchermanager.docs.rancher.com/
 - GitHub: https://github.com/rancher/rancher
-
-### コミュニティ
-- Slack: https://slack.rancher.io/
-- フォーラム: https://forums.rancher.com/
-- YouTube: https://www.youtube.com/c/Rancher
-
-### トレーニング
-- Academy: https://academy.rancher.com/
-- Certification: https://www.rancher.com/training-certification
+- RKE2 Docs: https://docs.rke2.io/
 
 ## まとめ
 
-Rancher は、以下の場面で特に有用です:
-
-1. **マルチクラスタ管理** - 複数の Kubernetes クラスタを統一的に管理
-2. **マルチクラウド運用** - AWS、Azure、GCP、オンプレミスの混在環境
-3. **エンタープライズセキュリティ** - RBAC、認証統合、ポリシー管理
-4. **運用の簡素化** - GUI による直感的な操作、アプリカタログ
-
-Kubernetes の複雑さを抽象化し、エンタープライズグレードの管理機能を提供することで、大規模な Kubernetes 環境の運用を効率化します。
+- 複数 Kubernetes クラスタを一元管理し、運用統制を進めやすい。
+- RBAC と配布標準化により、チーム横断の管理負荷を下げやすい。
+- 導入初期に権限・監視・更新方針を固めると、長期運用を安定化しやすい。

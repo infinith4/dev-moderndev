@@ -150,7 +150,7 @@
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [Apache Airflow](https://airflow.apache.org/) | バッチワークフロー設計・ジョブオーケストレーション | [詳細](./ツール/帳票_データ処理/Apache_Airflow.md) |
-| [Quartz Scheduler](https://www.quartz-scheduler.org/) | ジョブスケジュール設計（Cronベース） | [詳細](./ツール/開発ツール/Quartz_Scheduler.md) |
+| [Quartz Scheduler](https://www.quartz-scheduler.org/) | ジョブスケジュール設計（Cronベース） | [詳細](./ツール/バッチ処理_スケジューラ/Quartz_Scheduler.md) |
 | [Draw.io](https://www.diagrams.net/) | バッチフロー可視化 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
 | [PlantUML](https://plantuml.com/) | バッチ処理フロー・シーケンスのテキストベース設計 | [詳細](./ツール/設計_モデリング/PlantUML.md) |
 
@@ -204,3 +204,4 @@
 - [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
 - [ユーザのための要件定義ガイド 第2版](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/youkenteigi20190912.html)
 - [機能要件の合意形成ガイド（画面/データモデル/バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html)
+

@@ -68,7 +68,7 @@
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
-| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureリソース連携確認 | [詳細](./ツール/開発ツール/Azure_CLI.md) |
+| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureリソース連携確認 | [詳細](./ツール/CLI_運用管理/Azure_CLI.md) |
 | [AWS CLI](https://aws.amazon.com/cli/) | AWSリソース連携確認 | |
 | [InSpec](https://www.inspec.io/) | リソース状態、設定準拠の結合確認 | [詳細](./ツール/インフラテスト/InSpec.md) |
 
@@ -175,3 +175,4 @@
 ## 8. 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 - ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
+

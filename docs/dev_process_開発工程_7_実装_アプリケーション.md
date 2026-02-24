@@ -97,7 +97,7 @@
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
-| [Maven](https://maven.apache.org/) | Javaビルド・依存管理 | [詳細](./ツール/開発ツール/Maven.md) |
+| [Maven](https://maven.apache.org/) | Javaビルド・依存管理 | [詳細](./ツール/ビルド_タスク管理/Maven.md) |
 | [NuGet](https://www.nuget.org/) | .NETパッケージ管理 | [詳細](./ツール/パッケージ管理ツール/NuGet.md) |
 | [Poetry](https://python-poetry.org/) | Python依存管理・仮想環境管理 | [詳細](./ツール/パッケージ管理ツール/Poetry.md) |
 | [pnpm](https://pnpm.io/) | TypeScript依存管理・モノレポ管理 |  |
@@ -122,33 +122,33 @@
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
-| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | [詳細](./ツール/開発ツール/Checkstyle.md) |
-| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 | [詳細](./ツール/開発ツール/SpotBugs.md) |
-| [Google Java Format](https://github.com/google/google-java-format) | Javaコード自動整形 | [詳細](./ツール/開発ツール/Google_Java_Format.md) |
+| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | [詳細](./ツール/Formatter_Linter/Checkstyle.md) |
+| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 | [詳細](./ツール/静的解析_型チェック/SpotBugs.md) |
+| [Google Java Format](https://github.com/google/google-java-format) | Javaコード自動整形 | [詳細](./ツール/Formatter_Linter/Google_Java_Format.md) |
 
 ### 3.2 C#
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [StyleCop Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) | C#コーディング規約チェック |  |
-| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析ルール適用 | [詳細](./ツール/開発ツール/Roslyn_Analyzers.md) |
-| [EditorConfig](https://editorconfig.org/) | C#コードスタイル統一 | [詳細](./ツール/開発ツール/EditorConfig.md) |
+| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析ルール適用 | [詳細](./ツール/静的解析_型チェック/Roslyn_Analyzers.md) |
+| [EditorConfig](https://editorconfig.org/) | C#コードスタイル統一 | [詳細](./ツール/Formatter_Linter/EditorConfig.md) |
 
 ### 3.3 Python
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
-| [Ruff](https://docs.astral.sh/ruff/) | Python静的解析・整形 | [詳細](./ツール/開発ツール/Ruff.md) |
-| [Black](https://black.readthedocs.io/) | Pythonコード自動整形 | [詳細](./ツール/開発ツール/Black.md) |
-| [mypy](https://mypy-lang.org/) | 型チェック | [詳細](./ツール/開発ツール/mypy.md) |
+| [Ruff](https://docs.astral.sh/ruff/) | Python静的解析・整形 | [詳細](./ツール/Formatter_Linter/Ruff.md) |
+| [Black](https://black.readthedocs.io/) | Pythonコード自動整形 | [詳細](./ツール/Formatter_Linter/Black.md) |
+| [mypy](https://mypy-lang.org/) | 型チェック | [詳細](./ツール/静的解析_型チェック/mypy.md) |
 
 ### 3.4 TypeScript
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
-| [ESLint](https://eslint.org/) | TypeScript静的解析 | [詳細](./ツール/開発ツール/ESLint.md) |
+| [ESLint](https://eslint.org/) | TypeScript静的解析 | [詳細](./ツール/Formatter_Linter/ESLint.md) |
 | [TypeScript ESLint](https://typescript-eslint.io/) | TypeScript専用ルール適用 |  |
-| [Prettier](https://prettier.io/) | コード自動整形 | [詳細](./ツール/開発ツール/Prettier.md) |
+| [Prettier](https://prettier.io/) | コード自動整形 | [詳細](./ツール/Formatter_Linter/Prettier.md) |
 
 **有用なドキュメント**
 
@@ -228,4 +228,5 @@
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 - [IPA 組込みソフトウェア向け 設計ガイド（事例編）ESDR](https://www.ipa.go.jp/)
 - [Google Engineering Practices](https://google.github.io/eng-practices/)
+
 

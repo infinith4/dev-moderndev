@@ -2,200 +2,121 @@
 
 ## 概要
 
-Litmusは、CNCFインキュベーティングプロジェクトのKubernetesネイティブなカオスエンジニアリングプラットフォームです。ChaosHub経由で提供される豊富なカオス実験（Pod削除、ネットワーク遅延、CPU負荷、ディスクI/O等）をKubernetesクラスタ上で実行し、システムの耐障害性を検証します。ChaosCenter（Webダッシュボード）で実験の作成・スケジューリング・結果分析を一元管理でき、GitOpsモードによるカオス実験のバージョン管理にも対応しています。
+Litmus は Kubernetes 向けのカオスエンジニアリングプラットフォームである。障害注入と実験管理を通じて、アプリケーションやインフラの耐障害性を検証し、運用改善に繋げられる。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| OSS 版 | 無料（Apache License 2.0） |
+| 補足 | 実験対象環境と監視基盤の運用コストは別途発生 |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| Kubernetes 特化 | CRD ベースで実験を管理 |
+| 実験テンプレート | 主要障害シナリオを素早く適用 |
+| ワークフロー | 実験の順序と条件を制御可能 |
+| 可視化 | 実験結果を追跡しやすい |
+| GitOps 連携 | 実験定義をコード管理しやすい |
 
 ## 主な機能
 
-### 1. カオス実験
+### 障害実験機能
 
-- **Pod Chaos**: Pod削除、コンテナキル、Pod I/Oストレス
-- **Network Chaos**: ネットワーク遅延、パケットロス、DNS障害
-- **Node Chaos**: ノードドレイン、ノードCPU/メモリ負荷、ノードリスタート
-- **Stress Chaos**: CPU/メモリ/ディスクI/Oストレス注入
-- **AWS/GCP/Azure Chaos**: クラウドリソース（EC2、VM等）の障害注入
+| 機能 | 説明 |
+|------|------|
+| Pod 障害注入 | 停止、削除、再起動の再現 |
+| ネットワーク障害 | 遅延、ロス、分断の再現 |
+| リソース負荷 | CPU/メモリ負荷試験 |
+| スケジュール実験 | 定期実験を自動化 |
 
-### 2. ChaosCenter
+### 実験管理機能
 
-- **Webダッシュボード**: カオス実験の作成・管理・モニタリング
-- **ワークフロー**: 複数の実験を組み合わせたカオスシナリオ定義
-- **スケジューリング**: Cron式による定期的なカオス実験実行
-- **チーム管理**: マルチテナント対応のプロジェクト・ユーザー管理
-- **レジリエンススコア**: 実験結果に基づくシステム耐障害性スコア
+| 機能 | 説明 |
+|------|------|
+| シナリオ管理 | 実験手順を再利用可能 |
+| 対象制御 | namespace/label で範囲指定 |
+| 中断制御 | 問題発生時に停止可能 |
+| 結果記録 | 実験ログと評価を蓄積 |
 
-### 3. ChaosHub
+### 運用強化機能
 
-- **実験カタログ**: 50以上のカオス実験テンプレート
-- **カスタムHub**: 独自の実験テンプレートリポジトリ
-- **バージョン管理**: Git連携による実験定義の管理
+| 機能 | 説明 |
+|------|------|
+| 監視連携 | SLO/SLI と合わせた評価 |
+| 失敗解析 | 復旧時間・影響範囲を可視化 |
+| 改善サイクル | 実験結果を運用改善へ反映 |
+| 復旧訓練 | 障害対応手順を実地検証 |
 
-### 4. GitOps対応
+## インストールとセットアップ
 
-- **ChaosEngine CR**: KubernetesカスタムリソースでカオスExperimentを定義
-- **宣言的管理**: YAML定義によるカオス実験のGitOps運用
-- **ArgoCD/Flux連携**: GitOpsツールとの統合
+公式URL:
+- [Litmus 公式](https://litmuschaos.io/)
+- [Litmus Docs](https://docs.litmuschaos.io/)
+- [Litmus GitHub](https://github.com/litmuschaos/litmus)
 
-## 利用方法
+セットアップの要点:
+1. Litmus を対象クラスタへ導入する。
+2. 実験対象サービスと許容影響範囲を定義する。
+3. 監視アラートとロールバック手順を事前整備する。
 
-### インストール
+## 基本的な使い方
 
-```bash
-# Helmによるインストール
-helm repo add litmuschaos https://litmuschaos.github.io/litmus-helm/
-helm repo update
+1. 低リスク領域で単一障害シナリオから開始する。
+2. 実験中は SLO 指標とアラートを監視する。
+3. 終了後に影響範囲と復旧時間を記録する。
+4. 発見事項を運用手順や設定改善へ反映する。
 
-# Litmus 3.x（ChaosCenter込み）のインストール
-helm install litmus litmuschaos/litmus \
-  --namespace litmus --create-namespace
-
-# ChaosCenter UIへのアクセス（デフォルト: admin/litmus）
-kubectl port-forward svc/litmusportal-frontend-service -n litmus 9091:9091
-
-# kubectl によるインストール
-kubectl apply -f https://litmuschaos.github.io/litmus/3.0.0/litmus-3.0.0.yaml
-```
-
-### カオス実験の定義（ChaosEngine CR）
-
-```yaml
-# pod-delete-experiment.yaml
-apiVersion: litmuschaos.io/v1alpha1
-kind: ChaosEngine
-metadata:
-  name: nginx-chaos
-  namespace: default
-spec:
-  engineState: active
-  appinfo:
-    appns: default
-    applabel: app=nginx
-    appkind: deployment
-  chaosServiceAccount: litmus-admin
-  experiments:
-    - name: pod-delete
-      spec:
-        components:
-          env:
-            - name: TOTAL_CHAOS_DURATION
-              value: "30"
-            - name: CHAOS_INTERVAL
-              value: "10"
-            - name: FORCE
-              value: "false"
-```
-
-```bash
-# 実験の実行
-kubectl apply -f pod-delete-experiment.yaml
-
-# 結果の確認
-kubectl get chaosresult nginx-chaos-pod-delete -n default -o yaml
-```
-
-### ネットワーク遅延実験
-
-```yaml
-apiVersion: litmuschaos.io/v1alpha1
-kind: ChaosEngine
-metadata:
-  name: network-chaos
-  namespace: default
-spec:
-  engineState: active
-  appinfo:
-    appns: default
-    applabel: app=myapp
-    appkind: deployment
-  chaosServiceAccount: litmus-admin
-  experiments:
-    - name: pod-network-latency
-      spec:
-        components:
-          env:
-            - name: NETWORK_LATENCY
-              value: "200"
-            - name: TOTAL_CHAOS_DURATION
-              value: "60"
-            - name: NETWORK_INTERFACE
-              value: "eth0"
-```
-
-### CI/CD統合（GitHub Actions）
-
-```yaml
-# .github/workflows/chaos-test.yml
-name: Litmus Chaos Test
-
-on:
-  schedule:
-    - cron: '0 2 * * 1'
-
-jobs:
-  chaos:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: azure/setup-kubectl@v4
-      - name: Apply Chaos Experiment
-        run: kubectl apply -f chaos-experiments/
-      - name: Wait for Completion
-        run: |
-          sleep 120
-          kubectl get chaosresult -n default -o json | jq '.items[].status.experimentStatus.verdict'
-      - name: Verify Resilience Score
-        run: |
-          VERDICT=$(kubectl get chaosresult -n default -o jsonpath='{.items[0].status.experimentStatus.verdict}')
-          if [ "$VERDICT" != "Pass" ]; then exit 1; fi
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Litmus（OSS）** | 無料 | Apache License 2.0、CNCFインキュベーティング |
-| **Harness Chaos Engineering** | 有料 | エンタープライズサポート、SaaS版ChaosCenter |
+最小コマンド:
+- インストール例: `kubectl apply -f https://litmuschaos.github.io/litmus/litmus-operator-v3.0.0.yaml`
 
 ## メリット
 
-1. **CNCFプロジェクト**: CNCFインキュベーティングプロジェクトとしてコミュニティが活発
-2. **Kubernetesネイティブ**: CRDベースでKubernetesの運用に自然に統合
-3. **ChaosCenter**: WebUIで実験の管理・可視化が容易
-4. **豊富な実験**: ChaosHubで50以上のカオス実験テンプレートを提供
-5. **GitOps対応**: YAML定義による宣言的なカオス実験管理
-6. **マルチクラウド**: AWS、GCP、Azure等のクラウドリソース障害注入に対応
-7. **レジリエンススコア**: 定量的なシステム耐障害性評価
+- 障害耐性を定量的に評価しやすい
+- 復旧手順の実効性を検証できる
+- カオス実験を継続運用しやすい
+- Kubernetes 運用の信頼性向上に寄与する
 
 ## デメリット
 
-1. **Kubernetes専用**: Kubernetes以外の環境には非対応
-2. **学習コスト**: ChaosEngine、ChaosExperiment等のCRD概念の理解が必要
-3. **リソース消費**: ChaosCenterの常駐コンポーネントがクラスタリソースを消費
-4. **実験設計**: 効果的なカオス実験のシナリオ設計にはSRE知識が必要
-5. **本番適用リスク**: 不適切な設定で本番サービスに影響を与える可能性
+- 実験設計を誤ると影響が大きくなる
+- 監視・復旧体制が未整備だと危険
+- 組織運用ルールなしでは継続しにくい
 
-## 代替ツール
+## 他ツールとの比較
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Chaos Mesh** | CNCFインキュベーティング | Litmusと同等のK8sカオスエンジニアリング、Dashboard内蔵 |
-| **Gremlin** | 商用カオスプラットフォーム | Litmusよりエンタープライズ向け、SaaS提供 |
-| **AWS Fault Injection Service** | AWSネイティブ | AWS環境専用、マネージドサービス |
-| **Chaos Toolkit** | 汎用カオスツール | K8s以外も対応、Python拡張可能 |
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Litmus | Kubernetes カオス実験 | 実験管理と運用サイクルに強い |
+| Chaos Mesh | Kubernetes カオス実験 | CRD ベースで柔軟な注入が可能 |
+| Gremlin | カオス実験（商用） | 管理機能とサポートが充実 |
+| k6 | 負荷試験 | カオスではなく性能評価に特化 |
 
-## 公式リンク
+## ベストプラクティス
 
-- **公式サイト**: [https://litmuschaos.io/](https://litmuschaos.io/)
-- **ドキュメント**: [https://docs.litmuschaos.io/](https://docs.litmuschaos.io/)
-- **GitHub**: [https://github.com/litmuschaos/litmus](https://github.com/litmuschaos/litmus)
-- **ChaosHub**: [https://hub.litmuschaos.io/](https://hub.litmuschaos.io/)
-- **CNCF**: [https://www.cncf.io/projects/litmus/](https://www.cncf.io/projects/litmus/)
+### 1. 実験範囲を段階拡大
 
-## 関連ドキュメント
+- 単一サービスから開始する
+- 影響を確認しながら範囲を広げる
 
-- [Chaos Mesh](./Chaos_Mesh.md)
+### 2. 指標で評価
 
----
+- 事前に評価指標（SLO、MTTR）を決める
+- 実験結果を数値で比較する
 
-**カテゴリ**: テスト
-**対象工程**: テスト・運用
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 3. 改善アクションを固定
+
+- 実験後レビューを必須化する
+- 改善完了までタスク管理する
+
+## 公式ドキュメント
+
+- 公式サイト: https://litmuschaos.io/
+- ドキュメント: https://docs.litmuschaos.io/
+- GitHub: https://github.com/litmuschaos/litmus
+
+## まとめ
+
+Litmus は Kubernetes 環境での障害実験を継続運用するための有効な基盤である。復旧性を高める運用サイクルを構築したいチームに適している。

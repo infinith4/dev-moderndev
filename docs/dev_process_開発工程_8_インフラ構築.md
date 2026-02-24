@@ -45,7 +45,7 @@
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [Terraform](https://www.terraform.io/) | VNet/VPC/Subnet/Route/NSG等の一括構築 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
-| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureネットワークリソースの作成・更新・確認 | [詳細](./ツール/開発ツール/Azure_CLI.md) |
+| [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureネットワークリソースの作成・更新・確認 | [詳細](./ツール/CLI_運用管理/Azure_CLI.md) |
 | [AWS CLI](https://aws.amazon.com/cli/) | AWSネットワークリソースの作成・更新・確認 |  |
 
 **有用なドキュメント**
@@ -127,7 +127,7 @@
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [Terraform](https://www.terraform.io/) | ストレージ/バックアップ構成の適用 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
-| [AzCopy](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-v10) | Azureストレージへのデータ転送/初期投入 | [詳細](./ツール/開発ツール/AzCopy.md) |
+| [AzCopy](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-v10) | Azureストレージへのデータ転送/初期投入 | [詳細](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-v10) |
 | [AWS CLI](https://aws.amazon.com/cli/) | S3同期、ライフサイクル設定適用 |  |
 
 **有用なドキュメント**
@@ -189,3 +189,5 @@
 ## 8. 参考資料
 - IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
 - [非機能要求グレード（IPA）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html)
+
+

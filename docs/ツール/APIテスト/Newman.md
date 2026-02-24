@@ -2,198 +2,128 @@
 
 ## 概要
 
-Newmanは、PostmanコレクションをコマンドラインからCI/CDパイプラインで自動実行するためのCLIツールです。Postmanで作成したAPIテスト（リクエスト、テストスクリプト、環境変数）をそのまま`newman run`コマンドで実行し、HTML/JUnit/JSON形式のレポートを生成します。Node.jsベースで動作し、npm経由でインストールでき、GitHub Actions、Jenkins、GitLab CI等のCI/CDツールとシームレスに統合できます。
+Newman は Postman Collection を CLI で実行するための公式ツールである。ローカル検証だけでなく、CI/CD で API テストを自動実行し、レポート出力や失敗判定まで一貫して扱える。GUI に依存しない再現性の高い運用に向いている。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| OSS 版 | 無料（Apache License 2.0） |
+| 商用利用 | ライセンス上可能（組織ポリシー確認は必要） |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| Postman 互換 | Collection / Environment をそのまま実行 |
+| CLI 実行 | ローカル・CI で同一コマンド運用 |
+| レポート出力 | CLI、JSON、JUnit、HTML などに対応 |
+| 自動化向き | exit code により失敗を明確に判定 |
+| 軽量導入 | Node.js 環境があれば即利用可能 |
 
 ## 主な機能
 
-### 1. コレクション実行
+### 実行機能
 
-- **コレクション実行**: Postman Collection v2.1形式のJSON実行
-- **環境変数**: 環境ファイル（`-e`）、グローバル変数（`-g`）の適用
-- **データ駆動テスト**: CSVやJSONファイルによる反復実行（`-d`）
-- **フォルダ指定**: コレクション内の特定フォルダのみ実行（`--folder`）
-- **反復実行**: 同一コレクションの複数回実行（`-n`）
+| 機能 | 説明 |
+|------|------|
+| Collection 実行 | 1コマンドで API テストを連続実行 |
+| Environment 切替 | dev/stg/prod など環境差分を吸収 |
+| データ駆動テスト | CSV/JSON を読み込んだ反復実行 |
+| 実行制御 | フォルダ指定、反復回数、タイムアウト設定 |
 
-### 2. レポート
+### レポート機能
 
-- **CLI出力**: ターミナル上のテスト結果サマリ
-- **HTML**: `newman-reporter-htmlextra`によるリッチなHTMLレポート
-- **JUnit XML**: CI/CDツールのテスト結果連携用
-- **JSON**: 機械処理用の詳細結果
+| 機能 | 説明 |
+|------|------|
+| CLI レポーター | コンソールで結果を即確認 |
+| JSON/JUnit | CI 連携に使いやすい形式で出力 |
+| HTML 拡張 | `newman-reporter-htmlextra` などに対応 |
+| 成果物保存 | パイプラインのアーティファクトとして保管 |
 
-### 3. テストスクリプト
+### 自動化機能
 
-- **Pre-request Script**: リクエスト送信前の前処理
-- **Test Script**: レスポンス検証（ステータスコード、JSON Schema、値チェック）
-- **変数設定**: テスト間での変数受け渡し
-- **Chai.js**: アサーションライブラリによる柔軟な検証
+| 機能 | 説明 |
+|------|------|
+| 失敗時終了コード | CI でビルド失敗を明確化 |
+| シークレット注入 | 環境変数や CI secrets と連携 |
+| 並列ジョブ運用 | 環境別・サービス別の分割実行 |
+| スケジュール実行 | cron や CI スケジュール実行に対応 |
 
-### 4. 認証・セキュリティ
+## インストールとセットアップ
 
-- **Bearer Token**: OAuth2トークン認証
-- **Basic Auth**: 基本認証
-- **API Key**: ヘッダー/クエリパラメータによるAPIキー
-- **SSL証明書**: クライアント証明書の指定
+公式URL:
+- [Newman 公式](https://www.npmjs.com/package/newman)
+- [Postman Docs](https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/)
+- [Newman GitHub](https://github.com/postmanlabs/newman)
 
-## 利用方法
+セットアップの要点:
+1. `newman` をグローバルインストールする。
+2. 実行対象の Collection と Environment をリポジトリに配置する。
+3. 必要に応じて HTML など追加レポーターを導入する。
 
-### インストール
+## 基本的な使い方
 
-```bash
-# npm でグローバルインストール
-npm install -g newman
+1. まず Collection 単体を実行し、ローカルで成功することを確認する。
+2. 次に Environment を指定して環境差分（URL、認証情報）を切り替える。
+3. データ駆動テストが必要な API は CSV/JSON を追加する。
+4. CI 用には JSON/JUnit レポートを出力し、失敗時にジョブを落とす。
 
-# HTMLレポーター追加
-npm install -g newman-reporter-htmlextra
-
-# バージョン確認
-newman --version
-```
-
-### 基本実行
-
-```bash
-# ローカルコレクションファイルの実行
-newman run collection.json
-
-# 環境変数ファイル指定
-newman run collection.json -e environment.json
-
-# グローバル変数指定
-newman run collection.json -e env.json -g globals.json
-
-# データファイルによる反復実行
-newman run collection.json -d testdata.csv -n 5
-
-# 特定フォルダのみ実行
-newman run collection.json --folder "User API"
-
-# タイムアウト設定
-newman run collection.json --timeout-request 10000
-```
-
-### レポート生成
-
-```bash
-# HTMLレポート生成
-newman run collection.json \
-  -r htmlextra \
-  --reporter-htmlextra-export ./reports/report.html
-
-# 複数レポーター同時出力
-newman run collection.json \
-  -r cli,htmlextra,junit \
-  --reporter-htmlextra-export ./reports/report.html \
-  --reporter-junit-export ./reports/junit.xml
-
-# JSON結果出力
-newman run collection.json \
-  -r json \
-  --reporter-json-export ./reports/results.json
-```
-
-### CI/CD統合（GitHub Actions）
-
-```yaml
-# .github/workflows/api-test.yml
-name: API Tests
-
-on: [push, pull_request]
-
-jobs:
-  api-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install Newman
-        run: npm install -g newman newman-reporter-htmlextra
-      - name: Run API Tests
-        run: |
-          newman run postman/collection.json \
-            -e postman/environment.json \
-            -r cli,htmlextra,junit \
-            --reporter-htmlextra-export reports/report.html \
-            --reporter-junit-export reports/junit.xml
-      - name: Upload Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: api-test-report
-          path: reports/
-```
-
-### Node.js APIとしての利用
-
-```javascript
-const newman = require('newman');
-
-newman.run({
-    collection: require('./collection.json'),
-    environment: require('./environment.json'),
-    reporters: ['cli', 'htmlextra'],
-    reporter: {
-        htmlextra: {
-            export: './reports/report.html'
-        }
-    }
-}, function (err, summary) {
-    if (err) { throw err; }
-    console.log('Total requests:', summary.run.stats.requests.total);
-    console.log('Failed:', summary.run.stats.assertions.failed);
-});
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Newman** | 無料 | オープンソース、Apache License 2.0 |
-| **Postman（Free）** | 無料 | コレクション作成、基本的なコラボレーション |
-| **Postman（Pro/Enterprise）** | 有料 | 高度なモニタリング、チーム管理、Postman Cloud |
+最小コマンド:
+- 単体実行: `newman run ./postman/MyCollection.json`
+- 環境指定: `newman run ./postman/MyCollection.json -e ./postman/dev.environment.json`
 
 ## メリット
 
-1. **Postman互換**: Postmanで作成したコレクションをそのまま実行可能
-2. **CI/CD統合**: コマンドラインベースで各CIツールと容易に統合
-3. **データ駆動**: CSV/JSONによるパラメータ化テストで網羅性向上
-4. **豊富なレポーター**: HTML、JUnit、JSON等の出力形式に対応
-5. **環境分離**: 環境変数ファイルで開発/ステージング/本番を切り替え
-6. **Node.js API**: プログラマティックな実行でカスタムワークフロー構築可能
+- Postman 資産をそのまま CI に載せられる
+- GUI 非依存のため再現性が高い
+- レポート形式が豊富で運用へ組み込みやすい
+- 導入コストが低く小規模案件でも使いやすい
 
 ## デメリット
 
-1. **Postman依存**: テストコレクションの作成にPostmanが必要
-2. **GUIなし**: テスト結果の確認はレポートファイルまたはターミナル出力
-3. **パフォーマンステスト不可**: 負荷テストには対応していない（k6やJMeterが代替）
-4. **認証フロー**: OAuth2のインタラクティブ認証フローは手動トークン取得が必要
-5. **デバッグ**: テスト失敗時のデバッグはPostman GUIの方が効率的
+- 大規模 Collection では実行時間が長くなりやすい
+- スクリプト依存が増えると保守負荷が上がる
+- API 仕様管理自体は別ツールで補完が必要
 
-## 代替ツール
+## Docker での使用
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Postman CLI** | Postman公式CLI（新版） | Newmanの後継、Postman Cloud連携が充実 |
-| **REST Assured** | Java APIテスト | Java/Groovyで記述、Newmanよりプログラマブル |
-| **Karate** | APIテスト/BDD | Gherkin風記法、Newmanより機能豊富 |
-| **Hurl** | CLI APIテスト | シンプルなテキスト形式、軽量 |
+`postman/newman` イメージを使うと、ローカル Node 環境に依存せず実行環境を統一できる。Collection とレポート出力先をボリュームマウントして使うと運用しやすい。
 
-## 公式リンク
+## 他ツールとの比較
 
-- **GitHub**: [https://github.com/postmanlabs/newman](https://github.com/postmanlabs/newman)
-- **npm**: [https://www.npmjs.com/package/newman](https://www.npmjs.com/package/newman)
-- **Postman Docs**: [https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/](https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/)
-- **htmlextra Reporter**: [https://github.com/DannyDainton/newman-reporter-htmlextra](https://github.com/DannyDainton/newman-reporter-htmlextra)
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Newman | Postman Collection 自動実行 | CLI 中心、CI 連携が容易 |
+| Postman CLI | Postman ワークスペース連携 | Postman 機能との統合が強い |
+| REST Assured | Java テストコード | コードベースで柔軟に記述 |
+| k6 | 負荷・性能試験 | パフォーマンステストに強い |
 
-## 関連ドキュメント
+## ベストプラクティス
 
-- [Allure Report](./Allure_Report.md)
+### 1. Collection を責務分割
 
----
+- 認証、ユーザー、決済などドメインごとに分離する
+- 実行時間短縮のためジョブを分割する
 
-**カテゴリ**: テスト
-**対象工程**: テスト・CI/CD
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 2. 環境変数を厳格管理
+
+- API キーは CI secrets から注入する
+- 固定値は Environment に直書きしない
+
+### 3. レポートを標準化
+
+- JUnit を共通形式として保存する
+- 失敗ログと合わせて追跡できるようにする
+
+## 公式ドキュメント
+
+- npm: https://www.npmjs.com/package/newman
+- ドキュメント: https://learning.postman.com/docs/collections/using-newman-cli/command-line-integration-with-newman/
+- GitHub: https://github.com/postmanlabs/newman
+
+## まとめ
+
+- Postman Collection を CLI 実行できるため、既存の手動テスト資産を自動化へ移行しやすい。
+- CI/CD と組み合わせることで、API 回帰テストを継続的に実行できる。
+- Environment とレポート運用を標準化すると、失敗分析と品質ゲート管理を効率化できる。

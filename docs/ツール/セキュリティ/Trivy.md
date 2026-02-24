@@ -196,7 +196,7 @@ jobs:
 ## 関連ドキュメント
 
 - [OWASP Dependency-Check](./OWASP_Dependency_Check.md)
-- [ESLint](../開発ツール/ESLint.md)
+- [ESLint](../Formatter_Linter/ESLint.md)
 
 ---
 
@@ -204,3 +204,4 @@ jobs:
 **対象工程**: 実装・テスト・運用
 **最終更新**: 2025年12月
 **ドキュメントバージョン**: 1.0
+

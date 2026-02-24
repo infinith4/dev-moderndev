@@ -2,275 +2,119 @@
 
 ## 概要
 
-Terratestは、Gruntwork社が開発したGo言語ベースのインフラストラクチャコードのテスティングフレームワークです。Terraform、Packer、Docker、Kubernetesなどのインフラ自動化ツールに対して自動テストを作成し、実際のクラウド環境でコードを検証できます。Infrastructure as Code (IaC) の品質を保証し、本番環境へのデプロイ前に問題を早期発見することを目的としています。
+Terratest は Go で IaC とインフラの実行時検証を行うテストライブラリである。Terraform、Kubernetes、クラウド環境を対象に、実際に構築したリソースへテストを実行して品質を確認できる。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| OSS 版 | 無料 |
+| 商用利用 | ライセンス上可能（組織ポリシー確認は必要） |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| 実環境検証 | デプロイ後リソースの挙動を確認可能 |
+| Terraform 親和性 | apply/destroy をテストから制御可能 |
+| Go ベース | テストロジックを柔軟に記述可能 |
+| 再利用しやすい | 共通 helper 化で標準化しやすい |
+| 回帰防止 | IaC 変更の実害を早期検知 |
 
 ## 主な機能
 
-### 1. 多様なインフラツール対応
-- **Terraform**: モジュール、リソース、出力のテスト
-- **Packer**: AMI/VM イメージのビルド検証
-- **Docker**: コンテナイメージのテスト
-- **Kubernetes**: Pod、Service、Deploymentの検証
-- **AWS、Azure、GCP**: クラウドリソースの統合テスト
+### IaC テスト機能
 
-### 2. 実環境でのテスト
-- 実際のクラウド環境にリソースをデプロイ
-- エンドツーエンドの統合テスト
-- テスト後の自動クリーンアップ
+| 機能 | 説明 |
+|------|------|
+| Terraform 実行制御 | init/plan/apply/destroy を自動化 |
+| 出力値検証 | outputs の値をテストで確認 |
+| 依存疎通確認 | エンドポイントやネットワーク接続を検証 |
+| リソース存在確認 | 実クラウド API で状態確認 |
 
-### 3. 並列実行
-- 複数テストの並行実行
-- テスト時間の短縮
-- CIパイプラインでの高速フィードバック
+### テスト設計機能
 
-### 4. リトライ・タイムアウト機能
-- リソース作成待機のリトライロジック
-- タイムアウト設定による無限待機回避
-- 非同期リソースの確実な検証
+| 機能 | 説明 |
+|------|------|
+| テスト分割 | 単体観点と統合観点を分離 |
+| 再試行制御 | 一時エラーに対するリトライ |
+| ランダム命名 | テスト環境衝突を回避 |
+| cleanup | テスト後のリソース削除を自動化 |
 
-### 5. SSH・HTTPヘルパー
-- SSH接続によるサーバー状態確認
-- HTTPエンドポイントのヘルスチェック
-- ログ取得・コマンド実行
+### 品質強化機能
 
-## 利用方法
+| 機能 | 説明 |
+|------|------|
+| 実環境回帰検知 | IaC 変更影響を高精度に検出 |
+| セキュリティ確認 | 公開設定や暗号化などを確認 |
+| 信頼性向上 | デプロイ手順の再現性を担保 |
+| 監査補助 | テスト結果を証跡化しやすい |
 
-### セットアップ
+## インストールとセットアップ
 
-```bash
-# Goのインストール（前提条件）
-# https://golang.org/doc/install
+公式URL:
+- [Terratest GitHub](https://github.com/gruntwork-io/terratest)
+- [Terratest Docs](https://terratest.gruntwork.io/)
 
-# Terratestをプロジェクトに追加
-go get github.com/gruntwork-io/terratest/modules/terraform
-go get github.com/gruntwork-io/terratest/modules/aws
-go get github.com/gruntwork-io/terratest/modules/http-helper
-```
+セットアップの要点:
+1. Go 環境を準備し Terratest を導入する。
+2. テスト対象 IaC ディレクトリ構成を整理する。
+3. テスト用クラウドアカウントとクリーンアップ方針を決める。
 
-### 基本的なTerraformテスト例
+## 基本的な使い方
 
-```go
-package test
+1. まず最小構成で apply と destroy が通るテストを作る。
+2. 次に outputs と疎通確認を追加する。
+3. 失敗時でも cleanup される設計にする。
+4. リソース名衝突を避けるため一意命名を導入する。
 
-import (
-    "testing"
-    "github.com/gruntwork-io/terratest/modules/terraform"
-    "github.com/stretchr/testify/assert"
-)
-
-func TestTerraformBasicExample(t *testing.T) {
-    t.Parallel()
-
-    terraformOptions := &terraform.Options{
-        // Terraformコードのパス
-        TerraformDir: "../examples/terraform-basic-example",
-
-        // 変数を渡す
-        Vars: map[string]interface{}{
-            "instance_type": "t2.micro",
-        },
-    }
-
-    // テスト終了時にリソースを削除
-    defer terraform.Destroy(t, terraformOptions)
-
-    // Terraform initとapplyを実行
-    terraform.InitAndApply(t, terraformOptions)
-
-    // 出力値を取得
-    instanceID := terraform.Output(t, terraformOptions, "instance_id")
-    
-    // アサーション
-    assert.NotEmpty(t, instanceID)
-}
-```
-
-### AWSリソースの検証例
-
-```go
-package test
-
-import (
-    "testing"
-    "github.com/gruntwork-io/terratest/modules/aws"
-    "github.com/gruntwork-io/terratest/modules/terraform"
-    "github.com/stretchr/testify/assert"
-)
-
-func TestEC2Instance(t *testing.T) {
-    t.Parallel()
-
-    terraformOptions := &terraform.Options{
-        TerraformDir: "../",
-    }
-
-    defer terraform.Destroy(t, terraformOptions)
-    terraform.InitAndApply(t, terraformOptions)
-
-    // EC2インスタンスIDを取得
-    instanceID := terraform.Output(t, terraformOptions, "instance_id")
-    region := "us-east-1"
-
-    // インスタンスが実行中であることを確認
-    instanceStatus := aws.GetEc2InstanceState(t, instanceID, region)
-    assert.Equal(t, "running", instanceStatus)
-
-    // タグの検証
-    tags := aws.GetEc2InstanceTags(t, instanceID, region)
-    assert.Equal(t, "test-instance", tags["Name"])
-}
-```
-
-### HTTPエンドポイントのテスト例
-
-```go
-package test
-
-import (
-    "testing"
-    "time"
-    http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
-    "github.com/gruntwork-io/terratest/modules/terraform"
-)
-
-func TestWebServer(t *testing.T) {
-    t.Parallel()
-
-    terraformOptions := &terraform.Options{
-        TerraformDir: "../",
-    }
-
-    defer terraform.Destroy(t, terraformOptions)
-    terraform.InitAndApply(t, terraformOptions)
-
-    // ALBのDNS名を取得
-    albDNS := terraform.Output(t, terraformOptions, "alb_dns_name")
-    url := "http://" + albDNS
-
-    // HTTPエンドポイントが200を返すまでリトライ
-    maxRetries := 30
-    timeBetweenRetries := 5 * time.Second
-    expectedStatus := 200
-    expectedBody := "Hello, World!"
-
-    http_helper.HttpGetWithRetry(
-        t,
-        url,
-        nil,
-        expectedStatus,
-        expectedBody,
-        maxRetries,
-        timeBetweenRetries,
-    )
-}
-```
-
-### テスト実行
-
-```bash
-# 単一テスト実行
-go test -v -timeout 30m
-
-# 特定のテストのみ実行
-go test -v -run TestTerraformBasicExample -timeout 30m
-
-# 並列実行（デフォルトで並列）
-go test -v -parallel 10 -timeout 60m
-```
-
-## CI/CD統合
-
-### GitHub Actions例
-
-```yaml
-name: Terratest
-
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.21
-      
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.6.0
-      
-      - name: Run Terratest
-        run: |
-          cd test
-          go test -v -timeout 60m
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-```
+最小コマンド:
+- テスト実行: `go test ./test -v`
 
 ## メリット
 
-###  主な利点
-
-1. **実環境テスト**: 本物のクラウド環境で検証
-2. **早期バグ発見**: 本番デプロイ前に問題を検出
-3. **Go言語**: 高速、並列実行、クロスプラットフォーム
-4. **多様なツール対応**: Terraform、Packer、Docker、K8s
-5. **リトライロジック**: 非同期リソースの確実な検証
-6. **自動クリーンアップ**: defer文でリソース削除を保証
-7. **CI/CD統合**: GitHub Actions、GitLab CI等と統合可能
-8. **オープンソース**: MIT
-
-ライセンス、無料
-9. **豊富なヘルパー**: AWS、Azure、GCP、SSHヘルパー充実
-10. **コミュニティ活発**: Gruntwork社の継続的な開発
+- IaC の実害を伴う不具合を早期に検出できる
+- 実運用に近い検証で信頼性が高い
+- Go の柔軟性で複雑な確認が可能
+- IaC 回帰テストを標準化しやすい
 
 ## デメリット
 
-###  制約・課題
+- 実クラウド実行のため時間とコストがかかる
+- テスト設計が弱いと flake が発生しやすい
+- Go とクラウド API の知識が必要
 
-1. **実環境コスト**: 実際のクラウドリソースを作成するため課金発生
-2. **テスト時間長い**: リソース作成・削除に時間がかかる
-3. **Go言語必須**: Goの学習コストが必要
-4. **並列実行の制約**: クラウドAPIレート制限に注意
-5. **デバッグ困難**: 失敗時のトラブルシューティングが難しい
-6. **クリーンアップ失敗**: ネットワークエラー時にリソースが残る可能性
-7. **認証情報管理**: AWSクレデンシャルのセキュアな管理が必要
-8. **ステートファイル競合**: 並列実行時のTerraformステート管理に注意
+## 他ツールとの比較
 
-## 代替ツール
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Terratest | IaC 実行時検証 | 実環境での統合テストに強い |
+| AWS CDK Assertions | CDK テンプレート検証 | 合成テンプレート検証に特化 |
+| tflint | Terraform lint | 静的解析中心 |
+| InSpec | 構成監査 | コンプライアンス検証に強い |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Kitchen-Terraform** | Ruby、Test Kitchenベース | Terratestより柔軟性低い |
-| **Terraform Validate** | 構文チェックのみ | 実環境テストは不可 |
-| **Checkov** | 静的解析、ポリシーチェック | 実環境テストは不可 |
-| **tfsec** | セキュリティ静的解析 | 実環境テストは不可 |
-| **InSpec** | インフラテスト（Terraform以外も対応） | Terratestより汎用的 |
-| **Pulumi Testing** | Pulumi専用テストフレームワーク | Terraform非対応 |
+## ベストプラクティス
 
-## 公式リンク
+### 1. テスト階層を分離
 
-- **GitHubリポジトリ**: [https://github.com/gruntwork-io/terratest](https://github.com/gruntwork-io/terratest)
-- **ドキュメント**: [https://terratest.gruntwork.io/](https://terratest.gruntwork.io/)
-- **サンプル**: [https://github.com/gruntwork-io/terratest/tree/master/examples](https://github.com/gruntwork-io/terratest/tree/master/examples)
-- **Gruntwork Blog**: [https://blog.gruntwork.io/](https://blog.gruntwork.io/)
+- 軽量テストと重い統合テストを分ける
+- 実行時間を制御しやすくする
 
-## 関連ドキュメント
+### 2. cleanup を必須化
 
-- [インフラテストツール一覧](../インフラテストツール/)
-- [Terraform](../IaCツール/Terraform.md)
-- [Checkov](../セキュリティツール/Checkov.md)
-- [InfrastructureTest Best Practices](../../best-practices/infrastructure-testing.md)
+- 失敗時も `destroy` を保証する
+- 残存リソースを定期棚卸しする
 
----
+### 3. 検証観点を固定
 
-**カテゴリ**: インフラテストツール  
-**対象工程**: インフラ構築、インフラテスト  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+- 接続性、セキュリティ、出力値を標準観点にする
+- 新規モジュール追加時も同じ基準で確認する
 
+## 公式ドキュメント
+
+- GitHub: https://github.com/gruntwork-io/terratest
+- ドキュメント: https://terratest.gruntwork.io/
+
+## まとめ
+
+Terratest は IaC の実行結果を本番に近い形で検証できる実用的なテスト手法である。インフラ変更の回帰リスクを下げたいチームに適している。

@@ -66,8 +66,8 @@
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
-| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | [詳細](./ツール/開発ツール/Checkstyle.md) |
-| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 | [詳細](./ツール/開発ツール/SpotBugs.md) |
+| [Checkstyle](https://checkstyle.sourceforge.io/) | Javaコーディング規約チェック | [詳細](./ツール/Formatter_Linter/Checkstyle.md) |
+| [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 | [詳細](./ツール/静的解析_型チェック/SpotBugs.md) |
 | [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) | 命名規則・コーディング規約の標準化 | [詳細](./ツール/標準_ガイドライン/Google_Java_Style_Guide.md) |
 
 ### 3.2 C#
@@ -75,8 +75,8 @@
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [StyleCop Analyzers](https://github.com/DotNetAnalyzers/StyleCopAnalyzers) | C#コーディング規約チェック | |
-| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析と設計ルール適用 | [詳細](./ツール/開発ツール/Roslyn_Analyzers.md) |
-| [.NET Coding Conventions](https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/coding-conventions) | 命名規則・設計方針の標準化 | [詳細](./ツール/開発ツール/DotNET_Coding_Conventions.md) |
+| [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析と設計ルール適用 | [詳細](./ツール/静的解析_型チェック/Roslyn_Analyzers.md) |
+| [.NET Coding Conventions](https://learn.microsoft.com/dotnet/csharp/fundamentals/coding-style/coding-conventions) | 命名規則・設計方針の標準化 | [詳細](./ツール/Formatter_Linter/DotNET_Coding_Conventions.md) |
 
 ### 3.3 Python
 
@@ -84,7 +84,6 @@
 |---------|------|
 | [Ruff](https://docs.astral.sh/ruff/) | Pythonの高速Lint・フォーマット |
 | [Black](https://black.readthedocs.io/) | コード自動フォーマット |
-| [PEP 8](https://peps.python.org/pep-0008/) | コーディング規約・命名規則の基準 |
 
 ### 3.4 TypeScript
 
@@ -173,3 +172,4 @@
 - IPA 共通フレーム2013 / ISO/IEC/IEEE 12207:2017
 - [IPA API標準設計ガイド](https://www.ipa.go.jp/digital/data/jod03a000000a82y-att/api_standard_design_guide.pdf)
 - [IPA 機能要件の合意形成ガイド（データモデル編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html)
+

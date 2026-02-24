@@ -2,79 +2,85 @@
 
 ## 概要
 
-Microsoft Threat Modeling Tool（TMT）は、ソフトウェア設計段階でセキュリティ脅威を特定・分析するための無料ツールです。STRIDE（Spoofing、Tampering、Repudiation、Information Disclosure、Denial of Service、Elevation of Privilege）フレームワークに基づき、システムアーキテクチャ図からセキュリティ脅威を自動検出します。設計段階での脅威分析により、実装後の脆弱性修正コストを大幅に削減します。
+Microsoft Threat Modeling Tool（TMT）は、ソフトウェア設計段階でセキュリティ脅威を特定・分析するための無料ツールである。STRIDE（Spoofing、Tampering、Repudiation、Information Disclosure、Denial of Service、Elevation of Privilege）フレームワークに基づき、システムアーキテクチャ図からセキュリティ脅威を自動検出する。設計段階での脅威分析により、実装後の脆弱性修正コストを大幅に削減できる。
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| 無料提供 | Microsoft提供、Windows専用の無料ツール |
+| STRIDEフレームワーク | 業界標準の脅威分類モデルを採用 |
+| 自動脅威検出 | データフロー図（DFD）から脅威を自動生成 |
+| 対策提案 | 各脅威に対する緩和策を提案 |
+| レポート生成 | HTML・Excel形式でレポート出力 |
+| Azureテンプレート | Azure向けの統合テンプレートを提供 |
+| SDL統合 | Microsoft Security Development Lifecycle準拠 |
 
 ## 主な機能
 
-### 1. データフロー図（DFD）作成
-- **プロセス**: アプリケーション、サービス
-- **データストア**: データベース、ファイル
-- **外部エンティティ**: ユーザー、外部システム
-- **データフロー**: プロセス間のデータ移動
-- **トラストバウンダリ**: 信頼境界
+### データフロー図（DFD）作成
 
-### 2. STRIDE脅威分析
-- **Spoofing（なりすまし）**: 認証の脅威
-- **Tampering（改ざん）**: データ整合性の脅威
-- **Repudiation（否認）**: 監査の脅威
-- **Information Disclosure（情報漏洩）**: 機密性の脅威
-- **Denial of Service（サービス拒否）**: 可用性の脅威
-- **Elevation of Privilege（権限昇格）**: 認可の脅威
+| 機能 | 説明 |
+|------|------|
+| プロセス | アプリケーション、サービスの配置 |
+| データストア | データベース、ファイルの配置 |
+| 外部エンティティ | ユーザー、外部システムの配置 |
+| データフロー | プロセス間のデータ移動定義 |
+| トラストバウンダリ | 信頼境界の設定 |
 
-### 3. 自動脅威検出
-- **ルールベース**: 要素タイプに基づく脅威生成
-- **脅威リスト**: 検出された脅威一覧
-- **優先度**: High、Medium、Low
+### STRIDE脅威分析
 
-### 4. 対策提案
-- **緩和策**: 各脅威への対策
-- **検証**: 対策の実装状況
-- **ステータス**: Not Started、Mitigation Implemented等
+| 機能 | 説明 |
+|------|------|
+| Spoofing | なりすまし・認証の脅威検出 |
+| Tampering | データ改ざん・整合性の脅威検出 |
+| Repudiation | 否認・監査の脅威検出 |
+| Information Disclosure | 情報漏洩・機密性の脅威検出 |
+| Denial of Service | サービス拒否・可用性の脅威検出 |
+| Elevation of Privilege | 権限昇格・認可の脅威検出 |
 
-### 5. レポート
-- **HTMLレポート**: 脅威一覧、対策レポート
-- **Excel**: 脅威管理表
-- **テンプレート**: カスタムレポート
+### 対策管理
 
-## 利用方法
+| 機能 | 説明 |
+|------|------|
+| 緩和策提案 | 各脅威への対策を自動提案 |
+| ステータス管理 | Not Started、Needs Investigation、Mitigation Implemented、Not Applicable |
+| 優先度設定 | High、Medium、Lowの優先度管理 |
+| 対策記録 | 実施内容の記録と監査証跡 |
 
-### インストール
+## インストールとセットアップ
+
+公式URL:
+- [Microsoft Threat Modeling Tool ダウンロード](https://aka.ms/threatmodelingtool)
+- [公式ドキュメント](https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool)
+- [GitHub](https://github.com/microsoft/threat-modeling-tool)
+- [Microsoft SDL](https://www.microsoft.com/en-us/securityengineering/sdl)
+
+## 基本的な使い方
+
+### 1. インストール
 
 ```
-1. 公式サイトにアクセス
-   https://aka.ms/threatmodelingtool
-
+1. 公式サイトにアクセス: https://aka.ms/threatmodelingtool
 2. ダウンロード（Windows専用）
-   Threat Modeling Tool 2016.exe
-
-3. インストーラー実行
-   .NET Framework 4.5以上必須
-
-4. 起動
-   Threat Modeling Tool 2016
+3. インストーラー実行（.NET Framework 4.5以上必須）
+4. Threat Modeling Toolを起動
 ```
 
-### 基本的なモデル作成
+### 2. 新規モデル作成
 
 ```
-1. 新規モデル作成
-   File → New
-
-2. 要素追加（左ペイン）
-   - External Entity: User
-   - Process: Web Application
-   - Data Store: Database
-   - Data Flow: User → Web App → Database
-
-3. トラストバウンダリ追加
-   Web Applicationを囲む境界を追加
-
-4. 脅威分析実行
-   View → Analysis View
-   自動的に脅威が検出される
+1. File → New でモデル作成
+2. 要素追加（左ペイン）:
+   - External Entity: ユーザー
+   - Process: Webアプリケーション
+   - Data Store: データベース
+   - Data Flow: ユーザー → Web App → Database
+3. トラストバウンダリを追加
+4. View → Analysis View で脅威分析実行
 ```
 
-### Webアプリケーション例
+### 3. Webアプリケーション例
 
 ```
 要素配置:
@@ -91,7 +97,7 @@ Web Server → API Server (Internal)
 API Server → Database (SQL)
 ```
 
-### 脅威分析結果
+### 4. 脅威分析結果の確認
 
 ```
 検出される脅威例:
@@ -110,119 +116,140 @@ API Server → Database (SQL)
    - Category: Information Disclosure
    - Priority: High
    - Mitigation: Encrypt data at rest, use encrypted connections
-
-4. Elevation of Privilege
-   - Category: Elevation of Privilege
-   - Priority: Medium
-   - Mitigation: Implement principle of least privilege
 ```
 
-### 対策記録
+### 5. 対策記録とレポート生成
 
 ```
-1. 脅威選択
-   Analysis View → 脅威をクリック
+対策記録:
+1. Analysis View → 脅威をクリック
+2. State: Mitigation Implemented
+3. Justification: "Implemented TLS 1.2 encryption"
 
-2. 対策入力
-   State: Mitigation Implemented
-   Justification: "Implemented TLS 1.2 encryption"
-   Priority: (変更可能)
-
-3. ステータス管理
-   - Not Started
-   - Needs Investigation
-   - Mitigation Implemented
-   - Not Applicable
+レポート生成:
+1. Reports → Create Full Report（HTML形式）
+2. Reports → Create Excel Report（Excel形式）
 ```
 
-### レポート生成
+## テンプレート活用
 
 ```
-1. HTMLレポート
-   Reports → Create Full Report
-   → HTML形式で脅威一覧・対策レポート生成
+Azure用テンプレート:
+- File → New → Azure Template
+  - Azure Web App
+  - Azure SQL Database
+  - Azure Storage
 
-2. Excelレポート
-   Reports → Create Excel Report
-   → 脅威管理表をExcel出力
+カスタムテンプレート:
+- カスタムステンシル追加
+- 組織固有のテンプレート作成
 ```
 
-### テンプレート活用
+## 他ツールとの比較
+
+### TMT vs OWASP Threat Dragon
+
+| 機能 | Microsoft TMT | OWASP Threat Dragon |
+|------|---------------|---------------------|
+| プラットフォーム | Windows専用 | クロスプラットフォーム |
+| 価格 | 無料 | 無料（OSS） |
+| 脅威フレームワーク | STRIDE | STRIDE |
+| 自動脅威検出 | あり | 限定的 |
+| UI | デスクトップアプリ | Web/デスクトップ |
+| チーム協業 | ファイル共有 | Git連携可能 |
+| Azureテンプレート | あり | なし |
+
+### TMT vs IriusRisk
+
+| 機能 | Microsoft TMT | IriusRisk |
+|------|---------------|-----------|
+| 価格 | 無料 | 有料 |
+| 自動化 | 限定的 | CI/CD統合対応 |
+| チーム協業 | 非対応 | クラウド対応 |
+| レポート | 基本的 | 高度 |
+| カスタマイズ | 限定的 | 柔軟 |
+
+## ユースケース
+
+| ユースケース | 目的 | 活用内容 |
+|-------------|------|----------|
+| システム設計レビュー | 設計段階での脅威特定 | DFD作成、STRIDE分析、緩和策計画 |
+| セキュリティ監査 | コンプライアンス対応 | 脅威レポート生成、対策状況の追跡 |
+| Azure設計検証 | クラウドアーキテクチャのセキュリティ | Azureテンプレートによる脅威分析 |
+| SDL準拠 | Microsoft SDL準拠の開発 | 設計フェーズでの必須脅威分析 |
+
+## ベストプラクティス
+
+### 1. モデル作成時の注意点
+
+- トラストバウンダリを適切に設定し、信頼境界を明確にする
+- すべてのデータフローにプロトコルを記載する
+- 外部エンティティと内部プロセスを明確に区別する
+
+### 2. 脅威分析の進め方
+
+- 検出された脅威を優先度順に評価する
+- 各脅威に対して緩和策を具体的に記録する
+- Not Applicableの場合も理由を記録する
+
+### 3. レポートの管理
+
+- 定期的にレポートを生成して変更を追跡する
+- Excelレポートを使って進捗管理する
+- 脅威モデルファイルをバージョン管理に含める
+
+## トラブルシューティング
+
+### よくある問題と解決策
+
+#### 1. インストールできない
 
 ```
-1. Azure用テンプレート
-   File → New → Azure Template
-   - Azure Web App
-   - Azure SQL Database
-   - Azure Storage
-
-2. AWS用テンプレート（カスタム作成）
-   - カスタムステンシル追加
-   - 組織固有のテンプレート作成
+原因: .NET Framework 4.5以上が未インストール
+解決策:
+- .NET Frameworkの最新版をインストール
+- Windows Updateを実行
 ```
 
-## エディション・料金
+#### 2. 大規模モデルでパフォーマンスが低下
 
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Threat Modeling Tool** |  無料 | Windows専用、無料ダウンロード |
+```
+原因: 要素数が多すぎる
+解決策:
+- モデルをサブシステム単位に分割
+- 重要なコンポーネントに焦点を絞る
+```
 
-## メリット
+#### 3. カスタムテンプレートが認識されない
 
-###  主な利点
+```
+原因: テンプレートファイルの配置場所が不正
+解決策:
+- 公式ドキュメントでテンプレートの配置パスを確認
+- XMLスキーマを検証
+```
 
-1. **無料**: Microsoft提供、無料
-2. **STRIDE**: 業界標準フレームワーク
-3. **自動脅威検出**: DFDから自動生成
-4. **設計段階**: 早期の脅威特定
-5. **対策提案**: 緩和策の提案
-6. **レポート**: HTMLEXcel出力
-7. **テンプレート**: Azure統合テンプレート
-8. **学習容易**: シンプルなUI
-9. **Microsoft支援**: 公式ドキュメント充実
-10. **SDL統合**: Microsoft SDL準拠
+## 参考リソース
 
-## デメリット
+### 公式ドキュメント
+- ダウンロード: https://aka.ms/threatmodelingtool
+- ドキュメント: https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool
+- SDL: https://www.microsoft.com/en-us/securityengineering/sdl
 
-###  制約・課題
+### コミュニティ
+- GitHub: https://github.com/microsoft/threat-modeling-tool
 
-1. **Windows専用**: macOS、Linux非対応
-2. **更新頻度**: 更新が遅い
-3. **UI古い**: モダンなUIではない
-4. **チーム協業**: 同時編集不可
-5. **クラウド非対応**: ローカルファイルのみ
-6. **自動化**: CI/CD統合困難
-7. **カスタマイズ**: ルール追加が複雑
-8. **大規模モデル**: パフォーマンス低下
+### チュートリアル
+- Getting Started with TMT: https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-getting-started
+- STRIDE Overview: https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats
 
-## 代替ツール
+## まとめ
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **OWASP Threat Dragon** | オープンソース、クロスプラットフォーム | TMTよりモダンだがSTRIDEに特化 |
-| **IriusRisk** | 商用、自動化対応 | TMTより高機能だが有料 |
-| **ThreatModeler** | クラウド、チーム協業 | TMTよりエンタープライズ向け |
-| **Cairis** | オープンソース、セキュリティ要件管理 | TMTより高度だが複雑 |
-| **draw.io** | 汎用作図 | TMTより柔軟だが脅威自動検出なし |
+Microsoft Threat Modeling Toolは、設計段階でのセキュリティ脅威分析に特化した無料ツールとして、以下の場面で特に有用である:
 
-## 公式リンク
+1. **設計段階の脅威分析** - STRIDEフレームワークによる体系的な脅威特定
+2. **Azure環境のセキュリティ設計** - Azure統合テンプレートによる効率的な分析
+3. **SDL準拠の開発** - Microsoft Security Development Lifecycle準拠のプロセス
+4. **セキュリティ教育** - シンプルなUIで脅威モデリングの学習に最適
 
-- **ダウンロード**: [https://aka.ms/threatmodelingtool](https://aka.ms/threatmodelingtool)
-- **ドキュメント**: [https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool](https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool)
-- **GitHub**: [https://github.com/microsoft/threat-modeling-tool](https://github.com/microsoft/threat-modeling-tool)
-- **SDL**: [https://www.microsoft.com/en-us/securityengineering/sdl](https://www.microsoft.com/en-us/securityengineering/sdl)
-
-## 関連ドキュメント
-
-- [セキュリティ設計ツール一覧](../セキュリティ設計ツール/)
-- [OWASP ZAP](../セキュリティツール/OWASP_ZAP.md)
-- [Snyk](../セキュリティツール/Snyk.md)
-- [脅威モデリングベストプラクティス](../../best-practices/threat-modeling.md)
-
----
-
-**カテゴリ**: セキュリティ設計ツール  
-**対象工程**: 設計、セキュリティ  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
-
+Windows専用という制約はあるが、無料で利用でき、自動脅威検出と対策提案機能により、セキュリティ設計の品質向上に貢献する。

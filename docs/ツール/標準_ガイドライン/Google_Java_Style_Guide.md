@@ -203,8 +203,8 @@ public class UserService {
 
 ## 関連ドキュメント
 
-- [Checkstyle](../開発ツール/Checkstyle.md)
-- [Google Java Format](../開発ツール/Google_Java_Format.md)
+- [Checkstyle](../Formatter_Linter/Checkstyle.md)
+- [Google Java Format](../Formatter_Linter/Google_Java_Format.md)
 
 ---
 
@@ -212,3 +212,4 @@ public class UserService {
 **対象工程**: 設計・実装
 **最終更新**: 2025年12月
 **ドキュメントバージョン**: 1.0
+

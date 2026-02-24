@@ -2,261 +2,132 @@
 
 ## 概要
 
-Allure Reportは、テスト結果を視覚的にわかりやすく表示するためのオープンソースのレポーティングフレームワークである。JUnit、TestNG、pytest、Cucumber、Jest、Mocha等の主要テストフレームワークと連携し、インタラクティブなHTMLレポートを自動生成する。テスト結果のトレンド分析、タイムライン表示、カテゴリ分類、添付ファイル（スクリーンショット・ログ等）の表示機能を備え、CI/CDパイプラインに組み込むことで、テスト品質の継続的な可視化と改善サイクルを実現する。
+Allure Report は、テスト結果を可視化するレポーティングツールである。JUnit、pytest、Cucumber などの結果を集約し、HTML レポートとして共有できる。テスト失敗の傾向や履歴を追跡し、品質レビューを効率化しやすい。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| Allure Report | 無料（オープンソース） |
+| Allure TestOps | 有料（テスト管理機能を拡張） |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| レポート可視化 | テスト結果をダッシュボード表示 |
+| 多FW対応 | JUnit、TestNG、pytest、Cucumber 等と連携 |
+| 履歴比較 | 過去実行とのトレンド分析が可能 |
+| 添付ファイル | スクリーンショット、ログ、動画を表示可能 |
+| CI連携 | Jenkins、GitHub Actions、GitLab CI と連携可能 |
+| BDD表示 | Epic/Feature/Story で結果整理が可能 |
 
 ## 主な機能
 
-### 1. インタラクティブHTMLレポート
-- **Overview**: テスト全体のサマリーダッシュボード
-- **Suites**: テストスイート別の結果表示
-- **Graphs**: 円グラフ・棒グラフによる統計表示
-- **Timeline**: テスト実行のタイムライン表示
+### レポート表示機能
 
-### 2. テスト結果分類
-- **Categories**: エラー種別ごとの分類（Product Defects, Test Defects等）
-- **Severity**: テストの重要度レベル設定（blocker, critical, normal, minor, trivial）
-- **Behaviors**: BDD形式（Epic/Feature/Story）での階層表示
-- **Packages**: パッケージ構造に沿った結果表示
+| 機能 | 説明 |
+|------|------|
+| Overview | 実行結果の要約を表示 |
+| Suites | テストスイート単位で結果を確認 |
+| Timeline | 実行時間と並列状況を可視化 |
+| Categories | 失敗分類をルール化して表示 |
 
-### 3. トレンド分析
-- **Trend**: 過去の実行結果との比較グラフ
-- **Duration**: テスト実行時間の推移表示
-- **Retry**: リトライ結果の追跡
-- **History**: 各テストケースの実行履歴
+### 分析機能
 
-### 4. 添付ファイルサポート
-- **スクリーンショット**: UI テストの画面キャプチャ表示
-- **ログファイル**: テスト実行時のログ添付
-- **動画**: テスト実行の録画表示
-- **カスタム添付**: JSON、XML、CSV等任意のファイル
+| 機能 | 説明 |
+|------|------|
+| Trend | 成功率や失敗率の推移を追跡 |
+| Duration | 実行時間の変化を比較 |
+| Retry | リトライ状況を記録 |
+| History | テストケース単位の履歴を保持 |
 
-### 5. テストフレームワーク連携
-- **Java**: JUnit 4/5、TestNG、Cucumber-JVM
-- **Python**: pytest、behave、Robot Framework
-- **JavaScript**: Jest、Mocha、Jasmine、Cypress、Playwright
-- **C#**: NUnit、xUnit.net、SpecFlow
-- **その他**: Go、Ruby、PHP対応アダプタ
+### 連携機能
 
-### 6. CI/CD統合
-- **Jenkins**: Allure Jenkins Plugin
-- **GitHub Actions**: allure-report アクション
-- **GitLab CI**: アーティファクト連携
-- **Azure DevOps**: パイプライン統合
+| 機能 | 説明 |
+|------|------|
+| Adapter連携 | テストFW別アダプタで結果収集 |
+| CLI生成 | `allure generate/serve` でレポート作成 |
+| CIパイプライン | 自動実行後にレポート配布 |
+| 静的公開 | GitHub Pages 等で共有可能 |
 
-## 利用方法
+## インストールとセットアップ
 
-### インストール
+公式URL:
+- [Allure 公式サイト](https://allurereport.org/)
+- [Documentation](https://allurereport.org/docs/)
+- [GitHub](https://github.com/allure-framework)
 
-```bash
-# Homebrew (macOS/Linux)
-brew install allure
+セットアップの要点:
+1. CLI（brew/npm等）を導入する。
+2. テストFW向けアダプタを追加する。
+3. テスト実行時に `allure-results` を出力する。
+4. `allure generate` でレポートを生成して共有する。
 
-# Scoop (Windows)
-scoop install allure
+## 基本的な使い方
 
-# npm (Node.js)
-npm install -g allure-commandline
+1. テスト実行時に Allure 用結果を出力する。
+2. `allure serve allure-results` でローカル確認する。
+3. `allure generate` で静的レポートを生成する。
+4. 失敗ケースにログ・スクリーンショットを添付する。
+5. CI で毎回生成し、履歴比較を実施する。
 
-# pip (Python)
-pip install allure-commandline
-```
-
-### pytest連携
-
-```bash
-# アダプタインストール
-pip install allure-pytest
-```
-
-```python
-# test_example.py
-import allure
-
-@allure.feature("ユーザー管理")
-@allure.story("ログイン機能")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_login_success():
-    """正常なログインのテスト"""
-    with allure.step("ユーザー名とパスワードを入力"):
-        username = "testuser"
-        password = "password123"
-    with allure.step("ログインボタンをクリック"):
-        result = login(username, password)
-    with allure.step("ログイン成功を確認"):
-        assert result.status == "success"
-
-@allure.feature("ユーザー管理")
-@allure.story("ログイン機能")
-def test_login_failure():
-    """異常系ログインのテスト"""
-    with allure.step("不正なパスワードでログイン"):
-        result = login("testuser", "wrong_password")
-    with allure.step("エラーメッセージを確認"):
-        assert result.status == "failure"
-```
-
-```bash
-# テスト実行とレポート生成
-pytest --alluredir=allure-results
-allure serve allure-results
-
-# 静的HTMLレポート生成
-allure generate allure-results -o allure-report --clean
-```
-
-### JUnit 5連携
-
-```xml
-<!-- pom.xml -->
-<dependency>
-    <groupId>io.qameta.allure</groupId>
-    <artifactId>allure-junit5</artifactId>
-    <version>2.25.0</version>
-    <scope>test</scope>
-</dependency>
-```
-
-```java
-import io.qameta.allure.*;
-
-@Epic("ユーザー管理")
-@Feature("ログイン機能")
-public class LoginTest {
-
-    @Test
-    @Severity(SeverityLevel.CRITICAL)
-    @Description("正常なログインのテスト")
-    void testLoginSuccess() {
-        Allure.step("ユーザー名とパスワードを入力");
-        Allure.step("ログインボタンをクリック");
-        Allure.step("ログイン成功を確認");
-    }
-}
-```
-
-### カテゴリ定義
-
-```json
-// categories.json (allure-results ディレクトリに配置)
-[
-  {
-    "name": "Product Defects",
-    "matchedStatuses": ["failed"],
-    "messageRegex": ".*AssertionError.*"
-  },
-  {
-    "name": "Test Defects",
-    "matchedStatuses": ["broken"],
-    "messageRegex": ".*NullPointerException.*"
-  },
-  {
-    "name": "Known Issues",
-    "matchedStatuses": ["failed"],
-    "flaky": true
-  }
-]
-```
-
-### CI/CD統合（GitHub Actions）
-
-```yaml
-# .github/workflows/test-report.yml
-name: Test with Allure Report
-
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install pytest allure-pytest
-      - run: pytest --alluredir=allure-results
-        continue-on-error: true
-      - name: Get Allure history
-        uses: actions/checkout@v4
-        if: always()
-        with:
-          ref: gh-pages
-          path: gh-pages
-        continue-on-error: true
-      - name: Generate Allure Report
-        uses: simple-elf/allure-report-action@v1.9
-        if: always()
-        with:
-          allure_results: allure-results
-          allure_history: allure-history
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: allure-history
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Allure Report** | 無料 | オープンソース、Apache 2.0 License |
-| **Allure TestOps** | 有料（要問合せ） | テスト管理、チーム連携、ダッシュボード、Allure Report上位版 |
+最小実行例:
+- 実行: `pytest --alluredir=allure-results`
+- 表示: `allure serve allure-results`
+- 生成: `allure generate allure-results -o allure-report --clean`
 
 ## メリット
 
-1. **視覚的に優れたレポート**: インタラクティブなHTMLレポートでテスト結果を直感的に把握できる
-2. **多言語・多フレームワーク対応**: Java、Python、JavaScript、C#等の主要言語・フレームワークと連携可能
-3. **トレンド分析**: 過去の実行結果と比較してテスト品質の推移を追跡できる
-4. **ステップ表示**: テスト内の各ステップが可視化され、障害箇所の特定が容易
-5. **添付ファイル対応**: スクリーンショットやログを直接レポートに埋め込み可能
-6. **CI/CD統合**: Jenkins、GitHub Actions、GitLab CI等と容易に連携
-7. **BDD対応**: Epic/Feature/Story形式での結果表示が可能
-8. **オープンソース**: 無料で利用でき、活発なコミュニティサポート
-9. **カテゴリ分類**: エラーを自動分類し、Product DefectsとTest Defectsを区別可能
-10. **軽量**: CLIツールのみで動作し、複雑なインフラ不要
+- テスト結果の可視化で障害分析を進めやすい。
+- 多様なテストFWを同一形式で扱いやすい。
+- CI 連携により継続的な品質レポートを作りやすい。
 
 ## デメリット
 
-1. **レポート保存管理**: 静的HTMLファイルのホスティング・保存方針の設計が必要
-2. **Allure TestOps依存**: 高度なチーム連携機能は有料版が必要
-3. **初期設定コスト**: テストフレームワークごとにアダプタ設定が必要
-4. **履歴データ管理**: トレンド表示には過去のallure-resultsの保持が必要
-5. **大量テスト時のパフォーマンス**: テストケース数が非常に多い場合、レポート生成に時間がかかる
-6. **カスタマイズ制限**: レポートのレイアウト・デザインの変更は限定的
-7. **Java依存**: Allure CLIの実行にJava Runtime Environmentが必要
-8. **学習コスト**: アノテーション・デコレータの効果的な活用には習熟が必要
+- 履歴管理には成果物保存設計が必要。
+- 高度なチーム管理は TestOps（有料）前提になりやすい。
+- 初期にアダプタ設定と運用ルールの整備が必要。
 
-## 代替ツール
+## CI/CD での使用
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **ExtentReports** | Java/C#向けHTMLレポート | Allureより設定が簡単だがトレンド機能が弱い |
-| **ReportPortal** | AI分析付きレポート管理 | Allureより高機能だがサーバー構築が必要 |
-| **TestRail** | テスト管理ツール | Allureより管理機能充実だが有料 |
-| **Mochawesome** | Mocha専用レポート | Allureよりシンプルだが対応FW限定 |
-| **pytest-html** | pytest専用HTMLレポート | Allureより軽量だが機能が限定的 |
+CI ではテスト実行後に `allure-results` をアーティファクト保存し、レポートを静的公開する運用が一般的である。失敗時もレポート生成を継続する設定にすると、原因調査を行いやすい。
 
-## 公式リンク
+## 他ツールとの比較
 
-- **公式サイト**: [https://allurereport.org/](https://allurereport.org/)
-- **ドキュメント**: [https://allurereport.org/docs/](https://allurereport.org/docs/)
-- **GitHub**: [https://github.com/allure-framework](https://github.com/allure-framework)
-- **Allure pytest**: [https://allurereport.org/docs/pytest/](https://allurereport.org/docs/pytest/)
-- **Allure JUnit 5**: [https://allurereport.org/docs/junit5/](https://allurereport.org/docs/junit5/)
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Allure Report | テスト結果可視化 | 多FW対応と履歴分析に強い |
+| ExtentReports | Java中心レポート | 実装は簡易だが分析機能は限定的 |
+| ReportPortal | テスト分析基盤 | 高機能だが運用構築コストが高い |
+| TestRail | テスト管理全般 | ケース管理中心でレポート特化ではない |
 
-## 関連ドキュメント
+## ベストプラクティス
 
-- [テストツール一覧](../テスト/)
-- [pytest](./pytest.md)
-- [JUnit](./JUnit.md)
-- [Cucumber](./Cucumber.md)
-- [CI/CDベストプラクティス](../../best-practices/cicd.md)
+### 1. 結果添付を標準化
 
----
+- 失敗時にスクリーンショットとログを必ず添付する。
+- 重要テストにはステップ情報を明示する。
 
-**カテゴリ**: テスト
-**対象工程**: テスト・品質管理
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 2. カテゴリルールを整備
+
+- Product Defect / Test Defect の分類基準を決める。
+- 誤分類を定期的に見直す。
+
+### 3. 履歴を継続保存
+
+- 直近N回の結果を保存し推移を監視する。
+- リリース判定に成功率トレンドを利用する。
+
+## 公式ドキュメント
+
+- 公式サイト: https://allurereport.org/
+- Documentation: https://allurereport.org/docs/
+- GitHub: https://github.com/allure-framework
+- pytest連携: https://allurereport.org/docs/pytest/
+
+## まとめ
+
+- テスト結果を可視化し、失敗分析と共有を進めやすい。
+- 多様なテストフレームワークを統一形式で管理しやすい。
+- CIと履歴保存を組み合わせると、品質改善を継続しやすい。

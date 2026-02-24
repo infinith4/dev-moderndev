@@ -2,231 +2,120 @@
 
 ## 概要
 
-Alertmanagerは、Prometheusエコシステムのアラート通知管理コンポーネントです。Prometheusサーバーから送信されるアラートを受信し、重複排除（Deduplication）、グルーピング、抑制（Inhibition）、サイレンス（Silence）の処理を行った上で、Slack、Email、PagerDuty、OpsGenie等の通知先にルーティングします。ラベルベースのルーティングツリーにより、チーム・重要度・サービス別の柔軟な通知制御が可能です。
+Alertmanager は Prometheus のアラート通知を集約・ルーティングするためのツールである。重複抑制、グルーピング、通知先振り分けにより、運用通知のノイズを減らしやすい。
+
+## 料金
+
+| 区分 | 内容 |
+|------|------|
+| Alertmanager 本体 | 無料（OSS） |
+| 補足 | 通知先サービス利用料は別途 |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| 通知集約 | 複数アラートをまとめて処理 |
+| ノイズ抑制 | 重複通知や連続通知を制御 |
+| ルーティング | 重要度・サービス別に通知先を分離 |
+| 柔軟設定 | 受信者、時間帯、条件の制御が可能 |
+| Prometheus 連携 | 監視基盤と自然に統合可能 |
 
 ## 主な機能
 
-### 1. アラートルーティング
+### 通知制御機能
 
-- **ルーティングツリー**: ラベルマッチングによる階層的な通知先振り分け
-- **グルーピング**: 同一ラベルのアラートをまとめて1通知に集約
-- **group_wait**: グループ内の初回アラート待機時間
-- **group_interval**: 同一グループへの追加アラート送信間隔
-- **repeat_interval**: 未解決アラートの再通知間隔
+| 機能 | 説明 |
+|------|------|
+| Grouping | 類似アラートをまとめて通知 |
+| Deduplication | 重複通知を抑制 |
+| Silencing | メンテナンス時に一時抑止 |
+| Inhibition | 上位障害時に下位通知を抑止 |
 
-### 2. 重複排除・抑制
+### ルーティング機能
 
-- **Deduplication**: 同一アラートの重複通知を自動排除
-- **Inhibition**: 特定のアラートが発火中は関連アラートを抑制
-- **Silence**: Web UIまたはAPIから一時的にアラートをミュート
+| 機能 | 説明 |
+|------|------|
+| 受信者振り分け | チーム/サービス別に通知先を分離 |
+| 重要度別通知 | Severity に応じて通知先を切替 |
+| 時間帯制御 | オンコール時間に応じた通知制御 |
+| 再通知設定 | 未対応時の再通知間隔を設定 |
 
-### 3. 通知先（Receiver）
+### 運用機能
 
-- **Slack**: チャンネル・メンション指定、カスタムテンプレート
-- **Email**: SMTP経由のメール通知
-- **PagerDuty**: インシデント自動作成
-- **OpsGenie**: アラート作成・エスカレーション
-- **Webhook**: 任意のHTTPエンドポイントへの通知
-- **Microsoft Teams**: Teams チャンネルへの通知
+| 機能 | 説明 |
+|------|------|
+| Web UI | サイレンスと通知状態を確認 |
+| HA 構成 | 複数ノードで冗長運用 |
+| 監査性 | 通知設定をコード管理可能 |
+| 連携拡張 | Slack、PagerDuty、Email などに対応 |
 
-### 4. 高可用性
+## インストールとセットアップ
 
-- **クラスタリング**: Gossipプロトコルによる複数インスタンスの同期
-- **Deduplication across instances**: クラスタ間での重複排除
-- **自動フェイルオーバー**: インスタンス障害時の自動引き継ぎ
+公式URL:
+- [Alertmanager 公式](https://prometheus.io/docs/alerting/latest/alertmanager/)
+- [Prometheus Docs](https://prometheus.io/docs/)
 
-## 利用方法
+セットアップ手順:
+1. Alertmanager を導入し基本設定ファイルを作成する。
+2. 通知先（メール/チャット/オンコール）を登録する。
+3. 重大度別ルーティングを定義する。
+4. サイレンス運用手順をチーム標準化する。
 
-### インストール
+## 基本的な使い方
 
-```bash
-# バイナリダウンロード
-wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
-tar xvfz alertmanager-0.27.0.linux-amd64.tar.gz
-
-# Docker
-docker run --name alertmanager -d -p 9093:9093 \
-  -v /path/to/alertmanager.yml:/etc/alertmanager/alertmanager.yml \
-  prom/alertmanager
-
-# Helm（Kubernetes）
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm install alertmanager prometheus-community/alertmanager
-```
-
-### 設定ファイル（alertmanager.yml）
-
-```yaml
-# alertmanager.yml
-global:
-  resolve_timeout: 5m
-  slack_api_url: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXX'
-
-route:
-  receiver: 'default-slack'
-  group_by: ['alertname', 'namespace']
-  group_wait: 30s
-  group_interval: 5m
-  repeat_interval: 4h
-
-  routes:
-    # Critical アラートは PagerDuty へ
-    - match:
-        severity: critical
-      receiver: 'pagerduty-critical'
-      group_wait: 10s
-      repeat_interval: 1h
-
-    # Warning アラートは Slack #alerts-warning へ
-    - match:
-        severity: warning
-      receiver: 'slack-warning'
-      group_wait: 1m
-
-    # チーム別ルーティング
-    - match_re:
-        team: 'platform|infra'
-      receiver: 'slack-platform'
-
-receivers:
-  - name: 'default-slack'
-    slack_configs:
-      - channel: '#alerts'
-        title: '{{ .GroupLabels.alertname }}'
-        text: '{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}'
-
-  - name: 'pagerduty-critical'
-    pagerduty_configs:
-      - service_key: '<PagerDuty-Service-Key>'
-        severity: critical
-
-  - name: 'slack-warning'
-    slack_configs:
-      - channel: '#alerts-warning'
-        send_resolved: true
-
-  - name: 'slack-platform'
-    slack_configs:
-      - channel: '#platform-alerts'
-
-inhibit_rules:
-  # Critical が発火中は同一 alertname の Warning を抑制
-  - source_match:
-      severity: 'critical'
-    target_match:
-      severity: 'warning'
-    equal: ['alertname', 'namespace']
-```
-
-### Prometheus側のアラートルール設定
-
-```yaml
-# prometheus/alert-rules.yml
-groups:
-  - name: application
-    rules:
-      - alert: HighErrorRate
-        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
-        for: 5m
-        labels:
-          severity: critical
-          team: platform
-        annotations:
-          summary: "High error rate on {{ $labels.instance }}"
-          description: "Error rate is {{ $value | humanizePercentage }}"
-
-      - alert: HighLatency
-        expr: histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m])) > 1
-        for: 10m
-        labels:
-          severity: warning
-        annotations:
-          summary: "High latency on {{ $labels.instance }}"
-```
-
-### amtool（CLI）
-
-```bash
-# アラート一覧
-amtool alert --alertmanager.url=http://localhost:9093
-
-# サイレンス作成（2時間メンテナンス）
-amtool silence add \
-  --alertmanager.url=http://localhost:9093 \
-  --author="admin" \
-  --comment="Scheduled maintenance" \
-  --duration=2h \
-  alertname="HighLatency" namespace="production"
-
-# サイレンス一覧
-amtool silence query --alertmanager.url=http://localhost:9093
-
-# 設定ファイルの検証
-amtool check-config alertmanager.yml
-```
-
-### クラスタリング（高可用性）
-
-```bash
-# インスタンス1
-alertmanager --config.file=alertmanager.yml \
-  --cluster.listen-address=0.0.0.0:9094
-
-# インスタンス2（インスタンス1に接続）
-alertmanager --config.file=alertmanager.yml \
-  --cluster.listen-address=0.0.0.0:9094 \
-  --cluster.peer=instance1:9094
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Alertmanager** | 無料 | オープンソース、Apache License 2.0 |
-| **Grafana Cloud** | 有料 | マネージドAlertmanager、Grafana OnCall連携 |
+1. まず重大アラートだけ通知する最小設定で開始する。
+2. ノイズが多いアラートは grouping と inhibition で調整する。
+3. メンテナンス時は事前にサイレンスを登録する。
+4. 運用後に通知遅延や見逃しをレビューして設定を改善する。
 
 ## メリット
 
-1. **Prometheus標準**: Prometheusエコシステムの公式アラート管理コンポーネント
-2. **グルーピング**: 大量のアラートを集約して通知疲れを軽減
-3. **ラベルベースルーティング**: チーム・サービス・重要度別の柔軟な振り分け
-4. **Inhibition**: 上位障害発生時に下位アラートを自動抑制
-5. **高可用性**: Gossipプロトコルによるクラスタリング対応
-6. **Web UI**: サイレンスの管理やアラート状態の確認がブラウザで可能
-7. **テンプレート**: Go templateによる通知メッセージのカスタマイズ
+- 通知ノイズを減らし対応集中しやすい
+- 重大度別の通知設計がしやすい
+- Prometheus との統合が容易
+- 設定をコード管理しやすい
 
 ## デメリット
 
-1. **設定の複雑さ**: ルーティングツリーとインヒビションルールの設計が複雑
-2. **Prometheus依存**: Prometheus以外の監視ツールとの連携は限定的
-3. **通知カスタマイズ**: Go templateの記法は直感的でない場合がある
-4. **エスカレーション**: 段階的なエスカレーション機能が組み込みでない
-5. **永続化なし**: アラート履歴の長期保存機能がない（外部ストレージが必要）
+- 初期ルーティング設計に時間がかかる
+- 設定ミスで通知漏れのリスクがある
+- オンコール運用ルールが未整備だと効果が出にくい
 
-## 代替ツール
+## 他ツールとの比較
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Grafana OnCall** | インシデント管理 | Alertmanagerより高度なオンコール管理・エスカレーション |
-| **PagerDuty** | インシデント管理SaaS | Alertmanagerの通知先として使用、より高機能 |
-| **OpsGenie** | アラート管理SaaS | Atlassian統合、スケジュール管理が充実 |
-| **Karma** | Alertmanager UI | Alertmanagerのマルチクラスタ対応ダッシュボード |
+| ツール | 主な用途 | 特徴 |
+|------|------|------|
+| Alertmanager | アラート集約/通知制御 | Prometheus 連携とノイズ抑制に強い |
+| PagerDuty | インシデント通知 | オンコール運用に特化 |
+| Opsgenie | 通知管理 | 通知ポリシー管理が豊富 |
+| Grafana Alerting | 監視通知 | 可視化基盤と一体運用しやすい |
 
-## 公式リンク
+## ベストプラクティス
 
-- **公式ドキュメント**: [https://prometheus.io/docs/alerting/latest/alertmanager/](https://prometheus.io/docs/alerting/latest/alertmanager/)
-- **GitHub**: [https://github.com/prometheus/alertmanager](https://github.com/prometheus/alertmanager)
-- **設定リファレンス**: [https://prometheus.io/docs/alerting/latest/configuration/](https://prometheus.io/docs/alerting/latest/configuration/)
-- **通知テンプレート**: [https://prometheus.io/docs/alerting/latest/notification_examples/](https://prometheus.io/docs/alerting/latest/notification_examples/)
+### 1. 重大度を先に定義
 
-## 関連ドキュメント
+- P1/P2 など運用優先度を統一する
+- 重大度に応じた通知先を明確化する
 
-- [Loki](./Loki.md)
-- [OpenTelemetry](./OpenTelemetry.md)
+### 2. サイレンス運用を定着
 
----
+- メンテ前後でサイレンス管理を徹底する
+- 無期限サイレンスを避ける
 
-**カテゴリ**: 監視ロギング
-**対象工程**: 運用・監視
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 3. 通知品質を継続改善
+
+- ノイズ率と見逃し率を定期確認する
+- 実インシデント後に設定を見直す
+
+## 公式ドキュメント
+
+- 公式: https://prometheus.io/docs/alerting/latest/alertmanager/
+- Prometheus Docs: https://prometheus.io/docs/
+- GitHub: https://github.com/prometheus/alertmanager
+
+## まとめ
+
+1. Alertmanager は通知ノイズ削減に有効な基盤。
+2. 重大度とルーティング設計が運用品質を左右する。
+3. サイレンス運用と継続的見直しが必須。

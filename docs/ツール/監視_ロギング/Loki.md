@@ -2,207 +2,120 @@
 
 ## 概要
 
-Lokiは、Grafana Labsが開発したログ集約システムです。Prometheusにインスパイアされた設計で、ログの全文インデックスを作成せずラベル（メタデータ）のみをインデックス化することで、低コスト・高効率なログ管理を実現します。Promtail、Grafana Alloy、Fluentd等のエージェントでログを収集し、GrafanaのExplore画面でLogQL（ログクエリ言語）を使ってログの検索・集約・可視化を行います。
+Loki は Grafana Labs が提供するログ集約システムである。ラベル中心の設計によりログ検索コストを抑えつつ、Grafana と連携して運用調査を行いやすい。
+
+## 料金
+
+| 区分 | 内容 |
+|------|------|
+| Loki OSS | 無料 |
+| Grafana Cloud Logs | 有料プランあり |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| ラベル指向 | メトリクス的な運用でログを扱える |
+| Grafana 親和性 | 可視化・検索を統合しやすい |
+| スケーラブル | 分散構成で拡張可能 |
+| 低コスト志向 | フルテキスト索引に比べコスト抑制しやすい |
+| エコシステム | Promtail 等と連携しやすい |
 
 ## 主な機能
 
-### 1. ログ収集・保存
+### ログ収集機能
 
-- **ラベルインデックス**: ログ本文ではなくラベルのみインデックス化（低コスト）
-- **チャンク保存**: ログデータを圧縮チャンクとしてオブジェクトストレージに保存
-- **マルチテナント**: テナント分離によるマルチチーム運用
-- **保持ポリシー**: ログの自動削除期間設定
+| 機能 | 説明 |
+|------|------|
+| 収集エージェント連携 | Promtail などから取り込み |
+| ラベル付与 | サービス/環境単位で分類 |
+| 保持管理 | 保持期間・ストレージ方針を設定 |
+| マルチテナント | 環境分離に対応 |
 
-### 2. LogQL（クエリ言語）
+### 検索・可視化機能
 
-- **ログストリーム選択**: `{app="nginx", env="production"}`
-- **フィルタ式**: `|= "error"`, `!= "timeout"`, `|~ "5[0-9]{2}"`
-- **パーサー**: `| json`, `| logfmt`, `| pattern`, `| regexp`
-- **メトリクスクエリ**: `rate()`, `count_over_time()`, `bytes_over_time()`
-- **集約**: `sum`, `avg`, `max`, `min`, `topk`
+| 機能 | 説明 |
+|------|------|
+| LogQL | ラベルとログ内容で検索 |
+| フィルタ集計 | エラー傾向や件数を分析 |
+| Grafana 表示 | ダッシュボードで運用可視化 |
+| 相関分析 | メトリクス/トレースと連携可能 |
 
-### 3. ログ収集エージェント
+### 運用機能
 
-- **Grafana Alloy**: Grafana公式のテレメトリコレクター（Promtail後継）
-- **Promtail**: Loki専用の軽量ログ収集エージェント
-- **Fluentd/Fluent Bit**: Loki出力プラグインで連携
-- **Docker Driver**: Dockerログドライバーとして直接連携
-- **Lambda Promtail**: AWS Lambda関数によるCloudWatch Logs転送
+| 機能 | 説明 |
+|------|------|
+| ストレージ選択 | オブジェクトストレージ活用 |
+| コンパクション | 保管効率を最適化 |
+| 監視連携 | Loki 自体の健全性監視が可能 |
+| 権限制御 | テナント・用途別アクセス制御 |
 
-### 4. デプロイモード
+## インストールとセットアップ
 
-- **Monolithic**: 全コンポーネントを1プロセスで実行（小規模向け）
-- **Simple Scalable**: Read/Write/Backendの3コンポーネント分離
-- **Microservices**: 各コンポーネントを個別にスケール（大規模向け）
+公式URL:
+- [Loki 公式](https://grafana.com/oss/loki/)
+- [Loki Docs](https://grafana.com/docs/loki/latest/)
 
-## 利用方法
+セットアップ手順:
+1. Loki と収集エージェントを導入する。
+2. ラベル設計（環境・サービス・インスタンス）を定義する。
+3. 保存先と保持期間を運用要件に合わせる。
+4. Grafana で検索・可視化ダッシュボードを作成する。
 
-### インストール
+## 基本的な使い方
 
-```bash
-# Docker Compose（Loki + Promtail + Grafana）
-wget https://raw.githubusercontent.com/grafana/loki/main/production/docker-compose.yaml
-docker compose up -d
-
-# Helm（Kubernetes）
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
-helm install loki grafana/loki-stack \
-  --namespace monitoring --create-namespace \
-  --set grafana.enabled=true \
-  --set promtail.enabled=true
-
-# バイナリ
-wget https://github.com/grafana/loki/releases/download/v3.0.0/loki-linux-amd64.zip
-unzip loki-linux-amd64.zip
-./loki-linux-amd64 -config.file=loki-config.yaml
-```
-
-### Loki設定ファイル
-
-```yaml
-# loki-config.yaml
-auth_enabled: false
-
-server:
-  http_listen_port: 3100
-
-common:
-  ring:
-    instance_addr: 127.0.0.1
-    kvstore:
-      store: inmemory
-  replication_factor: 1
-  path_prefix: /loki
-
-schema_config:
-  configs:
-    - from: 2024-01-01
-      store: tsdb
-      object_store: filesystem
-      schema: v13
-      index:
-        prefix: index_
-        period: 24h
-
-storage_config:
-  filesystem:
-    directory: /loki/chunks
-
-limits_config:
-  retention_period: 30d
-  max_query_length: 721h
-
-compactor:
-  working_directory: /loki/compactor
-  retention_enabled: true
-```
-
-### Promtail設定
-
-```yaml
-# promtail-config.yaml
-server:
-  http_listen_port: 9080
-
-positions:
-  filename: /tmp/positions.yaml
-
-clients:
-  - url: http://loki:3100/loki/api/v1/push
-
-scrape_configs:
-  - job_name: system
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          job: varlogs
-          __path__: /var/log/*.log
-
-  - job_name: containers
-    docker_sd_configs:
-      - host: unix:///var/run/docker.sock
-        refresh_interval: 5s
-    relabel_configs:
-      - source_labels: ['__meta_docker_container_name']
-        target_label: 'container'
-```
-
-### LogQLクエリ例
-
-```logql
-# 基本的なログ検索
-{app="nginx"} |= "error"
-
-# 正規表現フィルタ
-{namespace="production"} |~ "status=(4|5)[0-9]{2}"
-
-# JSONパース＋フィールドフィルタ
-{app="api"} | json | status >= 500
-
-# logfmtパース
-{job="systemd"} | logfmt | level="error"
-
-# メトリクスクエリ（5分間のエラーレート）
-rate({app="nginx"} |= "error" [5m])
-
-# ログ行数カウント（アプリ別Top 5）
-topk(5, sum by(app) (count_over_time({namespace="production"}[1h])))
-
-# ログボリューム集計
-sum by(namespace) (bytes_over_time({job="containers"}[24h]))
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Loki（OSS）** | 無料 | AGPL v3、セルフホスト |
-| **Grafana Cloud** | 無料枠あり / 有料 | マネージドLoki、50GB/月まで無料 |
+1. まず重要サービスのログだけ収集対象にする。
+2. ラベル粒度を過不足なく調整する。
+3. 代表的な障害調査クエリをテンプレート化する。
+4. 保持期間と検索速度を定期的に見直す。
 
 ## メリット
 
-1. **低コスト**: 全文インデックス不要で、Elasticsearch比でストレージコストを大幅削減
-2. **Prometheusライク**: ラベルベースのクエリモデルでPrometheus運用者に馴染みやすい
-3. **Grafana統合**: Grafanaダッシュボードでメトリクスとログを同時に表示
-4. **スケーラビリティ**: マイクロサービスモードで各コンポーネントを個別スケール
-5. **オブジェクトストレージ**: S3/GCS/Azure Blob等の安価なストレージを活用
-6. **LogQL**: PromQLに似た強力なクエリ言語でログの集約・分析が可能
-7. **マルチテナント**: テナント分離によるセキュアなマルチチーム運用
+- 監視基盤とログ運用を統合しやすい
+- コストを抑えたログ運用に向く
+- Grafana 連携で調査導線を作りやすい
+- ラベル設計で運用整理しやすい
 
 ## デメリット
 
-1. **全文検索不可**: ラベルなしの自由文検索はElasticsearchに劣る
-2. **ラベル設計重要**: 高カーディナリティなラベル設定はパフォーマンス劣化を招く
-3. **学習コスト**: LogQLの習得やラベル設計のベストプラクティスの理解が必要
-4. **Grafana依存**: ログの可視化にGrafanaが事実上必須
-5. **リアルタイム性**: インジェスト遅延が発生する場合がある
+- ラベル設計を誤ると検索性が低下する
+- 高度分析は別基盤併用が必要な場合がある
+- 初期運用設計に経験が必要
 
-## 代替ツール
+## 他ツールとの比較
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Elasticsearch** | 全文検索エンジン | Lokiより高機能だがコストが高い |
-| **Fluentd + S3** | ログ転送 + ストレージ | Lokiよりシンプル、検索機能は弱い |
-| **CloudWatch Logs** | AWSマネージド | AWS環境向け、Lokiよりベンダーロックイン |
-| **Datadog Logs** | SaaS監視 | Lokiより高機能だが有料 |
+| ツール | 主な用途 | 特徴 |
+|------|------|------|
+| Loki | ログ集約/検索 | ラベル中心でコスト最適化しやすい |
+| Elasticsearch | ログ検索 | フルテキスト検索に強い |
+| CloudWatch Logs | AWS ログ管理 | AWS 統合運用に強い |
+| Splunk | ログ分析 | 高機能な商用分析基盤 |
 
-## 公式リンク
+## ベストプラクティス
 
-- **公式サイト**: [https://grafana.com/oss/loki/](https://grafana.com/oss/loki/)
-- **ドキュメント**: [https://grafana.com/docs/loki/latest/](https://grafana.com/docs/loki/latest/)
-- **GitHub**: [https://github.com/grafana/loki](https://github.com/grafana/loki)
-- **LogQLリファレンス**: [https://grafana.com/docs/loki/latest/query/](https://grafana.com/docs/loki/latest/query/)
+### 1. ラベルを厳選
 
-## 関連ドキュメント
+- 検索で使う項目のみラベル化する
+- 高カーディナリティを避ける
 
-- [Alertmanager](./Alertmanager.md)
-- [OpenTelemetry](./OpenTelemetry.md)
+### 2. 保持方針を明確化
 
----
+- 監査要件とコストを両立する
+- ホット/コールド運用を検討する
 
-**カテゴリ**: 監視ロギング
-**対象工程**: 運用・監視
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 3. 調査テンプレートを作る
+
+- 障害別の LogQL を共有する
+- オンコール対応を標準化する
+
+## 公式ドキュメント
+
+- 公式サイト: https://grafana.com/oss/loki/
+- ドキュメント: https://grafana.com/docs/loki/latest/
+- GitHub: https://github.com/grafana/loki
+
+## まとめ
+
+1. Loki はログ運用コスト最適化に有効。
+2. ラベル設計と保持方針が成功の鍵。
+3. 調査テンプレート整備で運用効率が上がる。

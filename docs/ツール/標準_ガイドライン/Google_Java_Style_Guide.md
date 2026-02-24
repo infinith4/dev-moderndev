@@ -2,214 +2,120 @@
 
 ## 概要
 
-Google Java Style Guideは、Googleが公開しているJavaソースコードのコーディング標準です。ソースファイルの構造、命名規則、フォーマット（インデント、改行、空白）、Javadocコメントの書き方を包括的に定義しています。Google Java Formatツールで自動整形でき、CheckstyleのGoogle設定でルール準拠を自動チェックできます。Javaプロジェクトのコーディング規約として広く参照されています。
+Google Java Style Guide は Java コードの書き方を統一するための標準ガイドラインである。命名、書式、構造の基準を明確化し、コードレビューと保守の効率を高める。
 
-## 主な規則
+## 料金
 
-### 1. ソースファイル構造
+| 区分 | 内容 |
+|------|------|
+| ガイドライン | 無料公開 |
+| 補足 | 適用に使うツール（IDE/解析ツール）は別途 |
 
-- **ファイル名**: トップレベルクラス名と同一（`MyClass.java`）
-- **ファイルエンコーディング**: UTF-8
-- **構成順序**: ライセンスヘッダー → パッケージ宣言 → インポート → クラス定義
-- **インポート**: ワイルドカード（`*`）不使用、静的インポートとそれ以外を分離
+## 主な特徴
 
-### 2. フォーマット
+| 項目 | 内容 |
+|------|------|
+| 規約の明確性 | 曖昧さの少ない記述で判断しやすい |
+| 可読性重視 | チーム横断で読みやすいコードを維持しやすい |
+| 一貫性 | 命名・整形・構造のばらつきを抑制 |
+| 普及度 | Java プロジェクトで参照実績が多い |
+| ツール適用しやすさ | formatter/linter と連携しやすい |
 
-- **インデント**: スペース2つ（タブ不使用）
-- **列制限**: 100文字（Javadocの`@`句は除外可能）
-- **ブレース**: K&Rスタイル（開き波括弧は同一行）
-- **空行**: パッケージ宣言後、インポート後、クラスメンバー間
-- **空白**: 制御構文のキーワード後、カンマ後、コロン前後等
+## 主な機能
 
-### 3. 命名規則
+### 規約定義機能
 
-| 対象 | 規則 | 例 |
-|------|------|-----|
-| パッケージ | 小文字のみ | `com.google.common` |
-| クラス/インターフェース | UpperCamelCase | `ImmutableList` |
-| メソッド | lowerCamelCase | `sendMessage` |
-| 定数 | UPPER_SNAKE_CASE | `MAX_RETRY_COUNT` |
-| パラメータ/変数 | lowerCamelCase | `userName` |
-| 型変数 | 単一大文字または大文字+数字 | `T`, `E`, `T2` |
+| 機能 | 説明 |
+|------|------|
+| 命名規則 | クラス・メソッド・変数の命名基準を定義 |
+| 形式規則 | インデント、改行、空白の基準を定義 |
+| 構造規則 | ファイル構成、import、クラス設計指針を整理 |
+| コメント規則 | ドキュメントコメントと説明コメントの方針を定義 |
 
-### 4. プログラミング慣行
+### 品質向上機能
 
-- **`@Override`**: 常に付与
-- **例外キャッチ**: 空のcatchブロック禁止（最低でもコメント記載）
-- **static メンバー**: クラス名で参照（インスタンス経由で参照しない）
-- **finalizers**: 使用禁止
+| 機能 | 説明 |
+|------|------|
+| レビュー基準統一 | 指摘観点を揃えてレビュー効率を向上 |
+| 変更差分抑制 | スタイル差分を削減しロジック確認に集中 |
+| 教育支援 | 新規メンバーの学習コストを低減 |
+| 保守性向上 | 将来変更時の理解・改修負荷を低減 |
 
-### 5. Javadoc
+### 運用機能
 
-- **必須対象**: public/protectedなクラス・メソッド・フィールド
-- **フォーマット**: 概要行 → 空行 → `@param`/`@return`/`@throws`
-- **単一行Javadoc**: 短い場合は`/** Returns the count. */`形式可
+| 機能 | 説明 |
+|------|------|
+| ルール文書化 | チーム規約として運用しやすい |
+| 自動化連携 | Checkstyle / formatter と連携可能 |
+| 例外管理 | 例外方針を明文化し運用可能 |
+| 継続改善 | 規約運用を定期的に見直せる |
 
-## 適用方法
+## インストールとセットアップ
 
-### Google Java Format（自動整形）
+公式URL:
+- [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
+- [Google Style Guide Repository](https://github.com/google/styleguide)
 
-```bash
-# ダウンロード
-wget https://github.com/google/google-java-format/releases/download/v1.24.0/google-java-format-1.24.0-all-deps.jar
+セットアップ手順:
+1. ガイドラインをチーム標準として採用する。
+2. 規約のうち必須項目と推奨項目を整理する。
+3. Checkstyle や formatter 設定へ反映する。
+4. コードレビュー基準に組み込む。
 
-# 単一ファイルの整形
-java -jar google-java-format-1.24.0-all-deps.jar --replace MyClass.java
+## 基本的な使い方
 
-# ディレクトリ配下を一括整形
-find src -name "*.java" | xargs java -jar google-java-format-1.24.0-all-deps.jar --replace
-
-# 差分確認（ドライラン）
-java -jar google-java-format-1.24.0-all-deps.jar MyClass.java | diff - MyClass.java
-```
-
-### Checkstyle（ルール準拠チェック）
-
-```xml
-<!-- pom.xml -->
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-checkstyle-plugin</artifactId>
-    <version>3.5.0</version>
-    <configuration>
-        <!-- Google Java Style準拠の設定 -->
-        <configLocation>google_checks.xml</configLocation>
-        <violationSeverity>warning</violationSeverity>
-        <failOnViolation>true</failOnViolation>
-    </configuration>
-</plugin>
-```
-
-```bash
-# Checkstyle実行
-mvn checkstyle:check
-```
-
-### IDE設定
-
-```
-# IntelliJ IDEA
-1. Settings > Editor > Code Style > Java
-2. Scheme: Import Scheme > IntelliJ IDEA code style XML
-3. https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml をインポート
-
-# Eclipse
-1. Preferences > Java > Code Style > Formatter
-2. Import: https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml
-
-# VS Code
-1. Extension: "Checkstyle for Java" をインストール
-2. settings.json: "java.checkstyle.configuration": "google_checks.xml"
-```
-
-### CI/CD統合（GitHub Actions）
-
-```yaml
-# .github/workflows/style-check.yml
-name: Java Style Check
-
-on: [pull_request]
-
-jobs:
-  style:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-      - name: Google Java Format Check
-        uses: axel-op/googlejavaformat-action@v3
-        with:
-          args: "--dry-run --set-exit-if-changed"
-```
-
-## コード例
-
-```java
-// Google Java Style Guide準拠のコード例
-package com.example.myapp.service;
-
-import com.example.myapp.model.User;
-import com.example.myapp.repository.UserRepository;
-import java.util.List;
-import java.util.Optional;
-
-/** ユーザー管理サービス。ユーザーのCRUD操作を提供する。 */
-public class UserService {
-
-  private static final int MAX_RETRY_COUNT = 3;
-
-  private final UserRepository userRepository;
-
-  public UserService(UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
-
-  /**
-   * 指定されたIDのユーザーを取得する。
-   *
-   * @param userId ユーザーID
-   * @return ユーザー情報（存在しない場合はempty）
-   * @throws IllegalArgumentException userIdがnullの場合
-   */
-  public Optional<User> findById(String userId) {
-    if (userId == null) {
-      throw new IllegalArgumentException("userId must not be null");
-    }
-    return userRepository.findById(userId);
-  }
-}
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Google Java Style Guide** | 無料 | CC-By 3.0 License |
-| **Google Java Format** | 無料 | Apache License 2.0 |
-| **Checkstyle** | 無料 | LGPL 2.1 |
+1. 新規開発ではガイドライン準拠を初期ルールにする。
+2. 既存コードは変更箇所から段階適用する。
+3. レビュー時は「規約違反」と「設計課題」を分けて扱う。
+4. 規約適用状況を定期的に確認し改善する。
 
 ## メリット
 
-1. **業界標準**: Google発の広く認知されたJavaスタイルガイド
-2. **ツール連携**: Google Java Format + Checkstyleで自動適用・検証
-3. **IDE統合**: IntelliJ IDEA/Eclipse用の設定ファイルが公式提供
-4. **包括的**: ファイル構造、フォーマット、命名、Javadocを網羅
-5. **一貫性**: チーム内のコードスタイルを統一し、レビューコストを削減
+- チームでコード品質を揃えやすい
+- レビュー時間を短縮しやすい
+- 新規参加者のオンボーディングが容易
+- 長期保守時の可読性を維持しやすい
 
 ## デメリット
 
-1. **インデント2スペース**: Java標準の4スペースと異なり、既存プロジェクトとの差分が大きい
-2. **列制限100文字**: 長い型名やメソッドチェーンで改行が頻発
-3. **Google固有**: Googleの文化に基づくルールが全プロジェクトに適するとは限らない
-4. **カスタマイズ困難**: Google Java Formatはゼロコンフィグ設計でルール変更不可
+- 既存コードへ全面適用すると差分が大きくなる
+- 厳格運用しすぎると開発速度が低下する場合がある
+- プロジェクト特性に合わせた調整が必要
 
-## 代替ツール
+## 他ツールとの比較
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Oracle Java Code Conventions** | Oracle公式 | より古典的なJavaスタイル |
-| **Spring Framework Code Style** | Spring公式 | Spring開発に特化、4スペースインデント |
-| **Alibaba Java Coding Guidelines** | Alibaba規約 | 中国発、p3c pluginで自動チェック |
+| 項目 | 主な用途 | 特徴 |
+|------|------|------|
+| Google Java Style Guide | Java 規約標準 | 普及度が高く適用しやすい |
+| Oracle Java Code Conventions | Java 規約 | 歴史的規約として参照される |
+| Checkstyle | 規約検証ツール | ガイドラインを自動検査可能 |
+| Google Java Format | 自動整形ツール | 規約の整形部分を自動適用可能 |
 
-## 公式リンク
+## ベストプラクティス
 
-- **スタイルガイド**: [https://google.github.io/styleguide/javaguide.html](https://google.github.io/styleguide/javaguide.html)
-- **Google Java Format**: [https://github.com/google/google-java-format](https://github.com/google/google-java-format)
-- **IDE設定ファイル**: [https://github.com/google/styleguide](https://github.com/google/styleguide)
-- **Checkstyle google_checks.xml**: [https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
+### 1. 段階導入
 
-## 関連ドキュメント
+- 新規コードから優先適用する
+- 既存コードは変更時に順次適用する
 
-- [Checkstyle](../Formatter_Linter/Checkstyle.md)
-- [Google Java Format](../Formatter_Linter/Google_Java_Format.md)
+### 2. 自動化優先
 
----
+- フォーマットと規約検証を自動実行する
+- 手作業レビュー依存を減らす
 
-**カテゴリ**: 標準ガイドライン
-**対象工程**: 設計・実装
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 3. 例外を明確化
 
+- 例外を許可する条件を文書化する
+- 例外を定期棚卸しして削減する
+
+## 公式ドキュメント
+
+- 公式ガイド: https://google.github.io/styleguide/javaguide.html
+- リポジトリ: https://github.com/google/styleguide
+- 補助ツール: https://github.com/google/google-java-format
+
+## まとめ
+
+1. Google Java Style Guide は Java 規約統一の実践基盤になる。
+2. 自動化ツール連携で運用負荷を抑えられる。
+3. 段階導入と例外管理が定着の鍵となる。

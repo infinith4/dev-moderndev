@@ -2,374 +2,132 @@
 
 ## 概要
 
-GitLabは、DevOpsプラットフォーム統合型のGitリポジトリ管理システムです。ソースコード管理、GitLab CI/CD、Issue管理、マージリクエスト、コンテナレジストリ、セキュリティスキャン、Kubernetes統合により、開発からデプロイまでの全工程を単一プラットフォームで実現します。セルフホスト可能、エンタープライズ採用で広く使用されています。
+GitLab は Git リポジトリ管理に加え、CI/CD、課題管理、セキュリティ機能を統合した DevOps プラットフォームである。クラウド利用とセルフマネージド運用の両方に対応し、単一基盤で開発からデプロイまでを管理しやすい。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| Free | 基本機能を利用可能 |
+| Premium | チーム管理・高度機能を拡張 |
+| Ultimate | セキュリティ/コンプライアンス機能を強化 |
+| Self-Managed | 自社環境での運用が可能 |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| オールインワン | SCM、CI/CD、Issue 管理を一体提供 |
+| マージリクエスト運用 | コードレビューと承認フローを標準化 |
+| パイプライン統合 | `.gitlab-ci.yml` で自動化を管理 |
+| セルフホスト対応 | ネットワーク要件に合わせて導入可能 |
+| DevSecOps機能 | SAST/DAST などのセキュリティ機能を提供 |
+| 環境管理 | 開発・検証・本番環境を分けて管理可能 |
 
 ## 主な機能
 
-### 1. リポジトリ管理
-- **Git リポジトリ**: プライベート・パブリック
-- **ブランチ管理**: ブランチ保護
-- **マージリクエスト**: コードレビュー
-- **コードオーナー**: CODEOWNERS
+### リポジトリ/レビュー機能
 
-### 2. GitLab CI/CD
-- **パイプライン**: .gitlab-ci.yml
-- **Runner**: Shared/Specific Runner
-- **環境**: dev、staging、production
-- **Auto DevOps**: 自動CI/CD
+| 機能 | 説明 |
+|------|------|
+| Merge Request | 差分レビュー、承認、ディスカッション |
+| Branch Protection | 保護ブランチへの直接更新を制御 |
+| CODEOWNERS | レビュー責任者を明示 |
+| Releases / Tags | リリース単位の履歴管理 |
 
-### 3. Issue管理
-- **Issue**: バグ・タスク管理
-- **エピック**: 大規模機能
-- **マイルストーン**: リリース管理
-- **ボード**: カンバンボード
+### 計画/運用機能
 
-### 4. DevSecOps
-- **SAST**: 静的解析
-- **DAST**: 動的解析
-- **依存関係スキャン**: 脆弱性検出
-- **Container Scanning**: コンテナスキャン
+| 機能 | 説明 |
+|------|------|
+| Issues | バグ・タスク管理 |
+| Milestones | 期限・リリース管理 |
+| Boards | カンバン運用 |
+| Wiki | ドキュメント管理 |
 
-## 利用方法
+### CI/CD・セキュリティ機能
 
-### リポジトリ作成
+| 機能 | 説明 |
+|------|------|
+| GitLab CI/CD | ビルド・テスト・デプロイ自動化 |
+| Runner | Shared/Specific Runner 実行 |
+| Container Registry | イメージ管理 |
+| Security Scanning | 脆弱性検出とレポート化 |
 
-```bash
-# GitLab.comでプロジェクト作成後
-git clone https://gitlab.com/username/project.git
-cd project
+## インストールとセットアップ
 
-# または既存プロジェクト
-git init
-git remote add origin https://gitlab.com/username/project.git
-git add .
-git commit -m "Initial commit"
-git push -u origin main
-```
+公式URL:
+- [GitLab](https://about.gitlab.com/)
+- [GitLab Docs](https://docs.gitlab.com/)
+- [GitLab Pricing](https://about.gitlab.com/pricing/)
 
-### GitLab CI/CD（基本）
+セットアップの要点:
+1. GitLab.com か Self-Managed の導入形態を決める。
+2. プロジェクト作成後、保護ブランチと MR ルールを設定する。
+3. 必要に応じて Runner と Container Registry を有効化する。
+4. `.gitlab-ci.yml` を追加して基本パイプラインを定義する。
 
-```yaml
-# .gitlab-ci.yml
-stages:
-  - build
-  - test
-  - deploy
+## 基本的な使い方
 
-build-job:
-  stage: build
-  script:
-    - echo "Building the app..."
-    - npm install
-    - npm run build
-  artifacts:
-    paths:
-      - dist/
-    expire_in: 1 hour
+1. リポジトリへ push し、機能ブランチを作成する。
+2. Merge Request を作成し、レビューと CI 結果を確認する。
+3. 承認後に `main` へマージし、タグでリリースを管理する。
+4. Issues と Boards で作業進捗を追跡する。
+5. セキュリティスキャン結果を定期確認する。
 
-test-job:
-  stage: test
-  script:
-    - echo "Running tests..."
-    - npm test
-  dependencies:
-    - build-job
-
-deploy-job:
-  stage: deploy
-  script:
-    - echo "Deploying to production..."
-    - ./deploy.sh
-  only:
-    - main
-```
-
-### Docker Build
-
-```yaml
-# .gitlab-ci.yml
-image: docker:latest
-
-services:
-  - docker:dind
-
-variables:
-  DOCKER_DRIVER: overlay2
-  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
-
-stages:
-  - build
-  - push
-
-build-docker:
-  stage: build
-  script:
-    - docker build -t $IMAGE_TAG .
-    - docker tag $IMAGE_TAG $CI_REGISTRY_IMAGE:latest
-
-push-docker:
-  stage: push
-  script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker push $IMAGE_TAG
-    - docker push $CI_REGISTRY_IMAGE:latest
-  only:
-    - main
-```
-
-### 環境別デプロイ
-
-```yaml
-# .gitlab-ci.yml
-stages:
-  - test
-  - deploy
-
-test:
-  stage: test
-  script:
-    - npm test
-
-deploy-staging:
-  stage: deploy
-  script:
-    - echo "Deploying to staging..."
-    - ./deploy.sh staging
-  environment:
-    name: staging
-    url: https://staging.example.com
-  only:
-    - develop
-
-deploy-production:
-  stage: deploy
-  script:
-    - echo "Deploying to production..."
-    - ./deploy.sh production
-  environment:
-    name: production
-    url: https://example.com
-  only:
-    - main
-  when: manual
-```
-
-### マトリックスビルド
-
-```yaml
-# .gitlab-ci.yml
-test:
-  stage: test
-  parallel:
-    matrix:
-      - NODE_VERSION: ['14', '16', '18']
-        OS: ['ubuntu', 'alpine']
-  image: node:${NODE_VERSION}-${OS}
-  script:
-    - npm install
-    - npm test
-```
-
-### キャッシュ
-
-```yaml
-# .gitlab-ci.yml
-variables:
-  npm_config_cache: "$CI_PROJECT_DIR/.npm"
-
-cache:
-  key:
-    files:
-      - package-lock.json
-  paths:
-    - .npm/
-    - node_modules/
-
-build:
-  script:
-    - npm ci
-    - npm run build
-```
-
-### Kubernetes デプロイ
-
-```yaml
-# .gitlab-ci.yml
-deploy-k8s:
-  stage: deploy
-  image: bitnami/kubectl:latest
-  script:
-    - kubectl config set-cluster k8s --server="$KUBE_URL" --insecure-skip-tls-verify=true
-    - kubectl config set-credentials admin --token="$KUBE_TOKEN"
-    - kubectl config set-context default --cluster=k8s --user=admin
-    - kubectl config use-context default
-    - kubectl apply -f k8s/deployment.yaml
-    - kubectl rollout status deployment/my-app
-  only:
-    - main
-```
-
-### マージリクエストテンプレート
-
-```markdown
-<!-- .gitlab/merge_request_templates/Default.md -->
-## Description
-Please include a summary of the change and which issue is fixed.
-
-Closes #(issue)
-
-## Type of change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Breaking change
-- [ ] Documentation update
-
-## Checklist
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code, particularly in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-- [ ] I have added tests that prove my fix is effective or that my feature works
-- [ ] New and existing unit tests pass locally with my changes
-```
-
-### コンテナレジストリ
-
-```bash
-# GitLab Container Registry
-
-# ログイン
-docker login registry.gitlab.com
-
-# イメージビルド
-docker build -t registry.gitlab.com/username/project/myapp:latest .
-
-# プッシュ
-docker push registry.gitlab.com/username/project/myapp:latest
-
-# プル
-docker pull registry.gitlab.com/username/project/myapp:latest
-```
-
-### セキュリティスキャン
-
-```yaml
-# .gitlab-ci.yml
-include:
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Security/Dependency-Scanning.gitlab-ci.yml
-  - template: Security/Container-Scanning.gitlab-ci.yml
-
-stages:
-  - test
-  - security
-
-sast:
-  stage: security
-
-dependency_scanning:
-  stage: security
-
-container_scanning:
-  stage: security
-  variables:
-    CI_APPLICATION_REPOSITORY: $CI_REGISTRY_IMAGE
-    CI_APPLICATION_TAG: $CI_COMMIT_SHORT_SHA
-```
-
-### GitLab Runner（セルフホスト）
-
-```bash
-# GitLab Runnerインストール（Docker）
-docker run -d --name gitlab-runner --restart always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v gitlab-runner-config:/etc/gitlab-runner \
-  gitlab/gitlab-runner:latest
-
-# Runner登録
-docker exec -it gitlab-runner gitlab-runner register \
-  --url https://gitlab.com/ \
-  --registration-token YOUR_TOKEN \
-  --executor docker \
-  --docker-image alpine:latest \
-  --description "My Docker Runner"
-```
-
-### Auto DevOps
-
-```yaml
-# .gitlab-ci.yml
-# Auto DevOps有効化（プロジェクト設定）
-# Settings > CI/CD > Auto DevOps
-
-# カスタマイズ
-include:
-  - template: Auto-DevOps.gitlab-ci.yml
-
-variables:
-  AUTO_DEVOPS_DOMAIN: example.com
-  POSTGRES_ENABLED: "true"
-  POSTGRES_VERSION: "13"
-```
-
-### GitLab API
-
-```bash
-# プロジェクト一覧
-curl --header "PRIVATE-TOKEN: <your_access_token>" \
-  "https://gitlab.com/api/v4/projects"
-
-# Issue作成
-curl --request POST \
-  --header "PRIVATE-TOKEN: <your_access_token>" \
-  --data "title=New Issue&description=Description" \
-  "https://gitlab.com/api/v4/projects/:id/issues"
-
-# パイプライン実行
-curl --request POST \
-  --header "PRIVATE-TOKEN: <your_access_token>" \
-  "https://gitlab.com/api/v4/projects/:id/pipeline?ref=main"
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Free** |  無料 | 無制限プライベート、400 CI/CD分/月 |
-| **Premium** |  $19/ユーザー/月 | 10,000 CI/CD分/月、高度機能 |
-| **Ultimate** |  $99/ユーザー/月 | 50,000 CI/CD分/月、セキュリティ |
-| **Self-Managed** |  無料/ | セルフホスト |
+最小運用例:
+- 運用: `feature/*` → MR → `main` マージ
+- 必須条件: パイプライン成功 + 承認
 
 ## メリット
 
-1. **無料枠**: 無制限プライベート
-2. **統合プラットフォーム**: DevOps全工程
-3. **セルフホスト**: オンプレ可能
-4. **CI/CD**: 強力なCI/CD
-5. **セキュリティ**: セキュリティスキャン
+- 開発運用を単一基盤へ集約しやすい。
+- セルフホスト対応で組織要件に合わせやすい。
+- CI/CD とセキュリティを同一フローで管理しやすい。
 
 ## デメリット
 
-1. **複雑性**: 機能多く複雑
-2. **パフォーマンス**: GitHub比較で遅い
-3. **コミュニティ**: GitHub比較で小規模
-4. **UI**: UIやや複雑
+- 機能範囲が広く初期設計が複雑になりやすい。
+- セルフホストでは運用・保守負荷が増える。
+- 高度機能は上位プラン前提になる場合がある。
 
-## 公式リンク
+## CI/CD での使用
 
-- **公式サイト**: [https://about.gitlab.com/](https://about.gitlab.com/)
-- **ドキュメント**: [https://docs.gitlab.com/](https://docs.gitlab.com/)
+GitLab では `.gitlab-ci.yml` を中心に、マージ前検証とマージ後デプロイを一元運用しやすい。環境機能と手動承認ジョブを組み合わせると、本番デプロイの統制を強化できる。
 
-## 関連ドキュメント
+## 他ツールとの比較
 
-- [バージョン管理ツール一覧](../バージョン管理ツール/)
-- [GitHub](./GitHub.md)
-- [Git](./Git.md)
+| ツール | 強み | 特徴 |
+|------|------|------|
+| GitLab | DevOps統合 | SCM〜CI/CD〜セキュリティを一元化 |
+| GitHub | コミュニティ/連携 | PR文化と外部エコシステムが強い |
+| Bitbucket | Jira連携 | Atlassian 製品群と親和性が高い |
+| Azure DevOps | 組織統制 | 大規模組織の管理機能が豊富 |
 
----
+## ベストプラクティス
 
-**カテゴリ**: バージョン管理ツール
-**対象工程**: ソースコード管理・DevOps
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 1. MR品質ゲートを標準化
 
+- 承認者と必須 CI を明確化する。
+- テンプレートでレビュー観点を統一する。
+
+### 2. パイプラインを段階設計
+
+- Build/Test/Deploy を分離し責務を整理する。
+- キャッシュ・アーティファクトで実行効率を上げる。
+
+### 3. セキュリティを早期組込
+
+- SAST/Dependency Scanning を初期から有効化する。
+- 重大度別の対応フローを定義する。
+
+## 公式ドキュメント
+
+- 公式サイト: https://about.gitlab.com/
+- Docs: https://docs.gitlab.com/
+- Pricing: https://about.gitlab.com/pricing/
+
+## まとめ
+
+- GitLab は開発から運用までを一体管理しやすい DevOps 基盤である。
+- MR と CI/CD を標準化することで、品質とリードタイムを両立しやすい。
+- セルフホストとセキュリティ機能を活用すると、組織要件に合わせた運用を構築しやすい。

@@ -2,272 +2,122 @@
 
 ## 概要
 
-ServiceNowは、エンタープライズ向けのクラウドベースITサービスマネジメント（ITSM）プラットフォームです。インシデント管理、変更管理、問題管理、CMDB（構成管理データベース）、サービスカタログなどのITILプロセスを統合的に提供し、IT運用の標準化と自動化を実現します。Flow Designerによるノーコード/ローコードのワークフロー自動化、Integration Hubによる外部システム連携、AIを活用した予測分析など、IT運用のデジタルトランスフォーメーションを推進する包括的なプラットフォームです。
+ServiceNow はエンタープライズ向けの ITSM プラットフォームである。インシデント、問題、変更、サービス要求、CMDB を一元管理し、運用プロセスの標準化と自動化を進めやすい。
+
+## 料金
+
+| 区分 | 内容 |
+|------|------|
+| ITSM Standard / Pro / Enterprise | 要見積（機能・ユーザー数で変動） |
+| Developer Instance | 学習・検証用途で無償枠あり |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| ITIL 親和性 | ITIL プロセスに沿って運用設計しやすい |
+| 統合基盤 | ITSM、CMDB、ナレッジ、ワークフローを統合 |
+| 自動化 | Flow Designer でノーコード/ローコード自動化 |
+| 拡張性 | Integration Hub や API 連携で外部接続可能 |
+| エンタープライズ対応 | 大規模組織向けの権限・監査管理に強い |
 
 ## 主な機能
 
-### 1. インシデント管理
-- **チケット管理**: インシデントの登録・分類・追跡
-- **優先度設定**: 影響度と緊急度に基づく自動分類
-- **エスカレーション**: 自動エスカレーションルール
-- **SLA管理**: SLA目標の追跡と通知
+### ITSM 機能
 
-### 2. 変更管理
-- **変更要求**: 標準変更・通常変更・緊急変更の管理
-- **CAB**: 変更諮問委員会のワークフロー
-- **影響分析**: CMDBとの連携による影響範囲分析
-- **承認プロセス**: 多段階承認ワークフロー
+| 機能 | 説明 |
+|------|------|
+| インシデント管理 | 受付、分類、優先度、SLA を管理 |
+| 問題管理 | 根本原因分析と再発防止を管理 |
+| 変更管理 | 変更フロー、承認、影響管理を実施 |
+| サービス要求管理 | サービスカタログと申請処理を管理 |
 
-### 3. 問題管理
-- **根本原因分析**: インシデントの根本原因特定
-- **既知のエラー**: 既知のエラーデータベース管理
-- **ナレッジ連携**: 解決策のナレッジベース登録
-- **傾向分析**: 問題発生の傾向分析
+### 構成・可視化機能
 
-### 4. CMDB（構成管理データベース）
-- **CI管理**: 構成アイテムの登録・管理
-- **リレーションシップ**: CI間の依存関係マッピング
-- **ディスカバリ**: 自動検出によるCI情報の収集
-- **サービスマッピング**: ビジネスサービスの依存関係可視化
+| 機能 | 説明 |
+|------|------|
+| CMDB | CI 情報と依存関係を一元管理 |
+| サービスマッピング | ビジネスサービスと基盤構成の関係を可視化 |
+| ダッシュボード | KPI、SLA、対応状況を可視化 |
+| レポート | 運用品質の定量評価に利用 |
 
-### 5. サービスカタログ
-- **リクエスト管理**: サービスリクエストのセルフサービス
-- **カタログ定義**: サービスメニューの定義
-- **フルフィルメント**: 自動プロビジョニング
-- **承認ワークフロー**: リクエスト承認の自動化
+### 自動化・連携機能
 
-### 6. Flow Designer / Integration Hub
-- **ノーコード自動化**: GUIベースのワークフロー設計
-- **外部連携**: REST API、Webhook等による外部システム統合
-- **スポーク**: Slack、Jira、Azure DevOps等の連携コネクタ
-- **スケジュール実行**: 定期実行ワークフロー
+| 機能 | 説明 |
+|------|------|
+| Flow Designer | 承認・通知・更新フローを自動化 |
+| Integration Hub | Slack、Jira など外部連携を実装可能 |
+| 通知管理 | メール/チャット通知を条件で制御 |
+| API 連携 | 既存システムとの双方向連携が可能 |
 
-## 利用方法
+## インストールとセットアップ
 
-### インスタンスのセットアップ
+公式URL:
+- [ServiceNow 公式](https://www.servicenow.com/)
+- [ServiceNow Docs](https://docs.servicenow.com/)
+- [ServiceNow Developer](https://developer.servicenow.com/)
 
-```
 セットアップ手順:
-  1. ServiceNowのインスタンスを契約・プロビジョニング
-  2. 管理者アカウントでログイン
-  3. プラグインの有効化（ITSM、CMDB等）
-  4. 組織構造の設定（部門、グループ、ユーザー）
-  5. SLAポリシーの設定
-  6. 通知ルールの設定
-  7. サービスカタログの定義
-```
+1. 利用スコープ（ITSM/CMDB/自動化）と対象業務を定義する。
+2. インスタンスを用意し、組織・権限・通知の基礎設定を行う。
+3. インシデント/変更/SLA の最小運用フローを先に実装する。
+4. 運用が安定してから自動化と外部連携を段階導入する。
 
-### インシデント管理の設定
+## 基本的な使い方
 
-```javascript
-// Business Rule: インシデント作成時の自動分類
-(function executeRule(current, previous) {
-    // カテゴリに基づく優先度の自動設定
-    if (current.category == 'network') {
-        current.impact = 1;  // High
-        current.urgency = 1; // High
-    }
-
-    // 割り当てグループの自動設定
-    if (current.category == 'hardware') {
-        current.assignment_group.setDisplayValue('Hardware Support');
-    } else if (current.category == 'software') {
-        current.assignment_group.setDisplayValue('Software Support');
-    }
-
-    // VIPユーザーの優先対応
-    var user = new GlideRecord('sys_user');
-    user.get(current.caller_id);
-    if (user.vip == true) {
-        current.priority = 1; // Critical
-    }
-})(current, previous);
-```
-
-### REST APIによるインシデント操作
-
-```bash
-# インシデントの作成
-curl -X POST "https://instance.service-now.com/api/now/table/incident" \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -u "admin:password" \
-  -d '{
-    "short_description": "メールサーバー障害",
-    "description": "メール送受信が不能になっている",
-    "category": "network",
-    "impact": "1",
-    "urgency": "1",
-    "assignment_group": "Network Support",
-    "caller_id": "user@example.com"
-  }'
-
-# インシデントの一覧取得
-curl -X GET "https://instance.service-now.com/api/now/table/incident?sysparm_limit=10&sysparm_query=state=1" \
-  -H "Accept: application/json" \
-  -u "admin:password"
-
-# インシデントの更新
-curl -X PATCH "https://instance.service-now.com/api/now/table/incident/SYS_ID" \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json" \
-  -u "admin:password" \
-  -d '{
-    "state": "2",
-    "work_notes": "調査開始。ネットワーク機器のログを確認中。"
-  }'
-
-# インシデントのクローズ
-curl -X PATCH "https://instance.service-now.com/api/now/table/incident/SYS_ID" \
-  -H "Content-Type: application/json" \
-  -u "admin:password" \
-  -d '{
-    "state": "7",
-    "close_code": "Solved (Permanently)",
-    "close_notes": "ネットワーク機器のファームウェア更新により解決"
-  }'
-```
-
-### 変更管理のワークフロー
-
-```
-変更管理プロセス:
-  1. 変更要求（RFC）の登録
-     - 変更の種類: Standard / Normal / Emergency
-     - 影響範囲の記述
-     - リスクアセスメント
-
-  2. 影響分析
-     - CMDBからの依存関係確認
-     - 影響を受けるCI（構成アイテム）の特定
-     - サービス影響の評価
-
-  3. 承認プロセス
-     - 技術レビュー
-     - CAB（変更諮問委員会）レビュー
-     - マネージャー承認
-
-  4. 実装
-     - 実装計画の実行
-     - バックアウトプランの準備
-     - 変更の実施
-
-  5. レビュー
-     - PIR（実施後レビュー）
-     - 成功/失敗の記録
-     - 教訓の文書化
-```
-
-### Flow Designer による自動化例
-
-```
-フロー名: インシデント自動エスカレーション
-
-トリガー:
-  - テーブル: Incident
-  - 条件: Priority = 1 (Critical) AND State = New
-  - 30分以上未対応
-
-アクション:
-  1. Slackで通知
-     - チャンネル: #incident-critical
-     - メッセージ: "重大インシデント未対応: {incident.number}"
-
-  2. メール送信
-     - 宛先: ITマネージャー
-     - 件名: "[緊急] 重大インシデント: {incident.short_description}"
-
-  3. インシデント更新
-     - エスカレーション: Level 2
-     - 割り当てグループ: Senior Engineers
-
-  4. PagerDutyでオンコール通知
-     - サービス: Critical Infrastructure
-```
-
-### CMDB構成例
-
-```
-CI（構成アイテム）の階層構造:
-  ビジネスサービス
-    └── Webアプリケーション
-        ├── Webサーバー (nginx)
-        │   ├── サーバー: web-prod-01
-        │   └── サーバー: web-prod-02
-        ├── アプリケーションサーバー
-        │   ├── サーバー: app-prod-01
-        │   └── サーバー: app-prod-02
-        ├── データベース (PostgreSQL)
-        │   ├── サーバー: db-prod-01 (Primary)
-        │   └── サーバー: db-prod-02 (Replica)
-        └── ロードバランサー
-            └── Azure Load Balancer
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **ITSM Standard** | 要問合せ | インシデント・問題・変更管理 |
-| **ITSM Professional** | 要問合せ | Standard + パフォーマンス分析 |
-| **ITSM Enterprise** | 要問合せ | Professional + AI/ML機能 |
-| **Developer Instance** | 無料 | 個人学習・開発用 |
+1. まずチケット受付と優先度分類ルールを統一する。
+2. SLA とエスカレーション条件を定義し、遅延検知を有効化する。
+3. CMDB を主要サービスから整備し、変更影響の可視化に使う。
+4. 定型作業は Flow Designer で自動化し、手作業を削減する。
 
 ## メリット
 
-### 主な利点
-
-1. **ITIL準拠**: ITILフレームワークに完全対応
-2. **統合プラットフォーム**: インシデント・変更・問題管理を一元化
-3. **CMDB**: 構成管理データベースによるIT資産の可視化
-4. **ワークフロー自動化**: Flow Designerによるノーコード自動化
-5. **外部連携**: Integration Hubによる幅広いシステム連携
-6. **スケーラビリティ**: エンタープライズ規模に対応
-7. **SLA管理**: SLA目標の自動追跡と通知
-8. **レポーティング**: ダッシュボードとレポート機能
-9. **セルフサービス**: サービスカタログによるユーザー自律
-10. **AI/ML**: 予測分析とインテリジェントな推奨
+- ITSM プロセスを標準化しやすい
+- 複数運用機能を一つの基盤で統合できる
+- 大規模組織での権限・監査要件に対応しやすい
+- 自動化で運用負荷を下げやすい
 
 ## デメリット
 
-### 制約・課題
+- 導入コストと運用コストが高くなりやすい
+- 初期設計を誤ると定着まで時間がかかる
+- 高度なカスタマイズには専門知識が必要
 
-1. **高コスト**: エンタープライズ向けの高額ライセンス
-2. **導入期間**: 初期導入に数ヶ月を要する場合がある
-3. **学習曲線**: プラットフォームの習熟に時間が必要
-4. **カスタマイズ複雑**: 高度なカスタマイズにはスクリプト知識が必要
-5. **運用定着**: プロセス定着までに組織的な取り組みが必要
-6. **過剰機能**: 小規模組織には機能過多
-7. **ベンダーロックイン**: プラットフォーム固有の設定が多い
-8. **パフォーマンス**: 大量データ時のレスポンス低下
+## 他ツールとの比較
 
-## 代替ツール
+| ツール | 主な用途 | 特徴 |
+|------|------|------|
+| ServiceNow | エンタープライズ ITSM | 機能網羅性と統合性が高い |
+| Jira Service Management | ITSM/DevOps 連携 | 開発チーム連携が強い |
+| Freshservice | クラウド ITSM | 導入しやすく中規模向け |
+| Zammad | ヘルプデスク | OSS で軽量、シンプル運用向け |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Jira Service Management** | Atlassian製ITSM | ServiceNowより軽量で安価 |
-| **Zammad** | オープンソースヘルプデスク | 無料だが機能は限定的 |
-| **Freshservice** | クラウドITSM | ServiceNowより安価で導入が容易 |
-| **BMC Helix ITSM** | エンタープライズITSM | ServiceNowと同等の機能 |
-| **ManageEngine** | IT管理プラットフォーム | 中小企業向けに強い |
+## ベストプラクティス
 
-## 公式リンク
+### 1. プロセスを最小から導入
 
-- **公式サイト**: [https://www.servicenow.com/](https://www.servicenow.com/)
-- **ドキュメント**: [https://docs.servicenow.com/](https://docs.servicenow.com/)
-- **Developer**: [https://developer.servicenow.com/](https://developer.servicenow.com/)
-- **コミュニティ**: [https://www.servicenow.com/community/](https://www.servicenow.com/community/)
-- **Training**: [https://nowlearning.servicenow.com/](https://nowlearning.servicenow.com/)
+- 最初はインシデントと SLA に絞る
+- 運用定着後に変更・問題管理へ拡張する
 
-## 関連ドキュメント
+### 2. CMDB を現実的に構築
 
-- [運用ITSM一覧](../運用ITSM/)
-- [Zammad](./Zammad.md)
-- [監視ロギング](../監視ロギング/)
+- 重要サービスから段階的に整備する
+- 手動更新を減らし自動同期を優先する
 
----
+### 3. 自動化は効果の高い業務から
 
-**カテゴリ**: 運用ITSM
-**対象工程**: 運用・保守
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+- 通知、割当、承認など定型処理から開始する
+- 自動化前後の工数・品質を指標で比較する
+
+## 公式ドキュメント
+
+- 公式サイト: https://www.servicenow.com/
+- ドキュメント: https://docs.servicenow.com/
+- Developer: https://developer.servicenow.com/
+- 学習ポータル: https://nowlearning.servicenow.com/
+
+## まとめ
+
+1. ServiceNow は ITSM の標準化と統合運用に強い。
+2. 初期は最小プロセス導入で定着を優先するべき。
+3. CMDB と自動化を段階導入すると効果が出やすい。

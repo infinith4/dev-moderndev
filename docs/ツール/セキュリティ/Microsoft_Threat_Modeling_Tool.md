@@ -2,254 +2,128 @@
 
 ## 概要
 
-Microsoft Threat Modeling Tool（TMT）は、ソフトウェア設計段階でセキュリティ脅威を特定・分析するための無料ツールである。STRIDE（Spoofing、Tampering、Repudiation、Information Disclosure、Denial of Service、Elevation of Privilege）フレームワークに基づき、システムアーキテクチャ図からセキュリティ脅威を自動検出する。設計段階での脅威分析により、実装後の脆弱性修正コストを大幅に削減できる。
+Microsoft Threat Modeling Tool（TMT）は、設計段階で脅威を洗い出すための脅威モデリングツールである。データフロー図（DFD）を作成すると、STRIDE（Spoofing、Tampering、Repudiation、Information Disclosure、Denial of Service、Elevation of Privilege）に基づいて脅威候補を自動抽出できる。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| Microsoft Threat Modeling Tool | 無料（Windows向け） |
+| 商用利用 | 利用規約の範囲で可能（組織ポリシー確認は必要） |
 
 ## 主な特徴
 
 | 項目 | 内容 |
 |------|------|
-| 無料提供 | Microsoft提供、Windows専用の無料ツール |
-| STRIDEフレームワーク | 業界標準の脅威分類モデルを採用 |
-| 自動脅威検出 | データフロー図（DFD）から脅威を自動生成 |
-| 対策提案 | 各脅威に対する緩和策を提案 |
-| レポート生成 | HTML・Excel形式でレポート出力 |
-| Azureテンプレート | Azure向けの統合テンプレートを提供 |
-| SDL統合 | Microsoft Security Development Lifecycle準拠 |
+| STRIDE ベース分析 | 体系的な脅威分類で漏れを減らしやすい |
+| DFD 駆動 | アーキテクチャ図から脅威候補を生成 |
+| 対策検討支援 | 脅威ごとの緩和策を整理しやすい |
+| レポート出力 | 設計レビュー用に結果を共有しやすい |
+| SDL 親和性 | セキュア開発プロセスへ組み込みやすい |
+| Azure シナリオ対応 | クラウド構成の脅威整理に活用しやすい |
 
 ## 主な機能
 
-### データフロー図（DFD）作成
+### モデリング機能
 
 | 機能 | 説明 |
 |------|------|
-| プロセス | アプリケーション、サービスの配置 |
-| データストア | データベース、ファイルの配置 |
-| 外部エンティティ | ユーザー、外部システムの配置 |
-| データフロー | プロセス間のデータ移動定義 |
-| トラストバウンダリ | 信頼境界の設定 |
+| DFD 作成 | 外部エンティティ、プロセス、データストアを図式化 |
+| データフロー定義 | コンポーネント間通信を明示 |
+| トラストバウンダリ | 信頼境界を設定して分析精度を向上 |
+| テンプレート利用 | システム種別に応じた初期モデルを利用 |
 
-### STRIDE脅威分析
-
-| 機能 | 説明 |
-|------|------|
-| Spoofing | なりすまし・認証の脅威検出 |
-| Tampering | データ改ざん・整合性の脅威検出 |
-| Repudiation | 否認・監査の脅威検出 |
-| Information Disclosure | 情報漏洩・機密性の脅威検出 |
-| Denial of Service | サービス拒否・可用性の脅威検出 |
-| Elevation of Privilege | 権限昇格・認可の脅威検出 |
-
-### 対策管理
+### 脅威分析機能
 
 | 機能 | 説明 |
 |------|------|
-| 緩和策提案 | 各脅威への対策を自動提案 |
-| ステータス管理 | Not Started、Needs Investigation、Mitigation Implemented、Not Applicable |
-| 優先度設定 | High、Medium、Lowの優先度管理 |
-| 対策記録 | 実施内容の記録と監査証跡 |
+| STRIDE 分析 | 6分類で脅威候補を抽出 |
+| 優先度管理 | 高・中・低などで対応順を整理 |
+| ステータス管理 | 未対応/調査中/対策済みを追跡 |
+| 根拠記録 | 対策理由や例外理由を記録 |
+
+### レポート・レビュー機能
+
+| 機能 | 説明 |
+|------|------|
+| レポート出力 | 分析結果をレビュー用資料に変換 |
+| 変更追跡 | モデル更新ごとの差分を確認しやすい |
+| 監査証跡 | 対応履歴を残して監査に備える |
+| 共有運用 | 開発・セキュリティ間の認識合わせを支援 |
 
 ## インストールとセットアップ
 
 公式URL:
-- [Microsoft Threat Modeling Tool ダウンロード](https://aka.ms/threatmodelingtool)
-- [公式ドキュメント](https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool)
+- [ダウンロード](https://aka.ms/threatmodelingtool)
+- [ドキュメント](https://learn.microsoft.com/azure/security/develop/threat-modeling-tool)
 - [GitHub](https://github.com/microsoft/threat-modeling-tool)
-- [Microsoft SDL](https://www.microsoft.com/en-us/securityengineering/sdl)
+- [Microsoft SDL](https://www.microsoft.com/securityengineering/sdl)
+
+セットアップの要点:
+1. Windows 環境に TMT を導入する。
+2. 対象システムのアーキテクチャ情報（構成図、通信経路）を準備する。
+3. DFD の粒度（システム全体/サブシステム単位）を決める。
+4. 分析結果のレビュー担当と対応ルールを定義する。
 
 ## 基本的な使い方
 
-### 1. インストール
+1. 新規モデルを作成し、外部エンティティ・プロセス・データストアを配置する。
+2. データフローとトラストバウンダリを定義する。
+3. 分析ビューで自動抽出された脅威を確認する。
+4. 優先度と対策方針を記録し、対応ステータスを更新する。
+5. レポートを出力し、設計レビューと実装計画に反映する。
 
-```
-1. 公式サイトにアクセス: https://aka.ms/threatmodelingtool
-2. ダウンロード（Windows専用）
-3. インストーラー実行（.NET Framework 4.5以上必須）
-4. Threat Modeling Toolを起動
-```
+最小運用例:
+- 対象: Web アプリ + API + DB 構成
+- 出力: STRIDE 脅威一覧、優先度付き対策リスト
 
-### 2. 新規モデル作成
+## メリット
 
-```
-1. File → New でモデル作成
-2. 要素追加（左ペイン）:
-   - External Entity: ユーザー
-   - Process: Webアプリケーション
-   - Data Store: データベース
-   - Data Flow: ユーザー → Web App → Database
-3. トラストバウンダリを追加
-4. View → Analysis View で脅威分析実行
-```
+- 設計段階で脅威を可視化し、後工程の修正コストを下げやすい。
+- STRIDE で観点を統一でき、レビュー品質を揃えやすい。
+- 無料で始めやすく、セキュリティ教育にも活用しやすい。
 
-### 3. Webアプリケーション例
+## デメリット
 
-```
-要素配置:
-1. External Entity: "User" (インターネット)
-2. Trust Boundary: "HTTPS Boundary"
-3. Process: "Web Server"
-4. Trust Boundary: "Internal Network"
-5. Process: "API Server"
-6. Data Store: "Database"
-
-データフロー:
-User → Web Server (HTTPS)
-Web Server → API Server (Internal)
-API Server → Database (SQL)
-```
-
-### 4. 脅威分析結果の確認
-
-```
-検出される脅威例:
-
-1. Spoofing the Web Server Process
-   - Category: Spoofing
-   - Priority: High
-   - Mitigation: Use HTTPS with valid certificate
-
-2. Tampering with Data Flow
-   - Category: Tampering
-   - Priority: High
-   - Mitigation: Use TLS 1.2+, validate SSL certificates
-
-3. Information Disclosure of Database
-   - Category: Information Disclosure
-   - Priority: High
-   - Mitigation: Encrypt data at rest, use encrypted connections
-```
-
-### 5. 対策記録とレポート生成
-
-```
-対策記録:
-1. Analysis View → 脅威をクリック
-2. State: Mitigation Implemented
-3. Justification: "Implemented TLS 1.2 encryption"
-
-レポート生成:
-1. Reports → Create Full Report（HTML形式）
-2. Reports → Create Excel Report（Excel形式）
-```
-
-## テンプレート活用
-
-```
-Azure用テンプレート:
-- File → New → Azure Template
-  - Azure Web App
-  - Azure SQL Database
-  - Azure Storage
-
-カスタムテンプレート:
-- カスタムステンシル追加
-- 組織固有のテンプレート作成
-```
+- Windows 専用のため、開発環境によっては運用制約がある。
+- 大規模システムではモデル分割と管理ルールが必要。
+- 自動抽出結果をそのまま採用せず、レビュー工数が必要。
 
 ## 他ツールとの比較
 
-### TMT vs OWASP Threat Dragon
-
-| 機能 | Microsoft TMT | OWASP Threat Dragon |
-|------|---------------|---------------------|
-| プラットフォーム | Windows専用 | クロスプラットフォーム |
-| 価格 | 無料 | 無料（OSS） |
-| 脅威フレームワーク | STRIDE | STRIDE |
-| 自動脅威検出 | あり | 限定的 |
-| UI | デスクトップアプリ | Web/デスクトップ |
-| チーム協業 | ファイル共有 | Git連携可能 |
-| Azureテンプレート | あり | なし |
-
-### TMT vs IriusRisk
-
-| 機能 | Microsoft TMT | IriusRisk |
-|------|---------------|-----------|
-| 価格 | 無料 | 有料 |
-| 自動化 | 限定的 | CI/CD統合対応 |
-| チーム協業 | 非対応 | クラウド対応 |
-| レポート | 基本的 | 高度 |
-| カスタマイズ | 限定的 | 柔軟 |
-
-## ユースケース
-
-| ユースケース | 目的 | 活用内容 |
-|-------------|------|----------|
-| システム設計レビュー | 設計段階での脅威特定 | DFD作成、STRIDE分析、緩和策計画 |
-| セキュリティ監査 | コンプライアンス対応 | 脅威レポート生成、対策状況の追跡 |
-| Azure設計検証 | クラウドアーキテクチャのセキュリティ | Azureテンプレートによる脅威分析 |
-| SDL準拠 | Microsoft SDL準拠の開発 | 設計フェーズでの必須脅威分析 |
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| Microsoft TMT | 設計段階の脅威分析 | STRIDE と DFD で体系的に整理しやすい |
+| OWASP Threat Dragon | OSS 脅威モデリング | クロスプラットフォームで扱いやすい |
+| IriusRisk | エンタープライズ運用 | 自動化・ワークフロー連携が強い |
+| Microsoft Threat Modeling（手法） | フレームワーク | ツール非依存で設計プロセスに組み込み可能 |
 
 ## ベストプラクティス
 
-### 1. モデル作成時の注意点
+### 1. モデル粒度を揃える
 
-- トラストバウンダリを適切に設定し、信頼境界を明確にする
-- すべてのデータフローにプロトコルを記載する
-- 外部エンティティと内部プロセスを明確に区別する
+- 1モデルの対象範囲を明確に定義する。
+- サブシステムごとに分割し、過大モデル化を避ける。
 
-### 2. 脅威分析の進め方
+### 2. トラストバウンダリを明示
 
-- 検出された脅威を優先度順に評価する
-- 各脅威に対して緩和策を具体的に記録する
-- Not Applicableの場合も理由を記録する
+- 外部境界、内部境界、管理境界を分けて記述する。
+- 境界を跨ぐデータフローは優先レビュー対象にする。
 
-### 3. レポートの管理
+### 3. 対策ステータスを運用化
 
-- 定期的にレポートを生成して変更を追跡する
-- Excelレポートを使って進捗管理する
-- 脅威モデルファイルをバージョン管理に含める
+- 脅威ごとに担当者と期限を設定する。
+- Not Applicable は根拠を残して監査可能にする。
 
-## トラブルシューティング
+## 公式ドキュメント
 
-### よくある問題と解決策
-
-#### 1. インストールできない
-
-```
-原因: .NET Framework 4.5以上が未インストール
-解決策:
-- .NET Frameworkの最新版をインストール
-- Windows Updateを実行
-```
-
-#### 2. 大規模モデルでパフォーマンスが低下
-
-```
-原因: 要素数が多すぎる
-解決策:
-- モデルをサブシステム単位に分割
-- 重要なコンポーネントに焦点を絞る
-```
-
-#### 3. カスタムテンプレートが認識されない
-
-```
-原因: テンプレートファイルの配置場所が不正
-解決策:
-- 公式ドキュメントでテンプレートの配置パスを確認
-- XMLスキーマを検証
-```
-
-## 参考リソース
-
-### 公式ドキュメント
 - ダウンロード: https://aka.ms/threatmodelingtool
-- ドキュメント: https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool
-- SDL: https://www.microsoft.com/en-us/securityengineering/sdl
-
-### コミュニティ
+- ドキュメント: https://learn.microsoft.com/azure/security/develop/threat-modeling-tool
 - GitHub: https://github.com/microsoft/threat-modeling-tool
-
-### チュートリアル
-- Getting Started with TMT: https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-getting-started
-- STRIDE Overview: https://docs.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats
+- SDL: https://www.microsoft.com/securityengineering/sdl
 
 ## まとめ
 
-Microsoft Threat Modeling Toolは、設計段階でのセキュリティ脅威分析に特化した無料ツールとして、以下の場面で特に有用である:
-
-1. **設計段階の脅威分析** - STRIDEフレームワークによる体系的な脅威特定
-2. **Azure環境のセキュリティ設計** - Azure統合テンプレートによる効率的な分析
-3. **SDL準拠の開発** - Microsoft Security Development Lifecycle準拠のプロセス
-4. **セキュリティ教育** - シンプルなUIで脅威モデリングの学習に最適
-
-Windows専用という制約はあるが、無料で利用でき、自動脅威検出と対策提案機能により、セキュリティ設計の品質向上に貢献する。
+- DFD と STRIDE で設計段階の脅威を体系的に洗い出しやすい。
+- 優先度付きの対策管理により、実装前のセキュリティ合意を進めやすい。
+- モデル粒度と運用ルールを決めることで、継続的な脅威分析を回しやすい。

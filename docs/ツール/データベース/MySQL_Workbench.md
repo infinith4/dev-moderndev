@@ -2,207 +2,128 @@
 
 ## 概要
 
-MySQL Workbenchは、Oracle社が提供するMySQL公式の統合開発環境（IDE）です。データベース設計、SQL開発、サーバー管理を一つのツールで行える包括的なGUIツールで、ER図によるビジュアルデータベース設計、SQLエディタ、データモデリング、リバースエンジニアリング、データベース移行などの機能を提供します。
+MySQL Workbench は、MySQL 向けの設計・開発・管理を統合した GUI ツールである。ER 図作成、SQL 実行、サーバー管理を1つの画面で扱え、データベース設計から運用確認までを効率化しやすい。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| Community Edition | 無料 |
+| 商用サポート付き提供 | MySQL Enterprise 契約に応じて利用 |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| MySQL公式ツール | 公式サポートに基づく運用がしやすい |
+| ER 設計 | 図でテーブルと関係を設計可能 |
+| SQL 開発 | エディタでクエリ作成・実行・分析 |
+| リバース生成 | 既存DBからモデルを作成可能 |
+| フォワード生成 | モデルからDDLを生成可能 |
+| 管理機能 | ユーザー権限やバックアップ作業を支援 |
 
 ## 主な機能
 
-### 1. データモデリング・設計
-- **ER図作成**: ビジュアルなデータベース設計
-- **テーブル設計**: カラム、データ型、制約の定義
-- **リレーションシップ**: 外部キー、カーディナリティ設定
-- **正規化**: データベース正規化支援
-- **DDL生成**: モデルからCREATE文を自動生成
+### モデリング機能
 
-### 2. SQL開発
-- **SQLエディタ**: シンタックスハイライト、自動補完
-- **クエリ実行**: SQLの実行と結果表示
-- **クエリビルダー**: ビジュアルでクエリ作成
-- **実行計画**: クエリパフォーマンス分析
-- **スニペット**: よく使うSQLの保存・再利用
+| 機能 | 説明 |
+|------|------|
+| ER 図作成 | テーブル、キー、関係を視覚設計 |
+| 正規化支援 | 設計見直しを図で確認しやすい |
+| リバースエンジニアリング | 既存スキーマから図を生成 |
+| フォワードエンジニアリング | モデルからDDLを出力 |
 
-### 3. データベース管理
-- **サーバー管理**: 起動/停止、設定変更
-- **ユーザー管理**: ユーザー・権限の管理
-- **バックアップ・リストア**: データエクスポート/インポート
-- **パフォーマンス監視**: サーバーステータス、クエリ統計
+### SQL 開発機能
 
-### 4. リバースエンジニアリング
-- 既存データベースからER図を自動生成
-- スキーマ構造の可視化
-- ドキュメント生成
+| 機能 | 説明 |
+|------|------|
+| SQL エディタ | 補完・ハイライト付きで作業可能 |
+| 実行結果表示 | 結果グリッドで確認 |
+| 実行計画確認 | クエリ性能の分析を支援 |
+| スニペット管理 | 定型SQLを再利用可能 |
 
-### 5. データベース移行
-- Microsoft SQL Server、PostgreSQL、Sybaseからの移行
-- スキーマ・データの変換
-- 移行スクリプト生成
+### 管理・運用機能
 
-### 6. フォワードエンジニアリング
-- モデルから実際のデータベースを生成
-- ALTER文生成（既存DBとの差分）
-- 同期機能
+| 機能 | 説明 |
+|------|------|
+| ユーザー管理 | 権限設定をGUIで実施 |
+| バックアップ支援 | エクスポート/インポート操作を実施 |
+| サーバー状態確認 | 接続・稼働状況を確認 |
+| 移行支援 | 他DBからMySQLへの移行を補助 |
 
-## 利用方法
+## インストールとセットアップ
 
-### データベース接続
+公式URL:
+- [MySQL Workbench 公式ページ](https://www.mysql.com/products/workbench/)
+- [ダウンロード](https://dev.mysql.com/downloads/workbench/)
+- [ドキュメント](https://dev.mysql.com/doc/workbench/en/)
 
-```
-1. Home画面 → MySQL Connections の「+」ボタン
-2. 接続情報入力:
-   - Connection Name: 接続名（例: Local MySQL）
-   - Hostname: localhost
-   - Port: 3306
-   - Username: root
-   - Password: Store in Vault...
-3. Test Connection でテスト
-4. OK で保存
-```
+セットアップの要点:
+1. OS に合わせて Workbench をインストールする。
+2. MySQL 接続情報（host、port、user）を登録する。
+3. 接続テストを行い、開発用接続を保存する。
+4. モデル保存先と命名規則をチームで統一する。
 
-### ER図作成
+## 基本的な使い方
 
-```
-1. メニュー → Database → Reverse Engineer
-   または
-   File → New Model
-   
-2. EER Diagram タブで右クリック → Add Diagram
+1. 新規接続を作成して対象DBへ接続する。
+2. 必要に応じて EER Diagram を作成・編集する。
+3. SQL エディタでDDL/DMLを実行する。
+4. リバース/フォワード機能でモデルとDBを同期する。
+5. エクスポートでレビュー資料やバックアップを出力する。
 
-3. テーブル追加:
-   - ツールバーから Table アイコンをクリック
-   - キャンバスに配置
-   
-4. テーブル定義:
-   - テーブルをダブルクリック
-   - Columns タブでカラム追加
-     - Column Name, Datatype, PK, NN, UQ, AI 等を設定
-   
-5. リレーションシップ追加:
-   - ツールバーから Relationship アイコン選択
-   - 親テーブル → 子テーブルにドラッグ
-   - 外部キー制約が自動生成
-```
-
-### SQL実行
-
-```
-1. 接続を開く（MySQL Connectionsから選択）
-
-2. 新規SQLタブ作成（Ctrl+T）
-
-3. SQLを記述:
-   SELECT * FROM users WHERE age > 20;
-
-4. 実行:
-   - 全体実行: Ctrl+Shift+Enter
-   - 選択部分のみ実行: Ctrl+Enter
-
-5. 結果確認:
-   - Result Grid タブに表示
-   - Export ボタンで CSV/JSON 出力可能
-```
-
-### DDL生成
-
-```
-1. モデル（EER Diagram）を開く
-
-2. Database → Forward Engineer
-
-3. オプション選択:
-   - Generate DROP statements before each CREATE
-   - Generate separate CREATE INDEX statements
-   
-4. Preview SQL を確認
-
-5. Execute で実行 または Save to File で保存
-```
-
-### データエクスポート
-
-```
-1. Server → Data Export
-
-2. エクスポート対象選択:
-   - スキーマ選択
-   - テーブル選択
-   
-3. Export Options:
-   - Export to Dump Project Folder（フォルダ）
-   - Export to Self-Contained File（1ファイル）
-   
-4. Include options:
-   - Dump Structure and Data（構造とデータ）
-   - Dump Structure Only（構造のみ）
-   - Dump Data Only（データのみ）
-   
-5. Start Export
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Community Edition** |  無料 | 全機能利用可能、オープンソース |
-| **Commercial Edition** | MySQL Enterprise同梱 | エンタープライズサポート付き |
-
-※MySQL Workbench Community Editionは無料で、すべての機能を利用できます
+最小運用例:
+- 設計: EER Diagram でテーブル定義
+- 実装: Forward Engineer でDDL生成
+- 検証: SQL Editor でデータ確認
 
 ## メリット
 
-###  主な利点
-
-1. **無料**: MySQL公式ツールで全機能無料
-2. **統合環境**: 設計・開発・管理を1ツールで完結
-3. **ビジュアル設計**: ER図でデータベース設計
-4. **リバースエンジニアリング**: 既存DBから図を自動生成
-5. **DDL自動生成**: モデルからCREATE文を生成
-6. **SQLエディタ**: 自動補完、シンタックスハイライト
-7. **データベース移行**: SQL ServerやPostgreSQLから移行可能
-8. **クロスプラットフォーム**: Windows、Mac、Linux対応
-9. **公式ツール**: Oracleによる継続的な開発・サポート
-10. **オープンソース**: GPLライセンス
+- 無料で設計・実装・運用確認を一体化しやすい。
+- ER 図で非DB担当者とも認識合わせしやすい。
+- MySQL 公式ツールとして導入判断しやすい。
 
 ## デメリット
 
-###  制約・課題
+- MySQL 以外のDB運用には向かない。
+- 大規模スキーマでは操作が重くなりやすい。
+- チーム共同編集や差分管理は外部運用が必要。
 
-1. **MySQL専用**: PostgreSQLやSQL Serverには非対応
-2. **動作やや重い**: 大規模DBでは動作が遅い
-3. **UI改善余地**: モダンなUIツールと比較すると古い
-4. **学習曲線**: 多機能なため初心者には難しい
-5. **バグ**: 時々クラッシュやバグが報告される
-6. **日本語ドキュメント少ない**: 公式は英語中心
-7. **チーム協業弱い**: モデルファイルのバージョン管理が困難
-8. **クラウドDB対応限定的**: RDSやAzure DBへの接続は可能だが機能制限
+## 他ツールとの比較
 
-## 代替ツール
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| MySQL Workbench | MySQL 設計・運用 | 公式GUIで一体管理しやすい |
+| DBeaver | マルチDB運用 | 多DB接続と運用機能に強い |
+| DataGrip | 商用DB開発 | 補完・開発体験が高い（有料） |
+| ERDPlus | 学習/軽量設計 | ブラウザで簡易ER設計 |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **DBeaver** | マルチDB対応、無料 | MySQL以外も対応、ER図機能は弱い |
-| **phpMyAdmin** | Webベース、MySQL専用 | ブラウザで利用、機能は限定的 |
-| **HeidiSQL** | 軽量、Windows専用 | MySQL Workbenchより軽量 |
-| **Sequel Pro / Sequel Ace** | Mac専用、シンプル | ER図機能はない |
-| **pgAdmin** | PostgreSQL専用 | MySQL非対応 |
-| **DataGrip (JetBrains)** | 有料、マルチDB | MySQL Workbenchより高機能だが有料 |
+## ベストプラクティス
 
-## 公式リンク
+### 1. モデルと実DBを分離管理
 
-- **公式サイト**: [https://www.mysql.com/products/workbench/](https://www.mysql.com/products/workbench/)
-- **ダウンロード**: [https://dev.mysql.com/downloads/workbench/](https://dev.mysql.com/downloads/workbench/)
-- **ドキュメント**: [https://dev.mysql.com/doc/workbench/en/](https://dev.mysql.com/doc/workbench/en/)
-- **チュートリアル**: [https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial.html](https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial.html)
+- 設計用モデルファイルをGit管理する。
+- 本番変更はDDLレビューを経由する。
 
-## 関連ドキュメント
+### 2. 命名規約を固定
 
-- [データベースツール一覧](../データベースツール/)
-- [DBeaver](./DBeaver.md)
-- [データベース設計ベストプラクティス](../../best-practices/database-design.md)
-- [ER図作成ガイド](../../best-practices/er-diagram.md)
+- テーブル、インデックス、FK名を統一する。
+- 生成DDLの可読性を維持する。
 
----
+### 3. 運用タスクを標準化
 
-**カテゴリ**: データベースツール  
-**対象工程**: 基本設計、詳細設計、実装  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+- バックアップ手順を定期実行する。
+- 実行計画確認を性能レビューに組み込む。
 
+## 公式ドキュメント
+
+- 公式ページ: https://www.mysql.com/products/workbench/
+- ダウンロード: https://dev.mysql.com/downloads/workbench/
+- ドキュメント: https://dev.mysql.com/doc/workbench/en/
+- Getting Started: https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial.html
+
+## まとめ
+
+- MySQL向けに設計からSQL実行まで一貫して扱いやすい。
+- ER図ベースで設計レビューを進めやすく、初期合意形成に有効。
+- モデル管理とDDLレビューを標準化すると、運用品質を保ちやすい。

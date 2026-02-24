@@ -2,197 +2,132 @@
 
 ## 概要
 
-TestRailは、Gurock Software（現IDERA）が提供するWebベースのテスト管理プラットフォームです。テストケースの作成・管理、テスト計画の策定、テスト実行の記録、結果のレポーティングを一元管理します。Jira、Azure DevOps、GitHub等のプロジェクト管理ツールとの統合、JUnit/pytest等の自動テスト結果のインポート、REST APIによるカスタム連携に対応し、手動テストと自動テストの統合管理を実現します。
+TestRail は、テストケース、テスト計画、実行結果を一元管理するテスト管理プラットフォームである。手動テストと自動テスト結果を統合し、進捗と品質を可視化しやすい。
+
+## 料金
+
+| プラン | 内容 |
+|------|------|
+| Cloud / Server | 有料（ユーザー数・契約形態に応じる） |
+| Trial | 無料トライアルあり |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| ケース管理 | 手順・期待結果を標準化して管理 |
+| 実行管理 | テストラン/テストプランで進捗統制 |
+| トレーサビリティ | 要件・不具合・テストを紐付け |
+| レポート | 合格率、欠陥傾向、進捗を可視化 |
+| API連携 | 自動テスト結果を取り込み可能 |
+| 外部連携 | Jira、Azure DevOps 等と連携可能 |
 
 ## 主な機能
 
-### 1. テストケース管理
+### テスト設計機能
 
-- **テストケース作成**: ステップ・期待結果・前提条件を含むケース定義
-- **セクション分類**: ツリー構造によるテストケースの階層管理
-- **テストタイプ**: 機能テスト、回帰テスト、スモークテスト等のラベル
-- **テンプレート**: カスタムテンプレートによるケース標準化
-- **カスタムフィールド**: 自動化状態、優先度等の追加フィールド定義
+| 機能 | 説明 |
+|------|------|
+| テストケース定義 | 手順、期待結果、前提条件を管理 |
+| 階層管理 | セクションでケースを構造化 |
+| テンプレート | ケース記述の標準化 |
+| カスタム項目 | 優先度、自動化有無などを追加 |
 
-### 2. テスト計画・実行
+### 実行管理機能
 
-- **テストラン**: テストケースのサブセットを選択して実行管理
-- **テストプラン**: 複数のテストランをまとめた計画管理
-- **マイルストーン**: リリースサイクルに紐づいたテスト進捗管理
-- **テスト結果**: Passed/Failed/Blocked/Retest等のステータス記録
-- **再テスト**: 失敗ケースの再テスト実行とステータス追跡
+| 機能 | 説明 |
+|------|------|
+| テストラン | 実行対象ケースを選択して実施 |
+| テストプラン | 複数ランをまとめて管理 |
+| マイルストーン | リリース単位で進捗管理 |
+| 結果記録 | Passed/Failed/Blocked 等を記録 |
 
-### 3. レポート・ダッシュボード
+### 連携・自動化機能
 
-- **進捗レポート**: テスト実行の進捗率・合格率をリアルタイム表示
-- **比較レポート**: 複数テストラン間の結果比較
-- **欠陥レポート**: 不具合発見率の推移分析
-- **カスタムレポート**: 条件指定による任意のレポート生成
+| 機能 | 説明 |
+|------|------|
+| REST API | 結果登録や取得を自動化 |
+| JUnit取込 | 自動テスト結果をインポート |
+| CLI連携 | CIジョブから結果反映 |
+| Webhook | イベント通知に対応 |
 
-### 4. 自動テスト統合
+## インストールとセットアップ
 
-- **REST API**: テスト結果の自動アップロード
-- **JUnit XML**: 自動テスト結果のインポート
-- **Webhook**: テスト完了イベントの通知
-- **CLI**: コマンドラインからのテスト結果送信
+公式URL:
+- [TestRail 公式サイト](https://www.testrail.com/)
+- [Support / Docs](https://support.testrail.com/)
+- [API Reference](https://support.testrail.com/hc/en-us/articles/7077196481428-Introduction-to-the-TestRail-API)
+- [trcli](https://github.com/gurock/trcli)
 
-### 5. 外部ツール連携
+セットアップの要点:
+1. Cloud または Server の利用形態を決める。
+2. プロジェクト、テストスイート、マイルストーンを作成する。
+3. ケーステンプレートとステータス運用を定義する。
+4. CI からの結果取込方式（API/trcli）を決める。
 
-- **Jira**: 不具合チケットの自動作成・リンク
-- **Azure DevOps**: Work Itemとの双方向連携
-- **GitHub**: Issue連携
-- **Slack**: テスト結果の通知
+## 基本的な使い方
 
-## 利用方法
+1. テストケースを登録し、セクションで整理する。
+2. リリース単位でテストプランを作成する。
+3. テストランを実行し、結果と不具合リンクを記録する。
+4. 自動テスト結果を JUnit/API で取り込む。
+5. ダッシュボードで進捗と品質を確認する。
 
-### セットアップ
-
-```
-1. https://www.testrail.com/ でアカウント作成（Cloud版）
-   または オンプレミス版をサーバーにインストール
-2. プロジェクトを作成
-3. テストスイート/セクションを定義
-4. テストケースを作成
-5. テストランを作成して実行開始
-```
-
-### REST APIによるテスト結果送信
-
-```bash
-# テストランの結果追加
-curl -X POST "https://yourinstance.testrail.io/index.php?/api/v2/add_result/12345" \
-  -H "Content-Type: application/json" \
-  -u "user@example.com:api_key" \
-  -d '{
-    "status_id": 1,
-    "comment": "Test passed successfully",
-    "elapsed": "30s"
-  }'
-
-# テスト結果の一括追加
-curl -X POST "https://yourinstance.testrail.io/index.php?/api/v2/add_results_for_run/1" \
-  -H "Content-Type: application/json" \
-  -u "user@example.com:api_key" \
-  -d '{
-    "results": [
-      {"case_id": 1, "status_id": 1, "comment": "Passed"},
-      {"case_id": 2, "status_id": 5, "comment": "Failed", "defects": "JIRA-123"}
-    ]
-  }'
-```
-
-### Python連携（pytest-testrail）
-
-```bash
-# プラグインインストール
-pip install pytest-testrail
-```
-
-```python
-# conftest.py
-import pytest
-
-# テストケースIDを紐付け
-@pytest.mark.testrail('C12345')
-def test_login():
-    assert login("user", "pass") == True
-
-@pytest.mark.testrail('C12346')
-def test_logout():
-    assert logout() == True
-```
-
-```bash
-# TestRailに結果を送信しながらテスト実行
-pytest --testrail \
-  --tr-url=https://yourinstance.testrail.io \
-  --tr-email=user@example.com \
-  --tr-password=api_key \
-  --tr-testrun-name="Automated Run"
-```
-
-### CI/CD統合（GitHub Actions）
-
-```yaml
-# .github/workflows/test-report.yml
-name: Test & Report to TestRail
-
-on: [push]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Tests
-        run: |
-          pytest --junitxml=results.xml
-      - name: Upload to TestRail
-        env:
-          TESTRAIL_URL: ${{ secrets.TESTRAIL_URL }}
-          TESTRAIL_USER: ${{ secrets.TESTRAIL_USER }}
-          TESTRAIL_KEY: ${{ secrets.TESTRAIL_KEY }}
-        run: |
-          pip install trcli
-          trcli -y -h "$TESTRAIL_URL" \
-            --project "MyProject" \
-            -u "$TESTRAIL_USER" \
-            -p "$TESTRAIL_KEY" \
-            parse_junit \
-            --title "Automated Run $(date)" \
-            -f results.xml
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **TestRail Cloud** | 有料（ユーザー単位/月額） | SaaS版、即時利用可能 |
-| **TestRail Server** | 有料（年額） | オンプレミス版、自社サーバーに配置 |
-| **Free Trial** | 30日間無料 | 全機能利用可能 |
+最小実行例:
+- 手動実行: Test Run を作成して結果記録
+- 自動連携: `trcli parse_junit -f results.xml ...`
 
 ## メリット
 
-1. **テスト資産一元管理**: テストケース・計画・結果・不具合を一箇所で管理
-2. **トレーサビリティ**: 要件→テストケース→不具合の追跡が容易
-3. **豊富なレポート**: 進捗率、合格率、欠陥分析等のレポートを自動生成
-4. **自動テスト統合**: REST API/JUnit/trcliで自動テスト結果を統合
-5. **Jira連携**: 不具合チケットの自動作成・双方向リンク
-6. **マイルストーン管理**: リリースサイクルに紐づいたテスト進捗の可視化
-7. **カスタマイズ**: カスタムフィールド・テンプレート・ワークフローの定義
+- テスト資産を一元管理し、運用を標準化しやすい。
+- 手動/自動の結果統合で進捗把握をしやすい。
+- レポートで品質指標を継続的に追跡しやすい。
 
 ## デメリット
 
-1. **有料**: 無料版がなく、ユーザー数に応じたライセンス費用が発生
-2. **学習コスト**: テストスイート/ラン/プランの概念理解とプロセス設計が必要
-3. **過剰管理**: 小規模プロジェクトにはオーバースペックになりやすい
-4. **UIの古さ**: モダンなSaaSツールと比較するとUI/UXが古め
-5. **カスタマイズ制限**: レポートやワークフローのカスタマイズに限界がある
+- 小規模チームには運用が重くなりやすい。
+- ライセンス費用と管理設計コストが必要。
+- 導入初期にケース設計ルール整備が必要。
 
-## 代替ツール
+## CI/CD での使用
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Xray for Jira** | Jiraアドオン | TestRailよりJira統合が深い、Jira内で完結 |
-| **Zephyr Scale** | Jiraアドオン | TestRailと同等機能、Jira内でテスト管理 |
-| **qTest** | テスト管理プラットフォーム | TestRailより大規模向け、AI機能搭載 |
-| **Azure Test Plans** | Azure DevOps機能 | TestRailよりMicrosoft統合が強い |
+CI ではテスト結果（JUnit等）を実行後に TestRail へ送信し、手動結果と統合する。失敗時も結果送信を継続すると、実行実績の欠落を防ぎやすい。
 
-## 公式リンク
+## 他ツールとの比較
 
-- **公式サイト**: [https://www.testrail.com/](https://www.testrail.com/)
-- **ドキュメント**: [https://support.testrail.com/](https://support.testrail.com/)
-- **API Reference**: [https://support.testrail.com/hc/en-us/articles/7077196481428-Introduction-to-the-TestRail-API](https://support.testrail.com/hc/en-us/articles/7077196481428-Introduction-to-the-TestRail-API)
-- **trcli**: [https://github.com/gurock/trcli](https://github.com/gurock/trcli)
+| ツール | 主な対象 | 特徴 |
+|------|------|------|
+| TestRail | テストケース・実行管理 | 独立型で体系的に管理しやすい |
+| Xray | Jira統合管理 | Jira内で完結しやすい |
+| Zephyr | Jira統合管理 | Jira利用チーム向けに導入しやすい |
+| qTest | 大規模品質管理 | 組織横断運用に強い |
 
-## 関連ドキュメント
+## ベストプラクティス
 
-- [Xray](./Xray.md)
-- [Allure Report](./Allure_Report.md)
+### 1. ケース設計を標準化
 
----
+- テンプレートと命名規則を統一する。
+- 期待結果を曖昧にしない。
 
-**カテゴリ**: テスト
-**対象工程**: テスト管理
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 2. 手動/自動の責務分離
+
+- 自動化対象と手動対象を明確化する。
+- 重複ケースを定期的に棚卸しする。
+
+### 3. レポート指標を固定
+
+- 合格率、未実施率、欠陥密度を定点監視する。
+- リリース判定基準を数値化する。
+
+## 公式ドキュメント
+
+- 公式サイト: https://www.testrail.com/
+- Docs: https://support.testrail.com/
+- API: https://support.testrail.com/hc/en-us/articles/7077196481428-Introduction-to-the-TestRail-API
+- trcli: https://github.com/gurock/trcli
+
+## まとめ
+
+- テストケースと実行結果を一元管理し、運用標準化を進めやすい。
+- 手動/自動結果を統合し、品質状況を可視化しやすい。
+- 指標設計と連携ルールを定めると、継続運用を安定化しやすい。

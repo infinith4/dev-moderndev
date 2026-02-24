@@ -2,565 +2,132 @@
 
 ## 概要
 
-GitHub Actionsは、GitHubが提供する公式のCI/CD（継続的インテグレーション/継続的デリバリー）プラットフォームです。GitHubリポジトリに統合されたワークフロー自動化ツールとして、ビルド、テスト、デプロイを含むソフトウェア開発ライフサイクル全体を自動化できます。YAMLファイルでワークフローを定義し、プッシュ、プルリクエスト、スケジュール、手動トリガーなど様々なイベントで実行できます。
-
-## 料金プラン
-
-| プラン | 料金 | 特徴 |
-|-------|------|------|
-| **Public repositories** |  無料 | パブリックリポジトリは無制限利用可能 |
-| **Free (Private)** |  無料 | プライベート: 2,000分/月、500MBストレージ |
-| **Pro** |  $4/user/月 | 3,000分/月、1GBストレージ |
-| **Team** |  $4/user/月 | 3,000分/月、2GBストレージ |
-| **Enterprise** |  $21/user/月 | 50,000分/月、50GBストレージ |
-| **追加料金** |  従量課金 | Ubuntu: $0.008/分、Windows: $0.016/分、macOS: $0.08/分 |
-
-**注意**: パブリックリポジトリは無料ですが、プライベートリポジトリは月間実行時間の上限があります。
-
-## メリット・デメリット
-
-### メリット
--  **GitHub統合**: リポジトリと完全統合、追加設定不要
--  **豊富なマーケットプレイス**: 数千のアクションが利用可能
--  **マルチプラットフォーム**: Linux、Windows、macOSをサポート
--  **マトリックスビルド**: 複数の環境で並列テスト可能
--  **シークレット管理**: 環境変数の安全な管理
--  **再利用可能なワークフロー**: 共通ワークフローの再利用
--  **セルフホストランナー**: 独自の実行環境をホスト可能
--  **依存関係キャッシュ**: ビルド時間を短縮
-
-### デメリット
--  **GitHub依存**: GitHub以外のプラットフォームでは使えない
--  **実行時間制限**: プライベートリポジトリには月間制限あり
--  **デバッグ困難**: ローカルでのワークフローテストが難しい
--  **ログ保持期間**: 90日間のみ（Enterpriseは最大400日）
--  **ワークフロー制限**: ジョブあたり最大6時間の実行時間
-
-## 利用できる開発工程
-
-| 開発工程 | 活用シーン | 主な成果物 |
-|---------|----------|-----------|
-| **7. 実装（アプリケーション）** | コミット時の自動ビルド、コードフォーマット | ワークフローファイル、ビルド結果 |
-| **8-1. CI/CD** | 自動ビルド、テスト、デプロイパイプライン構築 | CI/CDパイプライン、デプロイ履歴 |
-| **9. テスト（アプリケーション）** | 自動テストの実行、カバレッジ計測 | テスト結果、カバレッジレポート |
-| **10. テスト（インフラ）** | インフラコードのテスト、検証 | インフラテスト結果 |
-| **11. 導入** | 本番環境への自動デプロイ | デプロイログ、リリースノート |
-
-## 基本的な利用方法
-
-### 1. ワークフローファイルの作成
-
-GitHub Actionsはリポジトリの `.github/workflows/` ディレクトリにYAMLファイルを配置することで動作します。
-
-```bash
-# リポジトリのルートディレクトリで
-mkdir -p .github/workflows
-cd .github/workflows
-
-# ワークフローファイルを作成
-touch ci.yml
-```
-
-### 2. 基本的なワークフロー例
-
-```yaml
-# .github/workflows/ci.yml
-name: CI Pipeline
-
-# トリガー: mainブランチへのプッシュとプルリクエスト
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-
-# ジョブ定義
-jobs:
-  build:
-    # 実行環境
-    runs-on: ubuntu-latest
-
-    # ステップ定義
-    steps:
-      # 1. リポジトリのチェックアウト
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # 2. Node.jsのセットアップ
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      # 3. 依存関係のインストール
-      - name: Install dependencies
-        run: npm ci
-
-      # 4. リンティング
-      - name: Run linter
-        run: npm run lint
-
-      # 5. テスト実行
-      - name: Run tests
-        run: npm test
+GitHub Actions は GitHub 上で動作する CI/CD 自動化基盤である。ワークフローを YAML で定義し、`push`、`pull_request`、手動実行などのイベントを起点にビルド、テスト、デプロイを実行できる。
 
-      # 6. ビルド
-      - name: Build
-        run: npm run build
-```
+## 料金
 
-### 3. 基本的なコマンド
+| プラン | 内容 |
+|------|------|
+| Public Repository | 無料で利用可能 |
+| Private Repository | プランに応じた実行時間/ストレージ枠 |
+| Self-hosted Runner | 自前実行基盤で柔軟に運用可能 |
 
-```bash
-# ローカルでYAML構文チェック（VS Code拡張機能使用）
-# 拡張機能: GitHub Actions (GitHub公式)
+## 主な特徴
 
-# ワークフローの手動実行（workflow_dispatchトリガーが必要）
-# GitHubのUI: Actions タブ → ワークフロー選択 → Run workflow
+| 項目 | 内容 |
+|------|------|
+| GitHub統合 | リポジトリ設定だけで開始しやすい |
+| YAML定義 | パイプラインをコードとして管理可能 |
+| Marketplace | 再利用可能な Action が豊富 |
+| マトリックス実行 | OS/言語バージョンの並列テスト対応 |
+| シークレット管理 | 認証情報を安全に扱える |
+| Environment保護 | 本番デプロイに承認ゲートを設定可能 |
 
-# セルフホストランナーの追加
-# Settings → Actions → Runners → New self-hosted runner
+## 主な機能
 
-# シークレットの追加
-# Settings → Secrets and variables → Actions → New repository secret
-```
+### ワークフロー機能
 
-## 工程別の活用方法
+| 機能 | 説明 |
+|------|------|
+| Event Trigger | `push`、`pull_request`、`schedule` など |
+| Job/Step 定義 | 依存関係を持つ処理を段階実行 |
+| Matrix Strategy | 複数環境の並列検証 |
+| Reusable Workflow | 共通処理を再利用して重複を削減 |
 
-### 7. 実装（アプリケーション）での活用
+### 実行基盤機能
 
-**目的**: コード品質の維持、自動フォーマット、早期バグ検出
-
-**活用方法**:
-- コミット時の自動リンティング
-- コードフォーマットチェック
-- 単体テストの自動実行
-- 依存関係の脆弱性スキャン
-
-**実装例（Pull Requestチェック）**:
-```yaml
-# .github/workflows/pr-check.yml
-name: Pull Request Check
-
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-
-jobs:
-  code-quality:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install flake8 black pytest
-
-      - name: Code formatting check
-        run: black --check .
-
-      - name: Linting
-        run: flake8 . --max-line-length=88
-
-      - name: Run unit tests
-        run: pytest tests/unit/
-
-      - name: Security scan
-        uses: snyk/actions/python@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-```
-
----
-
-### 8-1. CI/CDでの活用
-
-**目的**: 完全自動化されたビルド・テスト・デプロイパイプライン構築
-
-**活用方法**:
-- マルチステージビルド
-- 環境別デプロイ（dev/staging/prod）
-- 承認フローの実装
-- ロールバック機能
-
-**実装例（マルチステージデプロイ）**:
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy Pipeline
-
-on:
-  push:
-    branches:
-      - develop  # 開発環境へ自動デプロイ
-      - main     # 本番環境へ承認後デプロイ
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Build Docker image
-        run: |
-          docker build -t myapp:${{ github.sha }} .
-          docker tag myapp:${{ github.sha }} myapp:latest
-
-      - name: Login to Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push image
-        run: |
-          docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
-          docker push ghcr.io/${{ github.repository }}:latest
-
-  deploy-dev:
-    needs: build
-    if: github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-latest
-    environment: development
-
-    steps:
-      - name: Deploy to Dev
-        run: |
-          echo "Deploying to development environment"
-          # kubectl apply -f k8s/dev/ など
-
-  deploy-prod:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    environment:
-      name: production
-      url: https://myapp.example.com
-
-    steps:
-      - name: Deploy to Production
-        run: |
-          echo "Deploying to production environment"
-          # kubectl apply -f k8s/prod/ など
-```
-
----
-
-### 9. テスト（アプリケーション）での活用
-
-**目的**: 包括的な自動テストの実行、品質メトリクスの取得
-
-**活用方法**:
-- マトリックステスト（複数バージョン/OS）
-- E2Eテストの実行
-- コードカバレッジ計測
-- テスト結果の可視化
-
-**実装例（マトリックステスト）**:
-```yaml
-# .github/workflows/test-matrix.yml
-name: Test Matrix
-
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [18, 20, 21]
-        exclude:
-          # macOSではNode 18をスキップ
-          - os: macos-latest
-            node-version: 18
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm test -- --coverage
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
-          flags: ${{ matrix.os }}-node${{ matrix.node-version }}
-```
-
----
-
-### 10. テスト（インフラ）での活用
-
-**目的**: Infrastructure as Codeの検証、インフラ変更の安全性確保
-
-**活用方法**:
-- Terraformのplanとvalidate
-- Ansible Playbookの構文チェック
-- インフラセキュリティスキャン
-- コスト見積もり
-
-**実装例（Terraformテスト）**:
-```yaml
-# .github/workflows/terraform.yml
-name: Terraform CI
-
-on:
-  push:
-    paths:
-      - 'terraform/**'
-  pull_request:
-    paths:
-      - 'terraform/**'
-
-jobs:
-  terraform:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.0
-
-      - name: Terraform Format Check
-        run: terraform fmt -check -recursive
-        working-directory: ./terraform
-
-      - name: Terraform Init
-        run: terraform init
-        working-directory: ./terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Terraform Validate
-        run: terraform validate
-        working-directory: ./terraform
-
-      - name: Terraform Plan
-        run: terraform plan -out=tfplan
-        working-directory: ./terraform
-
-      - name: Security Scan with Checkov
-        uses: bridgecrewio/checkov-action@master
-        with:
-          directory: terraform/
-          framework: terraform
-
-      - name: Cost Estimation
-        uses: infracost/actions/setup@v2
-        with:
-          api-key: ${{ secrets.INFRACOST_API_KEY }}
-
-      - name: Generate cost estimate
-        run: infracost breakdown --path=terraform/
-```
-
----
-
-### 11. 導入での活用
-
-**目的**: 本番環境への安全で確実なデプロイ、リリース管理
-
-**活用方法**:
-- ブルー/グリーンデプロイメント
-- カナリアリリース
-- 承認ゲート
-- ロールバック機能
-- リリースノート自動生成
-
-**実装例（承認ゲート付きデプロイ）**:
-```yaml
-# .github/workflows/production-deploy.yml
-name: Production Deployment
-
-on:
-  push:
-    tags:
-      - 'v*.*.*'
-
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run tests
-        run: |
-          npm ci
-          npm test
-
-      - name: Build artifacts
-        run: npm run build
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts
-          path: dist/
-
-  deploy-production:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-
-    # 承認が必要な本番環境
-    environment:
-      name: production
-      url: https://app.example.com
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: dist/
-
-      - name: Deploy to Production
-        run: |
-          echo "Deploying version ${{ github.ref_name }}"
-          # デプロイスクリプト実行
-
-      - name: Health Check
-        run: |
-          sleep 30
-          curl -f https://app.example.com/health || exit 1
-
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref_name }}
-          body: |
-            Changes in this release:
-            - Auto-generated from tag ${{ github.ref_name }}
-          draft: false
-          prerelease: false
-```
-
-**ロールバック用ワークフロー**:
-```yaml
-# .github/workflows/rollback.yml
-name: Rollback
-
-on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to rollback to (e.g., v1.2.3)'
-        required: true
-        type: string
-
-jobs:
-  rollback:
-    runs-on: ubuntu-latest
-    environment: production
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.version }}
-
-      - name: Rollback to ${{ inputs.version }}
-        run: |
-          echo "Rolling back to version ${{ inputs.version }}"
-          # ロールバックスクリプト実行
-
-      - name: Notify team
-        uses: slackapi/slack-github-action@v1
-        with:
-          payload: |
-            {
-              "text": "🔄 Rollback to ${{ inputs.version }} completed"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
-```
+| 機能 | 説明 |
+|------|------|
+| GitHub-hosted Runner | すぐ使える実行環境 |
+| Self-hosted Runner | 社内ネットワークや専用環境で実行 |
+| Caching | 依存関係キャッシュで時間短縮 |
+| Artifacts | ビルド成果物を保存・共有 |
+
+### 運用管理機能
+
+| 機能 | 説明 |
+|------|------|
+| Secrets / Variables | 環境別設定を安全に管理 |
+| Environment Rules | 承認者やデプロイ条件を制御 |
+| Workflow Logs | 失敗原因の解析を支援 |
+| Status Checks | PR マージの品質ゲートに利用 |
+
+## インストールとセットアップ
+
+公式URL:
+- [GitHub Actions](https://github.com/features/actions)
+- [GitHub Actions Docs](https://docs.github.com/ja/actions)
+- [Workflow Syntax](https://docs.github.com/ja/actions/using-workflows/workflow-syntax-for-github-actions)
+
+セットアップの要点:
+1. リポジトリに `.github/workflows/*.yml` を作成する。
+2. 最初は build/test の最小パイプラインで開始する。
+3. Secrets と Environment を設定し、認証情報を分離する。
+4. 本番デプロイは承認ゲートを有効化する。
+
+## 基本的な使い方
+
+1. ワークフローファイルを作成し、トリガーを設定する。
+2. `actions/checkout` と言語セットアップを定義する。
+3. 依存インストール、テスト、ビルドを step として記述する。
+4. PR 上で結果を確認し、失敗時ログを調査する。
+5. 必要に応じてデプロイ job を追加する。
+
+最小運用例:
+- ファイル: `.github/workflows/ci.yml`
+- トリガー: `pull_request`
+- 実行: lint + test
+
+## メリット
+
+- GitHub 上で完結し、導入と運用がシンプル。
+- Workflow as Code で変更履歴を追跡しやすい。
+- Marketplace 活用で実装コストを下げやすい。
+
+## デメリット
+
+- 複雑なパイプラインは YAML が肥大化しやすい。
+- GitHub 基盤への依存度が高くなる。
+- Private リポジトリでは利用枠管理が必要。
+
+## CI/CD での使用
+
+PR 検証（lint/test）を必須化し、`main` マージ後にデプロイを実行する2段階運用が一般的である。さらに Environment 承認とロールバック手順を整備すると、本番運用の安定性が高まる。
+
+## 他ツールとの比較
+
+| ツール | 強み | 特徴 |
+|------|------|------|
+| GitHub Actions | GitHub統合 | PR と CI/CD を一体で運用しやすい |
+| GitLab CI/CD | DevOps統合 | GitLab 環境で強力な一元管理 |
+| Jenkins | 拡張性 | 自由度が高いが運用負荷が高め |
+| CircleCI | SaaS CI | シンプル導入と高速実行に強み |
+
+## ベストプラクティス
+
+### 1. ワークフローを分割
+
+- `ci.yml` と `deploy.yml` を分離して責務を明確化する。
+- 共通処理は reusable workflow 化する。
+
+### 2. 実行時間を最適化
+
+- キャッシュと並列実行を活用する。
+- 不要なトリガーを抑制してコストを管理する。
+
+### 3. セキュアな運用を徹底
+
+- Secrets を平文で扱わない。
+- 本番 Environment に承認フローを設定する。
 
 ## 公式ドキュメント
 
-- [GitHub Actions 公式サイト](https://github.com/features/actions)
-- [GitHub Actions ドキュメント](https://docs.github.com/ja/actions)
-- [ワークフロー構文リファレンス](https://docs.github.com/ja/actions/using-workflows/workflow-syntax-for-github-actions)
-- [GitHub Marketplace](https://github.com/marketplace?type=actions) - 公式アクション集
-- [GitHub Actions Changelog](https://github.blog/changelog/label/actions/)
-- [セルフホストランナー](https://docs.github.com/ja/actions/hosting-your-own-runners)
+- 公式サイト: https://github.com/features/actions
+- Docs: https://docs.github.com/ja/actions
+- Workflow Syntax: https://docs.github.com/ja/actions/using-workflows/workflow-syntax-for-github-actions
 
-## 学習リソース
+## まとめ
 
-### チュートリアル
-- [GitHub Actions Quickstart](https://docs.github.com/ja/actions/quickstart)
-- [Learning GitHub Actions](https://docs.github.com/ja/actions/learn-github-actions)
-- [GitHub Actions Workshops](https://github.com/githubpartners/github-actions-workshop)
-
-### 書籍・コース
-- "Learning GitHub Actions" by Brent Laster (O'Reilly)
-- GitHub Learning Lab - GitHub Actions コース
-- LinkedIn Learning - GitHub Actions
-- Udemy - GitHub Actions: The Complete Guide
-
-### 動画
-- [GitHub Actions Tutorial for Beginners](https://www.youtube.com/results?search_query=github+actions+tutorial)
-- [GitHub Universe - Actions Sessions](https://githubuniverse.com/)
-- [freeCodeCamp - GitHub Actions](https://www.youtube.com/watch?v=R8_veQiYBjI)
-
-### コミュニティ
-- [GitHub Community Discussions - Actions](https://github.com/orgs/community/discussions/categories/actions)
-- [GitHub Actions GitHub Repository](https://github.com/actions)
-- [r/github (Reddit)](https://www.reddit.com/r/github/)
-- [Stack Overflow - GitHub Actions](https://stackoverflow.com/questions/tagged/github-actions)
-
-## 関連リンク
-
-### 関連ツール・アクション
-- [actions/checkout](https://github.com/actions/checkout) - リポジトリチェックアウト
-- [actions/setup-node](https://github.com/actions/setup-node) - Node.js環境セットアップ
-- [actions/setup-python](https://github.com/actions/setup-python) - Python環境セットアップ
-- [docker/build-push-action](https://github.com/docker/build-push-action) - Dockerイメージビルド&プッシュ
-- [codecov/codecov-action](https://github.com/codecov/codecov-action) - コードカバレッジアップロード
-- [act](https://github.com/nektos/act) - ローカルでGitHub Actionsを実行
-
-### 便利なアクション集
-- [super-linter](https://github.com/github/super-linter) - 複数言語対応リンター
-- [release-drafter](https://github.com/release-drafter/release-drafter) - リリースノート自動生成
-- [stale](https://github.com/actions/stale) - 古いIssue/PRの自動クローズ
-- [labeler](https://github.com/actions/labeler) - PRへの自動ラベル付け
-- [dependency-review-action](https://github.com/actions/dependency-review-action) - 依存関係レビュー
-
-### ベストプラクティス
-- [GitHub Actions Best Practices](https://docs.github.com/ja/actions/security-guides/security-hardening-for-github-actions)
-- [Awesome GitHub Actions](https://github.com/sdras/awesome-actions) - アクション集
-- [Security Hardening Guide](https://docs.github.com/ja/actions/security-guides/security-hardening-for-github-actions)
-
----
-
-**最終更新日**: 2025年11月30日
-**バージョン**: 1.0
-
+- GitHub Actions は GitHub と密に統合された CI/CD 基盤で導入しやすい。
+- YAML 定義と Marketplace を活用すると、実装効率を高めやすい。
+- 承認ゲートと Secrets 管理を組み合わせることで、安全なデプロイ運用を実現しやすい。

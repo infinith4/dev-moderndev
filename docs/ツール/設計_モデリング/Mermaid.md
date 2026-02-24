@@ -2,250 +2,119 @@
 
 ## 概要
 
-Mermaidは、テキストベースで図を作成できるオープンソースのダイアグラム生成ツールです。Markdown風の記法でフローチャート、シーケンス図、ガントチャート、ER図等を記述し、自動的に美しい図に変換します。GitHubドキュメント、Notion、Confluence等に統合され、バージョン管理可能なダイアグラムとしてDevOpsワークフローに組み込めます。
+Mermaid はテキスト記法で図を生成できるダイアグラムツールである。ドキュメントと同じリポジトリで管理しやすく、設計情報の更新追跡に向いている。
+
+## 料金
+
+| 区分 | 内容 |
+|------|------|
+| Mermaid 本体 | 無料（OSS） |
+| 補足 | 利用先プラットフォームの契約費用は別途 |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| テキスト管理 | 図をコードとして管理できる |
+| 変更追跡 | Git 差分で変更内容を追いやすい |
+| 埋め込み容易 | Markdown との相性が高い |
+| 図種対応 | Flowchart、Sequence、ER、Gantt など |
+| 自動生成 | 手作業のレイアウト調整を減らせる |
 
 ## 主な機能
 
-### 1. ダイアグラムタイプ
-- **フローチャート**: プロセスフロー
-- **シーケンス図**: オブジェクト間相互作用
-- **ガントチャート**: プロジェクトスケジュール
-- **クラス図**: UMLクラス図
-- **ER図**: データベース関係図
-- **状態遷移図**: ステートマシン
-- **パイチャート**: 円グラフ
-- **ジャーニーマップ**: ユーザージャーニー
+### 図生成機能
 
-### 2. テキストベース
-- **Markdown統合**: ドキュメント内に埋め込み
-- **バージョン管理**: Gitで管理
-- **差分比較**: テキストdiffで変更追跡
-- **コードレビュー**: Pull Requestでレビュー
+| 機能 | 説明 |
+|------|------|
+| フローチャート | 業務や処理フローの可視化 |
+| シーケンス図 | システム間連携の時系列表現 |
+| ER図 | データ関係の簡易可視化 |
+| ガント図 | スケジュール整理に利用可能 |
 
-### 3. 統合
-- **GitHub/GitLab**: READMEに自動レンダリング
-- **VS Code**: 拡張機能でプレビュー
-- **Notion**: ブロックとして埋め込み
-- **Confluence**: マクロで表示
-- **Docusaurus**: ドキュメントサイト統合
+### ドキュメント連携機能
 
-### 4. スタイリング
-- **テーマ**: default、dark、forest、neutral
-- **カスタムCSS**: スタイルカスタマイズ
-- **色指定**: ノード・エッジの色
+| 機能 | 説明 |
+|------|------|
+| Markdown 埋め込み | 設計書と図を一体管理 |
+| バージョン管理 | 図変更をレビューしやすい |
+| 再利用 | 記法テンプレートを共通化可能 |
+| 出力連携 | レンダラーで画像出力可能 |
 
-## 利用方法
+### 運用機能
 
-### フローチャート
+| 機能 | 説明 |
+|------|------|
+| テンプレート化 | 図記法の共通化に有効 |
+| 自動検証 | 表示崩れを事前検知しやすい |
+| CI 利用 | ドキュメント生成工程に組み込み可能 |
+| 保守性 | 図更新の追跡性を高めやすい |
 
-```mermaid
-flowchart TD
-    A[開始] --> B{条件判定}
-    B -->|Yes| C[処理A]
-    B -->|No| D[処理B]
-    C --> E[終了]
-    D --> E
-```
+## インストールとセットアップ
 
-### シーケンス図
+公式URL:
+- [Mermaid 公式](https://mermaid.js.org/)
+- [Mermaid Docs](https://mermaid.js.org/intro/)
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant API
-    participant DB
-    
-    User->>API: リクエスト
-    API->>DB: クエリ実行
-    DB-->>API: 結果返却
-    API-->>User: レスポンス
-```
+セットアップ手順:
+1. 利用環境（Markdown エディタ/ドキュメント基盤）を決める。
+2. 図記法テンプレートを準備する。
+3. レンダリング確認手順をチーム標準にする。
 
-### ガントチャート
+## 基本的な使い方
 
-```mermaid
-gantt
-    title プロジェクトスケジュール
-    dateFormat YYYY-MM-DD
-    section 設計
-    要件定義     :a1, 2024-01-01, 10d
-    基本設計     :a2, after a1, 15d
-    section 実装
-    開発         :a3, after a2, 30d
-    テスト       :a4, after a3, 15d
-```
-
-### クラス図
-
-```mermaid
-classDiagram
-    class User {
-        +String name
-        +String email
-        +login()
-        +logout()
-    }
-    class Post {
-        +String title
-        +String content
-        +publish()
-    }
-    User "1" --> "*" Post : owns
-```
-
-### ER図
-
-```mermaid
-erDiagram
-    USER ||--o{ POST : creates
-    USER {
-        int id PK
-        string name
-        string email
-    }
-    POST {
-        int id PK
-        int user_id FK
-        string title
-        text content
-    }
-```
-
-### 状態遷移図
-
-```mermaid
-stateDiagram-v2
-    [*] --> Draft
-    Draft --> Review
-    Review --> Published
-    Review --> Draft
-    Published --> [*]
-```
-
-### GitHub統合
-
-```markdown
-# README.md
-
-## Architecture
-
-```mermaid
-graph TD
-    A[Client] --> B[Load Balancer]
-    B --> C[Web Server 1]
-    B --> D[Web Server 2]
-    C --> E[Database]
-    D --> E
-```
-GitHubが自動的にレンダリング
-```
-
-### VS Code統合
-
-```bash
-# 拡張機能インストール
-Mermaid Preview (bierner.markdown-mermaid)
-または
-Markdown Preview Mermaid Support
-
-# プレビュー表示
-Ctrl+Shift+V (Markdown Preview)
-```
-
-### HTML埋め込み
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({ startOnLoad: true });</script>
-</head>
-<body>
-  <div class="mermaid">
-    graph TD
-      A[開始] --> B[処理]
-      B --> C[終了]
-  </div>
-</body>
-</html>
-```
-
-### CLI使用
-
-```bash
-# npmインストール
-npm install -g @mermaid-js/mermaid-cli
-
-# 画像生成
-mmdc -i diagram.mmd -o diagram.png
-mmdc -i diagram.mmd -o diagram.svg
-mmdc -i diagram.mmd -o diagram.pdf
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Mermaid (OSS)** |  無料 | オープンソース、MIT License |
+1. まず図の目的に合う記法タイプを選ぶ。
+2. 最小構成で記述し、読みやすさを優先する。
+3. 記法テンプレートで命名と表現を統一する。
+4. レビュー時は図の正確性と可読性を分けて確認する。
 
 ## メリット
 
-###  主な利点
-
-1. **無料**: オープンソース、MIT License
-2. **テキストベース**: バージョン管理可能
-3. **GitHub統合**: 自動レンダリング
-4. **多様なダイアグラム**: 10+タイプ対応
-5. **学習容易**: Markdown風記法
-6. **差分比較**: テキストdiffで変更追跡
-7. **軽量**: 追加ツール不要
-8. **統合**: Notion、Confluence対応
-9. **CLIツール**: 画像自動生成
-10. **コミュニティ**: 活発な開発
+- 図をテキストで管理できる
+- Git で差分追跡しやすい
+- ドキュメント更新と同時に運用しやすい
+- 再利用テンプレートを作りやすい
 
 ## デメリット
 
-###  制約・課題
+- 複雑図では記法が長くなりやすい
+- レイアウト微調整の自由度は限定的
+- 利用環境ごとの表示差に注意が必要
 
-1. **レイアウト制御**: 自動レイアウトのみ
-2. **複雑な図**: 大規模図で読みにくい
-3. **学習曲線**: 記法の習得必要
-4. **エラーメッセージ**: 分かりにくい
-5. **IDE統合**: 一部エディタでサポート限定的
-6. **カスタマイズ**: スタイリングに制約
-7. **インタラクティブ**: 静的図のみ
-8. **細かい調整**: 位置調整困難
+## 他ツールとの比較
 
-## 代替ツール
+| ツール | 主な用途 | 特徴 |
+|------|------|------|
+| Mermaid | テキスト作図 | ドキュメント一体管理に強い |
+| Draw.io | GUI 作図 | 視覚操作で柔軟に作図可能 |
+| PlantUML | テキスト UML | UML 表現に強い |
+| Lucidchart | 協業作図 | クラウド共同編集に強い |
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **PlantUML** | テキストベースUML | Mermaidと類似、UML特化 |
-| **Graphviz** | テキストベースグラフ | MermaidよりDOT言語 |
-| **draw.io (diagrams.net)** | GUIベース作図 | Mermaidより柔軟だがバージョン管理困難 |
-| **Lucidchart** | 商用、協業 | Mermaidより高機能だが有料 |
-| **D2** | テキストベース、モダン | Mermaidより新しい |
+## ベストプラクティス
 
-## 公式リンク
+### 1. 記法テンプレートを統一
 
-- **公式サイト**: [https://mermaid.js.org/](https://mermaid.js.org/)
-- **GitHub**: [https://github.com/mermaid-js/mermaid](https://github.com/mermaid-js/mermaid)
-- **Live Editor**: [https://mermaid.live/](https://mermaid.live/)
-- **ドキュメント**: [https://mermaid.js.org/intro/](https://mermaid.js.org/intro/)
+- 図種ごとの雛形を作る
+- 命名規則を統一する
 
-## 関連ドキュメント
+### 2. 図の粒度を制御
 
-- [作図ツール一覧](../作図ツール/)
-- [PlantUML](./PlantUML.md)
-- [draw.io](./draw.io.md)
-- [Lucidchart](./Lucidchart.md)
-- [ダイアグラムベストプラクティス](../../best-practices/diagrams.md)
+- 1図1目的に限定する
+- 複雑化したら図を分割する
 
----
+### 3. 表示確認を定常化
 
-**カテゴリ**: 作図ツール  
-**対象工程**: 設計、ドキュメント作成  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+- 主要閲覧環境で表示確認する
+- 表示差が出る記法を避ける
 
+## 公式ドキュメント
+
+- 公式サイト: https://mermaid.js.org/
+- ドキュメント: https://mermaid.js.org/intro/
+- GitHub: https://github.com/mermaid-js/mermaid
+
+## まとめ
+
+1. Mermaid は図のテキスト管理に向いている。
+2. テンプレート統一で可読性と保守性が上がる。
+3. 表示確認を運用に組み込むことが重要。

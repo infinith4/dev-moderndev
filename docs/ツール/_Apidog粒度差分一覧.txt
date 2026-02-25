@@ -1,0 +1,118 @@
+# Apidog 粒度差分一覧
+基準: docs/ツール/API_統合/Apidog.md
+
+docs\ツール\APIテスト\MockServer.md	H2構成差分
+docs\ツール\APIテスト\MSW.md	最小実行例なし
+docs\ツール\APIテスト\Newman.md	H2構成差分 / 最小実行例なし
+docs\ツール\APIテスト\Nock.md	最小実行例なし
+docs\ツール\APIテスト\Postman.md	最小実行例なし
+docs\ツール\APIテスト\Prism.md	H2構成差分 / 最小実行例なし
+docs\ツール\APIテスト\REST_Assured.md	最小実行例なし
+docs\ツール\APIテスト\WireMock.md	H2構成差分
+docs\ツール\CLI_運用管理\AWS_CLI.md	最小実行例なし
+docs\ツール\CLI_運用管理\Azure_CLI.md	最小実行例なし
+docs\ツール\E2Eテスト\Appium.md	最小実行例なし
+docs\ツール\E2Eテスト\Cucumber.md	最小実行例なし
+docs\ツール\E2Eテスト\Cypress.md	最小実行例なし
+docs\ツール\E2Eテスト\Playwright.md	最小実行例なし
+docs\ツール\E2Eテスト\Robot_Framework.md	最小実行例なし
+docs\ツール\E2Eテスト\Selenium.md	最小実行例なし
+docs\ツール\Formatter_Linter\Black.md	最小実行例なし
+docs\ツール\Formatter_Linter\Checkstyle.md	最小実行例なし
+docs\ツール\Formatter_Linter\DotNET_Coding_Conventions.md	最小実行例なし
+docs\ツール\Formatter_Linter\EditorConfig.md	最小実行例なし
+docs\ツール\Formatter_Linter\ESLint.md	最小実行例なし
+docs\ツール\Formatter_Linter\Google_Java_Format.md	最小実行例なし
+docs\ツール\Formatter_Linter\Prettier.md	最小実行例なし
+docs\ツール\Formatter_Linter\Ruff.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\Ansible.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\AWS_CloudFormation.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\Azure_Bicep.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\CloudFormation_Guard.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\OPA.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\Terraform.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\tflint.md	最小実行例なし
+docs\ツール\IaC_インフラ管理\Velero.md	最小実行例なし
+docs\ツール\IDEツール\IntelliJ_IDEA.md	最小実行例なし
+docs\ツール\IDEツール\Visual_Studio.md	最小実行例なし
+docs\ツール\IDEツール\VS_Code.md	最小実行例なし
+docs\ツール\インフラテスト\Chaos_Mesh.md	最小実行例なし
+docs\ツール\インフラテスト\InSpec.md	最小実行例なし
+docs\ツール\インフラテスト\Litmus.md	最小実行例なし
+docs\ツール\インフラテスト\Terratest.md	最小実行例なし
+docs\ツール\コラボレーション\Slack.md	最小実行例なし
+docs\ツール\コンテナ_オーケストレーション\Docker.md	H2構成差分
+docs\ツール\コンテナ_オーケストレーション\Rancher.md	H2構成差分 / 最小実行例なし
+docs\ツール\セキュリティ\Checkov.md	H2構成差分
+docs\ツール\セキュリティ\Microsoft_Threat_Modeling_Tool.md	最小実行例なし
+docs\ツール\セキュリティ\OWASP_Dependency_Check.md	H2構成差分
+docs\ツール\セキュリティ\OWASP_ZAP.md	H2構成差分
+docs\ツール\セキュリティ\Trivy.md	H2構成差分
+docs\ツール\テスト管理\Allure_Report.md	H2構成差分
+docs\ツール\テスト管理\TestRail.md	H2構成差分
+docs\ツール\テスト管理\Xray.md	H2構成差分
+docs\ツール\テスト管理\Zephyr_for_Jira.md	H2構成差分
+docs\ツール\デザイン\Figma.md	H2構成差分 / ベストプラクティス欠落 / インストールとセットアップ欠落 / 基本的な使い方欠落 / まとめ欠落
+docs\ツール\デザイン\Pencil.md	H2構成差分 / 最小実行例なし
+docs\ツール\データベース\Flyway.md	H2構成差分
+docs\ツール\データベース\Liquibase.md	H2構成差分
+docs\ツール\データベース\MySQL_Workbench.md	最小実行例なし
+docs\ツール\データベース\tbls.md	H2構成差分
+docs\ツール\バッチ処理\Quartz_Scheduler.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\CodeRabbit.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\Danger.md	H2構成差分
+docs\ツール\バージョン管理_CI_CD\Git.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\GitHub_Actions.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\GitHub.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\GitLab_CI_CD.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\GitLab.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\JFrog_Artifactory_OSS.md	H2構成差分 / 最小実行例なし
+docs\ツール\バージョン管理_CI_CD\Reviewdog.md	H2構成差分
+docs\ツール\パッケージ管理\npm.md	H2構成差分 / 最小実行例なし
+docs\ツール\パッケージ管理\NuGet.md	H2構成差分 / 最小実行例なし
+docs\ツール\パッケージ管理\Poetry.md	H2構成差分 / 最小実行例なし
+docs\ツール\パッケージ管理\uv.md	H2構成差分 / 最小実行例なし
+docs\ツール\ビルド\Maven.md	H2構成差分 / 最小実行例なし
+docs\ツール\プロジェクト管理_ドキュメント\Diagrams.md	H2構成差分 / 最小実行例なし
+docs\ツール\プロジェクト管理_ドキュメント\Docusaurus.md	H2構成差分 / 最小実行例なし
+docs\ツール\プロジェクト管理_ドキュメント\Miro.md	H2構成差分 / 最小実行例なし
+docs\ツール\プロジェクト管理_ドキュメント\MkDocs.md	H2構成差分 / 最小実行例なし
+docs\ツール\プロジェクト管理_ドキュメント\Notion.md	H2構成差分 / 最小実行例なし
+docs\ツール\プロジェクト管理_ドキュメント\OpenProject.md	H2構成差分 / 最小実行例なし
+docs\ツール\単体テスト\Go_testing.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\GoMock.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\Jest.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\JUnit.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\Moq.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\Pester.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\pytest.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\unittest_mock.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\Vitest.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\単体テスト\xUnit_net.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\帳票_データ処理\Apache_Airflow.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\帳票_データ処理\Apache_NiFi.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\帳票_データ処理\dbt_Core.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\帳票_データ処理\JasperReports.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\帳票_データ処理\LibreOffice.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\帳票_データ処理\Microsoft_Excel.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\標準_ガイドライン\CSV_Spec_Validator.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\標準_ガイドライン\Google_Java_Style_Guide.md	最小実行例なし
+docs\ツール\標準_ガイドライン\IPA_非機能要求グレード.md	主な機能の小見出し不足 / ベストプラクティスの小見出し不足 / 公式URL記載なし / セットアップ手順/要点なし / 最小実行例なし
+docs\ツール\標準_ガイドライン\OWASP_ASVS.md	最小実行例なし
+docs\ツール\標準_ガイドライン\OWASP_Top_10.md	最小実行例なし
+docs\ツール\監視_ロギング\Alertmanager.md	最小実行例なし
+docs\ツール\監視_ロギング\Grafana.md	最小実行例なし
+docs\ツール\監視_ロギング\Loki.md	最小実行例なし
+docs\ツール\監視_ロギング\New_Relic.md	最小実行例なし
+docs\ツール\監視_ロギング\OpenTelemetry.md	最小実行例なし
+docs\ツール\監視_ロギング\Prometheus.md	最小実行例なし
+docs\ツール\設計_モデリング\Bizagi_Modeler.md	最小実行例なし
+docs\ツール\設計_モデリング\Draw.io.md	最小実行例なし
+docs\ツール\設計_モデリング\Mermaid.md	最小実行例なし
+docs\ツール\設計_モデリング\PlantUML.md	最小実行例なし
+docs\ツール\運用_ITSM\ServiceNow.md	最小実行例なし
+docs\ツール\運用_ITSM\Zammad.md	最小実行例なし
+docs\ツール\開発環境\DevContainer.md	最小実行例なし
+docs\ツール\静的解析\mypy.md	最小実行例なし
+docs\ツール\静的解析\Roslyn_Analyzers.md	最小実行例なし
+docs\ツール\静的解析\SpotBugs.md	最小実行例なし

@@ -1,233 +1,70 @@
 # Pester
 
 ## 概要
+Pester は PowerShell 向けのテストフレームワークです。スクリプトやモジュールの単体テスト、振る舞い検証、品質ゲートに利用できます。
 
-Pesterは、PowerShell向けのテスティングフレームワークです。BDD（振る舞い駆動開発）スタイルの`Describe`/`It`構文でテストを記述し、PowerShellスクリプト・モジュール・関数の単体テスト、統合テスト、インフラストラクチャテストを実行します。Windows PowerShell 5.1およびPowerShell 7+（クロスプラットフォーム）に対応し、Azure DevOps、GitHub Actionsなどとの統合も容易です。PowerShell 5.1以降にはPester 3.xがプリインストールされています。
+## 料金
+| プラン | 料金 | 備考 |
+|---|---:|---|
+| OSS | 無料 | PowerShell エコシステムで利用可能 |
+
+## 主な特徴
+| 特徴 | 内容 |
+|---|---|
+| PowerShell 特化 | スクリプト資産を直接検証できる |
+| 記述性 | 読みやすいテスト構造で管理しやすい |
+| 自動化適性 | CI での実行と結果出力に対応 |
 
 ## 主な機能
+| 機能 | 用途 | 実務での使いどころ |
+|---|---|---|
+| 単体テスト | スクリプト品質確認 | 運用ジョブの回帰防止 |
+| モック | 外部コマンド隔離 | 副作用の抑制 |
+| レポート | 実行結果共有 | 品質ゲート判断 |
 
-### 1. テスト記述
+## インストールとセットアップ
+1. 使用する PowerShell バージョンを統一します。
+2. テストディレクトリと命名規約を決めます。
+3. CI 実行時の結果収集方法を設定します。
 
-- **Describe/Context/It**: BDDスタイルのテスト構造化
-- **Should**: アサーション（`-Be`、`-BeExactly`、`-Contain`、`-Throw`等）
-- **BeforeAll/AfterAll**: テストスイートの前後処理
-- **BeforeEach/AfterEach**: 各テストケースの前後処理
-
-### 2. モック
-
-- **Mock**: 関数・コマンドレットのモック化
-- **ParameterFilter**: 引数条件付きモック
-- **Assert-MockCalled**: モック呼び出し回数の検証
-- **Should -Invoke**: Pester 5系のモック検証構文
-
-### 3. テストドライブ
-
-- **TestDrive**: テスト用の一時ファイルシステム（テスト後自動削除）
-- **TestRegistry**: テスト用の一時レジストリハイブ（Windows）
-
-### 4. コードカバレッジ
-
-- **-CodeCoverage**: テスト対象スクリプトのカバレッジ測定
-- **JaCoCo形式**: カバレッジレポートのXML出力
-- **行/関数カバレッジ**: 実行された行と関数の追跡
-
-### 5. 出力・レポート
-
-- **NUnitXml**: NUnit形式のテスト結果出力
-- **JUnitXml**: JUnit形式のテスト結果出力
-- **CIモード**: CI環境向けの最小出力
-
-## 利用方法
-
-### インストール
-
-```powershell
-# PowerShell Gallery からインストール（最新版）
-Install-Module -Name Pester -Force -SkipPublisherCheck
-
-# バージョン確認
-Get-Module Pester -ListAvailable
-
-# 特定バージョンのインストール
-Install-Module -Name Pester -RequiredVersion 5.6.1 -Force
-```
-
-### テストの記述
-
-```powershell
-# Get-Greeting.Tests.ps1
-BeforeAll {
-    . $PSScriptRoot/Get-Greeting.ps1
-}
-
-Describe 'Get-Greeting' {
-    Context 'デフォルト引数の場合' {
-        It '既定の挨拶を返す' {
-            $result = Get-Greeting
-            $result | Should -Be 'Hello, World!'
-        }
-    }
-
-    Context '名前を指定した場合' {
-        It '名前付きの挨拶を返す' {
-            $result = Get-Greeting -Name 'Alice'
-            $result | Should -Be 'Hello, Alice!'
-        }
-
-        It '空文字の場合はエラーをスロー' {
-            { Get-Greeting -Name '' } | Should -Throw
-        }
-    }
-}
-```
-
-### モックの使用
-
-```powershell
-Describe 'Send-Report' {
-    It 'メール送信関数を呼び出す' {
-        Mock Send-MailMessage {}
-        Mock Get-ReportData { return @{ Total = 100 } }
-
-        Send-Report -To 'admin@example.com'
-
-        Should -Invoke Send-MailMessage -Times 1 -Exactly
-        Should -Invoke Get-ReportData -Times 1
-    }
-
-    It '条件付きモック' {
-        Mock Get-Service {
-            return @{ Status = 'Running' }
-        } -ParameterFilter { $Name -eq 'MyService' }
-
-        Mock Get-Service {
-            return @{ Status = 'Stopped' }
-        } -ParameterFilter { $Name -eq 'OtherService' }
-
-        (Get-Service -Name 'MyService').Status | Should -Be 'Running'
-        (Get-Service -Name 'OtherService').Status | Should -Be 'Stopped'
-    }
-}
-```
-
-### コードカバレッジ
-
-```powershell
-# カバレッジ付きテスト実行
-$config = New-PesterConfiguration
-$config.Run.Path = './tests'
-$config.CodeCoverage.Enabled = $true
-$config.CodeCoverage.Path = './src/*.ps1'
-$config.CodeCoverage.OutputFormat = 'JaCoCo'
-$config.CodeCoverage.OutputPath = './coverage.xml'
-
-Invoke-Pester -Configuration $config
-```
-
-### CI/CD統合（GitHub Actions）
-
-```yaml
-# .github/workflows/pester.yml
-name: Pester Tests
-
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Pester Tests
-        shell: pwsh
-        run: |
-          $config = New-PesterConfiguration
-          $config.Run.Path = './tests'
-          $config.Run.Exit = $true
-          $config.TestResult.Enabled = $true
-          $config.TestResult.OutputFormat = 'NUnitXml'
-          $config.TestResult.OutputPath = './testResults.xml'
-          $config.CodeCoverage.Enabled = $true
-          $config.CodeCoverage.OutputPath = './coverage.xml'
-          Invoke-Pester -Configuration $config
-      - name: Upload Results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: |
-            testResults.xml
-            coverage.xml
-```
-
-### Azure DevOps統合
-
-```yaml
-# azure-pipelines.yml
-steps:
-  - task: PowerShell@2
-    displayName: 'Run Pester Tests'
-    inputs:
-      targetType: inline
-      pwsh: true
-      script: |
-        $config = New-PesterConfiguration
-        $config.Run.Path = './tests'
-        $config.TestResult.Enabled = $true
-        $config.TestResult.OutputFormat = 'NUnitXml'
-        $config.TestResult.OutputPath = '$(Build.ArtifactStagingDirectory)/testResults.xml'
-        Invoke-Pester -Configuration $config
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFormat: NUnit
-      testResultsFiles: '**/testResults.xml'
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Pester** | 無料 | オープンソース、Apache License 2.0 |
+## 基本的な使い方
+1. 主要スクリプトごとに正常系・異常系ケースを作成します。
+2. 外部依存はモック化して再現性を確保します。
+3. 失敗結果を確認し、修正後に再実行します。
 
 ## メリット
-
-1. **PowerShell標準**: PowerShellエコシステムのデファクトテストフレームワーク
-2. **BDD構文**: Describe/Context/Itによる読みやすいテスト記述
-3. **強力なモック**: 任意のPowerShell関数・コマンドレットをモック可能
-4. **TestDrive**: テスト用一時ファイルシステムで副作用を防止
-5. **コードカバレッジ**: 組み込みのカバレッジ測定機能
-6. **Azure/DevOps親和性**: Azure DevOps、GitHub Actionsとの統合が容易
-7. **クロスプラットフォーム**: PowerShell 7+でWindows/macOS/Linuxに対応
+| 観点 | 内容 |
+|---|---|
+| 導入性 | PowerShell 運用へ取り込みやすい |
+| 安定性 | 手動確認を減らし回帰を抑制 |
+| 可視化 | 実行結果を共有しやすい |
 
 ## デメリット
+| 観点 | 内容 |
+|---|---|
+| 学習コスト | テスト記法とモック利用の理解が必要 |
+| 保守 | スクリプト改修に合わせた更新が必要 |
+| 範囲設定 | E2E 的な検証と混在すると管理が難しい |
 
-1. **PowerShell限定**: PowerShellスクリプト以外のテストには使えない
-2. **v4→v5移行**: Pester 4.xから5.xへの破壊的変更が大きい
-3. **学習コスト**: BDD構文とPester固有のモック記法の習得が必要
-4. **パフォーマンス**: 大量テストの実行時にPowerShellの起動コストが影響
-5. **デバッグ**: テスト失敗時のスタックトレースが読みにくい場合がある
+## 他ツールとの比較
+| ツール | 強み | 使い分け |
+|---|---|---|
+| Pester | PowerShell スクリプト検証に特化 | 運用自動化スクリプトの単体テスト |
+| pytest | Python 資産に強い | Python 実装中心 |
+| xUnit.net | .NET コード中心 | C# プロジェクト |
 
-## 代替ツール
+## ベストプラクティス
+1. 副作用のある処理は関数分割してテスト対象を明確化します。
+2. 失敗しやすい分岐を優先してケース化します。
+3. リリース前に必ず自動実行するゲートを設けます。
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **PSUnit** | PowerShellテスト | Pesterの方が圧倒的にコミュニティが大きい |
-| **Selenium + PS** | ブラウザテスト | PowerShellからSeleniumを利用するE2Eテスト |
-| **PSScriptAnalyzer** | 静的解析 | テストではなくコード品質チェック（補完的） |
+## 公式ドキュメント
+- https://pester.dev/
+- https://github.com/pester/Pester
 
-## 公式リンク
+## まとめ
 
-- **公式サイト**: [https://pester.dev/](https://pester.dev/)
-- **ドキュメント**: [https://pester.dev/docs/quick-start](https://pester.dev/docs/quick-start)
-- **GitHub**: [https://github.com/pester/Pester](https://github.com/pester/Pester)
-- **PowerShell Gallery**: [https://www.powershellgallery.com/packages/Pester](https://www.powershellgallery.com/packages/Pester)
+1. ** 自動運用 ** : Pester は PowerShell 運用の品質管理を自動化するための実践的な基盤です。
+2. ** 運用性 ** : 効果を出すには、副作用分離とモック運用の設計が重要です。
+3. ** 情報共有 ** : CI 連携で回帰検知を継続すると運用障害を減らせます。
 
-## 関連ドキュメント
-
-- [xUnit.net](./xUnit_net.md)
-
----
-
-**カテゴリ**: テスト
-**対象工程**: 実装・テスト
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0

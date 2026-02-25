@@ -117,4 +117,6 @@ CloudFormation Guard（cfn-guard）は CloudFormation テンプレートに対�
 
 ## まとめ
 
-CloudFormation Guard は CloudFormation の事前ポリシー検証を強化するツールである。AWS IaC の品質と統制を高めたい組織で有効に機能する。
+1. ** 事前検証 ** : CloudFormation テンプレートの事前ポリシー検証を強化するツールである。
+2. ** 統制力 ** : 組織標準ルールを一貫適用し、AWS IaC の品質と統制を高めやすい。
+3. ** 早期検出 ** : デプロイ前に違反設定を検出し、監査向けの基準明文化に役立つ。

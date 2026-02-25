@@ -1,264 +1,70 @@
 # Vitest
 
 ## 概要
+Vitest は Vite エコシステム向けの単体テストフレームワークです。高速実行と開発体験を重視した設計で、フロントエンド開発に適しています。
 
-Vitestは、Vite対応の超高速ユニットテストフレームワークです。Viteの高速なHMR（Hot Module Replacement）とトランスフォーム機能を活用し、Jestと互換性のあるAPIを提供しながら、TypeScript、JSX、ESMをネイティブサポートします。Viteプロジェクトとのシームレスな統合により、開発体験を損なわずにテストを実行できます。
+## 料金
+| プラン | 料金 | 備考 |
+|---|---:|---|
+| OSS | 無料 | Vite と高い親和性 |
+
+## 主な特徴
+| 特徴 | 内容 |
+|---|---|
+| 高速実行 | 開発時のフィードバックが速い |
+| Jest 互換性 | 既存知識を活かしやすい |
+| Vite 連携 | モダンフロント環境で設定がシンプル |
 
 ## 主な機能
+| 機能 | 用途 | 実務での使いどころ |
+|---|---|---|
+| 単体テスト | ロジック・UI 振る舞い検証 | 回帰防止 |
+| モック | 外部依存の置換 | API/環境依存の隔離 |
+| カバレッジ | 品質指標管理 | 品質ゲート運用 |
 
-### 1. 超高速実行
-- Viteのトランスフォームを再利用
-- ESMネイティブサポート
-- 並列実行デフォルト
-- Watch モード高速
+## インストールとセットアップ
+1. Vite/TypeScript 構成との整合を確認します。
+2. テスト対象範囲と命名規約を決めます。
+3. CI で実行条件と失敗時通知を設定します。
 
-### 2. Jest互換API
-- expect、describe、it/test
-- スナップショットテスト
-- モック関数
-- 既存Jestテストの移行容易
-
-### 3. TypeScript・JSX対応
-- 追加設定不要でTypeScript対応
-- JSX/TSXネイティブサポート
-- 型安全なテスト
-
-### 4. Vite統合
-- vite.config.ts でテスト設定
-- プラグインエコシステム活用
-- 開発サーバーとテストで同じ設定
-
-### 5. UI・カバレッジ
-- Vitest UI（ブラウザベースUI）
-- Istanbul/c8によるカバレッジ
-- インタラクティブなテスト結果表示
-
-### 6. コンポーネントテスト
-- Vue Test Utils統合
-- React Testing Library対応
-- Svelte Testing Library対応
-
-## 利用方法
-
-### インストール
-
-```bash
-# npm
-npm install -D vitest
-
-# yarn
-yarn add -D vitest
-
-# pnpm
-pnpm add -D vitest
-```
-
-### 設定（vite.config.ts）
-
-```typescript
-import { defineConfig } from 'vitest/config'
-
-export default defineConfig({
-  test: {
-    globals: true,
-    environment: 'jsdom', // または 'node', 'happy-dom'
-    setupFiles: './tests/setup.ts',
-    coverage: {
-      provider: 'istanbul', // または 'c8'
-      reporter: ['text', 'json', 'html'],
-    },
-  },
-})
-```
-
-### 基本テスト例
-
-```typescript
-// src/utils/sum.test.ts
-import { describe, it, expect } from 'vitest'
-import { sum } from './sum'
-
-describe('sum', () => {
-  it('adds two numbers', () => {
-    expect(sum(1, 2)).toBe(3)
-  })
-
-  it('handles negative numbers', () => {
-    expect(sum(-1, -2)).toBe(-3)
-  })
-})
-```
-
-### モックテスト
-
-```typescript
-import { describe, it, expect, vi } from 'vitest'
-import { fetchUser } from './api'
-
-// モック作成
-vi.mock('./api', () => ({
-  fetchUser: vi.fn(),
-}))
-
-describe('fetchUser', () => {
-  it('returns user data', async () => {
-    const mockUser = { id: 1, name: 'Test User' }
-    vi.mocked(fetchUser).mockResolvedValue(mockUser)
-
-    const user = await fetchUser(1)
-    expect(user).toEqual(mockUser)
-    expect(fetchUser).toHaveBeenCalledWith(1)
-  })
-})
-```
-
-### Reactコンポーネントテスト
-
-```typescript
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import Button from './Button'
-
-describe('Button', () => {
-  it('renders with text', () => {
-    render(<Button>Click me</Button>)
-    expect(screen.getByText('Click me')).toBeInTheDocument()
-  })
-
-  it('calls onClick when clicked', async () => {
-    const handleClick = vi.fn()
-    render(<Button onClick={handleClick}>Click me</Button>)
-    
-    await userEvent.click(screen.getByText('Click me'))
-    expect(handleClick).toHaveBeenCalledTimes(1)
-  })
-})
-```
-
-### スナップショットテスト
-
-```typescript
-import { describe, it, expect } from 'vitest'
-import { render } from '@testing-library/react'
-import Component from './Component'
-
-describe('Component', () => {
-  it('matches snapshot', () => {
-    const { container } = render(<Component />)
-    expect(container.firstChild).toMatchSnapshot()
-  })
-})
-```
-
-### テスト実行
-
-```bash
-# package.json
-{
-  "scripts": {
-    "test": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
-  }
-}
-
-# 実行
-npm run test           # Watch モード
-npm run test -- --run  # 1回のみ実行
-npm run test:ui        # UI モード
-npm run test:coverage  # カバレッジ計測
-```
-
-## CI/CD統合
-
-### GitHub Actions
-
-```yaml
-name: Test
-
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Run tests
-        run: npm run test -- --run
-      
-      - name: Generate coverage
-        run: npm run test:coverage
-      
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-```
+## 基本的な使い方
+1. コンポーネントとユーティリティを単位分割してテストします。
+2. 外部 API と時間依存処理をモック化します。
+3. 結果を継続比較し、劣化を早期検知します。
 
 ## メリット
-
-###  主な利点
-
-1. **超高速**: Jestの10-20倍高速
-2. **Vite統合**: 開発サーバーとテストで同じ設定
-3. **Jest互換**: 既存テストの移行容易
-4. **TypeScript標準**: 追加設定不要
-5. **ESMネイティブ**: モダンJavaScript対応
-6. **Watch モード高速**: HMR活用
-7. **UI機能**: ブラウザベースの視覚的テスト結果
-8. **並列実行**: デフォルトで並列
-9. **軽量**: 依存関係少ない
-10. **アクティブ開発**: 継続的な改善
+| 観点 | 内容 |
+|---|---|
+| 速度 | 開発サイクルを短縮しやすい |
+| 親和性 | Vite 環境で導入しやすい |
+| 可読性 | Jest 系記法で移行しやすい |
 
 ## デメリット
+| 観点 | 内容 |
+|---|---|
+| 前提依存 | Vite 以外ではメリットが減る場合がある |
+| 周辺知見 | 組織に運用ノウハウが少ない場合がある |
+| 実行差異 | ブラウザ環境差分への注意が必要 |
 
-###  制約・課題
+## 他ツールとの比較
+| ツール | 強み | 使い分け |
+|---|---|---|
+| Vitest | Vite 連携と高速性 | モダン FE 開発 |
+| Jest | 情報量と安定実績 | 幅広い JS/TS プロジェクト |
+| Playwright Test | E2E まで対応 | 統合検証中心 |
 
-1. **比較的新しい**: Jestより情報・事例少ない
-2. **エコシステム**: Jestほどプラグイン豊富ではない
-3. **完全互換ではない**: 一部Jestの機能は非対応
-4. **Node.js専用機能**: 一部環境依存の機能に制約
-5. **学習コスト**: Viteに不慣れな場合は追加学習必要
-6. **ブラウザテスト**: Playwright/Cypressが別途必要
-7. **スナップショット**: Jestとフォーマット異なる
-8. **Windows**: 一部機能でパス問題の可能性
+## ベストプラクティス
+1. UI テストとロジックテストを分離して管理します。
+2. 高頻度変更モジュールを優先してテスト強化します。
+3. 開発時は高速実行、CI では全件実行に分けて運用します。
 
-## 代替ツール
+## 公式ドキュメント
+- https://vitest.dev/
+- https://vitest.dev/guide/
 
-| ツール | 特徴 | 比較 |
-|--------|------|------|
-| **Jest** | 業界標準、豊富なエコシステム | Vitestより遅いが成熟 |
-| **Mocha + Chai** | 柔軟、古い | Vitestより設定必要 |
-| **AVA** | 並列実行、シンプル | Vitestより機能少ない |
-| **uvu** | 超軽量 | Vitestより機能限定的 |
-| **Jasmine** | 古典的、独立型 | Vitestより古い |
+## まとめ
 
-## 公式リンク
-
-- **公式サイト**: [https://vitest.dev/](https://vitest.dev/)
-- **GitHub**: [https://github.com/vitest-dev/vitest](https://github.com/vitest-dev/vitest)
-- **ドキュメント**: [https://vitest.dev/guide/](https://vitest.dev/guide/)
-- **API**: [https://vitest.dev/api/](https://vitest.dev/api/)
-- **Examples**: [https://github.com/vitest-dev/vitest/tree/main/examples](https://github.com/vitest-dev/vitest/tree/main/examples)
-
-## 関連ドキュメント
-
-- [テストツール一覧](../テストツール/)
-- [Jest](./Jest.md)
-- [Cypress](./Cypress.md)
-- [Viteプロジェクト設定](../../best-practices/vite-setup.md)
-- [ユニットテストベストプラクティス](../../best-practices/unit-testing.md)
-
----
-
-**カテゴリ**: テストツール  
-**対象工程**: 実装、テスト  
-**最終更新**: 2025年12月  
-**ドキュメントバージョン**: 1.0
+1. ** 運用性 ** : Vitest は Vite 環境で高速な単体テスト運用を実現しやすいツールです。
+2. ** 品質向上 ** : 速度だけでなく、テスト設計の粒度統一が品質向上の鍵になります。
+3. ** 自動運用 ** : 開発時と CI 時で実行戦略を分けると運用効率が上がります。
 

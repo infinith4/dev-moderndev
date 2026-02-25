@@ -98,8 +98,9 @@
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [Maven](https://maven.apache.org/) | Javaビルド・依存管理 | [詳細](./ツール/ビルド_タスク管理/Maven.md) |
-| [NuGet](https://www.nuget.org/) | .NETパッケージ管理 | [詳細](./ツール/パッケージ管理ツール/NuGet.md) |
-| [Poetry](https://python-poetry.org/) | Python依存管理・仮想環境管理 | [詳細](./ツール/パッケージ管理ツール/Poetry.md) |
+| [NuGet](https://www.nuget.org/) | .NETパッケージ管理 | [詳細](./ツール/パッケージ管理/NuGet.md) |
+| [Poetry](https://python-poetry.org/) | Python依存管理・仮想環境管理 | [詳細](./ツール/パッケージ管理/Poetry.md) |
+| [uv](https://docs.astral.sh/uv/) | Python依存管理・仮想環境管理・高速パッケージインストール | [詳細](./ツール/パッケージ管理/uv.md) |
 | [pnpm](https://pnpm.io/) | TypeScript依存管理・モノレポ管理 |  |
 
 **有用なドキュメント**
@@ -109,6 +110,7 @@
 | [Maven Guides](https://maven.apache.org/guides/) | Mavenプロジェクト構成・依存管理標準化 |
 | [NuGet Documentation](https://learn.microsoft.com/nuget/) | .NET依存関係管理・公開手順 |
 | [Poetry Docs](https://python-poetry.org/docs/) | Pythonプロジェクト運用標準化 |
+| [uv Documentation](https://docs.astral.sh/uv/) | Python依存管理・実行環境管理の高速化 |
 | [pnpm Docs](https://pnpm.io/) | JavaScript/TypeScript依存管理最適化 |
 
 ## 3. 実装規約・品質管理

@@ -2,333 +2,126 @@
 
 ## 概要
 
-Figmaは、クラウドベースのUI/UXデザインツールです。リアルタイムコラボレーション、コンポーネント、Auto Layout、プロトタイピング、デザインシステム、デベロッパーハンドオフにより、Webサイト・モバイルアプリのデザインを効率化します。Adobe買収予定、ブラウザベース、Sketch代替で急速に普及しています。
+Figma は、クラウドベースの UI/UX デザインツールである。画面設計、プロトタイピング、デザインシステム運用、開発ハンドオフまでを 1 つのワークスペースで進めやすい。
+
+## 料金
+
+| 区分 | 内容 |
+|------|------|
+| Free | 無料枠あり（個人・小規模チーム向け） |
+| Professional/Organization/Enterprise | 有料（権限管理・運用機能を拡張） |
+
+## 主な特徴
+
+| 項目 | 内容 |
+|------|------|
+| クラウド共同編集 | リアルタイムで同時編集・コメントが可能 |
+| コンポーネント設計 | 再利用可能な UI パーツを統一管理しやすい |
+| Auto Layout | レスポンシブ設計を維持しやすい |
+| プロトタイピング | 画面遷移や操作感を実装前に検証しやすい |
+| ハンドオフ | 開発者向け情報共有を一元化しやすい |
 
 ## 主な機能
 
-### 1. デザイン
-- **ベクター編集**: Pen Tool、図形
-- **コンポーネント**: 再利用可能コンポーネント
-- **Auto Layout**: レスポンシブ
-- **スタイル**: カラー、テキストスタイル
+### デザイン機能
 
-### 2. プロトタイプ
-- **インタラクション**: クリック、ホバー
-- **トランジション**: アニメーション
-- **オーバーレイ**: モーダル
-- **プレビュー**: リアルタイムプレビュー
+| 機能 | 説明 |
+|------|------|
+| フレーム設計 | Web/モバイル画面を用途別に設計 |
+| コンポーネント | パーツ再利用で画面間の一貫性を維持 |
+| スタイル管理 | 色・文字・間隔ルールを共通化 |
+| Auto Layout | 画面サイズ変化への追従を容易化 |
 
-### 3. コラボレーション
-- **リアルタイム**: 同時編集
-- **コメント**: フィードバック
-- **バージョン履歴**: 履歴管理
-- **共有**: リンク共有
+### コラボレーション機能
 
-### 4. ハンドオフ
-- **Inspect**: CSS・コード出力
-- **エクスポート**: PNG、SVG、PDF
-- **デザイントークン**: 変数
-- **プラグイン**: 拡張機能
+| 機能 | 説明 |
+|------|------|
+| 同時編集 | 複数メンバーで並行編集可能 |
+| コメント | レビュー指摘と修正履歴を残しやすい |
+| バージョン履歴 | 変更差分の追跡と復元が可能 |
+| 共有リンク | 関係者への確認依頼を効率化 |
 
-## 利用方法
+### ハンドオフ・運用機能
 
-### アカウント作成
+| 機能 | 説明 |
+|------|------|
+| Inspect | 開発者向けの寸法・スタイル確認 |
+| エクスポート | PNG/SVG/PDF など形式別に出力 |
+| ライブラリ運用 | デザインシステム資産を配布・更新 |
+| プラグイン | 作業効率化や外部連携を拡張 |
 
-```
-https://www.figma.com/
+## インストールとセットアップ
 
-Sign up:
-- Email
-- Google
-- GitHub
+公式URL:
+- [Figma 公式](https://www.figma.com/)
+- [Figma Help Center](https://help.figma.com/)
+- [Figma Developers](https://www.figma.com/developers/)
 
-Create team / Join team
-```
+セットアップ手順:
+1. アカウント作成後、チームとプロジェクト構成を決める。
+2. ページ構成、命名規約、レビュー手順を定義する。
+3. コンポーネントとスタイルの管理方針を決める。
+4. 共有権限と公開範囲を設定し、運用を開始する。
 
-### 基本操作
+## 基本的な使い方
 
-```
-# ツール
-V: 選択ツール
-F: フレームツール
-R: 長方形
-O: 円
-T: テキスト
-P: ペンツール
+1. フレームを作成し、主要画面のレイアウトを設計する。
+2. コンポーネント化して再利用可能な部品を整備する。
+3. プロトタイプで画面遷移と操作感を確認する。
+4. コメントと履歴を使ってレビューサイクルを回す。
+5. 開発者へリンク共有し、実装前に仕様差分を減らす。
 
-# ショートカット
-Cmd/Ctrl + D: 複製
-Cmd/Ctrl + G: グループ化
-Cmd/Ctrl + /: 検索
-Cmd/Ctrl + .: コメント
-Shift + 1: ズームフィット
-Shift + 2: 選択範囲ズーム
-
-# レイヤー
-Cmd/Ctrl + ]: 前面へ
-Cmd/Ctrl + [: 背面へ
-```
-
-### フレーム作成
-
-```
-1. Frame Tool (F)
-2. サイズ選択:
-   - Desktop: 1440x1024
-   - iPhone 14 Pro: 393x852
-   - iPad Pro: 1024x1366
-
-または
-プリセット: Desktop / iPhone / Android
-```
-
-### コンポーネント
-
-```
-# コンポーネント作成
-1. ボタンデザイン作成
-2. 右クリック > Create Component (Cmd/Ctrl + Alt + K)
-
-# バリアント作成
-1. コンポーネント選択
-2. 右パネル > Add variant
-3. プロパティ設定:
-   - State: Default, Hover, Active
-   - Size: Small, Medium, Large
-   - Type: Primary, Secondary
-
-# インスタンス使用
-1. Assets パネル > Component
-2. ドラッグ&ドロップ
-3. プロパティ変更
-```
-
-### Auto Layout
-
-```
-1. フレーム選択
-2. Shift + A (Auto Layout)
-
-設定:
-- Direction: Horizontal / Vertical
-- Spacing: 16px
-- Padding: 20px
-- Resizing: Hug / Fill
-
-用途:
-- ボタン（テキスト長に応じて幅自動調整）
-- カード（コンテンツに応じて高さ自動調整）
-- ナビゲーション（アイテム数に応じて配置）
-```
-
-### スタイル
-
-```
-# カラースタイル
-1. オブジェクト選択
-2. Fill color 選択
-3. Style icon (四角4つ) > +
-4. Name: Primary/500
-
-# テキストスタイル
-1. テキスト選択
-2. Text properties
-3. Style icon > +
-4. Name: Heading/H1
-   - Font: Inter
-   - Size: 32px
-   - Weight: Bold
-   - Line height: 120%
-```
-
-### プロトタイプ
-
-```
-# インタラクション設定
-1. Prototype タブ
-2. オブジェクト選択（例: ボタン）
-3. + をドラッグ → 遷移先フレーム
-4. 設定:
-   - On click
-   - Navigate to
-   - Instant / Dissolve / Smart Animate
-   - 300ms
-
-# プレビュー
-右上 Play icon > プレビュー表示
-```
-
-### デザインシステム
-
-```
-# ローカルライブラリ
-1. File > Publish library
-2. Component / Style を公開
-
-# 使用
-1. 別ファイルで Assets > Team library
-2. ライブラリ有効化
-3. Component使用
-
-# 更新
-1. ライブラリファイルでComponent更新
-2. Publish changes
-3. 使用側ファイルで Update available > Review
-```
-
-### プラグイン
-
-```
-人気プラグイン:
-
-デザイン:
-- Iconify: アイコン検索・挿入
-- Unsplash: 画像挿入
-- Lorem Ipsum: ダミーテキスト
-- Remove BG: 背景削除
-
-ハンドオフ:
-- Figma to Code: HTML/CSS生成
-- Anima: React/Vue コード生成
-
-ユーティリティ:
-- Autoflow: フローチャート
-- Chart: グラフ作成
-- Table Generator: テーブル生成
-```
-
-### デベロッパーハンドオフ
-
-```
-# Inspect モード
-1. Share > Copy link
-2. 開発者に共有
-3. Inspect パネル:
-   - CSS プロパティ
-   - iOS / Android コード
-   - エクスポート
-
-# コードコピー
-.button {
-  width: 120px;
-  height: 40px;
-  background: #0066FF;
-  border-radius: 8px;
-  font-family: Inter;
-  font-size: 14px;
-  color: #FFFFFF;
-}
-```
-
-### エクスポート
-
-```
-# 設定
-1. オブジェクト選択
-2. Export section > +
-3. 設定:
-   - Format: PNG / SVG / PDF
-   - Scale: 1x / 2x / 3x (@2x, @3x)
-   - Suffix: @2x
-
-# 一括エクスポート
-File > Export > Export [object name]
-```
-
-### バージョン履歴
-
-```
-File > Show version history
-
-- すべての編集履歴表示
-- 任意のバージョンにロールバック可能
-- バージョン名付け
-- バージョン比較
-```
-
-### Figma API
-
-```javascript
-// Figma API（Node.js）
-const axios = require('axios')
-
-const FIGMA_TOKEN = 'your-token'
-const FILE_KEY = 'file-key'
-
-// ファイル取得
-async function getFile() {
-  const response = await axios.get(
-    `https://api.figma.com/v1/files/${FILE_KEY}`,
-    {
-      headers: { 'X-Figma-Token': FIGMA_TOKEN }
-    }
-  )
-  return response.data
-}
-
-// 画像エクスポート
-async function exportImage(nodeId) {
-  const response = await axios.get(
-    `https://api.figma.com/v1/images/${FILE_KEY}?ids=${nodeId}&format=png&scale=2`,
-    {
-      headers: { 'X-Figma-Token': FIGMA_TOKEN }
-    }
-  )
-  return response.data.images[nodeId]
-}
-```
-
-### Figma Embed
-
-```html
-<!-- Webサイト埋め込み -->
-<iframe
-  style="border: 1px solid rgba(0, 0, 0, 0.1);"
-  width="800"
-  height="450"
-  src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/file/..."
-  allowfullscreen
-></iframe>
-```
-
-## エディション・料金
-
-| エディション | 価格 | 特徴 |
-|-------------|------|------|
-| **Starter** |  無料 | 3ファイル、無制限閲覧者 |
-| **Professional** |  $12/エディター/月 | 無制限ファイル、バージョン履歴 |
-| **Organization** |  $45/エディター/月 | デザインシステム、高度権限 |
-| **Enterprise** |  $75/エディター/月 | SSO、専用サポート |
+最小操作例:
+- 画面設計: フレーム作成と Auto Layout 設定
+- 共有: コメント付与とレビューリンク配布
 
 ## メリット
 
-1. **無料枠**: 個人利用無料
-2. **ブラウザベース**: インストール不要
-3. **コラボレーション**: リアルタイム共同編集
-4. **クロスプラットフォーム**: Windows、macOS
-5. **プラグイン**: 豊富な拡張機能
+- リアルタイム共同編集でレビュー速度を上げやすい
+- コンポーネント運用で UI の一貫性を維持しやすい
+- 設計からハンドオフまで 1 つのツールで管理しやすい
+- ブラウザ中心で導入ハードルが低い
 
 ## デメリット
 
-1. **オフライン**: ネット接続必要
-2. **パフォーマンス**: 大規模ファイルで遅延
-3. **学習曲線**: 高度機能複雑
-4. **有料機能**: デザインシステム有料
+- ネットワーク品質に作業性が左右されやすい
+- 大規模ファイルでは運用ルールがないと管理負荷が増える
+- 高度な運用機能は有料プラン前提になりやすい
 
-## 公式リンク
+## 他ツールとの比較
 
-- **公式サイト**: [https://www.figma.com/](https://www.figma.com/)
-- **ドキュメント**: [https://help.figma.com/](https://help.figma.com/)
+| ツール | 主な用途 | 特徴 |
+|------|------|------|
+| Figma | UI/UX 設計〜ハンドオフ | 共同編集とデザインシステム運用に強い |
+| Adobe XD | UI/UX 設計 | Adobe 製品群との連携に強み |
+| Sketch | UI 設計 | macOS 中心のデザイン運用に適合 |
+| Miro | アイデア整理 | 企画・要件整理の可視化に強い |
 
-## 関連ドキュメント
+## ベストプラクティス
 
-- [デザインツール一覧](../デザインツール/)
-- [Sketch](./Sketch.md)
+### 1. 設計ルールを先に統一
 
----
+- 命名規約とレイヤー構造を先に定義する
+- レビュー観点を明文化して判断を揃える
 
-**カテゴリ**: デザインツール
-**対象工程**: UI/UXデザイン
-**最終更新**: 2025年12月
-**ドキュメントバージョン**: 1.0
+### 2. コンポーネント運用を標準化
 
+- 共通 UI はコンポーネント化して重複を減らす
+- 変更時はライブラリ更新フローを統一する
+
+### 3. ハンドオフ品質を継続改善
+
+- 実装前に仕様差分をレビューで解消する
+- デザイン更新と実装反映の差分を定期確認する
+
+## 公式ドキュメント
+
+- 公式: https://www.figma.com/
+- Help Center: https://help.figma.com/
+- Developers: https://www.figma.com/developers/
+
+## まとめ
+
+1. ** 協業性 ** : Figma はデザイン作業をリアルタイム共同編集で進めやすい。
+2. ** 一貫性 ** : コンポーネント運用を徹底すると UI 品質を安定化しやすい。
+3. ** 接続性 ** : ハンドオフ手順を標準化すると設計と実装の差分を減らしやすい。

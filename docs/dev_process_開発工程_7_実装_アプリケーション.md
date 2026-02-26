@@ -1,18 +1,18 @@
 # 開発工程_7_実装（アプリケーション）
 
 - [1. プログラミング](#1-プログラミング)
-  - [1.1 モックツール](#11-モックツール)
-      - [Java](#java)
-      - [C#](#c)
-      - [Python](#python)
-      - [TypeScript](#typescript)
-  - [1.2 モックサーバー](#12-モックサーバー)
+  - [1.1. モックツール](#11-モックツール)
+    - [1.1.1. Java](#111-java)
+    - [1.1.2. C#](#112-c)
+    - [1.1.3. Python](#113-python)
+    - [1.1.4. TypeScript](#114-typescript)
+  - [1.2. モックサーバー](#12-モックサーバー)
 - [2. ビルド・パッケージ管理](#2-ビルドパッケージ管理)
 - [3. 実装規約・品質管理](#3-実装規約品質管理)
-  - [3.1 Java](#31-java)
-  - [3.2 C#](#32-c)
-  - [3.3 Python](#33-python)
-  - [3.4 TypeScript](#34-typescript)
+  - [3.1. Java](#31-java)
+  - [3.2. C#](#32-c)
+  - [3.3. Python](#33-python)
+  - [3.4. TypeScript](#34-typescript)
 - [4. コードレビュー](#4-コードレビュー)
 - [5. テスト実装](#5-テスト実装)
 - [6. CI/CD連携](#6-cicd連携)
@@ -40,34 +40,34 @@
 | [Clean Code / Clean Architecture](https://blog.cleancoder.com/) | 実装レイヤー分割、依存方向設計 |
 | [Refactoring Catalog](https://refactoring.com/catalog/) | リファクタリング方針の標準化 |
 
-### 1.1 モックツール
+### 1.1. モックツール
 
-##### Java
+#### 1.1.1. Java
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [Mockito](https://site.mockito.org/) | 単体テスト時の依存オブジェクトのモック化 | [詳細](./ツール/API_統合/Mockito.md) |
 
-##### C#
+#### 1.1.2. C#
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [Moq](https://github.com/devlooped/moq) | .NET単体テストでのモック/スタブ作成 | [詳細](./ツール/単体テスト/Moq.md) |
 
-##### Python
+#### 1.1.3. Python
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) | 標準ライブラリでのモック/パッチ適用 | [詳細](./ツール/単体テスト/unittest_mock.md) |
 
-##### TypeScript
+#### 1.1.4. TypeScript
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [MSW (Mock Service Worker)](https://mswjs.io/) | ブラウザ/Node.jsでのAPIモック | [詳細](./ツール/APIテスト/MSW.md) |
 | [ts-mockito](https://github.com/NagRock/ts-mockito) | TypeScript向けモック作成と振る舞い定義 |  |
 
-### 1.2 モックサーバー
+### 1.2. モックサーバー
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
@@ -120,7 +120,7 @@
 - 静的解析設定
 - フォーマッタ設定
 
-### 3.1 Java
+### 3.1. Java
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
@@ -128,7 +128,7 @@
 | [SpotBugs](https://spotbugs.github.io/) | 静的解析による不具合検出 | [詳細](./ツール/静的解析_型チェック/SpotBugs.md) |
 | [Google Java Format](https://github.com/google/google-java-format) | Javaコード自動整形 | [詳細](./ツール/Formatter_Linter/Google_Java_Format.md) |
 
-### 3.2 C#
+### 3.2. C#
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
@@ -136,7 +136,7 @@
 | [Roslyn Analyzers](https://learn.microsoft.com/dotnet/fundamentals/code-analysis/overview) | .NET静的解析ルール適用 | [詳細](./ツール/静的解析_型チェック/Roslyn_Analyzers.md) |
 | [EditorConfig](https://editorconfig.org/) | C#コードスタイル統一 | [詳細](./ツール/Formatter_Linter/EditorConfig.md) |
 
-### 3.3 Python
+### 3.3. Python
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
@@ -144,7 +144,7 @@
 | [Black](https://black.readthedocs.io/) | Pythonコード自動整形 | [詳細](./ツール/Formatter_Linter/Black.md) |
 | [mypy](https://mypy-lang.org/) | 型チェック | [詳細](./ツール/静的解析_型チェック/mypy.md) |
 
-### 3.4 TypeScript
+### 3.4. TypeScript
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|

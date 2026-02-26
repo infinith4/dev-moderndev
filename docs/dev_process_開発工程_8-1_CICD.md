@@ -105,7 +105,6 @@ CI/CD構築のタスクと推奨ツール、有用なドキュメントを記載
 |---------|------|------|------|
 | [GitHub Packages](https://github.com/features/packages) | コンテナ/パッケージ保存 | 無料枠あり |  |
 | [GitLab Package Registry](https://docs.gitlab.com/ee/user/packages/package_registry/) | GitLab内アーティファクト管理 | 無料枠あり |  |
-| [JFrog Artifactory OSS](https://jfrog.com/open-source/) | 汎用アーティファクト管理 | 無料 | [詳細](./ツール/バージョン管理_CI_CD/JFrog_Artifactory_OSS.md) |
 
 **有用なドキュメント**
 

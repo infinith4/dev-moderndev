@@ -46,7 +46,7 @@
 |---------|------|------|
 | [Terraform](https://www.terraform.io/) | VNet/VPC/Subnet/Route/NSG等の一括構築 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
 | [Azure CLI](https://learn.microsoft.com/cli/azure/) | Azureネットワークリソースの作成・更新・確認 | [詳細](./ツール/CLI_運用管理/Azure_CLI.md) |
-| [AWS CLI](https://aws.amazon.com/cli/) | AWSネットワークリソースの作成・更新・確認 |  |
+| [AWS CLI](https://aws.amazon.com/cli/) | AWSネットワークリソースの作成・更新・確認 | [詳細](./ツール/CLI_運用管理/AWS_CLI.md) |
 
 **有用なドキュメント**
 

@@ -128,7 +128,7 @@
 | ツール名 | 用途 | 料金 | 詳細 |
 |---------|------|------|------|
 | [Swagger / OpenAPI](https://openapi.com/) | API仕様定義（REST） | 無料 | [詳細](./ツール/API_統合/Swagger_OpenAPI.md) |
-| [Apidog](./ツール/API統合/Apidog.md) | API仕様設計、モック生成、テストケース管理 | 無料枠あり | [詳細](./ツール/API_統合/Apidog.md) |
+| [Apidog](./ツール/API_統合/Apidog.md) | API仕様設計、モック生成、テストケース管理 | 無料枠あり | [詳細](./ツール/API_統合/Apidog.md) |
 | [ReDoc](https://redocly.com/redoc/) | OpenAPI仕様のドキュメント化 | 無料 | [詳細](./ツール/API_統合/ReDoc.md) |
 | [Draw.io](https://www.diagrams.net/) | 外部連携図・データフロー図作成 | 無料 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
 

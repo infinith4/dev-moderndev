@@ -101,7 +101,7 @@
 | ツール名 | 用途 | 料金 | 詳細 |
 |---------|------|------|------|
 | [Postman](https://www.postman.com/) | APIリクエスト作成・手動/自動テスト | 無料枠あり | [詳細](./ツール/APIテスト/Postman.md) |
-| [Apidog](./ツール/API統合/Apidog.md) | APIテストケース作成、モック、自動テスト実行 | 無料枠あり | [詳細](./ツール/API_統合/Apidog.md) |
+| [Apidog](./ツール/API_統合/Apidog.md) | APIテストケース作成、モック、自動テスト実行 | 無料枠あり | [詳細](./ツール/API_統合/Apidog.md) |
 | [Newman](https://github.com/postmanlabs/newman) | PostmanコレクションのCLI実行 | 無料 | [詳細](./ツール/APIテスト/Newman.md) |
 | [REST Assured](https://rest-assured.io/) | JavaでのAPI自動テスト実装 | 無料 | [詳細](./ツール/APIテスト/REST_Assured.md) |
 | [WireMock](https://wiremock.org/) | APIモックサーバによる結合テスト | 無料 | [詳細](./ツール/APIテスト/WireMock.md) |
@@ -173,6 +173,8 @@
 | [Xray](https://www.getxray.app/) / [Zephyr](https://smartbear.com/test-management/zephyr/) | Jira連携のテスト管理、テスト実行管理 | 有料 | [詳細](./ツール/テスト管理/Xray.md) / [詳細](./ツール/テスト管理/Zephyr_for_Jira.md) |
 | [TestRail](https://www.testrail.com/) | テストケース管理、テスト進捗・品質レポート | 有料 | [詳細](./ツール/テスト管理/TestRail.md) |
 | [Allure Report](https://allurereport.org/) | テスト結果可視化レポート | 無料 | [詳細](./ツール/テスト管理/Allure_Report.md) |
+| [Jira](https://www.atlassian.com/ja/software/jira) | 不具合管理、課題トリアージ、進捗追跡 | 無料枠あり | [詳細](./ツール/プロジェクト管理_ドキュメント/Jira.md) |
+| [Backlog](https://backlog.com/ja/) | 不具合管理、課題管理、テスト進捗管理 | 無料枠あり | [詳細](./ツール/プロジェクト管理_ドキュメント/Backlog.md) |
 
 **有用なドキュメント**
 

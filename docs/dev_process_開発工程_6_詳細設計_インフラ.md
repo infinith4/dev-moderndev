@@ -41,11 +41,11 @@
 - サブネット/CIDR設計書
 - ルーティング・疎通制御設計書
 
-| ツール名 | 用途 |
-|---------|------|
-| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図・経路図作成 |
-| [PlantUML](https://plantuml.com/) | ネットワーク構成のテキスト管理 |
-| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC詳細定義 |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Draw.io](https://www.diagrams.net/) | ネットワーク構成図・経路図作成 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [PlantUML](https://plantuml.com/) | ネットワーク構成のテキスト管理 | [詳細](./ツール/設計_モデリング/PlantUML.md) |
+| [Terraform](https://www.terraform.io/) | ネットワーク構成のIaC詳細定義 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
 
 **有用なドキュメント**
 
@@ -103,11 +103,11 @@
 - IAM/RBAC設計書
 - 暗号化・鍵管理設計書
 
-| ツール名 | 用途 |
-|---------|------|
-| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） |
-| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 |
-| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・準拠チェック |
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Microsoft Threat Modeling Tool](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) | 脅威分析（STRIDE） | [詳細](./ツール/セキュリティ/Microsoft_Threat_Modeling_Tool.md) |
+| [Checkov](https://www.checkov.io/) | IaCセキュリティポリシー検証 | [詳細](./ツール/セキュリティ/Checkov.md) |
+| [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) | ポリシーのコード化・準拠チェック | [詳細](./ツール/IaC_インフラ管理/OPA.md) |
 
 **有用なドキュメント**
 
@@ -125,11 +125,11 @@
 - バックアップ設計書
 - DR（災害復旧）手順書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Draw.io](https://www.diagrams.net/) | ストレージ/バックアップ構成図作成 | 無料 |
-| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 容量計画、RPO/RTO整理 | 無料枠あり |
-| [Terraform](https://www.terraform.io/) | ストレージ/バックアップ設定のIaC管理 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Draw.io](https://www.diagrams.net/) | ストレージ/バックアップ構成図作成 | 無料 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 容量計画、RPO/RTO整理 | 無料枠あり | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
+| [Terraform](https://www.terraform.io/) | ストレージ/バックアップ設定のIaC管理 | 無料 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
 
 **有用なドキュメント**
 
@@ -146,11 +146,11 @@
 - アラート定義書
 - 運用Runbook
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Prometheus](https://prometheus.io/) | メトリクス収集・監視設計 | 無料 |
-| [Grafana](https://grafana.com/) | ダッシュボード設計・可視化 | 無料枠あり |
-| [Loki](https://grafana.com/oss/loki/) | ログ収集・分析設計 | 無料 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Prometheus](https://prometheus.io/) | メトリクス収集・監視設計 | 無料 | [詳細](./ツール/監視_ロギング/Prometheus.md) |
+| [Grafana](https://grafana.com/) | ダッシュボード設計・可視化 | 無料枠あり | [詳細](./ツール/監視_ロギング/Grafana.md) |
+| [Loki](https://grafana.com/oss/loki/) | ログ収集・分析設計 | 無料 | [詳細](./ツール/監視_ロギング/Loki.md) |
 
 **有用なドキュメント**
 
@@ -168,12 +168,12 @@
 - ポリシー/Lintルール定義
 - デプロイ手順書
 
-| ツール名 | 用途 | 料金 |
-|---------|------|------|
-| [Terraform](https://www.terraform.io/) | マルチクラウドIaC設計 |
-| [Azure Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | Azure IaC設計 |
-| [AWS CloudFormation](https://aws.amazon.com/cloudformation/) | AWS IaC設計 |
-| [tflint](https://github.com/terraform-linters/tflint) | Terraform静的解析 |
+| ツール名 | 用途 | 料金 | 詳細 |
+|---------|------|------|------|
+| [Terraform](https://www.terraform.io/) | マルチクラウドIaC設計 | 無料 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
+| [Azure Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | Azure IaC設計 | 無料 | [詳細](./ツール/IaC_インフラ管理/Azure_Bicep.md) |
+| [AWS CloudFormation](https://aws.amazon.com/cloudformation/) | AWS IaC設計 | 無料 | [詳細](./ツール/IaC_インフラ管理/AWS_CloudFormation.md) |
+| [tflint](https://github.com/terraform-linters/tflint) | Terraform静的解析 | 無料 | [詳細](./ツール/IaC_インフラ管理/tflint.md) |
 
 **有用なドキュメント**
 

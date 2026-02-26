@@ -158,6 +158,8 @@
 | [Zammad](https://zammad.com/) | サービスデスク、チケット管理 | 無料枠あり | [詳細](./ツール/運用_ITSM/Zammad.md) |
 | [OpenProject](https://www.openproject.org/) | 変更管理、課題管理、承認管理 | 無料枠あり | [詳細](./ツール/プロジェクト管理_ドキュメント/OpenProject.md) |
 | [ServiceNow](https://www.servicenow.com/) | ITSM（インシデント/問題/変更管理） | 有料 | [詳細](./ツール/運用_ITSM/ServiceNow.md) |
+| [Jira](https://www.atlassian.com/ja/software/jira) | インシデント管理、変更管理、課題追跡 | 無料枠あり | [詳細](./ツール/プロジェクト管理_ドキュメント/Jira.md) |
+| [Backlog](https://backlog.com/ja/) | 課題管理、変更管理、進捗追跡 | 無料枠あり | [詳細](./ツール/プロジェクト管理_ドキュメント/Backlog.md) |
 
 **有用なドキュメント**
 

@@ -63,6 +63,8 @@
 |---------|------|------|
 | [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | 概算見積り、WBS、費用試算 | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
 | [Draw.io](https://www.diagrams.net/) | システム全体構成、ロードマップ可視化 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
+| [Jira](https://www.atlassian.com/ja/software/jira) | プロジェクト計画、課題管理、スプリント計画 | [詳細](./ツール/プロジェクト管理_ドキュメント/Jira.md) |
+| [Backlog](https://backlog.com/ja/) | プロジェクト管理、課題管理、ガントチャート | [詳細](./ツール/プロジェクト管理_ドキュメント/Backlog.md) |
 
 **有用なドキュメント**
 

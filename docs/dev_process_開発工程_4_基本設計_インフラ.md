@@ -28,8 +28,8 @@
 | 資料名 | 用途 |
 |-------|------|
 | [非機能要求グレード（IPA）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 可用性・性能・運用性・保守性・セキュリティ要件の整理 |
-| [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) | クラウド設計原則、設計レビュー観点の統一 |
 | [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/) | Azure向け設計パターン、参照アーキテクチャ確認 |
+| [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) | クラウド設計原則、設計レビュー観点の統一 |
 
 ---
 
@@ -50,8 +50,8 @@
 | 資料名 | 用途 |
 |-------|------|
 | [RFC 1918](https://www.rfc-editor.org/rfc/rfc1918) | プライベートIPアドレス設計基準 |
-| [AWS VPC Documentation](https://docs.aws.amazon.com/vpc/) | VPC、サブネット、ルート設計 |
 | [Azure Virtual Network Documentation](https://learn.microsoft.com/azure/virtual-network/) | Azure VNet設計、接続設計 |
+| [AWS VPC Documentation](https://docs.aws.amazon.com/vpc/) | VPC、サブネット、ルート設計 |
 
 ---
 
@@ -65,15 +65,15 @@
 |---------|------|------|
 | [Draw.io](https://www.diagrams.net/) | サーバー構成図、構成パターン図作成 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
 | [Diagrams (Python)](https://diagrams.mingrammer.com/) | 構成図のコード化と再利用 | [詳細](./ツール/プロジェクト管理_ドキュメント/Diagrams.md) |
-| [AWS Pricing Calculator](https://calculator.aws/) | インスタンス費用試算 | |
 | [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/) | Azure VM/サービス費用試算 | |
+| [AWS Pricing Calculator](https://calculator.aws/) | インスタンス費用試算 | |
 
 **有用なドキュメント**
 
 | 資料名 | 用途 |
 |-------|------|
-| [AWS EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/) | インスタンスタイプ選定 |
 | [Azure VM Sizes](https://learn.microsoft.com/azure/virtual-machines/sizes) | VMサイズ選定 |
+| [AWS EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/) | インスタンスタイプ選定 |
 
 ---
 
@@ -93,8 +93,8 @@
 
 | 資料名 | 用途 |
 |-------|------|
-| [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/) | オブジェクトストレージ設計 |
 | [Azure Storage Documentation](https://learn.microsoft.com/azure/storage/) | Azureストレージ設計 |
+| [Amazon S3 Documentation](https://docs.aws.amazon.com/s3/) | オブジェクトストレージ設計 |
 
 ---
 
@@ -115,6 +115,7 @@
 | 資料名 | 用途 |
 |-------|------|
 | [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) | セキュリティ設計観点の整理 |
+| [Azure セキュリティ ドキュメント](https://learn.microsoft.com/ja-jp/azure/security/) | Azureの包括的なセキュリティ機能とベストプラクティスの参照 |
 | [AWS Security Best Practices](https://aws.amazon.com/architecture/security-identity-compliance/) | クラウドセキュリティ設計 |
 | [IPA セキュリティセンター](https://www.ipa.go.jp/security/) | 国内標準に沿った設計指針 |
 
@@ -137,13 +138,14 @@
 | 資料名 | 用途 |
 |-------|------|
 | [Site Reliability Engineering Book](https://sre.google/sre-book/table-of-contents/) | 可用性・SLO設計の基礎 |
-| [AWS Reliability Pillar](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/) | 信頼性設計の標準観点 |
 | [Azure Reliability Documentation](https://learn.microsoft.com/azure/reliability/) | Azure可用性設計の実装指針 |
+| [AWS Reliability Pillar](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/) | 信頼性設計の標準観点 |
 
 ---
 
 ## 7. 監視・運用設計
 **成果物**
+- 運用設計書
 - 監視設計書
 - アラート定義書
 - 運用手順書（Runbook）

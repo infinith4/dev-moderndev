@@ -78,6 +78,5 @@
 
 ## 4. 参考資料
 - [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
-- ISO/IEC/IEEE 12207:2017
 - [ソフトウェア開発見積りガイドブック](https://www.ipa.go.jp/archive/publish/secbooks20060425.html)
 - [アジャイル開発版モデル取引・契約書](https://www.ipa.go.jp/digital/model/agile20200331.html)

@@ -167,6 +167,6 @@
 ---
 
 ## 8. 参考資料
-- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
+- [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
 - ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
 - [非機能要求グレード（IPA）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html)

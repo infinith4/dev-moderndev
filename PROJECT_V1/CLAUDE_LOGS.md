@@ -178,7 +178,7 @@
 
 ### IPAリソース（Webサイト）
 - [IPA 開発関連リソース](https://www.ipa.go.jp/digital/kaihatsu/link/development.html)
-- [IPA 共通フレーム2013](https://www.ipa.go.jp/publish/secbooks20130304.html)
+- [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
 - [IPA システム開発・保守](https://www.ipa.go.jp/digital/kaihatsu/index.html)
 - [IPA DX（デジタルトランスフォーメーション）](https://www.ipa.go.jp/digital/dx/index.html)
 - [DX動向2024](https://www.ipa.go.jp/digital/chousa/dx-trend/dx-trend-2024.html)

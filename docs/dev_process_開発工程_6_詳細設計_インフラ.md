@@ -115,7 +115,7 @@
 |-------|------|
 | [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) | セキュリティ設計観点の整理 |
 | [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) | セキュリティ要件の確認基準 |
-| [IPA セキュリティセンター](https://www.ipa.go.jp/security/) | 国内標準に沿った設計指針 |
+| [IPA 情報セキュリティ](https://www.ipa.go.jp/security/) | 国内標準に沿った設計指針 |
 
 ---
 
@@ -142,6 +142,7 @@
 
 ## 6. 監視・運用詳細設計
 **成果物**
+- 運用設計書
 - 監視設計書
 - アラート定義書
 - 運用Runbook
@@ -171,9 +172,9 @@
 | ツール名 | 用途 | 料金 | 詳細 |
 |---------|------|------|------|
 | [Terraform](https://www.terraform.io/) | マルチクラウドIaC設計 | 無料 | [詳細](./ツール/IaC_インフラ管理/Terraform.md) |
+| [tflint](https://github.com/terraform-linters/tflint) | Terraform静的解析 | 無料 | [詳細](./ツール/IaC_インフラ管理/tflint.md) |
 | [Azure Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) | Azure IaC設計 | 無料 | [詳細](./ツール/IaC_インフラ管理/Azure_Bicep.md) |
 | [AWS CloudFormation](https://aws.amazon.com/cloudformation/) | AWS IaC設計 | 無料 | [詳細](./ツール/IaC_インフラ管理/AWS_CloudFormation.md) |
-| [tflint](https://github.com/terraform-linters/tflint) | Terraform静的解析 | 無料 | [詳細](./ツール/IaC_インフラ管理/tflint.md) |
 
 **有用なドキュメント**
 
@@ -186,5 +187,5 @@
 ---
 
 ## 8. 参考資料
-- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
+- [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
 - [非機能要求グレード（IPA）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html)

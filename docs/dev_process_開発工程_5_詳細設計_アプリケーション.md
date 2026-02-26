@@ -120,7 +120,7 @@
 | 資料名 | 用途 |
 |-------|------|
 | [SQL Style Guide](https://www.sqlstyle.guide/) | SQL命名規約・可読性ルール統一 |
-| [ISO/IEC 11179 概要](https://www.iso.org/standard/35343.html) | データ項目定義・メタデータ標準化 |
+| [ISO/IEC 11179-1:2023](https://www.iso.org/standard/78914.html) | データ項目定義・メタデータ標準化 |
 
 ## 5. 開発環境構築
 **成果物**
@@ -146,6 +146,7 @@
 
 ## 6. 運用設計
 **成果物**
+- 運用設計書
 - 監視設計書
 - バックアップ運用設計書
 - 構成管理運用設計書
@@ -169,7 +170,7 @@
 ---
 
 ## 7. 参考資料
-- IPA 共通フレーム2013 / ISO/IEC/IEEE 12207:2017
+- [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
 - [IPA API標準設計ガイド](https://www.ipa.go.jp/digital/data/jod03a000000a82y-att/api_standard_design_guide.pdf)
 - [IPA 機能要件の合意形成ガイド（データモデル編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html)
 

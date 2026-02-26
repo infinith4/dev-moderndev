@@ -227,7 +227,7 @@
 ---
 
 ## 7. 参考資料
-- IPA 共通フレーム2013（SLCP-JCF: Software Life Cycle Process - Japan Common Frame）
+- [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
 - [IPA 組込みソフトウェア向け 設計ガイド（事例編）ESDR](https://www.ipa.go.jp/)
 - [Google Engineering Practices](https://google.github.io/eng-practices/)
 

@@ -1,7 +1,7 @@
 # 開発工程_2_要件定義
 
 - [1. 概要](#1-概要)
-  - [1.2. 共通](#12-共通)
+  - [1.1. 共通](#11-共通)
 - [2. 業務分析](#2-業務分析)
 - [3. ユースケース分析](#3-ユースケース分析)
 - [4. 画面要件定義](#4-画面要件定義)
@@ -12,7 +12,14 @@
 - [9. バッチ処理要件定義](#9-バッチ処理要件定義)
 - [10. システム方針検討](#10-システム方針検討)
 - [11. 非機能要件定義](#11-非機能要件定義)
-- [12. 参考資料](#12-参考資料)
+  - [11.1. 可用性要件定義](#111-可用性要件定義)
+  - [11.2. 性能・拡張性要件定義](#112-性能拡張性要件定義)
+  - [11.3. 運用・保守性要件定義](#113-運用保守性要件定義)
+  - [11.4. 移行性・データ移行要件定義](#114-移行性データ移行要件定義)
+  - [11.5. セキュリティ要件定義](#115-セキュリティ要件定義)
+  - [11.6. システム環境・エコロジー要件定義](#116-システム環境エコロジー要件定義)
+- [13. 受入テスト方針定義](#13-受入テスト方針定義)
+- [14. 参考資料](#14-参考資料)
 
 
 ## 1. 概要
@@ -21,7 +28,7 @@
 
 ---
 
-### 1.2. 共通
+### 1.1. 共通
 
 **対応項目**
 - 利害関係者の識別
@@ -36,9 +43,9 @@
 | 資料名 | 用途 |
 |-------|------|
 | [ユーザのための要件定義ガイド 第2版](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/youkenteigi20190912.html) | システム要件定義、業務要件定義、要件定義プロセス全般、要件定義書作成 |
-| [機能要件の合意形成ガイド（画面編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | 画面設計、画面仕様書作成、画面レイアウト設計、画面遷移図作成 |
-| [機能要件の合意形成ガイド（データモデル編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | データベース論理設計、ER図作成、概念モデリング、データディクショナリ作成 |
-| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | バッチ処理設計、バッチ仕様書作成、外部インターフェース設計 |
+| [機能要件の合意形成ガイド（画面編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | 画面設計、画面仕様書作成、画面レイアウト設計、画面遷移図作成 |
+| [機能要件の合意形成ガイド（データモデル編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | データベース論理設計、ER図作成、概念モデリング、データディクショナリ作成 |
+| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | バッチ処理設計、バッチ仕様書作成、外部インターフェース設計 |
 
 
 ---
@@ -94,7 +101,7 @@
 
 | 資料名 | 用途 |
 |-------|------|
-| [機能要件の合意形成ガイド（画面編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | 画面一覧、画面遷移図、画面レイアウト定義 |
+| [機能要件の合意形成ガイド（画面編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | 画面一覧、画面遷移図、画面レイアウト定義 |
 | [WCAG 2.2](https://waic.jp/translations/WCAG22/) | UI要件、アクセシビリティ観点定義 |
 
 ---
@@ -112,7 +119,7 @@
 
 | 資料名 | 用途 |
 |-------|------|
-| [機能要件の合意形成ガイド（画面編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | 帳票項目定義、レイアウト要件整理 |
+| [機能要件の合意形成ガイド（画面編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | 帳票項目定義、レイアウト要件整理 |
 | [ISO 32000（PDF）](https://www.iso.org/standard/75839.html) | PDF帳票の出力要件定義 |
 
 ---
@@ -128,14 +135,13 @@
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
-| [**Microsoft Excel**](https://www.microsoft.com/microsoft-365/excel) | ファイルレイアウト定義、データ項目一覧、形式定義 | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
-| [**CSV Spec Validator**](https://github.com/) | CSVファイル仕様定義 | [詳細](./ツール/標準_ガイドライン/CSV_Spec_Validator.md) |
+| [Microsoft Excel](https://www.microsoft.com/microsoft-365/excel) | ファイルレイアウト定義、データ項目一覧、形式定義 | [詳細](./ツール/帳票_データ処理/Microsoft_Excel.md) |
 
 **有用なドキュメント**
 
 | 資料名 | 用途 |
 |-------|------|
-| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | ファイルレイアウト定義、外部インターフェース定義 |
+| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | ファイルレイアウト定義、外部インターフェース定義 |
 | [CSV/TSV形式標準](https://www.ietf.org/rfc/rfc4180.txt) | CSVファイル定義、文字コード定義、エスケープ処理 |
 | [文字コード標準（UTF-8/Shift_JIS）](https://unicode.org/) | 文字コード定義、エンコーディング、文字化け対策 |
 
@@ -144,7 +150,13 @@
 ## 7. 概念モデリング
 **成果物**
 - 概念モデル
-- 用語集
+- 用語集（ユビキタス言語）
+
+> **補足：用語集の重要性**
+> 用語集は単なる「単語リスト」ではなく、ドメイン駆動設計（DDD）における**ユビキタス言語**として位置づけるべきである。開発者とビジネスサイドで用語の定義がズレると、要件の認識齟齬や手戻りの原因となるため、以下の点に留意する。
+> - 各用語にはビジネス上の定義・文脈・同義語・対義語を明記する
+> - 開発チームとビジネスサイド双方がレビュー・合意した上で確定する
+> - プロジェクト全体で統一的に利用し、コード内の命名にも反映する
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
@@ -155,8 +167,9 @@
 
 | 資料名 | 用途 |
 |-------|------|
-| [機能要件の合意形成ガイド（データモデル編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | 概念モデル、用語統一、関連整理 |
+| [機能要件の合意形成ガイド（データモデル編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | 概念モデル、用語統一、関連整理 |
 | [ISO/IEC 11179 概要](https://www.iso.org/standard/35343.html) | 用語集整備、属性定義、命名規約統一 |
+| [ドメイン駆動設計（Eric Evans）](https://www.amazon.co.jp/dp/4798121967) | ユビキタス言語の定義、境界づけられたコンテキストの整理 |
 
 ---
 
@@ -175,7 +188,7 @@
 | 資料名 | 用途 |
 |-------|------|
 | [OpenAPI Specification](https://www.openapis.org/) | 外部IF定義、API契約の明確化 |
-| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | 外部システム関連図、連携方式定義 |
+| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | 外部システム関連図、連携方式定義 |
 
 ---
 
@@ -193,7 +206,7 @@
 
 | 資料名 | 用途 |
 |-------|------|
-| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html) | バッチ一覧作成、ジョブ設計、エラーハンドリング定義 |
+| [機能要件の合意形成ガイド（バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html) | バッチ一覧作成、ジョブ設計、エラーハンドリング定義 |
 | [crontab guru](https://crontab.guru/) | バッチスケジュール定義、実行タイミング検証 |
 
 ---
@@ -212,8 +225,8 @@
 
 | 資料名 | 用途 |
 |-------|------|
-| [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) | システム方針検討、非機能観点レビュー、技術選定 |
 | [Azure Architecture Center](https://learn.microsoft.com/azure/architecture/) | システム構成方針、冗長化設計、運用設計 |
+| [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) | システム方針検討、非機能観点レビュー、技術選定 |
 | [C4 Model](https://c4model.com/) | ソフトウェア構成図、責務分割、境界整理 |
 
 ---
@@ -233,10 +246,201 @@
 | [非機能要求グレード](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 可用性、性能、運用、セキュリティ要件定義 |
 | [ISO/IEC 25010:2023](https://www.iso.org/standard/78176.html) | 品質特性の整理、非機能分類 |
 
+### 11.1. 可用性要件定義
+
+システムの継続稼働に関する要件を定義する。障害発生時の影響範囲と復旧目標を明確にする。
+
+**対応項目**
+- 稼働率・SLA目標の定義（例：99.9%）
+- RPO（目標復旧時点）・RTO（目標復旧時間）の定義
+- 冗長構成（Active-Active / Active-Standby）の方針
+- 災害対策（DR）の要否と方針
+- 計画停止の許容範囲・メンテナンスウィンドウの定義
+
+**成果物**
+- 可用性要件定義書（SLA定義含む）
+
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [非機能要求グレード（可用性）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 稼働率、RPO/RTO、冗長化レベルの段階的定義 |
+| [Azure Well-Architected Framework - 信頼性の柱](https://learn.microsoft.com/azure/well-architected/reliability/) | 可用性設計、障害モード分析、復旧戦略 |
+| [AWS Well-Architected Framework - 信頼性の柱](https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/) | 可用性設計パターン、障害復旧戦略 |
+
+### 11.2. 性能・拡張性要件定義
+
+システムの応答性能とスケーラビリティに関する要件を定義する。
+
+**対応項目**
+- レスポンスタイム目標の定義（画面応答、バッチ処理、API応答）
+- スループット要件の定義（同時接続数、TPS）
+- データ量の見積もり（初期データ量、年間増加量）
+- ピーク時の負荷想定と対策方針
+- 将来的な拡張性の方針（スケールアップ / スケールアウト）
+
+**成果物**
+- 性能要件定義書（性能目標値一覧含む）
+
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [JMeter](https://jmeter.apache.org/) | 性能要件の妥当性検証、負荷テスト計画の前提整理 | - |
+| [Gatling](https://gatling.io/) | シナリオベースの性能要件定義・検証 | - |
+
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [非機能要求グレード（性能・拡張性）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | レスポンスタイム、スループット、データ量の段階的定義 |
+| [Google Web Vitals](https://web.dev/vitals/) | フロントエンド性能指標（LCP、FID、CLS）の目標設定 |
+
+### 11.3. 運用・保守性要件定義
+
+システムの運用・監視・保守に関する要件を定義する。
+
+**対応項目**
+- 運用監視要件の定義（監視対象、通知条件、エスカレーション）
+- ログ管理要件の定義（保存期間、出力レベル、集約方式）
+- バックアップ・リストア方針の定義
+- パッチ適用・アップデート方針の定義
+- 運用体制・時間帯の定義（24/365、営業時間内等）
+
+**成果物**
+- 運用・保守性要件定義書
+
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [Zabbix](https://www.zabbix.com/) | 監視要件の具体化、監視項目一覧の整理 | - |
+| [Grafana](https://grafana.com/) | 監視ダッシュボード要件の可視化 | - |
+
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [非機能要求グレード（運用・保守性）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 運用監視、バックアップ、運用体制の段階的定義 |
+| [ITIL 4](https://www.axelos.com/certifications/itil-service-management) | サービス運用管理、インシデント管理、変更管理の観点整理 |
+
+ご要望に合わせて、「11.4. 移行性要件定義」に「12. データ移行要件定義」の内容を統合し、文言を維持したまま整理しました。
+
 ---
 
-## 12. 参考資料
+### 11.4. 移行性・データ移行要件定義
+
+システム移行（リリース・切替）およびデータ移行に関する要件を定義する。既存システムがある場合にはデータ移行の検討が必須である。
+
+**対応項目**
+
+**システム移行（切替）方針**
+- 移行方式の定義（一斉切替 / 段階移行 / 並行稼働）
+- 移行時の許容停止時間の定義
+- 移行判定基準・切戻し基準の定義
+- 移行リハーサルの実施方針
+- 旧システムとの並行運用期間の定義
+
+**データ移行方針**
+- 移行対象データの識別と範囲定義
+- 新旧データ構造のマッピング
+- データクレンジング・変換ルールの定義
+- 移行方式（一括/段階的）の検討
+- 移行リハーサル・検証方針の策定
+
+
+
+**成果物**
+- 移行性要件定義書
+- データ移行方針書
+- 新旧データマッピング表
+
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [DBeaver](https://dbeaver.io/) | 既存DBの構造把握・データ抽出確認 | - |
+
+**有用なドキュメント**
+| 資料名 | 用途 |
+| :--- | :--- |
+| [非機能要求グレード（移行性）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 移行方式、移行期間、移行対象の段階的定義 |
+| [システム再構築を成功に導くユーザガイド](http://ipa.go.jp/archive/publish/qv6pgp000000117x-att/000057294.pdf) | 移行計画策定、リスク管理、判定基準、移行テスト方針 |
+
+
+### 11.5. セキュリティ要件定義
+
+セキュリティ要件定義に関する非機能要件を定義する。
+
+**対応項目**
+- 認証・認可方式の要件定義
+- データ保護（暗号化・マスキング）要件の定義
+- 通信セキュリティ要件の定義
+- 脆弱性対策の前提条件整理
+- セキュリティ監査・ログ要件の定義
+
+**成果物**
+- セキュリティ要件定義書
+- 脅威分析結果（必要に応じて）
+
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [OWASP ZAP](https://www.zaproxy.org/) | 脆弱性診断の前提条件整理、セキュリティテスト計画 | - |
+
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [OWASP Top 10](https://owasp.org/www-project-top-ten/) | Webアプリケーションの主要脆弱性の把握、対策要件の定義 |
+| [安全なウェブサイトの作り方（IPA）](https://www.ipa.go.jp/security/vuln/websecurity/) | セキュリティ実装要件の具体化、チェックリスト作成 |
+| [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework) | セキュリティ対策の網羅性確認、リスクベースの要件整理 |
+
+### 11.6. システム環境・エコロジー要件定義
+
+システムの稼働環境と環境配慮に関する要件を定義する。
+
+**対応項目**
+- システム稼働環境の制約条件（オンプレミス / クラウド / ハイブリッド）
+- 耐震・防火・電源等の物理的環境要件（オンプレミスの場合）
+- CO2排出量・消費電力に関する環境配慮要件
+- 適合すべき規格・法令の定義
+- 開発・テスト・ステージング環境の要件
+
+**成果物**
+- システム環境・エコロジー要件定義書
+
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [非機能要求グレード（システム環境・エコロジー）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/hikinou/ent03-b.html) | 設置環境、エコロジー要件の段階的定義 |
+
+---
+
+## 13. 受入テスト方針定義
+
+要件定義の段階で「何をもってこの要件を完了（パス）とするか」の基準を定めておくことで、テスト工程がスムーズになる。
+
+**対応項目**
+- 受入基準の定義（各要件に対する合格条件）
+- テスト方針の策定（テスト種類・範囲・実施体制）
+- ユーザビリティテスト実施有無の検討
+- テスト環境・データの前提条件整理
+
+**成果物**
+- 受入テスト計画（概要）
+- 受入評価基準
+
+| ツール名 | 用途 | 詳細 |
+|---------|------|------|
+| [TestRail](https://www.testrail.com/) | テストケース管理・受入基準のトレーサビリティ確保 | - |
+| [Qase](https://qase.io/) | テスト管理・要件とテストケースの紐付け | - |
+
+**有用なドキュメント**
+
+| 資料名 | 用途 |
+|-------|------|
+| [ユーザのための要件定義ガイド 第2版](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/youkenteigi20190912.html) | 受入条件定義、要件のテスト可能性確認 |
+| [ISTQB テスト技術者資格シラバス](https://jstqb.jp/syllabus.html) | テスト計画手法、受入テストの体系的アプローチ |
+| [ISO/IEC/IEEE 29119（ソフトウェアテスト）](https://www.iso.org/standard/81291.html) | テストプロセス標準、テスト計画テンプレート |
+
+---
+
+## 14. 参考資料
 - [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
-- ISO/IEC/IEEE 12207:2017
 - [ユーザのための要件定義ガイド 第2版](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/youkenteigi20190912.html)
-- [機能要件の合意形成ガイド（画面/データモデル/バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/index.html)
+- [機能要件の合意形成ガイド（画面/データモデル/バッチ編）](https://www.ipa.go.jp/archive/digital/iot-en-ci/jyouryuu/ent03-a.html)

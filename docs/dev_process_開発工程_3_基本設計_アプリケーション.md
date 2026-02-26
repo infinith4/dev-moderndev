@@ -186,6 +186,12 @@
 ---
 
 ## 9. 運用設計
+
+**対応項目**
+- 信頼性指標の定義（SLI：指標 / SLO：目標 / SLA：合意）
+- 監視とインシデント対応の方針策定（モニタリング・緊急対応）
+- 変更管理とポストモーテム（事後分析）の実施
+
 **成果物**
 - 監視方針書
 - バックアップ構成設計書
@@ -197,6 +203,8 @@
 |-------|------|
 | [SRE Fundamentals - Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/) | 監視方針（SLI/SLO、アラート設計）の基準 |
 | [NIST SP 800-34 Rev.1](https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final) | バックアップ/復旧方針、事業継続計画の基準 |
+| [Site Reliability Engineering (Google SRE Book)](https://sre.google/sre-book/introduction/) | SREの基本原則、運用手法、文化の理解 |
+| [SRE サイトリライアビリティエンジニアリング](https://www.oreilly.co.jp/books/9784873117911/) | 日本語訳版、大規模システムにおける具体的な実装事例の参照 |
 
 ---
 

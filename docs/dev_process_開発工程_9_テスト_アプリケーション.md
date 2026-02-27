@@ -1,13 +1,12 @@
 # 開発工程_9_テスト（アプリケーション）
 
 - [1. 概要](#1-概要)
-  - [1.2. 共通](#12-共通)
+  - [1.1. 共通](#11-共通)
 - [2. 単体テスト](#2-単体テスト)
-  - [2.1 Java](#21-java)
-  - [2.2 C#](#22-c)
-  - [2.3 Python](#23-python)
-  - [2.4 TypeScript](#24-typescript)
-  - [2.5 Go](#25-go)
+  - [2.1. Java](#21-java)
+  - [2.2. C#](#22-c)
+  - [2.3. Python](#23-python)
+  - [2.4. TypeScript](#24-typescript)
 - [3. 結合・APIテスト](#3-結合apiテスト)
 - [4. システム・E2Eテスト](#4-システムe2eテスト)
 - [5. 非機能テスト](#5-非機能テスト)
@@ -21,7 +20,7 @@
 
 ---
 
-### 1.2. 共通
+### 1.1. 共通
 
 **対応項目**
 - テスト計画、テスト設計、テスト実施
@@ -45,40 +44,33 @@
 - テストコード
 - カバレッジレポート
 
-### 2.1 Java
+### 2.1. Java
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [JUnit 5](https://junit.org/junit5/) | Javaの単体テスト実装 | [詳細](./ツール/単体テスト/JUnit.md) |
 | [Mockito](https://site.mockito.org/) | Javaのモック作成、依存切り離しテスト | [詳細](./ツール/API_統合/Mockito.md) |
 
-### 2.2 C#
+### 2.2. C#
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [xUnit.net](https://xunit.net/) | C#/.NETの単体テスト実装 | [詳細](./ツール/単体テスト/xUnit_net.md) |
 | [Moq](https://github.com/devlooped/moq) | C#のモック作成、依存切り離しテスト | [詳細](./ツール/単体テスト/Moq.md) |
 
-### 2.3 Python
+### 2.3. Python
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [pytest](https://docs.pytest.org/) | Pythonの単体テスト実装 | [詳細](./ツール/単体テスト/pytest.md) |
 | [unittest.mock](https://docs.python.org/3/library/unittest.mock.html) | Python標準のモック作成 | [詳細](./ツール/単体テスト/unittest_mock.md) |
 
-### 2.4 TypeScript
+### 2.4. TypeScript
 
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [Jest](https://jestjs.io/) | TypeScriptの単体テスト実装 | [詳細](./ツール/単体テスト/Jest.md) |
 | [ts-jest](https://kulshekhar.github.io/ts-jest/) | TypeScript向けJest実行設定 | |
-
-### 2.5 Go
-
-| ツール名 | 用途 | 詳細 |
-|---------|------|------|
-| [Go testing](https://pkg.go.dev/testing) | Goの単体テスト実装 | [詳細](./ツール/単体テスト/Go_testing.md) |
-| [GoMock](https://github.com/uber-go/mock) | Goのモック生成、依存切り離しテスト | [詳細](./ツール/単体テスト/GoMock.md) |
 
 **有用なドキュメント**
 
@@ -209,4 +201,4 @@
 
 ## 8. 参考資料
 - [IPA 共通フレーム2013](https://www.ipa.go.jp/archive/files/000027415.pdf)
-- ISO/IEC/IEEE 12207:2017 / JIS X 0160:2012
+

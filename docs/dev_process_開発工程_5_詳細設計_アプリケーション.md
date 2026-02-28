@@ -113,6 +113,7 @@
 | ツール名 | 用途 | 詳細 |
 |---------|------|------|
 | [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図・リバースエンジニアリング | [詳細](./ツール/データベース/MySQL_Workbench.md) |
+| [DBML](https://dbml.dbdiagram.io/) | テキストベースのスキーマ定義・SQL双方向変換・差分レビュー | [詳細](./ツール/データベース/DBML.md) |
 | [tbls](https://github.com/k1LoW/tbls) | 既存DBからER図・ドキュメント自動生成 | [詳細](./ツール/データベース/tbls.md) |
 
 **有用なドキュメント**

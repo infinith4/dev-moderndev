@@ -161,6 +161,7 @@
 |---------|------|------|
 | [ERDPlus](https://erdplus.com/) | オンラインER図・SQL生成 | [詳細](./ツール/データベース/ERDPlus.md) |
 | [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図・DB設計 | [詳細](./ツール/データベース/MySQL_Workbench.md) |
+| [DBML](https://dbml.dbdiagram.io/) | テキストベースDB設計・ER図自動生成・SQL双方向変換 | [詳細](./ツール/データベース/DBML.md) |
 
 **有用なドキュメント**
 

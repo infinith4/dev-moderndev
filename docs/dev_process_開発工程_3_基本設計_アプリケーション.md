@@ -108,6 +108,7 @@
 |---------|------|------|
 | [MySQL Workbench](https://www.mysql.com/products/workbench/) | ER図作成・テーブル設計 | [詳細](./ツール/データベース/MySQL_Workbench.md) |
 | [ERDPlus](https://erdplus.com/) | オンラインER図作成・SQL生成 | [詳細](./ツール/データベース/ERDPlus.md) |
+| [DBML](https://dbml.dbdiagram.io/) | テキストベースDB設計・Git管理可・SQL双方向変換 | [詳細](./ツール/データベース/DBML.md) |
 | [Draw.io](https://www.diagrams.net/) | 論理データモデルの可視化 | [詳細](./ツール/設計_モデリング/Draw.io.md) |
 
 **有用なドキュメント**

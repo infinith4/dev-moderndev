@@ -1,9 +1,25 @@
 """
 Notion API Client for Project Management
+
+Web API使用方法:
+    uvicorn notion_api:app --reload --port 8000
+
+エンドポイント:
+    GET /projects/{project_name}/pages - 特定プロジェクトのページを取得
+    GET /projects/{project_name}/pages?prefix=[工程] - 接頭辞フィルタ付き
 """
 import os
+import sys
+import io
 from typing import List, Dict, Optional
+
+from dotenv import load_dotenv
+from fastapi import FastAPI, Query, HTTPException
 from notion_client import Client
+
+# Windows環境でのUnicode出力問題を回避
+if sys.platform == 'win32':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
 class NotionClient:
@@ -249,3 +265,64 @@ class NotionClient:
                 }
             }
             return self.create_page(title, progress, properties)
+
+
+# --- FastAPI Web API ---
+
+load_dotenv()
+
+app = FastAPI(title="Notion Project API", version="1.0.0")
+
+
+def _get_client() -> NotionClient:
+    api_key = os.getenv("NOTION_API_KEY")
+    database_id = os.getenv("NOTION_DATABASE_ID")
+    if not api_key or not database_id:
+        raise HTTPException(
+            status_code=500,
+            detail="NOTION_API_KEY and NOTION_DATABASE_ID must be set in .env",
+        )
+    return NotionClient(api_key=api_key, database_id=database_id)
+
+
+def _format_page(page: Dict, client: NotionClient) -> Dict:
+    """Notionページオブジェクトからレスポンス用の辞書を生成"""
+    title = client._get_page_title(page)
+    sort_id = client._get_sort_id(page)
+
+    progress = None
+    progress_prop = page.get("properties", {}).get("進捗率", {})
+    if progress_prop.get("number") is not None:
+        progress = progress_prop["number"]
+
+    project = None
+    project_prop = page.get("properties", {}).get("プロジェクト", {})
+    if project_prop.get("select"):
+        project = project_prop["select"].get("name")
+
+    return {
+        "id": page["id"],
+        "title": title,
+        "sort_id": sort_id,
+        "progress": progress,
+        "project": project,
+        "url": page.get("url"),
+        "created_time": page.get("created_time"),
+        "last_edited_time": page.get("last_edited_time"),
+    }
+
+
+@app.get("/projects/{project_name}/pages")
+def get_project_pages(
+    project_name: str,
+    prefix: str = Query(default="[工程]", description="タイトルの接頭辞フィルタ"),
+):
+    """特定プロジェクトのページ一覧を取得（SortIdでソート済み）"""
+    client = _get_client()
+    pages = client.get_pages_by_project(project_name, title_prefix=prefix)
+    return {
+        "project": project_name,
+        "prefix": prefix,
+        "count": len(pages),
+        "pages": [_format_page(p, client) for p in pages],
+    }

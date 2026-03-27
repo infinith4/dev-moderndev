@@ -1,0 +1,19 @@
+### Get pages by database ID
+
+@databaseId = 2d0f76ee7f868150adc2edf04fe97742
+@baseurl = http://localhost:3500
+
+### Get pages by database ID
+GET {{baseurl}}/api/databases/{{databaseId}}/pages HTTP/1.1
+Content-Type: application/json
+
+### Get pages by database ID with pagination
+
+GET {{baseurl}}/api/databases/{{databaseId}}/pages?prefix=aws HTTP/1.1
+Content-Type: application/json
+
+
+### Get pages by database ID with pagination
+
+GET {{baseurl}}/api/databases/{{databaseId}}/pages?page=3&pageSize=10 HTTP/1.1
+Content-Type: application/json

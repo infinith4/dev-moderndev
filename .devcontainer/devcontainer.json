@@ -25,7 +25,8 @@
         "Anthropic.claude-code",
         "ms-azuretools.vscode-docker",
         "GitHub.copilot",
-        "bierner.markdown-mermaid"
+        "bierner.markdown-mermaid",
+        "humao.rest-client"
       ],
       "settings": {
         "markdown-preview-enhanced.chromePath": "/usr/bin/chromium",

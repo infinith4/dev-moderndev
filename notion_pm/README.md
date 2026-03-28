@@ -2,6 +2,9 @@
 
 Notion データベースのページ一覧を取得する REST API サーバー。
 
+[WBS のテンプレート](https://docs.google.com/spreadsheets/u/0/d/1Pb2WoREUfUwp17j9UySfpx0O37Bhu-nq-GuBgjms9Bw/copy?pli=1)
+
+
 ## 前提条件
 
 - Node.js

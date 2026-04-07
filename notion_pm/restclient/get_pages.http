@@ -1,6 +1,7 @@
-### Get pages by database ID
+#### https://www.notion.so/332f76ee7f8680e5b459ea9e58da4e7f?v=332f76ee7f8680f0a330000c3e536d51&source=copy_link
 
-@databaseId = 2d0f76ee7f868150adc2edf04fe97742
+### Get pages by database ID
+@databaseId = 332f76ee7f8680e5b459ea9e58da4e7f
 @baseurl = http://localhost:3500
 
 ### Get pages by database ID

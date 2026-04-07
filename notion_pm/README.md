@@ -37,6 +37,7 @@ PORT=3500
 ### 開発モード（ts-node）
 
 ```bash
+npm ci
 npm run dev
 ```
 

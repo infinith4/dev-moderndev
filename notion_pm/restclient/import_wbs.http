@@ -1,0 +1,37 @@
+@baseurl = http://localhost:3500
+@spreadsheetId = 1Pb2WoREUfUwp17j9UySfpx0O37Bhu-nq-GuBgjms9Bw
+
+### WBS をドライランで解析（タスクを作成せず構造を確認）
+POST {{baseurl}}/api/tasks/import-wbs HTTP/1.1
+Content-Type: application/json
+
+{
+  "spreadsheetId": "{{spreadsheetId}}",
+  "sheetName": "wbs",
+  "databaseId": "YOUR_NOTION_DATABASE_ID",
+  "dryRun": true
+}
+
+### WBS から Notion タスクを一括作成（親タスク Relation あり）
+POST {{baseurl}}/api/tasks/import-wbs HTTP/1.1
+Content-Type: application/json
+
+{
+  "spreadsheetId": "{{spreadsheetId}}",
+  "sheetName": "wbs",
+  "databaseId": "YOUR_NOTION_DATABASE_ID",
+  "parentRelationProp": "親タスク",
+  "dryRun": false
+}
+
+### WBS から Notion タスクを一括作成（親 Relation なし / フラット作成）
+POST {{baseurl}}/api/tasks/import-wbs HTTP/1.1
+Content-Type: application/json
+
+{
+  "spreadsheetId": "{{spreadsheetId}}",
+  "sheetName": "wbs",
+  "databaseId": "YOUR_NOTION_DATABASE_ID",
+  "parentRelationProp": "",
+  "dryRun": false
+}

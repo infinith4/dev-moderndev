@@ -11,3 +11,4 @@ rclone.conf
 *.pdf
 
 venv
+__pycache__

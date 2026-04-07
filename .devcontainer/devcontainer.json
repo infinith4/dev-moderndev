@@ -42,7 +42,7 @@
     }
   },
   "forwardPorts": [],
-  "onCreateCommand": "npm config set save-exact true && npm config set ignore-scripts true && npm config set audit true",
+  "onCreateCommand": "npm config set save-exact true && npm config set ignore-scripts true && npm config set audit true && npm config set min-release-age 5",
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "remoteUser": "vscode"
 }

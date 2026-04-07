@@ -7,13 +7,16 @@
 ### 1. 仮想環境の有効化
 
 ```bash
-cd /Diagrams_V1
+cd /src/Diagrams_V1
+python3 -m venv venv
 source venv/bin/activate
+python -m pip install -r requirements.txt
 ```
 
 ### 2. パッケージのインストール（既にインストール済み）
 
 ```bash
+pip install -r requirements.txt
 pip install diagrams
 ```
 
@@ -60,6 +63,23 @@ python 03_multicloud_architecture.py
 ```
 
 **出力:** `03_multicloud_architecture.png`
+
+### 04_ibm_service_architecture.py
+IBM サービス構成図
+- IBM Verify
+- Code Engine
+- OpenShift
+- ICOS
+- PostgreSQL
+- SendGrid
+- Internet service
+
+**実行:**
+```bash
+python 04_ibm_service_architecture.py
+```
+
+**出力:** `04_ibm_service_architecture.png`
 
 ## 全サンプルの一括生成
 

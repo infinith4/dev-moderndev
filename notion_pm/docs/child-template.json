@@ -1,0 +1,134 @@
+[
+  {
+    "_section": "タスク着手時",
+    "_upsert_mode": "overwrite",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "タスク着手時" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "期間に対応を期間を入力してください。(5日を超えるタスクは分割してください)" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "見積(人日)に記載がなければ入力してください。" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "ステータスを対応中に変更してください。" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "完了条件を満たしたら、ステータスをレビューに変更してください。" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "成果物を記載してください。(例: PR, SpreadsheetのURLなど)" } }]
+        }
+      }
+    ]
+  },
+  {
+    "_section": "対応内容",
+    "_upsert_mode": "skip",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "対応内容" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "" } }]
+        }
+      }
+    ]
+  },
+  {
+    "_section": "完了条件",
+    "_upsert_mode": "skip",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "完了条件" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+          "rich_text": [
+            {
+              "text": { "content": "(タスクの完了条件を記載してください)" },
+              "annotations": { "bold": true }
+            }
+          ]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "" } }]
+        }
+      }
+    ]
+  },
+  {
+    "_section": "成果物",
+    "_upsert_mode": "skip",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "成果物" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+          "rich_text": [
+            {
+              "text": { "content": "(成果物へのリンクを記載すること、成果物のファイルは添付しない)" },
+              "annotations": { "bold": true }
+            }
+          ]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "" } }]
+        }
+      }
+    ]
+  }
+]

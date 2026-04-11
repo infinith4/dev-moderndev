@@ -1,0 +1,178 @@
+[
+  {
+    "_section": "目的",
+    "_upsert_mode": "skip",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "目的" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+          "rich_text": [
+            {
+              "text": { "content": "(このフェーズで達成すること)" },
+              "annotations": { "bold": true }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "_section": "スコープ",
+    "_upsert_mode": "skip",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "スコープ" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+          "rich_text": [{ "text": { "content": "対象" }, "annotations": { "bold": true } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+          "rich_text": [{ "text": { "content": "対象外" }, "annotations": { "bold": true } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "" } }]
+        }
+      }
+    ]
+  },
+  {
+    "_section": "完了条件",
+    "_upsert_mode": "skip",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "完了条件" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+          "rich_text": [
+            {
+              "text": { "content": "(フェーズ全体の完了基準)" },
+              "annotations": { "bold": true }
+            }
+          ]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "" } }]
+        }
+      }
+    ]
+  },
+  {
+    "_section": "成果物",
+    "_upsert_mode": "skip",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "成果物" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+          "rich_text": [
+            {
+              "text": { "content": "(フェーズの主要な成果物)" },
+              "annotations": { "bold": true }
+            }
+          ]
+        }
+      },
+      {
+        "object": "block",
+        "type": "bulleted_list_item",
+        "bulleted_list_item": {
+          "rich_text": [{ "text": { "content": "" } }]
+        }
+      }
+    ]
+  },
+  {
+    "_section": "リスク・課題",
+    "_upsert_mode": "append",
+    "blocks": [
+      {
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+          "rich_text": [{ "text": { "content": "リスク・課題" } }]
+        }
+      },
+      {
+        "object": "block",
+        "type": "table",
+        "table": {
+          "table_width": 3,
+          "has_column_header": true,
+          "has_row_header": false,
+          "children": [
+            {
+              "object": "block",
+              "type": "table_row",
+              "table_row": {
+                "cells": [
+                  [{ "text": { "content": "#" } }],
+                  [{ "text": { "content": "内容" } }],
+                  [{ "text": { "content": "対応方針" } }]
+                ]
+              }
+            },
+            {
+              "object": "block",
+              "type": "table_row",
+              "table_row": {
+                "cells": [
+                  [{ "text": { "content": "1" } }],
+                  [{ "text": { "content": "" } }],
+                  [{ "text": { "content": "" } }]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -1,3 +1,4 @@
+import * as fs from "fs";
 import * as path from "path";
 import * as XLSX from "xlsx";
 import { Client } from "@notionhq/client";
@@ -15,10 +16,213 @@ const PERIOD_PROP   = process.env.PERIOD_PROP             ?? "期間";
 const EFFORT_PROP   = process.env.EFFORT_PROP             ?? "工数";
 const DRY_RUN     = process.argv.includes("--dry-run");
 
+const PARENT_TEMPLATE_PATH = process.env.PARENT_TEMPLATE_PATH
+  ?? path.resolve(__dirname, "../docs/parent-template.json");
+const CHILD_TEMPLATE_PATH = process.env.CHILD_TEMPLATE_PATH
+  ?? path.resolve(__dirname, "../docs/child-template.json");
+
 const PARENT_ICON = {
   type: "external" as const,
   external: { url: "https://notion-emojis.s3-us-west-2.amazonaws.com/prod/svg-twitter/1f48e.svg" },
 };
+
+// ---------------------------------------------------------------------------
+// テンプレート型定義
+// ---------------------------------------------------------------------------
+
+interface TemplateSection {
+  _section: string;
+  _upsert_mode: "overwrite" | "append" | "skip";
+  blocks: unknown[];
+}
+
+function loadTemplate(filePath: string): TemplateSection[] {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf-8")) as TemplateSection[];
+  } catch {
+    console.warn(`Template not found or invalid: ${filePath}. Using empty body.`);
+    return [];
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Notion ブロック操作ヘルパー
+// ---------------------------------------------------------------------------
+
+type BlockObject = { id: string; type: string; [key: string]: unknown };
+
+/** 既存ページのブロックを全件取得（ページネーション対応） */
+async function fetchAllBlocks(client: Client, pageId: string): Promise<BlockObject[]> {
+  const blocks: BlockObject[] = [];
+  let cursor: string | undefined;
+
+  do {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const res: any = await client.blocks.children.list({
+      block_id: pageId,
+      ...(cursor ? { start_cursor: cursor } : {}),
+    });
+    blocks.push(...(res.results as BlockObject[]));
+    cursor = res.has_more ? res.next_cursor : undefined;
+  } while (cursor);
+
+  return blocks;
+}
+
+/** ブロックが heading_2 かつ指定テキストに一致するか */
+function matchesHeading(block: BlockObject, text: string): boolean {
+  if (block.type !== "heading_2") return false;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const richText: any[] = (block["heading_2"] as any)?.rich_text ?? [];
+  return richText.map((r) => r.text?.content ?? "").join("") === text;
+}
+
+/** 見出しブロック（heading_1/2/3）か判定 */
+function isHeadingBlock(block: BlockObject): boolean {
+  return block.type === "heading_1" || block.type === "heading_2" || block.type === "heading_3";
+}
+
+/**
+ * upsert 時にテンプレートセクションをページに適用する。
+ *
+ * - overwrite: 既存の見出し配下のコンテンツブロックを削除し、テンプレートのコンテンツを挿入
+ * - append:    既存セクション末尾にテンプレートのコンテンツを追記
+ * - skip:      何もしない（手動編集を保護）
+ * - 見出しが存在しない場合: セクション全体（見出し＋コンテンツ）をページ末尾に追加
+ */
+async function applyTemplateSections(
+  client: Client,
+  pageId: string,
+  sections: TemplateSection[],
+  taskName: string,
+): Promise<void> {
+  for (const section of sections) {
+    if (section._upsert_mode === "skip") continue;
+
+    console.log(`  [template] page="${taskName}" section="${section._section}" mode=${section._upsert_mode}`);
+
+    let allBlocks: BlockObject[];
+    try {
+      allBlocks = await fetchAllBlocks(client, pageId);
+    } catch (e: unknown) {
+      console.error(`  [template] ERROR fetchAllBlocks page="${taskName}" section="${section._section}":`, (e as Error).message);
+      continue;
+    }
+
+    const headingIndex = allBlocks.findIndex((b) => matchesHeading(b, section._section));
+    const contentBlocks = section.blocks.slice(1);
+
+    if (headingIndex === -1) {
+      // 見出しが存在しない → セクション全体をページ末尾に追加
+      if (section.blocks.length > 0) {
+        try {
+          console.log(`  [template]   heading not found → append section to page end`);
+          await client.blocks.children.append({
+            block_id: pageId,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            children: section.blocks as any,
+          });
+        } catch (e: unknown) {
+          console.error(`  [template] ERROR append(missing heading) page="${taskName}" section="${section._section}":`, (e as Error).message);
+        }
+      }
+      continue;
+    }
+
+    const contentStart = headingIndex + 1;
+    let contentEnd = allBlocks.length;
+    for (let i = contentStart; i < allBlocks.length; i++) {
+      if (isHeadingBlock(allBlocks[i])) {
+        contentEnd = i;
+        break;
+      }
+    }
+    const existingContentBlocks = allBlocks.slice(contentStart, contentEnd);
+    console.log(`  [template]   heading found at idx=${headingIndex}, existing content blocks=${existingContentBlocks.length}, template content blocks=${contentBlocks.length}`);
+
+    if (section._upsert_mode === "overwrite") {
+      const updateCount = Math.min(existingContentBlocks.length, contentBlocks.length);
+
+      for (let i = 0; i < updateCount; i++) {
+        const tmpl = contentBlocks[i] as any;
+        try {
+          console.log(`  [template]   blocks.update blockId=${existingContentBlocks[i].id} type=${tmpl.type}`);
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          await (client.blocks.update as any)({
+            block_id: existingContentBlocks[i].id,
+            [tmpl.type]: tmpl[tmpl.type],
+          });
+        } catch (e: unknown) {
+          console.error(`  [template] ERROR blocks.update page="${taskName}" section="${section._section}" i=${i}:`, (e as Error).message);
+        }
+      }
+
+      for (let i = updateCount; i < existingContentBlocks.length; i++) {
+        try {
+          console.log(`  [template]   blocks.delete blockId=${existingContentBlocks[i].id}`);
+          await client.blocks.delete({ block_id: existingContentBlocks[i].id });
+        } catch (e: unknown) {
+          console.error(`  [template] ERROR blocks.delete page="${taskName}" section="${section._section}" i=${i}:`, (e as Error).message);
+        }
+      }
+
+      if (contentBlocks.length > existingContentBlocks.length) {
+        const extras = contentBlocks.slice(existingContentBlocks.length);
+        try {
+          console.log(`  [template]   append ${extras.length} extra blocks to page end`);
+          await client.blocks.children.append({
+            block_id: pageId,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            children: extras as any,
+          });
+        } catch (e: unknown) {
+          console.error(`  [template] ERROR append(extras) page="${taskName}" section="${section._section}":`, (e as Error).message);
+        }
+      }
+    } else if (section._upsert_mode === "append") {
+      const templateTable = (contentBlocks as any[]).find((b) => b.type === "table");
+      const existingTable = existingContentBlocks.find((b) => b.type === "table");
+
+      if (templateTable && existingTable) {
+        const rows = templateTable.table?.children ?? [];
+        if (rows.length > 0) {
+          try {
+            console.log(`  [template]   append ${rows.length} rows to table blockId=${existingTable.id}`);
+            await client.blocks.children.append({
+              block_id: existingTable.id,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              children: rows as any,
+            });
+          } catch (e: unknown) {
+            console.error(`  [template] ERROR append(table rows) page="${taskName}" section="${section._section}":`, (e as Error).message);
+          }
+        }
+      } else if (contentBlocks.length > 0) {
+        // セクション末尾（最後の既存ブロック or 見出しブロック）の後に挿入
+        const afterId =
+          existingContentBlocks.length > 0
+            ? existingContentBlocks[existingContentBlocks.length - 1].id
+            : allBlocks[headingIndex].id;
+        try {
+          console.log(`  [template]   append ${contentBlocks.length} blocks after blockId=${afterId}`);
+          await client.blocks.children.append({
+            block_id: pageId,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            children: contentBlocks as any,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            after: afterId as any,
+          });
+        } catch (e: unknown) {
+          console.error(`  [template] ERROR append(content) page="${taskName}" section="${section._section}":`, (e as Error).message);
+        }
+      }
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Excel 読み込み
+// ---------------------------------------------------------------------------
 
 interface TermEntry {
   startDate: string; // "YYYY-MM-DD"
@@ -97,6 +301,10 @@ function parseXlsxWbs(filePath: string): WBSTask[] {
   return parentTasks;
 }
 
+// ---------------------------------------------------------------------------
+// Notion upsert
+// ---------------------------------------------------------------------------
+
 /**
  * Notion データベースの全ページを取得し、タイトル → pageId のマップを返す。
  * タイトルが完全一致する既存ページの upsert 判定に使用する。
@@ -111,8 +319,8 @@ async function fetchExistingTitles(
 
 /**
  * WBSTask ツリーを Notion データベースに upsert する。
- * - タイトルが既存ページと完全一致する場合は更新（pages.update）
- * - 一致しない場合は新規作成（pages.create）
+ * - タイトルが既存ページと完全一致する場合は更新（pages.update）し、テンプレートセクションを適用
+ * - 一致しない場合は新規作成（pages.create）し、全セクションを children として渡す
  * - 子タスクには term マップから期間・工数プロパティを設定する。
  * - 親タスク（工程）にはアイコンを設定する。
  */
@@ -121,7 +329,9 @@ async function upsertXlsxTasks(
   databaseId: string,
   tasks: WBSTask[],
   termMap: Map<string, TermEntry>,
-  existingTitles: Map<string, string>
+  existingTitles: Map<string, string>,
+  parentTemplate: TemplateSection[],
+  childTemplate: TemplateSection[],
 ): Promise<{ created: number; updated: number }> {
   let created = 0;
   let updated = 0;
@@ -132,7 +342,6 @@ async function upsertXlsxTasks(
     };
 
     // 親タスク Relation: 子タスクは親ページを設定、親タスクは明示的にクリア
-    // （pages.update は PATCH のため、明示的にセットしないと既存値が残る）
     if (PARENT_PROP) {
       properties[PARENT_PROP] = parentPageId
         ? { relation: [{ id: parentPageId }] }
@@ -157,6 +366,7 @@ async function upsertXlsxTasks(
 
     const isParent = parentPageId === null;
     const existingPageId = existingTitles.get(task.name);
+    const template = isParent ? parentTemplate : childTemplate;
     let page;
 
     if (existingPageId) {
@@ -168,13 +378,18 @@ async function upsertXlsxTasks(
         ...(isParent && { icon: PARENT_ICON }),
       });
       updated++;
+      // テンプレートセクションを適用（skip 以外）
+      await applyTemplateSections(client, page.id, template, task.name);
     } else {
-      // 未一致 → 新規作成
+      // 未一致 → 新規作成（全セクションの blocks を結合して children に渡す）
+      const allBlocks = template.flatMap((s) => s.blocks);
       page = await client.pages.create({
         parent: { database_id: databaseId },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         properties: properties as any,
         ...(isParent && { icon: PARENT_ICON }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ...(allBlocks.length > 0 && { children: allBlocks as any }),
       });
       created++;
     }
@@ -204,10 +419,18 @@ async function upsertXlsxTasks(
   };
 
   for (const task of tasks) {
-    await upsertRecursive(task, null);
+    try {
+      await upsertRecursive(task, null);
+    } catch (e: unknown) {
+      console.error(`[upsert] ERROR task="${task.name}":`, (e as Error).message);
+    }
   }
   return { created, updated };
 }
+
+// ---------------------------------------------------------------------------
+// main
+// ---------------------------------------------------------------------------
 
 async function main(): Promise<void> {
   const apiKey = process.env.NOTION_API_KEY;
@@ -247,12 +470,17 @@ async function main(): Promise<void> {
 
   const client = createNotionClient(apiKey);
 
+  const parentTemplate = loadTemplate(PARENT_TEMPLATE_PATH);
+  const childTemplate  = loadTemplate(CHILD_TEMPLATE_PATH);
+  console.log(`Parent template sections: ${parentTemplate.length}`);
+  console.log(`Child template sections: ${childTemplate.length}`);
+
   console.log(`\nFetching existing pages from Notion database: ${DATABASE_ID}`);
   const existingTitles = await fetchExistingTitles(client, DATABASE_ID);
   console.log(`Found ${existingTitles.size} existing pages`);
 
   console.log("Upserting tasks...");
-  const { created, updated } = await upsertXlsxTasks(client, DATABASE_ID, tasks, termMap, existingTitles);
+  const { created, updated } = await upsertXlsxTasks(client, DATABASE_ID, tasks, termMap, existingTitles, parentTemplate, childTemplate);
   console.log(`Done. Created ${created}, updated ${updated} tasks.`);
 }
 

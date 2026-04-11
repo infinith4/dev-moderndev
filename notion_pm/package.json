@@ -7,10 +7,12 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "import-xlsx-wbs": "ts-node src/importXlsxWbs.ts"
+    "import-xlsx-wbs": "ts-node src/importXlsxWbs.ts",
+    "import-notion-markdown": "ts-node src/syncTaskBodies.ts"
   },
   "dependencies": {
     "@notionhq/client": "^5.15.0",
+    "@tryfabric/martian": "^1.2.4",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "googleapis": "^171.4.0",

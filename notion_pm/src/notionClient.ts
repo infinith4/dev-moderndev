@@ -7,6 +7,10 @@ export interface PageEntry {
   title: string;
 }
 
+export interface DatabasePageEntry extends PageEntry {
+  properties: PageObjectResponse["properties"];
+}
+
 export interface PaginatedResult {
   total: number;
   page: number;
@@ -37,6 +41,13 @@ function extractTitleAndPrefix(page: PageObjectResponse): PageEntry {
   };
 }
 
+function extractDatabasePage(page: PageObjectResponse): DatabasePageEntry {
+  return {
+    ...extractTitleAndPrefix(page),
+    properties: page.properties,
+  };
+}
+
 async function getDataSourceId(
   client: Client,
   databaseId: string
@@ -52,8 +63,16 @@ export async function getPagesByDatabaseId(
   client: Client,
   databaseId: string
 ): Promise<PageEntry[]> {
+  const pages = await getDatabasePagesByDatabaseId(client, databaseId);
+  return pages.map(({ pageId, title }) => ({ pageId, title }));
+}
+
+export async function getDatabasePagesByDatabaseId(
+  client: Client,
+  databaseId: string
+): Promise<DatabasePageEntry[]> {
   const dataSourceId = await getDataSourceId(client, databaseId);
-  const pages: PageEntry[] = [];
+  const pages: DatabasePageEntry[] = [];
   let cursor: string | undefined = undefined;
 
   do {
@@ -65,7 +84,7 @@ export async function getPagesByDatabaseId(
 
     for (const page of response.results) {
       if ("properties" in page) {
-        pages.push(extractTitleAndPrefix(page as PageObjectResponse));
+        pages.push(extractDatabasePage(page as PageObjectResponse));
       }
     }
 

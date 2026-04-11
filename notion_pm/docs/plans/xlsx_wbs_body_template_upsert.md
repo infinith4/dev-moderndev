@@ -14,8 +14,8 @@
 
 | `_upsert_mode` | 更新時の動作 |
 |---|---|
-| `"overwrite"` | 既存の見出し配下のコンテンツブロックを削除し、テンプレートのコンテンツブロックを再挿入 |
-| `"append"` | 既存セクション末尾にテンプレートのコンテンツブロックを追記 |
+| `"overwrite"` | 既存コンテンツを `blocks.update` で in-place 更新（ブロック数が多い場合は削除、少ない場合は末尾追記） |
+| `"append"` | 既存セクションの末尾ブロックの直後（`after` 指定）にテンプレートのコンテンツを追記。テーブルの場合は既存テーブルの `block_id` に行を追記 |
 | `"skip"` | 何もしない（手動編集を保護） |
 | 見出しが存在しない場合 | セクション全体（見出し＋コンテンツ）をページ末尾に追加 |
 
@@ -132,31 +132,65 @@ function isHeadingBlock(block: BlockObject): boolean
 
 /**
  * upsert 時にテンプレートセクションを適用する。
- * - overwrite: 既存見出し配下のブロックを削除 → テンプレートのコンテンツを挿入
- * - append:    既存セクション末尾にテンプレートのコンテンツを追記
- * - skip:      何もしない
+ * - overwrite: 既存ブロックを blocks.update で in-place 更新（after 不使用）
+ * - append（テーブル）: 既存テーブルの block_id に行を追記
+ * - append（通常）: 既存セクションの最後のブロックの直後に after 指定で追記
+ * - skip: 何もしない
  * - 見出しが見つからない場合: セクション全体をページ末尾に追加
+ * - 各 API 呼び出しは個別に try/catch し、エラーをログ出力して続行する
  */
 async function applyTemplateSections(
   client: Client,
   pageId: string,
   sections: TemplateSection[],
+  taskName: string,  // デバッグログ用
 ): Promise<void>
 ```
+
+#### `overwrite` の実装詳細
+
+`blocks.children.append` の `after` パラメータを使うと "A block cannot be its own parent" エラーが発生するため、`blocks.update` で in-place 更新する。
+
+```typescript
+// 既存ブロックをテンプレート内容で順番に上書き
+for (let i = 0; i < updateCount; i++) {
+  await client.blocks.update({
+    block_id: existingContentBlocks[i].id,
+    [tmpl.type]: tmpl[tmpl.type],
+  });
+}
+// 余った既存ブロックを削除
+// テンプレートの方が多い場合のみ末尾追記
+```
+
+#### `append`（非テーブル）の実装詳細
+
+ページ末尾ではなく、セクション内の最後のブロックの直後に挿入するため `after` を指定する。
+
+```typescript
+const afterId =
+  existingContentBlocks.length > 0
+    ? existingContentBlocks[existingContentBlocks.length - 1].id
+    : allBlocks[headingIndex].id;  // コンテンツなし → 見出しの直後
+
+await client.blocks.children.append({
+  block_id: pageId,
+  children: contentBlocks,
+  after: afterId,   // セクション末尾の直後に挿入
+});
+```
+
+> **注意**: `after` を使わないと末尾（別セクションの下）に追記されてしまう。
 
 ### upsert 分岐の変更
 
 ```typescript
 if (existingPageId) {
-  // 更新: プロパティを更新し、テンプレートセクションを適用
   page = await client.pages.update({ ... });
   updated++;
-  const template = isParent ? parentTemplate : childTemplate;
-  await applyTemplateSections(client, page.id, template);
+  await applyTemplateSections(client, page.id, template, task.name);
 } else {
-  // 新規作成: 全セクションの blocks を結合して children に渡す
-  const allBlocks = (isParent ? parentTemplate : childTemplate)
-    .flatMap(s => s.blocks);
+  const allBlocks = template.flatMap(s => s.blocks);
   page = await client.pages.create({
     ...
     ...(allBlocks.length > 0 && { children: allBlocks as any }),

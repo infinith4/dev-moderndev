@@ -115,6 +115,88 @@ codex login   # 未ログインなら先に実施
 codex exec --full-auto -C "$NOTION_PM_DIR" - < "$PROMPT_FILE"
 ```
 
+### 代替案: Gemini Web App (`https://gemini.google.com/app?hl=ja`) による半手動生成
+
+Gemini Web App でも同様の Markdown 本文生成は可能。ただし CLI のようにローカルの `docs/task-bodies/**` へ直接書き込む手段は前提にしにくいため、**生成は Gemini、保存は手動** の運用とする。
+
+**向いているケース:**
+- ローカル CLI のセットアップなしで試したい
+- プロンプトを対話的に微調整しながら文章品質を上げたい
+- まず数ファイルだけ試作したい
+
+**制約:**
+- `claude` / `codex` のようにローカルファイルへ直接保存する自動化には向かない
+- Gemini Web App 上で生成した内容を、`docs/task-bodies/**/*.md` へ手動で保存する必要がある
+- タスク数が多い場合は手作業が増えるため、バッチ生成は CLI 案の方が現実的
+
+**実行方法:**
+
+```text
+1. /src/notion_pm で npm run import-xlsx-wbs -- --dry-run を実行
+2. Gemini Web App を開く
+   https://gemini.google.com/app?hl=ja
+3. dry-run 出力、parent-template.json、child-template.json を Gemini に渡す
+4. Gemini に Markdown を生成させる
+5. 生成結果を docs/task-bodies/{親}.md / docs/task-bodies/{親}/{子}.md として保存する
+```
+
+**推奨フロー:**
+
+```
+① npm run import-xlsx-wbs -- --dry-run
+   → タスク一覧を取得
+
+② Gemini Web App に以下を貼り付け or アップロード
+   - dry-run 出力
+   - docs/parent-template.json
+   - docs/child-template.json
+
+③ 生成単位を分ける
+   - 親タスクごとに生成
+   - あるいは 1 ファイルずつ生成
+
+④ Gemini の回答を Markdown コードブロックで出させる
+   → 各ファイルを docs/task-bodies/** に保存
+```
+
+**Gemini に渡すプロンプトの要点:**
+- 出力対象は `docs/task-bodies/**` の Markdown 本文のみ
+- 親タスクは `docs/task-bodies/{タスク名}.md`
+- 子タスクは `docs/task-bodies/{親タスク名}/{タスク名}.md`
+- `##` 見出し名はテンプレート JSON の `_section` と完全一致
+- 1 回の回答では 1 ファイルずつ出力させるか、複数ファイルなら `path:` 見出し付きで分離させる
+- 回答は必ず Markdown コードブロックで出力させる
+- `リスク・課題` は空テーブル
+- `タスク着手時` は既定チェックリストをそのまま使用
+
+**Gemini 用プロンプト例:**
+
+```text
+以下の WBS タスクに対して、Markdown ファイル本文を生成してください。
+
+制約:
+- 出力は Markdown コードブロックのみ
+- 見出しは ## から始める
+- 親タスクは docs/task-bodies/{タスク名}.md
+- 子タスクは docs/task-bodies/{親タスク名}/{タスク名}.md
+- セクション名は parent-template.json / child-template.json の _section と完全一致
+- 今回は 1 ファイルずつ出力する
+- 「タスク着手時」は既定チェックリストをそのまま使う
+- 「リスク・課題」は空テーブル（ヘッダーのみ）
+
+対象タスク:
+{ここに dry-run 出力から対象タスクを貼る}
+```
+
+**Gemini Web App を使う理由:**
+- Google 公式ヘルプ上、Gemini Web App はファイルやコードフォルダのアップロードに対応している
+- 生成結果は Google Docs などへ export できるため、下書き作成には使いやすい
+- 一方で、ローカルの `docs/task-bodies/**` への直接保存は公式ヘルプ上の標準フローではないため、保存は手動運用にするのが安全
+
+**補足:**
+- dry-run 出力をそのまま貼るだけでも使えるが、`parent-template.json` / `child-template.json` も併せて渡した方が見出し名の揺れを防ぎやすい
+- ファイル数が多い場合は、Gemini で草案を作り、最終的な一括生成は `generate-task-bodies-codex.sh` または Claude 案へ寄せた方が管理しやすい
+
 ---
 
 ## Part 2: Notion 同期方法

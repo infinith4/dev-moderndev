@@ -57,6 +57,64 @@ which claude   # PATH に存在するか確認
 - 親タスク: `目的` / `スコープ` / `完了条件` / `成果物` / `リスク・課題`（`parent-template.json` と完全一致）
 - スクリプトがテンプレート JSON から動的に読み取るため、テンプレート変更にも自動追従する
 
+### 代替案: `scripts/generate-task-bodies-codex.sh`（Codex CLI による自動生成）
+
+Claude Code CLI と同じ 4 ステップを維持しつつ、生成実行だけを `codex exec` に置き換える案。
+
+**実行方法:**
+
+```bash
+cd /src/notion_pm
+
+# 既存ファイルはスキップ（通常実行）
+bash scripts/generate-task-bodies-codex.sh
+
+# 強制上書き
+bash scripts/generate-task-bodies-codex.sh --force
+```
+
+**内部フロー:**
+
+```
+① npm run import-xlsx-wbs -- --dry-run
+   → タスク一覧テキストを取得
+
+② python3 で child/parent-template.json からセクション名を自動抽出
+
+③ プロンプトを /tmp 一時ファイルに書き込む
+
+④ codex exec --full-auto -C "$NOTION_PM_DIR" - < "$PROMPT_FILE"
+   → Codex が docs/task-bodies/**/*.md を一括生成
+```
+
+**npm script 案:**
+
+```json
+"generate-task-bodies:codex": "bash scripts/generate-task-bodies-codex.sh"
+```
+
+**前提条件:**
+
+```bash
+which codex   # PATH に存在するか確認
+codex login   # 未ログインなら先に実施
+```
+
+**Codex 用プロンプトで明示する制約:**
+- 作業ディレクトリは `notion_pm`
+- 変更対象は `docs/task-bodies/**` のみ
+- 親タスクは `docs/task-bodies/{タスク名}.md`
+- 子タスクは `docs/task-bodies/{親タスク名}/{タスク名}.md`
+- `##` 見出し名はテンプレート JSON の `_section` と完全一致させる
+- `--force` なしでは既存ファイルを上書きしない
+- 余計なファイル作成や他パスの変更は行わない
+
+**コマンド例:**
+
+```bash
+codex exec --full-auto -C "$NOTION_PM_DIR" - < "$PROMPT_FILE"
+```
+
 ---
 
 ## Part 2: Notion 同期方法

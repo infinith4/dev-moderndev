@@ -7,6 +7,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
+    "generate-task-bodies:codex": "bash scripts/generate-task-bodies-codex.sh",
     "import-xlsx-wbs": "ts-node src/importXlsxWbs.ts",
     "import-notion-markdown": "ts-node src/syncTaskBodies.ts"
   },

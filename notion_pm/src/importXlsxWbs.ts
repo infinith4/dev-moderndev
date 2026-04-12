@@ -226,8 +226,7 @@ async function upsertXlsxTasks(
     if (isParent) {
       mdSections = loadParentMarkdownSections(task.name);
     } else if (parentName) {
-      const originalTaskName = task.details["_originalTaskName"] ?? task.name;
-      mdSections = loadChildMarkdownSections(parentName, originalTaskName);
+      mdSections = loadChildMarkdownSections(parentName, task.name);
     }
 
     let page;
@@ -327,7 +326,7 @@ async function main(): Promise<void> {
         const termInfo = term
           ? ` [期間: ${term.startDate}〜${term.endDate}, 工数: ${term.effort}d]`
           : " [term: 未一致]";
-        const childMd = fs.existsSync(path.join(TASK_BODIES_DIR, p.name, `${orig}.md`));
+        const childMd = fs.existsSync(path.join(TASK_BODIES_DIR, p.name, `${c.name}.md`));
         console.log(`    [子] ${c.name}${termInfo}${childMd ? " [body: md]" : " [body: template]"}`);
       }
     }

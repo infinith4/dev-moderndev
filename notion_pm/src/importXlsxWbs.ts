@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 import { Client } from "@notionhq/client";
 import dotenv from "dotenv";
 import { createNotionClient, getPagesByDatabaseId } from "./notionClient";
@@ -76,34 +76,47 @@ interface TermEntry {
 }
 
 /** term シートを読み込み、タスク名 → TermEntry のマップを返す */
-function readTermSheet(filePath: string): Map<string, TermEntry> {
-  const wb = XLSX.readFile(filePath, { cellDates: true });
-  const ws = wb.Sheets["term"];
+async function readTermSheet(filePath: string): Promise<Map<string, TermEntry>> {
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.readFile(filePath);
+  const ws = workbook.getWorksheet("term");
   if (!ws) return new Map();
 
-  const rows = XLSX.utils.sheet_to_json<unknown[]>(ws, { header: 1 });
   const map = new Map<string, TermEntry>();
+  ws.eachRow((row, rowNumber) => {
+    if (rowNumber === 1) return; // ヘッダー行をスキップ
+    // .text はリッチテキスト・数式セルも文字列として返す
+    // .value は Date/number をネイティブ型で返す
+    const taskName  = row.getCell(2).text.trim(); // B列: 工程
+    const startRaw  = row.getCell(3).value;       // C列: 開始日
+    const endRaw    = row.getCell(4).value;       // D列: 終了日
+    const effortRaw = row.getCell(5).value;       // E列: 対応工数(D)
 
-  for (const row of rows.slice(1) as unknown[][]) {
-    const taskName  = (row[1] ?? "").toString().trim(); // B列: 工程
-    const startRaw  = row[2];                           // C列: 開始日
-    const endRaw    = row[3];                           // D列: 終了日
-    const effortRaw = row[4];                           // E列: 対応工数(D)
+    if (!taskName) return;
 
-    if (!taskName) continue;
-
+    const effortResolved = resolveCell(effortRaw);
+    const effortNum = typeof effortResolved === "number" ? effortResolved : parseFloat(String(effortResolved ?? "")) || 0;
     map.set(taskName, {
       startDate: toIsoDate(startRaw),
       endDate:   toIsoDate(endRaw),
-      effort:    typeof effortRaw === "number" ? effortRaw : parseFloat(String(effortRaw)) || 0,
+      effort:    effortNum,
     });
-  }
+  });
   return map;
 }
 
+/** ExcelJS の数式セル ({ formula, result }) から実値を取り出す */
+function resolveCell(value: unknown): unknown {
+  if (value !== null && typeof value === "object" && "result" in (value as object)) {
+    return (value as { result: unknown }).result;
+  }
+  return value;
+}
+
 function toIsoDate(value: unknown): string {
-  if (value instanceof Date) return value.toISOString().split("T")[0];
-  if (typeof value === "string") return value;
+  const v = resolveCell(value);
+  if (v instanceof Date) return v.toISOString().split("T")[0];
+  if (typeof v === "string") return v;
   return "";
 }
 
@@ -112,19 +125,20 @@ function toIsoDate(value: unknown): string {
  * WBSTask[] ツリーを返す。
  * 子タスクの details["_originalTaskName"] に F列の元の値を保存（term マッチング用）。
  */
-function parseXlsxWbs(filePath: string): WBSTask[] {
-  const wb = XLSX.readFile(filePath);
-  const ws = wb.Sheets["wbs"];
+async function parseXlsxWbs(filePath: string): Promise<WBSTask[]> {
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.readFile(filePath);
+  const ws = workbook.getWorksheet("wbs");
   if (!ws) throw new Error('Sheet "wbs" not found');
 
-  const rows = XLSX.utils.sheet_to_json<unknown[]>(ws, { header: 1 });
   const parentTasks: WBSTask[] = [];
   const parentMap = new Map<string, WBSTask>();
 
-  for (const row of rows.slice(1) as unknown[][]) {
-    const parentName = (row[4] ?? "").toString().trim(); // E列
-    const childRaw   = (row[5] ?? "").toString().trim(); // F列
-    if (!parentName && !childRaw) continue;
+  ws.eachRow((row, rowNumber) => {
+    if (rowNumber === 1) return; // ヘッダー行をスキップ
+    const parentName = row.getCell(5).text.trim(); // E列
+    const childRaw   = row.getCell(6).text.trim(); // F列
+    if (!parentName && !childRaw) return;
 
     if (parentName && !parentMap.has(parentName)) {
       const t: WBSTask = { level: "大項目", name: parentName, details: {}, children: [] };
@@ -142,7 +156,7 @@ function parseXlsxWbs(filePath: string): WBSTask[] {
         children: [],
       });
     }
-  }
+  });
   return parentTasks;
 }
 
@@ -290,8 +304,8 @@ async function main(): Promise<void> {
   }
 
   console.log(`Reading: ${XLSX_PATH}`);
-  const tasks   = parseXlsxWbs(XLSX_PATH);
-  const termMap = readTermSheet(XLSX_PATH);
+  const tasks   = await parseXlsxWbs(XLSX_PATH);
+  const termMap = await readTermSheet(XLSX_PATH);
 
   const totalChildren = tasks.reduce((s, t) => s + t.children.length, 0);
   const matched = tasks
